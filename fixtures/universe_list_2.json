@@ -1,0 +1,17 @@
+{
+  "count": 4,
+  "next": null,
+  "previous": "https://metron.cloud/api/universe/?page=1",
+  "results": [
+    {
+      "id": 69,
+      "name": "Amalgam",
+      "modified": "2024-01-25T09:22:08.422067-05:00"
+    },
+    {
+      "id": 75,
+      "name": "Amazonia",
+      "modified": "2024-01-25T09:23:39.686552-05:00"
+    }
+  ]
+}

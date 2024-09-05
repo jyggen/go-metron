@@ -1,0 +1,15 @@
+{
+  "count": 4,
+  "next": null,
+  "previous": "https://metron.cloud/api/role/?page=1",
+  "results": [
+    {
+      "id": 30,
+      "name": "Story"
+    },
+    {
+      "id": 23,
+      "name": "Plot"
+    }
+  ]
+}

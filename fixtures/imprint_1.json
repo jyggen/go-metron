@@ -1,0 +1,14 @@
+{
+  "id": 1,
+  "name": "Vertigo Comics",
+  "founded": 1993,
+  "desc": "Vertigo Comics (also known as DC Vertigo) is an imprint of the American comic book publisher DC Comics. It was created in 1993 to publish stories with more graphic or adult content that could not fit within the restrictions of the Comics Code Authority, thus allowing more creative freedom than DC's main imprint. These comics were free to contain explicit violence, substance and drug abuse, sexuality, nudity, profanity, and other controversial subjects, similar to the content of R-rated films.\r\n\r\nAlthough its initial publications were primarily in the horror and fantasy genres, it has also published works dealing with crime, social commentary, speculative fiction, biography, and other genres. Originally publishing a mix of company- and creator-owned work, its current focus is on the latter. It pioneered in North America an increasingly common publishing model, in which monthly series are periodically comprised into collected editions which are kept in print for bookstore sale.\r\n\r\nVertigo series have won the comics industry's Eisner Award, including the \"best continuing series\" of various years (The Sandman, Preacher, 100 Bullets, Y: The Last Man and Fables). Several of its publications have been adapted to film (such as Constantine, A History of Violence, Stardust, and V for Vendetta) and episodic television (such as Constantine, iZombie, Lucifer, and Preacher).",
+  "image": "https://static.metron.cloud/media/imprint/2024/08/12/vertigo.jpg",
+  "cv_id": null,
+  "publisher": {
+    "id": 2,
+    "name": "DC Comics"
+  },
+  "resource_url": "https://metron.cloud/imprint/vertigo-comics/",
+  "modified": "2024-08-12T12:13:54.087728-04:00"
+}

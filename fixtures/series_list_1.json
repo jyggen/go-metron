@@ -1,0 +1,23 @@
+{
+  "count": 4,
+  "next": "https://metron.cloud/api/series/?page=2",
+  "previous": null,
+  "results": [
+    {
+      "id": 6227,
+      "series": "'68 (2006)",
+      "year_began": 2006,
+      "volume": 1,
+      "issue_count": 1,
+      "modified": "2023-12-02T10:10:47.573380-05:00"
+    },
+    {
+      "id": 6228,
+      "series": "'68 (2011)",
+      "year_began": 2011,
+      "volume": 2,
+      "issue_count": 4,
+      "modified": "2023-12-02T10:10:18.550260-05:00"
+    }
+  ]
+}

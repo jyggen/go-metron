@@ -1,0 +1,17 @@
+{
+  "count": 4,
+  "next": null,
+  "previous": "https://metron.cloud/api/arc/?page=1",
+  "results": [
+    {
+      "id": 871,
+      "name": "1+2 = Fantastic Three",
+      "modified": "2022-09-08T09:53:30.626809-04:00"
+    },
+    {
+      "id": 1031,
+      "name": "1602",
+      "modified": "2023-03-12T15:41:46.220978-04:00"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "count": 4,
+  "next": null,
+  "previous": "https://metron.cloud/api/series/?page=1",
+  "results": [
+    {
+      "id": 6229,
+      "series": "'68 Hallowed Ground (2013)",
+      "year_began": 2013,
+      "volume": 1,
+      "issue_count": 1,
+      "modified": "2023-12-02T10:13:50.130689-05:00"
+    },
+    {
+      "id": 6236,
+      "series": "'68 Hardship (2011)",
+      "year_began": 2011,
+      "volume": 1,
+      "issue_count": 1,
+      "modified": "2023-12-02T10:53:11.674254-05:00"
+    }
+  ]
+}

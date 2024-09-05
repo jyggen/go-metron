@@ -1,0 +1,188 @@
+{
+  "id": 2558,
+  "publisher": {
+    "id": 2,
+    "name": "DC Comics"
+  },
+  "imprint": {
+    "id": 2,
+    "name": "DC Black Label"
+  },
+  "series": {
+    "id": 279,
+    "name": "Batman: Last Knight on Earth",
+    "sort_name": "Batman Last Knight on Earth",
+    "volume": 1,
+    "series_type": {
+      "id": 11,
+      "name": "Limited Series"
+    },
+    "genres": [
+      {
+        "id": 10,
+        "name": "Super-Hero"
+      }
+    ]
+  },
+  "number": "1",
+  "title": "",
+  "name": [
+    "Book One"
+  ],
+  "cover_date": "2019-07-01",
+  "store_date": "2019-05-29",
+  "price": "5.99",
+  "rating": {
+    "id": 5,
+    "name": "Mature"
+  },
+  "sku": "",
+  "isbn": "",
+  "upc": "76194135390600111",
+  "page": 60,
+  "desc": "Bruce Wayne wakes up in Arkham Asylum. Young. Sane.\r\nAnd...he was never Batman.\r\n\r\n So begins this sprawling tale of the Dark Knight as he embarks on a quest through a devastated DC landscape featuring a massive cast of familiar faces from the DC Universe. As he tries to piece together the mystery of his past, he must unravel the cause of this terrible future and track down the unspeakable force that destroyed the world as he knew it…",
+  "image": "https://static.metron.cloud/media/issue/2019/05/27/batman-last-knight-1.jpg",
+  "cover_hash": "ede81312b2337ac5",
+  "arcs": [],
+  "credits": [
+    {
+      "id": 303,
+      "creator": "Amedeo Turturro",
+      "role": [
+        {
+          "id": 9,
+          "name": "Associate Editor"
+        }
+      ]
+    },
+    {
+      "id": 102,
+      "creator": "FCO Plascencia",
+      "role": [
+        {
+          "id": 5,
+          "name": "Colorist"
+        },
+        {
+          "id": 7,
+          "name": "Cover"
+        }
+      ]
+    },
+    {
+      "id": 103,
+      "creator": "Greg Capullo",
+      "role": [
+        {
+          "id": 3,
+          "name": "Penciller"
+        },
+        {
+          "id": 7,
+          "name": "Cover"
+        }
+      ]
+    },
+    {
+      "id": 740,
+      "creator": "Jock",
+      "role": [
+        {
+          "id": 7,
+          "name": "Cover"
+        }
+      ]
+    },
+    {
+      "id": 104,
+      "creator": "Jonathan Glapion",
+      "role": [
+        {
+          "id": 4,
+          "name": "Inker"
+        }
+      ]
+    },
+    {
+      "id": 173,
+      "creator": "Mark Doyle",
+      "role": [
+        {
+          "id": 8,
+          "name": "Editor"
+        }
+      ]
+    },
+    {
+      "id": 148,
+      "creator": "Scott Snyder",
+      "role": [
+        {
+          "id": 1,
+          "name": "Writer"
+        }
+      ]
+    },
+    {
+      "id": 62,
+      "creator": "Tom Napolitano",
+      "role": [
+        {
+          "id": 6,
+          "name": "Letterer"
+        }
+      ]
+    }
+  ],
+  "characters": [
+    {
+      "id": 261,
+      "name": "Alfred Pennyworth",
+      "modified": "2024-07-09T09:04:54.495392-04:00"
+    },
+    {
+      "id": 12,
+      "name": "Batman",
+      "modified": "2024-07-09T08:48:28.493469-04:00"
+    },
+    {
+      "id": 297,
+      "name": "Huntress (Bertinelli)",
+      "modified": "2020-01-25T23:31:18.010466-05:00"
+    },
+    {
+      "id": 83,
+      "name": "Joker",
+      "modified": "2024-07-09T09:05:08.443483-04:00"
+    },
+    {
+      "id": 22,
+      "name": "Poison Ivy",
+      "modified": "2024-07-09T09:02:44.927666-04:00"
+    },
+    {
+      "id": 103,
+      "name": "Supergirl (Kara Zor-El)",
+      "modified": "2024-03-16T14:39:59.288996-04:00"
+    },
+    {
+      "id": 14,
+      "name": "Wonder Woman",
+      "modified": "2024-07-10T09:37:03.733103-04:00"
+    }
+  ],
+  "teams": [],
+  "universes": [],
+  "reprints": [],
+  "variants": [
+    {
+      "name": "Variant Cover",
+      "sku": "",
+      "upc": "",
+      "image": "https://static.metron.cloud/media/variants/2019/05/27/batman-last-knight-1a.jpg"
+    }
+  ],
+  "cv_id": 710046,
+  "resource_url": "https://metron.cloud/issue/batman-last-knight-earth-2019-1/",
+  "modified": "2023-05-23T11:00:31.173503-04:00"
+}

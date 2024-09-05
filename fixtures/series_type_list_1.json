@@ -1,0 +1,15 @@
+{
+  "count": 9,
+  "next": "https://metron.cloud/api/series_type/?page=2",
+  "previous": null,
+  "results": [
+    {
+      "id": 6,
+      "name": "Annual"
+    },
+    {
+      "id": 12,
+      "name": "Digital Chapter"
+    }
+  ]
+}

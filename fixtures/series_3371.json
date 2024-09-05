@@ -1,0 +1,35 @@
+{
+  "id": 3371,
+  "name": "Batman 2022 Annual",
+  "sort_name": "Batman 2022 Annual",
+  "volume": 1,
+  "series_type": {
+    "id": 6,
+    "name": "Annual"
+  },
+  "status": "Completed",
+  "publisher": {
+    "id": 2,
+    "name": "DC Comics"
+  },
+  "imprint": null,
+  "year_began": 2022,
+  "year_end": null,
+  "desc": "",
+  "issue_count": 1,
+  "genres": [
+    {
+      "id": 10,
+      "name": "Super-Hero"
+    }
+  ],
+  "associated": [
+    {
+      "id": 93,
+      "series": "Batman (2016)"
+    }
+  ],
+  "cv_id": 143255,
+  "resource_url": "https://metron.cloud/series/batman-2022-annual-2022/",
+  "modified": "2023-10-14T15:41:45.214400-04:00"
+}

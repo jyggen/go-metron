@@ -1,0 +1,404 @@
+{
+  "id": 112901,
+  "publisher": {
+    "id": 2,
+    "name": "DC Comics"
+  },
+  "imprint": null,
+  "series": {
+    "id": 7133,
+    "name": "Batman",
+    "sort_name": "Batman",
+    "volume": 1,
+    "series_type": {
+      "id": 8,
+      "name": "Hardcover"
+    },
+    "genres": [
+      {
+        "id": 1,
+        "name": "Adult"
+      },
+      {
+        "id": 13,
+        "name": "Crime"
+      },
+      {
+        "id": 10,
+        "name": "Super-Hero"
+      }
+    ]
+  },
+  "number": "1",
+  "title": "The Court of Owls",
+  "name": [],
+  "cover_date": "2012-07-01",
+  "store_date": "2012-05-09",
+  "price": "24.99",
+  "rating": {
+    "id": 1,
+    "name": "Unknown"
+  },
+  "sku": "JAN120300",
+  "isbn": "",
+  "upc": "",
+  "page": 176,
+  "desc": "Beware the Court of Owls, that watches all the time, ruling Gotham from a shadowed perch, behind granite and lime, they watch you at your hearth, they watch you in your bed. Speak not a whispered word of them, or they'll send the Talon for your head.\r\n\r\nBatman had heard the tales of Gotham City's Court of Owls. Meeting in the shadows and using the nocturnal bird of prey as their calling card, the members of this powerful cabal are the true rulers of Gotham.\r\n\r\nBut the Dark Knight dismissed the stories as rumors and old wives' tales. Gotham was his city.\r\n\r\nUntil now.\r\n\r\nA brutal assassin is sinking his razor-sharp talons into the city's best and brightest, as well as its most dangerous and deadly. If the dark legends are true, his masters are more powerful predators than the Batman could ever imagine—and their nests are everywhere...\r\n\r\nThe superstar team of writer SCOTT SNYDER (AMERICAN VAMPIRE, BATMAN: THE BLACK MIRROR) and GREG CAPULLO (SPAWN) proudly present BATMAN: THE COURT OF OWLS (collecting BATMAN #1-7)—a soaring saga of mystery and terror that became one of the year's best-selling comics.",
+  "image": "https://static.metron.cloud/media/issue/2024/02/27/e49a51e397ac4489a81785ad8098d296.jpg",
+  "cover_hash": "841068ef7e313dec",
+  "arcs": [],
+  "credits": [
+    {
+      "id": 1379,
+      "creator": "Bob Harras",
+      "role": [
+        {
+          "id": 20,
+          "name": "Editor In Chief"
+        }
+      ]
+    },
+    {
+      "id": 1148,
+      "creator": "Dan DiDio",
+      "role": [
+        {
+          "id": 31,
+          "name": "Publisher"
+        }
+      ]
+    },
+    {
+      "id": 739,
+      "creator": "Eddie Berganza",
+      "role": [
+        {
+          "id": 25,
+          "name": "Executive Editor"
+        }
+      ]
+    },
+    {
+      "id": 102,
+      "creator": "FCO Plascencia",
+      "role": [
+        {
+          "id": 5,
+          "name": "Colorist"
+        },
+        {
+          "id": 7,
+          "name": "Cover"
+        }
+      ]
+    },
+    {
+      "id": 92,
+      "creator": "Geoff Johns",
+      "role": [
+        {
+          "id": 18,
+          "name": "Chief Creative Officer"
+        }
+      ]
+    },
+    {
+      "id": 103,
+      "creator": "Greg Capullo",
+      "role": [
+        {
+          "id": 3,
+          "name": "Penciller"
+        },
+        {
+          "id": 7,
+          "name": "Cover"
+        }
+      ]
+    },
+    {
+      "id": 628,
+      "creator": "Harvey Richards",
+      "role": [
+        {
+          "id": 9,
+          "name": "Associate Editor"
+        }
+      ]
+    },
+    {
+      "id": 681,
+      "creator": "Janelle Asselin",
+      "role": [
+        {
+          "id": 9,
+          "name": "Associate Editor"
+        }
+      ]
+    },
+    {
+      "id": 172,
+      "creator": "Jim Lee",
+      "role": [
+        {
+          "id": 31,
+          "name": "Publisher"
+        }
+      ]
+    },
+    {
+      "id": 1919,
+      "creator": "Jimmy Betancourt",
+      "role": [
+        {
+          "id": 6,
+          "name": "Letterer"
+        }
+      ]
+    },
+    {
+      "id": 104,
+      "creator": "Jonathan Glapion",
+      "role": [
+        {
+          "id": 4,
+          "name": "Inker"
+        }
+      ]
+    },
+    {
+      "id": 201,
+      "creator": "Katie Kubert",
+      "role": [
+        {
+          "id": 12,
+          "name": "Assistant Editor"
+        }
+      ]
+    },
+    {
+      "id": 309,
+      "creator": "Mike Marts",
+      "role": [
+        {
+          "id": 8,
+          "name": "Editor"
+        }
+      ]
+    },
+    {
+      "id": 9428,
+      "creator": "Peter Hamboussi",
+      "role": [
+        {
+          "id": 8,
+          "name": "Editor"
+        }
+      ]
+    },
+    {
+      "id": 206,
+      "creator": "Richard Starkings",
+      "role": [
+        {
+          "id": 6,
+          "name": "Letterer"
+        }
+      ]
+    },
+    {
+      "id": 3454,
+      "creator": "Robbie Biederman",
+      "role": [
+        {
+          "id": 15,
+          "name": "Designer"
+        }
+      ]
+    },
+    {
+      "id": 148,
+      "creator": "Scott Snyder",
+      "role": [
+        {
+          "id": 1,
+          "name": "Writer"
+        }
+      ]
+    }
+  ],
+  "characters": [
+    {
+      "id": 261,
+      "name": "Alfred Pennyworth",
+      "modified": "2024-07-09T09:04:54.495392-04:00"
+    },
+    {
+      "id": 275,
+      "name": "Barbara Gordon",
+      "modified": "2024-07-09T09:02:05.179534-04:00"
+    },
+    {
+      "id": 12,
+      "name": "Batman",
+      "modified": "2024-07-09T08:48:28.493469-04:00"
+    },
+    {
+      "id": 2351,
+      "name": "Bluebird",
+      "modified": "2019-08-15T22:45:12.556186-04:00"
+    },
+    {
+      "id": 77,
+      "name": "Catwoman",
+      "modified": "2024-07-09T09:05:24.678117-04:00"
+    },
+    {
+      "id": 1120,
+      "name": "Clayface (Karlo)",
+      "modified": "2021-08-04T09:16:09.919076-04:00"
+    },
+    {
+      "id": 394,
+      "name": "Damian Wayne",
+      "modified": "2019-12-10T17:01:22.174842-05:00"
+    },
+    {
+      "id": 293,
+      "name": "Dick Grayson",
+      "modified": "2024-07-09T09:04:20.846359-04:00"
+    },
+    {
+      "id": 16,
+      "name": "Harley Quinn",
+      "modified": "2023-08-12T15:29:44.077971-04:00"
+    },
+    {
+      "id": 1048,
+      "name": "Harvey Bullock",
+      "modified": "2021-12-05T11:23:16.559814-05:00"
+    },
+    {
+      "id": 82,
+      "name": "James Gordon",
+      "modified": "2022-06-24T11:27:57.748073-04:00"
+    },
+    {
+      "id": 1204,
+      "name": "James Gordon Jr.",
+      "modified": "2019-06-23T15:13:20.341800-04:00"
+    },
+    {
+      "id": 1126,
+      "name": "Jeremiah Arkham",
+      "modified": "2019-06-23T15:13:20.362505-04:00"
+    },
+    {
+      "id": 83,
+      "name": "Joker",
+      "modified": "2024-07-09T09:05:08.443483-04:00"
+    },
+    {
+      "id": 763,
+      "name": "Killer Croc",
+      "modified": "2021-08-15T10:14:39.376904-04:00"
+    },
+    {
+      "id": 2234,
+      "name": "Leslie Thompkins",
+      "modified": "2019-08-02T09:04:22.766158-04:00"
+    },
+    {
+      "id": 2856,
+      "name": "Lincoln March",
+      "modified": "2019-10-21T23:30:45.442034-04:00"
+    },
+    {
+      "id": 274,
+      "name": "Mr. Freeze",
+      "modified": "2019-06-23T15:13:20.681733-04:00"
+    },
+    {
+      "id": 347,
+      "name": "Professor Pyg",
+      "modified": "2020-11-30T11:08:10.669408-05:00"
+    },
+    {
+      "id": 348,
+      "name": "Riddler",
+      "modified": "2024-07-09T09:05:54.599342-04:00"
+    },
+    {
+      "id": 280,
+      "name": "Scarecrow",
+      "modified": "2019-12-09T09:26:02.032372-05:00"
+    },
+    {
+      "id": 765,
+      "name": "Tim Drake",
+      "modified": "2024-03-16T14:39:04.222577-04:00"
+    },
+    {
+      "id": 355,
+      "name": "Two-Face",
+      "modified": "2019-06-23T15:13:21.246414-04:00"
+    },
+    {
+      "id": 2057,
+      "name": "Vicki Vale",
+      "modified": "2019-07-08T10:17:24.294245-04:00"
+    },
+    {
+      "id": 1136,
+      "name": "Victor Zsasz",
+      "modified": "2021-08-04T10:07:46.837981-04:00"
+    }
+  ],
+  "teams": [
+    {
+      "id": 87,
+      "name": "Court of Owls",
+      "modified": "2019-06-23T15:13:23.942002-04:00"
+    },
+    {
+      "id": 88,
+      "name": "The Talons",
+      "modified": "2019-06-23T15:13:24.036247-04:00"
+    }
+  ],
+  "universes": [],
+  "reprints": [
+    {
+      "id": 6798,
+      "issue": "Batman (2011) #1"
+    },
+    {
+      "id": 6799,
+      "issue": "Batman (2011) #2"
+    },
+    {
+      "id": 6800,
+      "issue": "Batman (2011) #3"
+    },
+    {
+      "id": 6801,
+      "issue": "Batman (2011) #4"
+    },
+    {
+      "id": 6802,
+      "issue": "Batman (2011) #5"
+    },
+    {
+      "id": 6803,
+      "issue": "Batman (2011) #6"
+    },
+    {
+      "id": 6804,
+      "issue": "Batman (2011) #7"
+    }
+  ],
+  "variants": [],
+  "cv_id": null,
+  "resource_url": "https://metron.cloud/issue/batman-2012-1/",
+  "modified": "2024-02-27T11:41:38.422006-05:00"
+}

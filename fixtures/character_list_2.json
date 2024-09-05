@@ -1,0 +1,17 @@
+{
+  "count": 4,
+  "next": null,
+  "previous": "https://metron.cloud/api/character/?page=1",
+  "results": [
+    {
+      "id": 21156,
+      "name": "'Saur",
+      "modified": "2023-07-20T14:54:06.624160-04:00"
+    },
+    {
+      "id": 6211,
+      "name": "0101",
+      "modified": "2021-03-25T16:19:54.045015-04:00"
+    }
+  ]
+}

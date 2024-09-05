@@ -1,0 +1,17 @@
+{
+  "count": 1565,
+  "next": null,
+  "previous": "https://metron.cloud/api/team/?page=1",
+  "results": [
+    {
+      "id": 180,
+      "name": "A-Force",
+      "modified": "2019-07-27T16:52:41.547904-04:00"
+    },
+    {
+      "id": 523,
+      "name": "A-Next",
+      "modified": "2021-11-17T16:14:53.029611-05:00"
+    }
+  ]
+}

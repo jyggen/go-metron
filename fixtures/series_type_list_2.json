@@ -1,0 +1,15 @@
+{
+  "count": 9,
+  "next": null,
+  "previous": "https://metron.cloud/api/series_type/?page=1",
+  "results": [
+    {
+      "id": 9,
+      "name": "Graphic Novel"
+    },
+    {
+      "id": 8,
+      "name": "Hardcover"
+    }
+  ]
+}

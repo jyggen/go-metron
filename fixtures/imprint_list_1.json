@@ -1,0 +1,17 @@
+{
+  "count": 4,
+  "next": "https://metron.cloud/api/imprint/?page=2",
+  "previous": null,
+  "results": [
+    {
+      "id": 14,
+      "name": "Amalgam Comics",
+      "modified": "2024-08-18T10:09:51.151912-04:00"
+    },
+    {
+      "id": 4,
+      "name": "Archie Horror",
+      "modified": "2024-08-12T15:07:30.049388-04:00"
+    }
+  ]
+}

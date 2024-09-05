@@ -1,0 +1,14 @@
+{
+  "id": 0,
+  "name": "Foobar",
+  "founded": null,
+  "desc": "",
+  "image": null,
+  "cv_id": 0,
+  "publisher": {
+    "id": 0,
+    "name": "Foobar"
+  },
+  "resource_url": "https://example.com/",
+  "modified": "1970-01-01T00:00:00.000000Z"
+}

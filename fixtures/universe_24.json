@@ -1,0 +1,13 @@
+{
+  "id": 24,
+  "publisher": {
+    "id": 2,
+    "name": "DC Comics"
+  },
+  "name": "ABC",
+  "designation": "Earth 25",
+  "desc": "Home to the characters from Alan Moore's America's Best Comics imprint.",
+  "image": "https://static.metron.cloud/media/universe/2024/01/25/earth-abc.webp",
+  "resource_url": "https://metron.cloud/universe/abc/",
+  "modified": "2024-01-25T09:24:33.271598-05:00"
+}

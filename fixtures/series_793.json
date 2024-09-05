@@ -1,0 +1,33 @@
+{
+  "id": 793,
+  "name": "Fables",
+  "sort_name": "Fables",
+  "volume": 1,
+  "series_type": {
+    "id": 13,
+    "name": "Single Issue"
+  },
+  "status": "Cancelled",
+  "publisher": {
+    "id": 2,
+    "name": "DC Comics"
+  },
+  "imprint": {
+    "id": 1,
+    "name": "Vertigo Comics"
+  },
+  "year_began": 2002,
+  "year_end": 2015,
+  "desc": "When the Adversary conquered the lands of legends, the inhabitants were forced into exile. They form a secret society, a hidden enclave in modern-day New York. Bill Willingham's award-winning \"fractured-fairy-tale\" series explores the world of these beloved fables...one that exists within our own.",
+  "issue_count": 149,
+  "genres": [],
+  "associated": [
+    {
+      "id": 3396,
+      "series": "Fables (2022)"
+    }
+  ],
+  "cv_id": 9723,
+  "resource_url": "https://metron.cloud/series/fables-2002/",
+  "modified": "2024-06-20T12:32:08.926341-04:00"
+}

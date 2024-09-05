@@ -1,0 +1,222 @@
+package metron
+
+import (
+	"context"
+	"encoding/json"
+	"errors"
+	"fmt"
+	"io"
+	"net/http"
+	"net/url"
+	"time"
+
+	"golang.org/x/time/rate"
+)
+
+const baseURL = "https://metron.cloud/api/"
+const userAgent = "go-metron/1.0-dev"
+
+type listTypes interface {
+	ArcList | CharacterList | CreatorList | ImprintList | IssueList | PublisherList | RoleList | SeriesList | SeriesTypeList | TeamList | UniverseList
+}
+
+type paginatedList[T listTypes] struct {
+	Count    int     `json:"count"`
+	Next     *string `json:"next"`
+	Previous *string `json:"previous"`
+	Results  []T     `json:"results"`
+}
+
+type Reference struct {
+	ID   int    `json:"id"`
+	Name string `json:"name"`
+}
+
+type URL struct {
+	*url.URL
+}
+
+func (u URL) MarshalJSON() ([]byte, error) {
+	return json.Marshal(u.String())
+}
+
+func (u *URL) UnmarshalJSON(b []byte) error {
+	var err error
+	var s string
+
+	if err = json.Unmarshal(b, &s); err != nil {
+		return err
+	}
+
+	u.URL, err = url.Parse(s)
+
+	return err
+}
+
+type Client struct {
+	baseURL       *url.URL
+	cacheDir      string
+	client        *http.Client
+	enableCaching bool
+	limiter       *rate.Limiter
+	password      string
+	username      string
+}
+
+type Option func(*Client)
+
+func NewClient(options ...Option) *Client {
+	b, _ := url.Parse(baseURL)
+	c := &Client{
+		baseURL:       b,
+		cacheDir:      "",
+		client:        http.DefaultClient,
+		enableCaching: false,
+		limiter:       rate.NewLimiter(rate.Every(time.Minute/30), 1),
+		password:      "",
+		username:      "",
+	}
+
+	for _, option := range options {
+		option(c)
+	}
+
+	return c
+}
+
+func WithAuthentication(username string, password string) Option {
+	return func(c *Client) {
+		c.password = password
+		c.username = username
+	}
+}
+
+func WithCaching(cacheDir string) Option {
+	return func(c *Client) {
+		c.cacheDir = cacheDir
+		c.enableCaching = true
+	}
+}
+
+func WithClient(client *http.Client) Option {
+	return func(c *Client) {
+		c.client = client
+	}
+}
+
+func WithoutRateLimiter() Option {
+	return func(c *Client) {
+		c.limiter = nil
+	}
+}
+
+func paginate[T listTypes](ctx context.Context, c *Client, path string, filters ...Filter) func(func(T, error) bool) {
+	return func(yield func(T, error) bool) {
+		u, err := c.baseURL.Parse(path)
+
+		var v T
+
+		if err != nil {
+			yield(v, err)
+			return
+		}
+
+		var vList paginatedList[T]
+
+		for {
+			vList, err = request[paginatedList[T]](ctx, c, u.String(), filters...)
+
+			if err != nil {
+				yield(v, err)
+				return
+			}
+
+			for _, v = range vList.Results {
+				if !yield(v, err) {
+					return
+				}
+			}
+
+			if vList.Next == nil {
+				break
+			}
+
+			u, err = c.baseURL.Parse(*vList.Next)
+
+			if err != nil {
+				yield(v, err)
+				return
+			}
+
+			filters = nil
+		}
+	}
+}
+
+func do[T any](c *Client, req *http.Request) (T, error) {
+	var v T
+
+	if c.limiter != nil {
+		r := c.limiter.Reserve()
+
+		if !r.OK() {
+			return v, errors.New("unable to adhere to rate limit")
+		}
+
+		time.Sleep(r.Delay())
+	}
+
+	res, err := c.client.Do(req)
+
+	if err != nil {
+		return v, err
+	}
+
+	defer res.Body.Close()
+
+	if res.StatusCode != http.StatusOK {
+		return v, fmt.Errorf("unexpected status code: %d", res.StatusCode)
+	}
+
+	body, err := io.ReadAll(res.Body)
+
+	if err != nil {
+		return v, err
+	}
+
+	err = json.Unmarshal(body, &v)
+
+	return v, err
+}
+
+func request[T any](ctx context.Context, c *Client, path string, filters ...Filter) (T, error) {
+	var v T
+
+	u, err := c.baseURL.Parse(path)
+
+	if err != nil {
+		return v, err
+	}
+
+	q := u.Query()
+
+	for _, f := range filters {
+		f(&q)
+	}
+
+	u.RawQuery = q.Encode()
+
+	var req *http.Request
+
+	req, err = http.NewRequestWithContext(ctx, http.MethodGet, u.String(), nil)
+
+	if err != nil {
+		return v, err
+	}
+
+	req.SetBasicAuth(c.username, c.password)
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("User-Agent", userAgent)
+
+	return cache[T](c, req)
+}

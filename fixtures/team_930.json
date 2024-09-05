@@ -1,0 +1,17 @@
+{
+  "id": 930,
+  "name": "Infinites",
+  "desc": "",
+  "image": "https://static.metron.cloud/media/team/2023/03/06/14bda442d94345548e47683884914484.jpg",
+  "creators": [],
+  "universes": [
+    {
+      "id": 110,
+      "name": "Age of Apocalypse",
+      "modified": "2024-04-17T10:31:52.624470-04:00"
+    }
+  ],
+  "cv_id": null,
+  "resource_url": "https://metron.cloud/team/infinites/",
+  "modified": "2024-08-06T09:23:45.515089-04:00"
+}

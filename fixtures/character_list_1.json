@@ -1,0 +1,17 @@
+{
+  "count": 4,
+  "next": "https://metron.cloud/api/character/?page=2",
+  "previous": null,
+  "results": [
+    {
+      "id": 23817,
+      "name": "'Breed",
+      "modified": "2023-12-02T11:25:39.275547-05:00"
+    },
+    {
+      "id": 6029,
+      "name": "'Mazing Man",
+      "modified": "2021-03-12T14:42:27.453937-05:00"
+    }
+  ]
+}

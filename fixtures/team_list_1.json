@@ -1,0 +1,17 @@
+{
+  "count": 1565,
+  "next": "https://metron.cloud/api/team/?page=2",
+  "previous": null,
+  "results": [
+    {
+      "id": 1089,
+      "name": "501st Legion",
+      "modified": "2023-04-04T10:12:13.619621-04:00"
+    },
+    {
+      "id": 1498,
+      "name": "5th Dimensional Imps",
+      "modified": "2024-03-16T09:28:28.725699-04:00"
+    }
+  ]
+}

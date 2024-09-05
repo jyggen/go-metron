@@ -1,0 +1,17 @@
+{
+  "count": 4,
+  "next": "https://metron.cloud/api/creator/?page=2",
+  "previous": null,
+  "results": [
+    {
+      "id": 5466,
+      "name": "A D'Amico",
+      "modified": "2024-02-25T15:53:40.615428-05:00"
+    },
+    {
+      "id": 7174,
+      "name": "A Larger World Studios",
+      "modified": "2023-02-21T11:29:18.690700-05:00"
+    }
+  ]
+}

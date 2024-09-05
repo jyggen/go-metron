@@ -1,0 +1,17 @@
+{
+  "count": 4,
+  "next": "https://metron.cloud/api/publisher/?page=2",
+  "previous": null,
+  "results": [
+    {
+      "id": 29,
+      "name": "12-Gauge Comics",
+      "modified": "2019-11-03T17:16:03.835821-05:00"
+    },
+    {
+      "id": 64,
+      "name": "AAA Pop Comics",
+      "modified": "2023-07-24T08:21:06.019465-04:00"
+    }
+  ]
+}

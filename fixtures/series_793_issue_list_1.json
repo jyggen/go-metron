@@ -1,0 +1,37 @@
+{
+  "count": 4,
+  "next": "https://metron.cloud/api/series/793/issue_list/?page=2",
+  "previous": null,
+  "results": [
+    {
+      "id": 89088,
+      "series": {
+        "name": "'68",
+        "volume": 1,
+        "year_began": 2006
+      },
+      "number": "1",
+      "issue": "'68 (2006) #1",
+      "cover_date": "2006-12-01",
+      "store_date": null,
+      "image": "https://static.metron.cloud/media/issue/2023/12/02/395d1af45859497183f0b868485831aa.jpg",
+      "cover_hash": "de9a207b768189f4",
+      "modified": "2023-12-02T10:08:26.125751-05:00"
+    },
+    {
+      "id": 89089,
+      "series": {
+        "name": "'68",
+        "volume": 2,
+        "year_began": 2011
+      },
+      "number": "1",
+      "issue": "'68 (2011) #1",
+      "cover_date": "2011-04-01",
+      "store_date": "2011-04-27",
+      "image": "https://static.metron.cloud/media/issue/2023/12/02/b8a86c0422e749968f74c2fe2605ea4a.jpg",
+      "cover_hash": "ccd6331a22959d3b",
+      "modified": "2023-12-02T10:10:55.924868-05:00"
+    }
+  ]
+}

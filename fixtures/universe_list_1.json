@@ -1,0 +1,17 @@
+{
+  "count": 4,
+  "next": "https://metron.cloud/api/universe/?page=2",
+  "previous": null,
+  "results": [
+    {
+      "id": 24,
+      "name": "ABC",
+      "modified": "2024-01-25T09:24:33.271598-05:00"
+    },
+    {
+      "id": 110,
+      "name": "Age of Apocalypse",
+      "modified": "2024-04-17T10:31:52.624470-04:00"
+    }
+  ]
+}
