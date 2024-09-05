@@ -70,7 +70,7 @@ type IssueList struct {
 		YearBegan int    `json:"year_began"`
 	} `json:"series"`
 	Number    string      `json:"number"`
-	Issue     string      `json:"issue"`
+	Name      string      `json:"issue"`
 	CoverDate civil.Date  `json:"cover_date"`
 	StoreDate *civil.Date `json:"store_date"`
 	ImageURL  *URL        `json:"image"`
