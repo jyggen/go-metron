@@ -11,5 +11,8 @@ import "github.com/jyggen/go-metron"
 Construct a new Metron client.
 
 ```go
-c, err := metron.NewClient("yourtokengoeshere")
+c, err := metron.NewClient(
+	metron.WithAuthentication("username", "password"),
+	metron.WithCaching(""),
+)
 ```
