@@ -32,6 +32,6 @@ func (c *Client) ImprintByID(ctx context.Context, id int) (Imprint, error) {
 	return request[Imprint](ctx, c, fmt.Sprintf("imprint/%d/", id))
 }
 
-func (c *Client) Imprints(ctx context.Context) func(func(ImprintList, error) bool) {
-	return paginate[ImprintList](ctx, c, "imprint/")
+func (c *Client) Imprints(ctx context.Context, filters ...Filter) func(func(ImprintList, error) bool) {
+	return paginate[ImprintList](ctx, c, "imprint/", filters...)
 }

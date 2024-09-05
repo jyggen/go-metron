@@ -92,9 +92,18 @@ func TestSeriesByID(t *testing.T) {
 	})
 }
 
+func TestSeriesByPublisherID(t *testing.T) {
+	t.Parallel()
+	testListByID(t, "publisher", 1, "series", (*metron.Client).SeriesByPublisherID, seriesListTestCases(t))
+}
+
 func TestSeries(t *testing.T) {
 	t.Parallel()
-	testList(t, "series", (*metron.Client).Series, []testCase[metron.SeriesList]{
+	testList(t, "series", (*metron.Client).Series, seriesListTestCases(t))
+}
+
+func seriesListTestCases(t *testing.T) []testCase[metron.SeriesList] {
+	return []testCase[metron.SeriesList]{
 		{
 			id: 6227,
 			expected: metron.SeriesList{
@@ -139,5 +148,5 @@ func TestSeries(t *testing.T) {
 				Modified:   parseTime(t, "2023-12-02T10:53:11.674254-05:00"),
 			},
 		},
-	})
+	}
 }

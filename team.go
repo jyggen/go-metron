@@ -32,6 +32,6 @@ func (c *Client) TeamByID(ctx context.Context, id int) (Team, error) {
 	return request[Team](ctx, c, fmt.Sprintf("team/%d/", id))
 }
 
-func (c *Client) Teams(ctx context.Context) func(func(TeamList, error) bool) {
-	return paginate[TeamList](ctx, c, "team/")
+func (c *Client) Teams(ctx context.Context, filters ...Filter) func(func(TeamList, error) bool) {
+	return paginate[TeamList](ctx, c, "team/", filters...)
 }

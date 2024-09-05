@@ -34,6 +34,6 @@ func (c *Client) CharacterByID(ctx context.Context, id int) (Character, error) {
 	return request[Character](ctx, c, fmt.Sprintf("character/%d/", id))
 }
 
-func (c *Client) Characters(ctx context.Context) func(func(CharacterList, error) bool) {
-	return paginate[CharacterList](ctx, c, "character/")
+func (c *Client) Characters(ctx context.Context, filters ...Filter) func(func(CharacterList, error) bool) {
+	return paginate[CharacterList](ctx, c, "character/", filters...)
 }

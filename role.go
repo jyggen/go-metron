@@ -7,6 +7,6 @@ type RoleList struct {
 	Name string `json:"name"`
 }
 
-func (c *Client) Roles(ctx context.Context) func(func(RoleList, error) bool) {
-	return paginate[RoleList](ctx, c, "role/")
+func (c *Client) Roles(ctx context.Context, filters ...Filter) func(func(RoleList, error) bool) {
+	return paginate[RoleList](ctx, c, "role/", filters...)
 }

@@ -31,6 +31,6 @@ func (c *Client) PublisherByID(ctx context.Context, id int) (Publisher, error) {
 	return request[Publisher](ctx, c, fmt.Sprintf("publisher/%d/", id))
 }
 
-func (c *Client) Publishers(ctx context.Context) func(func(PublisherList, error) bool) {
-	return paginate[PublisherList](ctx, c, "publisher/")
+func (c *Client) Publishers(ctx context.Context, filters ...Filter) func(func(PublisherList, error) bool) {
+	return paginate[PublisherList](ctx, c, "publisher/", filters...)
 }

@@ -31,6 +31,6 @@ func (c *Client) UniverseByID(ctx context.Context, id int) (Universe, error) {
 	return request[Universe](ctx, c, fmt.Sprintf("universe/%d/", id))
 }
 
-func (c *Client) Universes(ctx context.Context) func(func(UniverseList, error) bool) {
-	return paginate[UniverseList](ctx, c, "universe/")
+func (c *Client) Universes(ctx context.Context, filters ...Filter) func(func(UniverseList, error) bool) {
+	return paginate[UniverseList](ctx, c, "universe/", filters...)
 }

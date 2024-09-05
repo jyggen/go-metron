@@ -86,10 +86,6 @@ func (c *Client) IssuesByCharacterID(ctx context.Context, id int) func(func(Issu
 	return paginate[IssueList](ctx, c, fmt.Sprintf("character/%d/issue_list/", id))
 }
 
-func (c *Client) IssuesByPublisherID(ctx context.Context, id int) func(func(IssueList, error) bool) {
-	return paginate[IssueList](ctx, c, fmt.Sprintf("publisher/%d/issue_list/", id))
-}
-
 func (c *Client) IssuesBySeriesID(ctx context.Context, id int) func(func(IssueList, error) bool) {
 	return paginate[IssueList](ctx, c, fmt.Sprintf("series/%d/issue_list/", id))
 }
@@ -102,6 +98,6 @@ func (c *Client) IssueByID(ctx context.Context, id int) (Issue, error) {
 	return request[Issue](ctx, c, fmt.Sprintf("issue/%d/", id))
 }
 
-func (c *Client) Issues(ctx context.Context) func(func(IssueList, error) bool) {
-	return paginate[IssueList](ctx, c, "issue/")
+func (c *Client) Issues(ctx context.Context, filters ...Filter) func(func(IssueList, error) bool) {
+	return paginate[IssueList](ctx, c, "issue/", filters...)
 }

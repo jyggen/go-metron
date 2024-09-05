@@ -35,6 +35,6 @@ func (c *Client) CreatorByID(ctx context.Context, id int) (Creator, error) {
 	return request[Creator](ctx, c, fmt.Sprintf("creator/%d/", id))
 }
 
-func (c *Client) Creators(ctx context.Context) func(func(CreatorList, error) bool) {
-	return paginate[CreatorList](ctx, c, "creator/")
+func (c *Client) Creators(ctx context.Context, filters ...Filter) func(func(CreatorList, error) bool) {
+	return paginate[CreatorList](ctx, c, "creator/", filters...)
 }

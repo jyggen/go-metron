@@ -30,6 +30,6 @@ func (c *Client) ArcByID(ctx context.Context, id int) (Arc, error) {
 	return request[Arc](ctx, c, fmt.Sprintf("arc/%d/", id))
 }
 
-func (c *Client) Arcs(ctx context.Context) func(func(ArcList, error) bool) {
-	return paginate[ArcList](ctx, c, "arc/")
+func (c *Client) Arcs(ctx context.Context, filters ...Filter) func(func(ArcList, error) bool) {
+	return paginate[ArcList](ctx, c, "arc/", filters...)
 }

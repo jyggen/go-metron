@@ -42,10 +42,14 @@ type SeriesList struct {
 	Modified   time.Time `json:"modified"`
 }
 
+func (c *Client) SeriesByPublisherID(ctx context.Context, id int) func(func(SeriesList, error) bool) {
+	return paginate[SeriesList](ctx, c, fmt.Sprintf("publisher/%d/series_list/", id))
+}
+
 func (c *Client) SeriesByID(ctx context.Context, id int) (Series, error) {
 	return request[Series](ctx, c, fmt.Sprintf("series/%d/", id))
 }
 
-func (c *Client) Series(ctx context.Context) func(func(SeriesList, error) bool) {
-	return paginate[SeriesList](ctx, c, "series/")
+func (c *Client) Series(ctx context.Context, filters ...Filter) func(func(SeriesList, error) bool) {
+	return paginate[SeriesList](ctx, c, "series/", filters...)
 }

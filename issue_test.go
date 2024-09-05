@@ -654,35 +654,30 @@ func TestIssueByID(t *testing.T) {
 
 func TestIssuesByArcID(t *testing.T) {
 	t.Parallel()
-	testListByID(t, "arc", 659, "issue", (*metron.Client).IssuesByArcID, listTestCases(t))
+	testListByID(t, "arc", 659, "issue", (*metron.Client).IssuesByArcID, issueListTestCases(t))
 }
 
 func TestIssuesByCharacterID(t *testing.T) {
 	t.Parallel()
-	testListByID(t, "character", 83, "issue", (*metron.Client).IssuesByCharacterID, listTestCases(t))
-}
-
-func TestIssuesByPublisherID(t *testing.T) {
-	t.Parallel()
-	testListByID(t, "publisher", 1, "issue", (*metron.Client).IssuesByPublisherID, listTestCases(t))
+	testListByID(t, "character", 83, "issue", (*metron.Client).IssuesByCharacterID, issueListTestCases(t))
 }
 
 func TestIssuesBySeriesID(t *testing.T) {
 	t.Parallel()
-	testListByID(t, "series", 793, "issue", (*metron.Client).IssuesBySeriesID, listTestCases(t))
+	testListByID(t, "series", 793, "issue", (*metron.Client).IssuesBySeriesID, issueListTestCases(t))
 }
 
 func TestIssuesByTeamID(t *testing.T) {
 	t.Parallel()
-	testListByID(t, "team", 180, "issue", (*metron.Client).IssuesByTeamID, listTestCases(t))
+	testListByID(t, "team", 180, "issue", (*metron.Client).IssuesByTeamID, issueListTestCases(t))
 }
 
 func TestIssues(t *testing.T) {
 	t.Parallel()
-	testList(t, "issue", (*metron.Client).Issues, listTestCases(t))
+	testList(t, "issue", (*metron.Client).Issues, issueListTestCases(t))
 }
 
-func listTestCases(t *testing.T) []testCase[metron.IssueList] {
+func issueListTestCases(t *testing.T) []testCase[metron.IssueList] {
 	return []testCase[metron.IssueList]{
 		{
 			id: 89088,

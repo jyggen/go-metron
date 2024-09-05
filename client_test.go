@@ -33,7 +33,7 @@ type testCase[T any] struct {
 	expected T
 }
 
-func testList[T any](t *testing.T, kind string, method func(*metron.Client, context.Context) func(func(T, error) bool), testCases []testCase[T]) {
+func testList[T any](t *testing.T, kind string, method func(*metron.Client, context.Context, ...metron.Filter) func(func(T, error) bool), testCases []testCase[T]) {
 	c := newTestClient(t, []requestMock{
 		{fmt.Sprintf("https://metron.cloud/api/%s/", kind), fmt.Sprintf("fixtures/%s_list_1.json", kind)},
 		{fmt.Sprintf("https://metron.cloud/api/%s/?page=2", kind), fmt.Sprintf("fixtures/%s_list_2.json", kind)},
