@@ -8,9 +8,10 @@ An API client allowing Go programs to interact with Metron.
 package main
 
 import (
-	"cloud.google.com/go/civil"
 	"context"
 	"fmt"
+
+	"cloud.google.com/go/civil"
 	"github.com/jyggen/go-metron"
 )
 
@@ -19,10 +20,10 @@ func main() {
 		metron.WithAuthentication("username", "password"),
 		metron.WithCaching(""),
 	)
-	
+
 	after, _ := civil.ParseDate("2021-06-07")
 	before, _ := civil.ParseDate("2021-06-13")
-    
+
 	// Get all Marvel comics for the week of 2021-06-07
 	for i, err := range c.Issues(
 		context.Background(),
@@ -39,11 +40,12 @@ func main() {
 
 	// Retrieve the detail for an individual issue
 	asm68, err := c.IssueByID(context.Background(), 31660)
-	
+
 	if err != nil {
 		panic(err)
-    }
-	
+	}
+
 	fmt.Println(asm68.Description)
+}
 
 ```
