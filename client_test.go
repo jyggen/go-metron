@@ -118,7 +118,7 @@ func newTestClient(t *testing.T, mocks []requestMock) *metron.Client {
 				Header:     make(http.Header),
 			}
 		}),
-	}), metron.WithAuthentication("username", "password"), metron.WithoutRateLimiter())
+	}), metron.WithAuthentication("username", "password"))
 }
 
 func parseDate(t *testing.T, dateString string) civil.Date {

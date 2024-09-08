@@ -78,6 +78,7 @@ type IssueList struct {
 	Modified  time.Time   `json:"modified"`
 }
 
+// IssuesByArcID returns a list of issues for a story arc.
 func (c *Client) IssuesByArcID(ctx context.Context, id int) func(func(IssueList, error) bool) {
 	return paginate[IssueList](ctx, c, fmt.Sprintf("arc/%d/issue_list/", id))
 }

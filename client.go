@@ -84,6 +84,7 @@ func NewClient(options ...Option) *Client {
 	return c
 }
 
+// WithAuthentication sets the username and password to be used for authentication.
 func WithAuthentication(username string, password string) Option {
 	return func(c *Client) {
 		c.password = password
@@ -91,6 +92,8 @@ func WithAuthentication(username string, password string) Option {
 	}
 }
 
+// WithCaching enables heuristic caching. If cacheDir is empty, it will use the operating system's default location
+// for user-specific cached data.
 func WithCaching(cacheDir string) Option {
 	return func(c *Client) {
 		c.cacheDir = cacheDir
@@ -101,12 +104,6 @@ func WithCaching(cacheDir string) Option {
 func WithClient(client *http.Client) Option {
 	return func(c *Client) {
 		c.client = client
-	}
-}
-
-func WithoutRateLimiter() Option {
-	return func(c *Client) {
-		c.limiter = nil
 	}
 }
 

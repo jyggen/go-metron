@@ -1,6 +1,24 @@
 # go-metron
 
-An API client allowing Go programs to interact with Metron.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+`go-metron` is an API client enabling Go programs to interact with [Metron](https://metron.cloud/).
+
+## Features
+
+### Caching
+
+`go-metron` can optionally use [heuristic caching](https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching#heuristic_caching). 
+
+### Filtering
+
+`go-metron` supports all filtering capabilities of Metron's API.
+
+### Pagination
+
+`go-metron` will automatically fetch the next page while iterating over results.
+
+### Rate Limiting
+
+`go-metron` will at most make 30 requests per minute, adhering to [Metron's API guidelines](https://metron.cloud/pages/guidelines/api/).
 
 ## Example Usage
 
@@ -47,5 +65,4 @@ func main() {
 
 	fmt.Println(asm68.Description)
 }
-
 ```

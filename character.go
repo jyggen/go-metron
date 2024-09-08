@@ -30,10 +30,12 @@ type CharacterList struct {
 	Modified time.Time `json:"modified"`
 }
 
+// CharacterByID returns the information of an individual character.
 func (c *Client) CharacterByID(ctx context.Context, id int) (Character, error) {
 	return request[Character](ctx, c, fmt.Sprintf("character/%d/", id))
 }
 
+// Characters returns a list of all the characters.
 func (c *Client) Characters(ctx context.Context, filters ...Filter) func(func(CharacterList, error) bool) {
 	return paginate[CharacterList](ctx, c, "character/", filters...)
 }
