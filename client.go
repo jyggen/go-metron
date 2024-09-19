@@ -3,14 +3,12 @@ package metron
 import (
 	"context"
 	"encoding/json"
-	"errors"
 	"fmt"
+	"go.uber.org/ratelimit"
 	"io"
 	"net/http"
 	"net/url"
 	"time"
-
-	"golang.org/x/time/rate"
 )
 
 const baseURL = "https://metron.cloud/api/"
@@ -58,7 +56,7 @@ type Client struct {
 	cacheDir      string
 	client        *http.Client
 	enableCaching bool
-	limiter       *rate.Limiter
+	limiter       ratelimit.Limiter
 	password      string
 	username      string
 }
@@ -72,7 +70,7 @@ func NewClient(options ...Option) *Client {
 		cacheDir:      "",
 		client:        http.DefaultClient,
 		enableCaching: false,
-		limiter:       rate.NewLimiter(rate.Every(time.Minute/30), 1),
+		limiter:       ratelimit.New(30, ratelimit.Per(time.Minute)),
 		password:      "",
 		username:      "",
 	}
@@ -153,15 +151,7 @@ func paginate[T listTypes](ctx context.Context, c *Client, path string, filters 
 func do[T any](c *Client, req *http.Request) (T, error) {
 	var v T
 
-	if c.limiter != nil {
-		r := c.limiter.Reserve()
-
-		if !r.OK() {
-			return v, errors.New("unable to adhere to rate limit")
-		}
-
-		time.Sleep(r.Delay())
-	}
+	c.limiter.Take()
 
 	res, err := c.client.Do(req)
 
