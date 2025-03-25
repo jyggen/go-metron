@@ -54,13 +54,14 @@ func (u *URL) UnmarshalJSON(b []byte) error {
 }
 
 type Client struct {
-	baseURL       *url.URL
-	cacheDir      string
-	client        *http.Client
-	enableCaching bool
-	limiter       *rate.Limiter
-	password      string
-	username      string
+	baseURL          *url.URL
+	cacheDir         string
+	client           *http.Client
+	enableCaching    bool
+	limiterBurst     *rate.Limiter
+	limiterSustained *rate.Limiter
+	password         string
+	username         string
 }
 
 type Option func(*Client)
@@ -68,13 +69,14 @@ type Option func(*Client)
 func NewClient(options ...Option) *Client {
 	b, _ := url.Parse(baseURL)
 	c := &Client{
-		baseURL:       b,
-		cacheDir:      "",
-		client:        http.DefaultClient,
-		enableCaching: false,
-		limiter:       rate.NewLimiter(rate.Every(time.Minute/30), 1),
-		password:      "",
-		username:      "",
+		baseURL:          b,
+		cacheDir:         "",
+		client:           http.DefaultClient,
+		enableCaching:    false,
+		limiterBurst:     rate.NewLimiter(rate.Every(time.Minute/30), 1),
+		limiterSustained: rate.NewLimiter(rate.Every((24*time.Hour)/10000), 1),
+		password:         "",
+		username:         "",
 	}
 
 	for _, option := range options {
@@ -153,11 +155,21 @@ func paginate[T listTypes](ctx context.Context, c *Client, path string, filters 
 func do[T any](c *Client, req *http.Request) (T, error) {
 	var v T
 
-	if c.limiter != nil {
-		r := c.limiter.Reserve()
+	if c.limiterSustained != nil {
+		r := c.limiterSustained.Reserve()
 
 		if !r.OK() {
-			return v, errors.New("unable to adhere to rate limit")
+			return v, errors.New("unable to adhere to sustained rate limit")
+		}
+
+		time.Sleep(r.Delay())
+	}
+
+	if c.limiterBurst != nil {
+		r := c.limiterBurst.Reserve()
+
+		if !r.OK() {
+			return v, errors.New("unable to adhere to burst rate limit")
 		}
 
 		time.Sleep(r.Delay())
