@@ -7,17 +7,18 @@ import (
 )
 
 type Character struct {
-	ID          int            `json:"id"`
-	Name        string         `json:"name"`
-	Alias       *[]string      `json:"alias"`
-	Description *string        `json:"desc"`
-	ImageURL    *URL           `json:"image"`
-	Creators    []CreatorList  `json:"creators"`
-	Teams       []TeamList     `json:"teams"`
-	Universes   []UniverseList `json:"universes"`
-	ComicVineID *int           `json:"cv_id"`
-	ResourceURL URL            `json:"resource_url"`
-	Modified    time.Time      `json:"modified"`
+	ID                    int            `json:"id"`
+	Name                  string         `json:"name"`
+	Alias                 *[]string      `json:"alias"`
+	Description           *string        `json:"desc"`
+	ImageURL              *URL           `json:"image"`
+	Creators              []CreatorList  `json:"creators"`
+	Teams                 []TeamList     `json:"teams"`
+	Universes             []UniverseList `json:"universes"`
+	ComicVineID           *int           `json:"cv_id"`
+	GrandComicsDatabaseID *int           `json:"gcd_id"`
+	ResourceURL           URL            `json:"resource_url"`
+	Modified              time.Time      `json:"modified"`
 }
 
 func (c Character) modified() time.Time {

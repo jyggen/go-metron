@@ -1,13 +1,14 @@
 {
   "id": 26153,
   "name": "176-301",
-  "alias": null,
+  "alias": [],
   "desc": "",
   "image": null,
   "creators": [],
   "teams": [],
   "universes": [],
   "cv_id": 31838,
+  "gcd_id": null,
   "resource_url": "https://metron.cloud/character/176-301/",
   "modified": "2024-02-24T13:07:30.187788-05:00"
 }

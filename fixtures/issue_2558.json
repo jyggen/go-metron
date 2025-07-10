@@ -13,6 +13,7 @@
     "name": "Batman: Last Knight on Earth",
     "sort_name": "Batman Last Knight on Earth",
     "volume": 1,
+    "year_began": 2019,
     "series_type": {
       "id": 11,
       "name": "Limited Series"
@@ -25,12 +26,14 @@
     ]
   },
   "number": "1",
+  "alt_number": "",
   "title": "",
   "name": [
     "Book One"
   ],
   "cover_date": "2019-07-01",
   "store_date": "2019-05-29",
+  "foc_date": null,
   "price": "5.99",
   "rating": {
     "id": 5,
@@ -138,37 +141,37 @@
     {
       "id": 261,
       "name": "Alfred Pennyworth",
-      "modified": "2024-07-09T09:04:54.495392-04:00"
+      "modified": "2025-05-10T11:41:36.028997-04:00"
     },
     {
       "id": 12,
       "name": "Batman",
-      "modified": "2024-07-09T08:48:28.493469-04:00"
+      "modified": "2025-05-10T11:32:34.186924-04:00"
     },
     {
       "id": 297,
       "name": "Huntress (Bertinelli)",
-      "modified": "2020-01-25T23:31:18.010466-05:00"
+      "modified": "2025-02-18T15:46:25.289114-05:00"
     },
     {
       "id": 83,
       "name": "Joker",
-      "modified": "2024-07-09T09:05:08.443483-04:00"
+      "modified": "2025-02-18T15:23:40.393641-05:00"
     },
     {
       "id": 22,
       "name": "Poison Ivy",
-      "modified": "2024-07-09T09:02:44.927666-04:00"
+      "modified": "2025-02-18T15:27:40.557163-05:00"
     },
     {
       "id": 103,
       "name": "Supergirl (Kara Zor-El)",
-      "modified": "2024-03-16T14:39:59.288996-04:00"
+      "modified": "2025-02-18T15:41:12.282439-05:00"
     },
     {
       "id": 14,
       "name": "Wonder Woman",
-      "modified": "2024-07-10T09:37:03.733103-04:00"
+      "modified": "2025-02-18T15:41:16.582787-05:00"
     }
   ],
   "teams": [],
@@ -183,6 +186,7 @@
     }
   ],
   "cv_id": 710046,
+  "gcd_id": 1970616,
   "resource_url": "https://metron.cloud/issue/batman-last-knight-earth-2019-1/",
-  "modified": "2023-05-23T11:00:31.173503-04:00"
+  "modified": "2024-12-21T14:45:34.863850-05:00"
 }

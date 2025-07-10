@@ -1,14 +1,20 @@
 package metron
 
 import (
-	"cloud.google.com/go/civil"
-	"fmt"
 	"net/url"
 	"strconv"
 	"time"
+
+	"cloud.google.com/go/civil"
 )
 
 type Filter func(q *url.Values)
+
+func FilterByAlternativeNumber(number string) Filter {
+	return func(q *url.Values) {
+		q.Set("alt_number", number)
+	}
+}
 
 func FilterByComicVineID(comicVineID int) Filter {
 	return func(q *url.Values) {
@@ -40,6 +46,18 @@ func FilterByDesignation(designation string) Filter {
 	}
 }
 
+func FilterByFinalOrderCutoffDate(date civil.Date) Filter {
+	return func(q *url.Values) {
+		q.Set("foc_date", date.String())
+	}
+}
+
+func FilterByGrandComicsDatabaseID(grandComicsDatabaseID int) Filter {
+	return func(q *url.Values) {
+		q.Set("gcd_id", strconv.Itoa(grandComicsDatabaseID))
+	}
+}
+
 func FilterByImprintID(id int) Filter {
 	return func(q *url.Values) {
 		q.Set("imprint_id", strconv.Itoa(id))
@@ -54,7 +72,7 @@ func FilterByImprintName(name string) Filter {
 
 func FilterByMissingComicVineID(isMissing bool) Filter {
 	return func(q *url.Values) {
-		q.Set("missing_cv_id", fmt.Sprintf("%t", isMissing))
+		q.Set("missing_cv_id", strconv.FormatBool(isMissing))
 	}
 }
 

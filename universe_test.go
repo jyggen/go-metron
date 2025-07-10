@@ -1,8 +1,9 @@
 package metron_test
 
 import (
-	"github.com/jyggen/go-metron"
 	"testing"
+
+	"github.com/jyggen/go-metron"
 )
 
 func TestUniverseByID(t *testing.T) {
@@ -19,7 +20,9 @@ func TestUniverseByID(t *testing.T) {
 				Name:        "ABC",
 				Designation: asReference("Earth 25"),
 				Description: asReference("Home to the characters from Alan Moore's America's Best Comics imprint."),
-				ImageURL:    asReference(parseURL(t, "https://static.metron.cloud/media/universe/2024/01/25/earth-abc.webp")),
+				ImageURL: asReference(
+					parseURL(t, "https://static.metron.cloud/media/universe/2024/01/25/earth-abc.webp"),
+				),
 				ResourceURL: parseURL(t, "https://metron.cloud/universe/abc/"),
 				Modified:    parseTime(t, "2024-01-25T09:24:33.271598-05:00"),
 			},

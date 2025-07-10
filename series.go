@@ -24,9 +24,10 @@ type Series struct {
 		ID   int    `json:"id"`
 		Name string `json:"series"`
 	} `json:"associated"`
-	ComicVineID *int      `json:"cv_id"`
-	ResourceURL URL       `json:"resource_url"`
-	Modified    time.Time `json:"modified"`
+	ComicVineID           *int      `json:"cv_id"`
+	GrandComicsDatabaseID *int      `json:"gcd_id"`
+	ResourceURL           URL       `json:"resource_url"`
+	Modified              time.Time `json:"modified"`
 }
 
 func (s Series) modified() time.Time {

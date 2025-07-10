@@ -7,15 +7,16 @@ import (
 )
 
 type Team struct {
-	ID          int            `json:"id"`
-	Name        string         `json:"name"`
-	Description *string        `json:"desc"`
-	ImageURL    *URL           `json:"image"`
-	Creators    []CreatorList  `json:"creators"`
-	Universes   []UniverseList `json:"universes"`
-	ComicVineID *int           `json:"cv_id"`
-	ResourceURL URL            `json:"resource_url"`
-	Modified    time.Time      `json:"modified"`
+	ID                    int            `json:"id"`
+	Name                  string         `json:"name"`
+	Description           *string        `json:"desc"`
+	ImageURL              *URL           `json:"image"`
+	Creators              []CreatorList  `json:"creators"`
+	Universes             []UniverseList `json:"universes"`
+	ComicVineID           *int           `json:"cv_id"`
+	GrandComicsDatabaseID *int           `json:"gcd_id"`
+	ResourceURL           URL            `json:"resource_url"`
+	Modified              time.Time      `json:"modified"`
 }
 
 func (t Team) modified() time.Time {

@@ -13,29 +13,32 @@ type Issue struct {
 	Publisher Reference  `json:"publisher"`
 	Imprint   *Reference `json:"imprint"`
 	Series    struct {
-		ID       int         `json:"id"`
-		Name     string      `json:"name"`
-		SortName string      `json:"sort_name"`
-		Volume   int         `json:"volume"`
-		Type     Reference   `json:"series_type"`
-		Genres   []Reference `json:"genres"`
+		ID        int         `json:"id"`
+		Name      string      `json:"name"`
+		SortName  string      `json:"sort_name"`
+		Volume    int         `json:"volume"`
+		YearBegan int         `json:"year_began"`
+		Type      Reference   `json:"series_type"`
+		Genres    []Reference `json:"genres"`
 	} `json:"series"`
-	Number      string      `json:"number"`
-	Title       *string     `json:"title"`
-	Name        []string    `json:"name"`
-	CoverDate   civil.Date  `json:"cover_date"`
-	StoreDate   *civil.Date `json:"store_date"`
-	Price       string      `json:"price"`
-	Rating      Reference   `json:"rating"`
-	SKU         *string     `json:"sku"`
-	ISBN        *string     `json:"isbn"`
-	UPC         *string     `json:"upc"`
-	PageCount   *int        `json:"page"`
-	Description *string     `json:"desc"`
-	ImageURL    *URL        `json:"image"`
-	CoverHash   *string     `json:"cover_hash"`
-	Arcs        []ArcList   `json:"arcs"`
-	Credits     []struct {
+	Number               string      `json:"number"`
+	AlternativeNumber    string      `json:"alt_number"`
+	Title                *string     `json:"title"`
+	Name                 []string    `json:"name"`
+	CoverDate            civil.Date  `json:"cover_date"`
+	StoreDate            *civil.Date `json:"store_date"`
+	FinalOrderCutoffDate *civil.Date `json:"foc_date"`
+	Price                string      `json:"price"`
+	Rating               Reference   `json:"rating"`
+	SKU                  *string     `json:"sku"`
+	ISBN                 *string     `json:"isbn"`
+	UPC                  *string     `json:"upc"`
+	PageCount            *int        `json:"page"`
+	Description          *string     `json:"desc"`
+	ImageURL             *URL        `json:"image"`
+	CoverHash            *string     `json:"cover_hash"`
+	Arcs                 []ArcList   `json:"arcs"`
+	Credits              []struct {
 		ID    int         `json:"id"`
 		Name  string      `json:"creator"`
 		Roles []Reference `json:"role"`
@@ -53,9 +56,10 @@ type Issue struct {
 		UPC      *string `json:"upc"`
 		ImageURL URL     `json:"image"`
 	} `json:"variants"`
-	ComicVineID *int      `json:"cv_id"`
-	ResourceURL URL       `json:"resource_url"`
-	Modified    time.Time `json:"modified"`
+	ComicVineID           *int      `json:"cv_id"`
+	GrandComicsDatabaseID *int      `json:"gcd_id"`
+	ResourceURL           URL       `json:"resource_url"`
+	Modified              time.Time `json:"modified"`
 }
 
 func (i Issue) modified() time.Time {

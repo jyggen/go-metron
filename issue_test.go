@@ -19,17 +19,19 @@ func TestIssueByID(t *testing.T) {
 				},
 				Imprint: nil,
 				Series: struct {
-					ID       int                `json:"id"`
-					Name     string             `json:"name"`
-					SortName string             `json:"sort_name"`
-					Volume   int                `json:"volume"`
-					Type     metron.Reference   `json:"series_type"`
-					Genres   []metron.Reference `json:"genres"`
+					ID        int                `json:"id"`
+					Name      string             `json:"name"`
+					SortName  string             `json:"sort_name"`
+					Volume    int                `json:"volume"`
+					YearBegan int                `json:"year_began"`
+					Type      metron.Reference   `json:"series_type"`
+					Genres    []metron.Reference `json:"genres"`
 				}{
-					ID:       7133,
-					Name:     "Batman",
-					SortName: "Batman",
-					Volume:   1,
+					ID:        7133,
+					Name:      "Batman",
+					SortName:  "Batman",
+					Volume:    1,
+					YearBegan: 2012,
 					Type: metron.Reference{
 						ID:   8,
 						Name: "Hardcover",
@@ -49,24 +51,41 @@ func TestIssueByID(t *testing.T) {
 						},
 					},
 				},
-				Number:    "1",
-				Title:     asReference("The Court of Owls"),
-				Name:      []string{},
-				CoverDate: parseDate(t, "2012-07-01"),
-				StoreDate: asReference(parseDate(t, "2012-05-09")),
-				Price:     "24.99",
+				Number:            "1",
+				AlternativeNumber: "",
+				Title:             asReference("The Court of Owls"),
+				Name: []string{
+					"Knife Trick",
+					"Trust Fall",
+					"The Thirteenth Hour",
+					"Face the Court, Part One",
+					"Face the Court, Part Two",
+					"Beneath the Glass",
+					"The Talons Strike!",
+				},
+				CoverDate:            parseDate(t, "2012-07-01"),
+				StoreDate:            asReference(parseDate(t, "2012-05-09")),
+				FinalOrderCutoffDate: nil,
+				Price:                "24.99",
 				Rating: metron.Reference{
 					ID:   1,
 					Name: "Unknown",
 				},
-				SKU:         asReference("JAN120300"),
-				ISBN:        asReference(""),
-				UPC:         asReference(""),
-				PageCount:   asReference(176),
-				Description: asReference("Beware the Court of Owls, that watches all the time, ruling Gotham from a shadowed perch, behind granite and lime, they watch you at your hearth, they watch you in your bed. Speak not a whispered word of them, or they'll send the Talon for your head.\r\n\r\nBatman had heard the tales of Gotham City's Court of Owls. Meeting in the shadows and using the nocturnal bird of prey as their calling card, the members of this powerful cabal are the true rulers of Gotham.\r\n\r\nBut the Dark Knight dismissed the stories as rumors and old wives' tales. Gotham was his city.\r\n\r\nUntil now.\r\n\r\nA brutal assassin is sinking his razor-sharp talons into the city's best and brightest, as well as its most dangerous and deadly. If the dark legends are true, his masters are more powerful predators than the Batman could ever imagine—and their nests are everywhere...\r\n\r\nThe superstar team of writer SCOTT SNYDER (AMERICAN VAMPIRE, BATMAN: THE BLACK MIRROR) and GREG CAPULLO (SPAWN) proudly present BATMAN: THE COURT OF OWLS (collecting BATMAN #1-7)—a soaring saga of mystery and terror that became one of the year's best-selling comics."),
-				ImageURL:    asReference(parseURL(t, "https://static.metron.cloud/media/issue/2024/02/27/e49a51e397ac4489a81785ad8098d296.jpg")),
-				CoverHash:   asReference("841068ef7e313dec"),
-				Arcs:        []metron.ArcList{},
+				SKU:       asReference("JAN120300"),
+				ISBN:      asReference(""),
+				UPC:       asReference(""),
+				PageCount: asReference(176),
+				Description: asReference(
+					"Beware the Court of Owls, that watches all the time, ruling Gotham from a shadowed perch, behind granite and lime, they watch you at your hearth, they watch you in your bed. Speak not a whispered word of them, or they'll send the Talon for your head.\r\n\r\nBatman had heard the tales of Gotham City's Court of Owls. Meeting in the shadows and using the nocturnal bird of prey as their calling card, the members of this powerful cabal are the true rulers of Gotham.\r\n\r\nBut the Dark Knight dismissed the stories as rumors and old wives' tales. Gotham was his city.\r\n\r\nUntil now.\r\n\r\nA brutal assassin is sinking his razor-sharp talons into the city's best and brightest, as well as its most dangerous and deadly. If the dark legends are true, his masters are more powerful predators than the Batman could ever imagine—and their nests are everywhere...\r\n\r\nThe superstar team of writer SCOTT SNYDER (AMERICAN VAMPIRE, BATMAN: THE BLACK MIRROR) and GREG CAPULLO (SPAWN) proudly present BATMAN: THE COURT OF OWLS (collecting BATMAN #1-7)—a soaring saga of mystery and terror that became one of the year's best-selling comics.",
+				),
+				ImageURL: asReference(
+					parseURL(
+						t,
+						"https://static.metron.cloud/media/issue/2024/02/27/e49a51e397ac4489a81785ad8098d296.jpg",
+					),
+				),
+				CoverHash: asReference("841068ef7e313dec"),
+				Arcs:      []metron.ArcList{},
 				Credits: []struct {
 					ID    int                `json:"id"`
 					Name  string             `json:"creator"`
@@ -257,134 +276,134 @@ func TestIssueByID(t *testing.T) {
 					{
 						ID:       261,
 						Name:     "Alfred Pennyworth",
-						Modified: parseTime(t, "2024-07-09T09:04:54.495392-04:00"),
+						Modified: parseTime(t, "2025-05-10T11:41:36.028997-04:00"),
 					},
 					{
 						ID:       275,
 						Name:     "Barbara Gordon",
-						Modified: parseTime(t, "2024-07-09T09:02:05.179534-04:00"),
+						Modified: parseTime(t, "2025-02-18T15:21:57.440821-05:00"),
 					},
 					{
 						ID:       12,
 						Name:     "Batman",
-						Modified: parseTime(t, "2024-07-09T08:48:28.493469-04:00"),
+						Modified: parseTime(t, "2025-05-10T11:32:34.186924-04:00"),
 					},
 					{
 						ID:       2351,
 						Name:     "Bluebird",
-						Modified: parseTime(t, "2019-08-15T22:45:12.556186-04:00"),
+						Modified: parseTime(t, "2025-05-10T11:43:21.126838-04:00"),
 					},
 					{
 						ID:       77,
 						Name:     "Catwoman",
-						Modified: parseTime(t, "2024-07-09T09:05:24.678117-04:00"),
+						Modified: parseTime(t, "2025-02-18T15:22:10.535267-05:00"),
 					},
 					{
 						ID:       1120,
 						Name:     "Clayface (Karlo)",
-						Modified: parseTime(t, "2021-08-04T09:16:09.919076-04:00"),
+						Modified: parseTime(t, "2025-02-18T15:27:24.466997-05:00"),
 					},
 					{
 						ID:       394,
 						Name:     "Damian Wayne",
-						Modified: parseTime(t, "2019-12-10T17:01:22.174842-05:00"),
+						Modified: parseTime(t, "2025-02-18T15:28:22.696013-05:00"),
 					},
 					{
 						ID:       293,
 						Name:     "Dick Grayson",
-						Modified: parseTime(t, "2024-07-09T09:04:20.846359-04:00"),
+						Modified: parseTime(t, "2025-02-18T15:28:26.982215-05:00"),
 					},
 					{
 						ID:       16,
 						Name:     "Harley Quinn",
-						Modified: parseTime(t, "2023-08-12T15:29:44.077971-04:00"),
+						Modified: parseTime(t, "2025-02-18T15:22:26.752300-05:00"),
 					},
 					{
 						ID:       1048,
 						Name:     "Harvey Bullock",
-						Modified: parseTime(t, "2021-12-05T11:23:16.559814-05:00"),
+						Modified: parseTime(t, "2025-02-18T15:22:32.371011-05:00"),
 					},
 					{
 						ID:       82,
 						Name:     "James Gordon",
-						Modified: parseTime(t, "2022-06-24T11:27:57.748073-04:00"),
+						Modified: parseTime(t, "2025-02-18T15:22:43.443874-05:00"),
 					},
 					{
 						ID:       1204,
 						Name:     "James Gordon Jr.",
-						Modified: parseTime(t, "2019-06-23T15:13:20.341800-04:00"),
+						Modified: parseTime(t, "2025-02-18T15:26:16.097968-05:00"),
 					},
 					{
 						ID:       1126,
 						Name:     "Jeremiah Arkham",
-						Modified: parseTime(t, "2019-06-23T15:13:20.362505-04:00"),
+						Modified: parseTime(t, "2025-02-18T22:11:56.059808-05:00"),
 					},
 					{
 						ID:       83,
 						Name:     "Joker",
-						Modified: parseTime(t, "2024-07-09T09:05:08.443483-04:00"),
+						Modified: parseTime(t, "2025-02-18T15:23:40.393641-05:00"),
 					},
 					{
 						ID:       763,
 						Name:     "Killer Croc",
-						Modified: parseTime(t, "2021-08-15T10:14:39.376904-04:00"),
+						Modified: parseTime(t, "2025-02-18T15:26:43.639475-05:00"),
 					},
 					{
 						ID:       2234,
 						Name:     "Leslie Thompkins",
-						Modified: parseTime(t, "2019-08-02T09:04:22.766158-04:00"),
+						Modified: parseTime(t, "2025-02-18T15:26:55.636901-05:00"),
 					},
 					{
 						ID:       2856,
 						Name:     "Lincoln March",
-						Modified: parseTime(t, "2019-10-21T23:30:45.442034-04:00"),
+						Modified: parseTime(t, "2025-02-18T15:24:18.890445-05:00"),
 					},
 					{
 						ID:       274,
 						Name:     "Mr. Freeze",
-						Modified: parseTime(t, "2019-06-23T15:13:20.681733-04:00"),
+						Modified: parseTime(t, "2025-02-18T15:27:29.919010-05:00"),
 					},
 					{
 						ID:       347,
 						Name:     "Professor Pyg",
-						Modified: parseTime(t, "2020-11-30T11:08:10.669408-05:00"),
+						Modified: parseTime(t, "2025-02-18T15:22:57.025190-05:00"),
 					},
 					{
 						ID:       348,
 						Name:     "Riddler",
-						Modified: parseTime(t, "2024-07-09T09:05:54.599342-04:00"),
+						Modified: parseTime(t, "2025-02-18T15:23:00.534192-05:00"),
 					},
 					{
 						ID:       280,
 						Name:     "Scarecrow",
-						Modified: parseTime(t, "2019-12-09T09:26:02.032372-05:00"),
+						Modified: parseTime(t, "2025-02-18T15:23:04.327602-05:00"),
 					},
 					{
 						ID:       765,
 						Name:     "Tim Drake",
-						Modified: parseTime(t, "2024-03-16T14:39:04.222577-04:00"),
+						Modified: parseTime(t, "2025-02-18T15:23:13.140852-05:00"),
 					},
 					{
 						ID:       355,
 						Name:     "Two-Face",
-						Modified: parseTime(t, "2019-06-23T15:13:21.246414-04:00"),
+						Modified: parseTime(t, "2025-02-18T15:46:12.108514-05:00"),
 					},
 					{
 						ID:       2057,
 						Name:     "Vicki Vale",
-						Modified: parseTime(t, "2019-07-08T10:17:24.294245-04:00"),
+						Modified: parseTime(t, "2025-02-18T15:24:02.317133-05:00"),
 					},
 					{
 						ID:       1136,
 						Name:     "Victor Zsasz",
-						Modified: parseTime(t, "2021-08-04T10:07:46.837981-04:00"),
+						Modified: parseTime(t, "2025-02-18T15:27:34.641889-05:00"),
 					},
 				},
 				Teams: []metron.TeamList{
 					{
 						ID:       87,
 						Name:     "Court of Owls",
-						Modified: parseTime(t, "2019-06-23T15:13:23.942002-04:00"),
+						Modified: parseTime(t, "2025-02-19T01:10:09.195823-05:00"),
 					},
 					{
 						ID:       88,
@@ -432,9 +451,10 @@ func TestIssueByID(t *testing.T) {
 					UPC      *string    `json:"upc"`
 					ImageURL metron.URL `json:"image"`
 				}{},
-				ComicVineID: nil,
-				ResourceURL: parseURL(t, "https://metron.cloud/issue/batman-2012-1/"),
-				Modified:    parseTime(t, "2024-02-27T11:41:38.422006-05:00"),
+				ComicVineID:           nil,
+				GrandComicsDatabaseID: asReference(1035895),
+				ResourceURL:           parseURL(t, "https://metron.cloud/issue/batman-2012-1/"),
+				Modified:              parseTime(t, "2025-01-07T08:09:42.476138-05:00"),
 			},
 		},
 		{
@@ -450,17 +470,19 @@ func TestIssueByID(t *testing.T) {
 					Name: "DC Black Label",
 				},
 				Series: struct {
-					ID       int                `json:"id"`
-					Name     string             `json:"name"`
-					SortName string             `json:"sort_name"`
-					Volume   int                `json:"volume"`
-					Type     metron.Reference   `json:"series_type"`
-					Genres   []metron.Reference `json:"genres"`
+					ID        int                `json:"id"`
+					Name      string             `json:"name"`
+					SortName  string             `json:"sort_name"`
+					Volume    int                `json:"volume"`
+					YearBegan int                `json:"year_began"`
+					Type      metron.Reference   `json:"series_type"`
+					Genres    []metron.Reference `json:"genres"`
 				}{
-					ID:       279,
-					Name:     "Batman: Last Knight on Earth",
-					SortName: "Batman Last Knight on Earth",
-					Volume:   1,
+					ID:        279,
+					Name:      "Batman: Last Knight on Earth",
+					SortName:  "Batman Last Knight on Earth",
+					Volume:    1,
+					YearBegan: 2019,
 					Type: metron.Reference{
 						ID:   11,
 						Name: "Limited Series",
@@ -484,14 +506,18 @@ func TestIssueByID(t *testing.T) {
 					ID:   5,
 					Name: "Mature",
 				},
-				SKU:         asReference(""),
-				ISBN:        asReference(""),
-				UPC:         asReference("76194135390600111"),
-				PageCount:   asReference(60),
-				Description: asReference("Bruce Wayne wakes up in Arkham Asylum. Young. Sane.\r\nAnd...he was never Batman.\r\n\r\n So begins this sprawling tale of the Dark Knight as he embarks on a quest through a devastated DC landscape featuring a massive cast of familiar faces from the DC Universe. As he tries to piece together the mystery of his past, he must unravel the cause of this terrible future and track down the unspeakable force that destroyed the world as he knew it…"),
-				ImageURL:    asReference(parseURL(t, "https://static.metron.cloud/media/issue/2019/05/27/batman-last-knight-1.jpg")),
-				CoverHash:   asReference("ede81312b2337ac5"),
-				Arcs:        []metron.ArcList{},
+				SKU:       asReference(""),
+				ISBN:      asReference(""),
+				UPC:       asReference("76194135390600111"),
+				PageCount: asReference(60),
+				Description: asReference(
+					"Bruce Wayne wakes up in Arkham Asylum. Young. Sane.\r\nAnd...he was never Batman.\r\n\r\n So begins this sprawling tale of the Dark Knight as he embarks on a quest through a devastated DC landscape featuring a massive cast of familiar faces from the DC Universe. As he tries to piece together the mystery of his past, he must unravel the cause of this terrible future and track down the unspeakable force that destroyed the world as he knew it…",
+				),
+				ImageURL: asReference(
+					parseURL(t, "https://static.metron.cloud/media/issue/2019/05/27/batman-last-knight-1.jpg"),
+				),
+				CoverHash: asReference("ede81312b2337ac5"),
+				Arcs:      []metron.ArcList{},
 				Credits: []struct {
 					ID    int                `json:"id"`
 					Name  string             `json:"creator"`
@@ -591,38 +617,38 @@ func TestIssueByID(t *testing.T) {
 					{
 						ID:       261,
 						Name:     "Alfred Pennyworth",
-						Modified: parseTime(t, "2024-07-09T09:04:54.495392-04:00"),
+						Modified: parseTime(t, "2025-05-10T11:41:36.028997-04:00"),
 					},
 
 					{
 						ID:       12,
 						Name:     "Batman",
-						Modified: parseTime(t, "2024-07-09T08:48:28.493469-04:00"),
+						Modified: parseTime(t, "2025-05-10T11:32:34.186924-04:00"),
 					},
 					{
 						ID:       297,
 						Name:     "Huntress (Bertinelli)",
-						Modified: parseTime(t, "2020-01-25T23:31:18.010466-05:00"),
+						Modified: parseTime(t, "2025-02-18T15:46:25.289114-05:00"),
 					},
 					{
 						ID:       83,
 						Name:     "Joker",
-						Modified: parseTime(t, "2024-07-09T09:05:08.443483-04:00"),
+						Modified: parseTime(t, "2025-02-18T15:23:40.393641-05:00"),
 					},
 					{
 						ID:       22,
 						Name:     "Poison Ivy",
-						Modified: parseTime(t, "2024-07-09T09:02:44.927666-04:00"),
+						Modified: parseTime(t, "2025-02-18T15:27:40.557163-05:00"),
 					},
 					{
 						ID:       103,
 						Name:     "Supergirl (Kara Zor-El)",
-						Modified: parseTime(t, "2024-03-16T14:39:59.288996-04:00"),
+						Modified: parseTime(t, "2025-02-18T15:41:12.282439-05:00"),
 					},
 					{
 						ID:       14,
 						Name:     "Wonder Woman",
-						Modified: parseTime(t, "2024-07-10T09:37:03.733103-04:00"),
+						Modified: parseTime(t, "2025-02-18T15:41:16.582787-05:00"),
 					},
 				},
 				Teams:     []metron.TeamList{},
@@ -638,15 +664,19 @@ func TestIssueByID(t *testing.T) {
 					ImageURL metron.URL `json:"image"`
 				}{
 					{
-						Name:     asReference("Variant Cover"),
-						SKU:      asReference(""),
-						UPC:      asReference(""),
-						ImageURL: parseURL(t, "https://static.metron.cloud/media/variants/2019/05/27/batman-last-knight-1a.jpg"),
+						Name: asReference("Variant Cover"),
+						SKU:  asReference(""),
+						UPC:  asReference(""),
+						ImageURL: parseURL(
+							t,
+							"https://static.metron.cloud/media/variants/2019/05/27/batman-last-knight-1a.jpg",
+						),
 					},
 				},
-				ComicVineID: asReference(710046),
-				ResourceURL: parseURL(t, "https://metron.cloud/issue/batman-last-knight-earth-2019-1/"),
-				Modified:    parseTime(t, "2023-05-23T11:00:31.173503-04:00"),
+				ComicVineID:           asReference(710046),
+				GrandComicsDatabaseID: asReference(1970616),
+				ResourceURL:           parseURL(t, "https://metron.cloud/issue/batman-last-knight-earth-2019-1/"),
+				Modified:              parseTime(t, "2024-12-21T14:45:34.863850-05:00"),
 			},
 		},
 	})
@@ -696,7 +726,12 @@ func issueListTestCases(t *testing.T) []testCase[metron.IssueList] {
 				Name:      "'68 (2006) #1",
 				CoverDate: parseDate(t, "2006-12-01"),
 				StoreDate: nil,
-				ImageURL:  asReference(parseURL(t, "https://static.metron.cloud/media/issue/2023/12/02/395d1af45859497183f0b868485831aa.jpg")),
+				ImageURL: asReference(
+					parseURL(
+						t,
+						"https://static.metron.cloud/media/issue/2023/12/02/395d1af45859497183f0b868485831aa.jpg",
+					),
+				),
 				CoverHash: asReference("de9a207b768189f4"),
 				Modified:  parseTime(t, "2023-12-02T10:08:26.125751-05:00"),
 			},
@@ -718,7 +753,12 @@ func issueListTestCases(t *testing.T) []testCase[metron.IssueList] {
 				Name:      "'68 (2011) #1",
 				CoverDate: parseDate(t, "2011-04-01"),
 				StoreDate: asReference(parseDate(t, "2011-04-27")),
-				ImageURL:  asReference(parseURL(t, "https://static.metron.cloud/media/issue/2023/12/02/b8a86c0422e749968f74c2fe2605ea4a.jpg")),
+				ImageURL: asReference(
+					parseURL(
+						t,
+						"https://static.metron.cloud/media/issue/2023/12/02/b8a86c0422e749968f74c2fe2605ea4a.jpg",
+					),
+				),
 				CoverHash: asReference("ccd6331a22959d3b"),
 				Modified:  parseTime(t, "2023-12-02T10:10:55.924868-05:00"),
 			},
@@ -740,7 +780,12 @@ func issueListTestCases(t *testing.T) []testCase[metron.IssueList] {
 				Name:      "'68 (2011) #2",
 				CoverDate: parseDate(t, "2011-05-01"),
 				StoreDate: asReference(parseDate(t, "2011-05-25")),
-				ImageURL:  asReference(parseURL(t, "https://static.metron.cloud/media/issue/2023/12/02/ceddeae0aac84df7a509d66003c8007c.jpg")),
+				ImageURL: asReference(
+					parseURL(
+						t,
+						"https://static.metron.cloud/media/issue/2023/12/02/ceddeae0aac84df7a509d66003c8007c.jpg",
+					),
+				),
 				CoverHash: asReference("c0471e7273cf1ccc"),
 				Modified:  parseTime(t, "2023-12-02T10:11:19.577639-05:00"),
 			},
@@ -762,7 +807,12 @@ func issueListTestCases(t *testing.T) []testCase[metron.IssueList] {
 				Name:      "'68 (2011) #3",
 				CoverDate: parseDate(t, "2011-08-01"),
 				StoreDate: asReference(parseDate(t, "2011-08-03")),
-				ImageURL:  asReference(parseURL(t, "https://static.metron.cloud/media/issue/2023/12/02/fb0072f3b7094758a3488f4cc8b6e551.jpg")),
+				ImageURL: asReference(
+					parseURL(
+						t,
+						"https://static.metron.cloud/media/issue/2023/12/02/fb0072f3b7094758a3488f4cc8b6e551.jpg",
+					),
+				),
 				CoverHash: asReference("cc97960b5be6a684"),
 				Modified:  parseTime(t, "2023-12-02T10:11:24.329496-05:00"),
 			},

@@ -9,16 +9,17 @@ import (
 )
 
 type Creator struct {
-	ID          int         `json:"id"`
-	Name        string      `json:"name"`
-	Birth       *civil.Date `json:"birth"`
-	Death       *civil.Date `json:"death"`
-	Description *string     `json:"desc"`
-	ImageURL    *URL        `json:"image"`
-	Alias       *[]string   `json:"alias"`
-	ComicVineID *int        `json:"cv_id"`
-	ResourceURL URL         `json:"resource_url"`
-	Modified    time.Time   `json:"modified"`
+	ID                    int         `json:"id"`
+	Name                  string      `json:"name"`
+	Birth                 *civil.Date `json:"birth"`
+	Death                 *civil.Date `json:"death"`
+	Description           *string     `json:"desc"`
+	ImageURL              *URL        `json:"image"`
+	Alias                 *[]string   `json:"alias"`
+	ComicVineID           *int        `json:"cv_id"`
+	GrandComicsDatabaseID *int        `json:"gcd_id"`
+	ResourceURL           URL         `json:"resource_url"`
+	Modified              time.Time   `json:"modified"`
 }
 
 func (c Creator) modified() time.Time {

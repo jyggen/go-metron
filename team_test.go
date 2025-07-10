@@ -29,8 +29,13 @@ func TestTeamByID(t *testing.T) {
 				ID:          930,
 				Name:        "Infinites",
 				Description: asReference(""),
-				ImageURL:    asReference(parseURL(t, "https://static.metron.cloud/media/team/2023/03/06/14bda442d94345548e47683884914484.jpg")),
-				Creators:    []metron.CreatorList{},
+				ImageURL: asReference(
+					parseURL(
+						t,
+						"https://static.metron.cloud/media/team/2023/03/06/14bda442d94345548e47683884914484.jpg",
+					),
+				),
+				Creators: []metron.CreatorList{},
 				Universes: []metron.UniverseList{
 					{
 						ID:       110,
@@ -38,9 +43,9 @@ func TestTeamByID(t *testing.T) {
 						Modified: parseTime(t, "2024-04-17T10:31:52.624470-04:00"),
 					},
 				},
-				ComicVineID: nil,
+				ComicVineID: asReference(41013),
 				ResourceURL: parseURL(t, "https://metron.cloud/team/infinites/"),
-				Modified:    parseTime(t, "2024-08-06T09:23:45.515089-04:00"),
+				Modified:    parseTime(t, "2025-02-19T01:42:38.767067-05:00"),
 			},
 		},
 	})

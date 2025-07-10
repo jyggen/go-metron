@@ -10,27 +10,32 @@
     {
       "id": 41,
       "name": "Bill Finger",
-      "modified": "2019-06-23T15:13:21.638318-04:00"
+      "modified": "2025-02-18T10:21:42.567434-05:00"
     },
     {
       "id": 42,
       "name": "Bob Kane",
-      "modified": "2019-06-23T15:13:21.668454-04:00"
+      "modified": "2025-05-13T07:58:11.618339-04:00"
     },
     {
       "id": 176,
       "name": "Jerry Robinson",
-      "modified": "2019-06-23T15:13:22.404914-04:00"
+      "modified": "2025-02-18T12:21:01.316153-05:00"
     }
   ],
   "teams": [
     {
       "id": 42,
       "name": "Injustice League",
-      "modified": "2019-06-23T15:13:23.976026-04:00"
+      "modified": "2025-02-19T01:52:04.564245-05:00"
     }
   ],
   "universes": [
+    {
+      "id": 157,
+      "name": "Absolute Universe",
+      "modified": "2025-04-16T09:21:47.838281-04:00"
+    },
     {
       "id": 87,
       "name": "Batman '66",
@@ -52,12 +57,18 @@
       "modified": "2024-01-25T09:21:31.445093-05:00"
     },
     {
+      "id": 150,
+      "name": "Earth One",
+      "modified": "2024-12-10T12:12:23.216026-05:00"
+    },
+    {
       "id": 51,
       "name": "Injustice",
       "modified": "2024-01-26T12:19:31.696959-05:00"
     }
   ],
-  "cv_id": null,
+  "cv_id": 1702,
+  "gcd_id": null,
   "resource_url": "https://metron.cloud/character/joker/",
-  "modified": "2024-07-09T09:05:08.443483-04:00"
+  "modified": "2025-02-18T15:23:40.393641-05:00"
 }

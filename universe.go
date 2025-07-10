@@ -7,14 +7,15 @@ import (
 )
 
 type Universe struct {
-	ID          int       `json:"id"`
-	Publisher   Reference `json:"publisher"`
-	Name        string    `json:"name"`
-	Designation *string   `json:"designation"`
-	Description *string   `json:"desc"`
-	ImageURL    *URL      `json:"image"`
-	ResourceURL URL       `json:"resource_url"`
-	Modified    time.Time `json:"modified"`
+	ID                    int       `json:"id"`
+	Publisher             Reference `json:"publisher"`
+	Name                  string    `json:"name"`
+	Designation           *string   `json:"designation"`
+	Description           *string   `json:"desc"`
+	GrandComicsDatabaseID *int      `json:"gcd_id"`
+	ImageURL              *URL      `json:"image"`
+	ResourceURL           URL       `json:"resource_url"`
+	Modified              time.Time `json:"modified"`
 }
 
 func (u Universe) modified() time.Time {

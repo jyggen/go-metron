@@ -7,14 +7,16 @@ import (
 )
 
 type Publisher struct {
-	ID          int       `json:"id"`
-	Name        string    `json:"name"`
-	Founded     *int      `json:"founded"`
-	Description *string   `json:"desc"`
-	ImageURL    *URL      `json:"image"`
-	ComicVineID *int      `json:"cv_id"`
-	ResourceURL URL       `json:"resource_url"`
-	Modified    time.Time `json:"modified"`
+	ID                    int       `json:"id"`
+	Name                  string    `json:"name"`
+	Founded               *int      `json:"founded"`
+	CountryCode           *string   `json:"country"`
+	Description           *string   `json:"desc"`
+	ImageURL              *URL      `json:"image"`
+	ComicVineID           *int      `json:"cv_id"`
+	GrandComicsDatabaseID *int      `json:"gcd_id"`
+	ResourceURL           URL       `json:"resource_url"`
+	Modified              time.Time `json:"modified"`
 }
 
 func (p Publisher) modified() time.Time {

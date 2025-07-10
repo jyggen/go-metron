@@ -27,7 +27,12 @@ func TestArcByID(t *testing.T) {
 				ID:          1493,
 				Name:        "Crisis on Infinite Darkwings",
 				Description: asReference(""),
-				ImageURL:    asReference(parseURL(t, "https://static.metron.cloud/media/arc/2024/03/07/3069ed71448e4cf3bdca8f808fc596ce.jpg")),
+				ImageURL: asReference(
+					parseURL(
+						t,
+						"https://static.metron.cloud/media/arc/2024/03/07/3069ed71448e4cf3bdca8f808fc596ce.jpg",
+					),
+				),
 				ComicVineID: asReference(56259),
 				ResourceURL: parseURL(t, "https://metron.cloud/arc/darkwing-duck-crisis-on-infinite-darkwings/"),
 				Modified:    parseTime(t, "2024-03-07T12:36:10.633143-05:00"),
