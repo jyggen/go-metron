@@ -33,7 +33,12 @@ type testCase[T any] struct {
 	expected T
 }
 
-func testList[T any](t *testing.T, kind string, method func(*metron.Client, context.Context, ...metron.Filter) func(func(T, error) bool), testCases []testCase[T]) {
+func testList[T any](
+	t *testing.T,
+	kind string,
+	method func(*metron.Client, context.Context, ...metron.Filter) func(func(T, error) bool),
+	testCases []testCase[T],
+) {
 	c := newTestClient(t, []requestMock{
 		{fmt.Sprintf("https://metron.cloud/api/%s/", kind), fmt.Sprintf("fixtures/%s_list_1.json", kind)},
 		{fmt.Sprintf("https://metron.cloud/api/%s/?page=2", kind), fmt.Sprintf("fixtures/%s_list_2.json", kind)},
@@ -46,7 +51,7 @@ func testList[T any](t *testing.T, kind string, method func(*metron.Client, cont
 		resources = append(resources, res)
 	}
 
-	require.Equal(t, len(testCases), len(resources))
+	require.Len(t, testCases, len(resources))
 
 	for i, tc := range testCases {
 		t.Run(fmt.Sprintf("%T #%d", tc.expected, tc.id), func(t *testing.T) {
@@ -56,10 +61,23 @@ func testList[T any](t *testing.T, kind string, method func(*metron.Client, cont
 	}
 }
 
-func testListByID[T any](t *testing.T, kind string, id int, listKind string, method func(*metron.Client, context.Context, int) func(func(T, error) bool), testCases []testCase[T]) {
+func testListByID[T any](
+	t *testing.T,
+	kind string,
+	id int,
+	listKind string,
+	method func(*metron.Client, context.Context, int) func(func(T, error) bool),
+	testCases []testCase[T],
+) {
 	c := newTestClient(t, []requestMock{
-		{fmt.Sprintf("https://metron.cloud/api/%s/%d/%s_list/", kind, id, listKind), fmt.Sprintf("fixtures/%s_%d_%s_list_1.json", kind, id, listKind)},
-		{fmt.Sprintf("https://metron.cloud/api/%s/%d/%s_list/?page=2", kind, id, listKind), fmt.Sprintf("fixtures/%s_%d_%s_list_2.json", kind, id, listKind)},
+		{
+			fmt.Sprintf("https://metron.cloud/api/%s/%d/%s_list/", kind, id, listKind),
+			fmt.Sprintf("fixtures/%s_%d_%s_list_1.json", kind, id, listKind),
+		},
+		{
+			fmt.Sprintf("https://metron.cloud/api/%s/%d/%s_list/?page=2", kind, id, listKind),
+			fmt.Sprintf("fixtures/%s_%d_%s_list_2.json", kind, id, listKind),
+		},
 	})
 
 	resources := make([]T, 0, 4)
@@ -69,7 +87,7 @@ func testListByID[T any](t *testing.T, kind string, id int, listKind string, met
 		resources = append(resources, res)
 	}
 
-	require.Equal(t, len(testCases), len(resources))
+	require.Len(t, testCases, len(resources))
 
 	for i, tc := range testCases {
 		t.Run(fmt.Sprintf("%T #%d", tc.expected, tc.id), func(t *testing.T) {
@@ -79,13 +97,21 @@ func testListByID[T any](t *testing.T, kind string, id int, listKind string, met
 	}
 }
 
-func testByID[T any](t *testing.T, kind string, method func(*metron.Client, context.Context, int) (T, error), testCases []testCase[T]) {
+func testByID[T any](
+	t *testing.T,
+	kind string,
+	method func(*metron.Client, context.Context, int) (T, error),
+	testCases []testCase[T],
+) {
 	for _, tc := range testCases {
 		t.Run(fmt.Sprintf("%T #%d", tc.expected, tc.id), func(t *testing.T) {
 			t.Parallel()
 
 			c := newTestClient(t, []requestMock{
-				{fmt.Sprintf("https://metron.cloud/api/%s/%d/", kind, tc.id), fmt.Sprintf("fixtures/%s_%d.json", kind, tc.id)},
+				{
+					fmt.Sprintf("https://metron.cloud/api/%s/%d/", kind, tc.id),
+					fmt.Sprintf("fixtures/%s_%d.json", kind, tc.id),
+				},
 			})
 
 			v, err := method(c, context.Background(), tc.id)

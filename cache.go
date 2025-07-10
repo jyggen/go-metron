@@ -103,7 +103,7 @@ func cacheKey(r *http.Request, cacheDir string) string {
 }
 
 func cachePut[T any](cacheKey string, v T) error {
-	if err := os.MkdirAll(filepath.Dir(cacheKey), 0755); err != nil {
+	if err := os.MkdirAll(filepath.Dir(cacheKey), 0750); err != nil {
 		return err
 	}
 
@@ -123,7 +123,7 @@ func cachePut[T any](cacheKey string, v T) error {
 		return err
 	}
 
-	if err = os.WriteFile(cacheKey, b, 0644); err != nil {
+	if err = os.WriteFile(cacheKey, b, 0600); err != nil {
 		return err
 	}
 

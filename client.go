@@ -3,14 +3,13 @@ package metron
 import (
 	"context"
 	"encoding/json"
-	"errors"
 	"fmt"
 	"io"
 	"net/http"
 	"net/url"
 	"time"
 
-	"golang.org/x/time/rate"
+	"github.com/projectdiscovery/ratelimit"
 )
 
 const baseURL = "https://metron.cloud/api/"
@@ -58,8 +57,8 @@ type Client struct {
 	cacheDir         string
 	client           *http.Client
 	enableCaching    bool
-	limiterBurst     *rate.Limiter
-	limiterSustained *rate.Limiter
+	limiterBurst     *ratelimit.Limiter
+	limiterSustained *ratelimit.Limiter
 	password         string
 	username         string
 }
@@ -73,8 +72,8 @@ func NewClient(options ...Option) *Client {
 		cacheDir:         "",
 		client:           http.DefaultClient,
 		enableCaching:    false,
-		limiterBurst:     rate.NewLimiter(rate.Every(time.Minute/30), 1),
-		limiterSustained: rate.NewLimiter(rate.Every((24*time.Hour)/10000), 1),
+		limiterBurst:     ratelimit.New(context.Background(), 30, time.Minute),
+		limiterSustained: ratelimit.New(context.Background(), 10_000, 24*time.Hour),
 		password:         "",
 		username:         "",
 	}
@@ -152,28 +151,20 @@ func paginate[T listTypes](ctx context.Context, c *Client, path string, filters 
 	}
 }
 
-func do[T any](c *Client, req *http.Request) (T, error) {
-	var v T
-
+func limit(c *Client) {
 	if c.limiterSustained != nil {
-		r := c.limiterSustained.Reserve()
-
-		if !r.OK() {
-			return v, errors.New("unable to adhere to sustained rate limit")
-		}
-
-		time.Sleep(r.Delay())
+		c.limiterSustained.Take()
 	}
 
 	if c.limiterBurst != nil {
-		r := c.limiterBurst.Reserve()
-
-		if !r.OK() {
-			return v, errors.New("unable to adhere to burst rate limit")
-		}
-
-		time.Sleep(r.Delay())
+		c.limiterBurst.Take()
 	}
+}
+
+func do[T any](c *Client, req *http.Request) (T, error) {
+	var v T
+
+	limit(c)
 
 	res, err := c.client.Do(req)
 
