@@ -3,13 +3,16 @@ package metron
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
+	"github.com/AliRizaAynaci/gorl"
+	"github.com/AliRizaAynaci/gorl/core"
+	"github.com/cenkalti/backoff/v5"
 	"io"
 	"net/http"
 	"net/url"
+	"strconv"
 	"time"
-
-	"github.com/projectdiscovery/ratelimit"
 )
 
 const baseURL = "https://metron.cloud/api/"
@@ -57,8 +60,8 @@ type Client struct {
 	cacheDir         string
 	client           *http.Client
 	enableCaching    bool
-	limiterBurst     *ratelimit.Limiter
-	limiterSustained *ratelimit.Limiter
+	limiterBurst     core.Limiter
+	limiterSustained core.Limiter
 	password         string
 	username         string
 }
@@ -66,14 +69,28 @@ type Client struct {
 type Option func(*Client)
 
 func NewClient(options ...Option) *Client {
+	burst, _ := gorl.New(core.Config{
+		Strategy: core.SlidingWindow,
+		KeyBy:    core.KeyByAPIKey,
+		Limit:    30,
+		Window:   1 * time.Minute,
+	})
+
+	sustained, _ := gorl.New(core.Config{
+		Strategy: core.SlidingWindow,
+		KeyBy:    core.KeyByAPIKey,
+		Limit:    10_000,
+		Window:   24 * time.Hour,
+	})
+
 	b, _ := url.Parse(baseURL)
 	c := &Client{
 		baseURL:          b,
 		cacheDir:         "",
 		client:           http.DefaultClient,
 		enableCaching:    false,
-		limiterBurst:     ratelimit.New(context.Background(), 30, time.Minute),
-		limiterSustained: ratelimit.New(context.Background(), 10_000, 24*time.Hour),
+		limiterBurst:     burst,
+		limiterSustained: sustained,
 		password:         "",
 		username:         "",
 	}
@@ -151,25 +168,74 @@ func paginate[T listTypes](ctx context.Context, c *Client, path string, filters 
 	}
 }
 
-func limit(c *Client) {
-	if c.limiterSustained != nil {
-		c.limiterSustained.Take()
+func limit(c *Client, ctx context.Context) error {
+	_, err := backoff.Retry(ctx, func() (bool, error) {
+		allowed, innerErr := c.limiterSustained.Allow(c.username)
+
+		if innerErr != nil {
+			return false, innerErr
+		}
+
+		if !allowed {
+			return false, errors.New("rate limit exceeded")
+		}
+
+		return true, nil
+	}, backoff.WithBackOff(backoff.NewExponentialBackOff()))
+
+	if err != nil {
+		return err
 	}
 
-	if c.limiterBurst != nil {
-		c.limiterBurst.Take()
-	}
+	_, err = backoff.Retry(ctx, func() (bool, error) {
+		allowed, innerErr := c.limiterBurst.Allow(c.username)
+
+		if innerErr != nil {
+			return false, innerErr
+		}
+
+		if !allowed {
+			return false, errors.New("rate limit exceeded")
+		}
+
+		return true, nil
+	}, backoff.WithBackOff(backoff.NewExponentialBackOff()))
+
+	return err
 }
 
-func do[T any](c *Client, req *http.Request) (T, error) {
+func do[T any](c *Client, ctx context.Context, req *http.Request) (T, error) {
 	var v T
 
-	limit(c)
+	err := limit(c, ctx)
+
+	if err != nil {
+		return v, err
+	}
 
 	res, err := c.client.Do(req)
 
 	if err != nil {
 		return v, err
+	}
+
+	if res.StatusCode == http.StatusTooManyRequests {
+		if err = res.Body.Close(); err != nil {
+			return v, err
+		}
+
+		waitTime, innerErr := strconv.Atoi(res.Header.Get("Retry-After"))
+
+		if innerErr != nil {
+			return v, innerErr
+		}
+
+		select {
+		case <-ctx.Done():
+			return v, ctx.Err()
+		case <-time.After(time.Duration(waitTime) * time.Second):
+			return do[T](c, ctx, req)
+		}
 	}
 
 	defer res.Body.Close()
@@ -218,5 +284,5 @@ func request[T any](ctx context.Context, c *Client, path string, filters ...Filt
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", userAgent)
 
-	return cache[T](c, req)
+	return cache[T](c, ctx, req)
 }

@@ -1,6 +1,7 @@
 package metron
 
 import (
+	"context"
 	"crypto/sha256"
 	"encoding/json"
 	"errors"
@@ -21,7 +22,7 @@ type cacheEntry[T any] struct {
 	ExpiresAt time.Time `json:"expires_at"`
 }
 
-func cache[T any](c *Client, r *http.Request) (T, error) {
+func cache[T any](c *Client, ctx context.Context, r *http.Request) (T, error) {
 	var v T
 	var err error
 
@@ -49,7 +50,7 @@ func cache[T any](c *Client, r *http.Request) (T, error) {
 		}
 	}
 
-	v, err = do[T](c, r)
+	v, err = do[T](c, ctx, r)
 
 	if err != nil {
 		return v, err
