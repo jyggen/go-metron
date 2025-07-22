@@ -5,14 +5,15 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/AliRizaAynaci/gorl"
-	"github.com/AliRizaAynaci/gorl/core"
-	"github.com/cenkalti/backoff/v5"
 	"io"
 	"net/http"
 	"net/url"
 	"strconv"
 	"time"
+
+	"github.com/AliRizaAynaci/gorl"
+	"github.com/AliRizaAynaci/gorl/core"
+	"github.com/cenkalti/backoff/v5"
 )
 
 const baseURL = "https://metron.cloud/api/"
@@ -174,27 +175,9 @@ func paginate[T listTypes](ctx context.Context, c *Client, path string, filters 
 	}
 }
 
-func limit(c *Client, ctx context.Context) error {
+func limitWithRetry(ctx context.Context, limiter core.Limiter, username string) error {
 	_, err := backoff.Retry(ctx, func() (bool, error) {
-		allowed, innerErr := c.limiterSustained.Allow(c.username)
-
-		if innerErr != nil {
-			return false, innerErr
-		}
-
-		if !allowed {
-			return false, errors.New("rate limit exceeded")
-		}
-
-		return true, nil
-	}, backoff.WithBackOff(backoff.NewExponentialBackOff()))
-
-	if err != nil {
-		return err
-	}
-
-	_, err = backoff.Retry(ctx, func() (bool, error) {
-		allowed, innerErr := c.limiterBurst.Allow(c.username)
+		allowed, innerErr := limiter.Allow(username)
 
 		if innerErr != nil {
 			return false, innerErr
@@ -208,6 +191,13 @@ func limit(c *Client, ctx context.Context) error {
 	}, backoff.WithBackOff(backoff.NewExponentialBackOff()))
 
 	return err
+}
+
+func limit(c *Client, ctx context.Context) error {
+	return errors.Join(
+		limitWithRetry(ctx, c.limiterBurst, c.username),
+		limitWithRetry(ctx, c.limiterSustained, c.username),
+	)
 }
 
 func do[T any](c *Client, ctx context.Context, req *http.Request) (T, error) {
