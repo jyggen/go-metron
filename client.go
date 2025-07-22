@@ -87,7 +87,7 @@ func NewClient(options ...Option) *Client {
 	c := &Client{
 		baseURL:          b,
 		cacheDir:         "",
-		client:           http.DefaultClient,
+		client:           &http.Client{},
 		enableCaching:    false,
 		limiterBurst:     burst,
 		limiterSustained: sustained,
@@ -122,6 +122,12 @@ func WithCaching(cacheDir string) Option {
 func WithClient(client *http.Client) Option {
 	return func(c *Client) {
 		c.client = client
+	}
+}
+
+func WithTimeout(timeout time.Duration) Option {
+	return func(c *Client) {
+		c.client.Timeout = timeout
 	}
 }
 

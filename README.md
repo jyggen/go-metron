@@ -28,6 +28,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"time"
 
 	"cloud.google.com/go/civil"
 	"github.com/jyggen/go-metron"
@@ -37,6 +38,7 @@ func main() {
 	c := metron.NewClient(
 		metron.WithAuthentication("username", "password"),
 		metron.WithCaching(""),
+		metron.WithTimeout(10 * time.Second),
 	)
 
 	after, _ := civil.ParseDate("2021-06-07")
