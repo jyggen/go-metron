@@ -16,7 +16,7 @@ import (
 )
 
 const baseURL = "https://metron.cloud/api/"
-const userAgent = "go-metron/0.2-dev (+https://github.com/jyggen/go-metron)"
+const userAgent = "go-metron/0.1.5"
 
 type listTypes interface {
 	ArcList | CharacterList | CreatorList | ImprintList | IssueList | PublisherList | RoleList | SeriesList | SeriesTypeList | TeamList | UniverseList
