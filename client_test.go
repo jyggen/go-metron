@@ -51,7 +51,7 @@ func testList[T any](
 		resources = append(resources, res)
 	}
 
-	require.Len(t, testCases, len(resources))
+	require.Len(t, resources, len(testCases))
 
 	for i, tc := range testCases {
 		t.Run(fmt.Sprintf("%T #%d", tc.expected, tc.id), func(t *testing.T) {
@@ -87,7 +87,7 @@ func testListByID[T any](
 		resources = append(resources, res)
 	}
 
-	require.Len(t, testCases, len(resources))
+	require.Len(t, resources, len(testCases))
 
 	for i, tc := range testCases {
 		t.Run(fmt.Sprintf("%T #%d", tc.expected, tc.id), func(t *testing.T) {

@@ -104,7 +104,7 @@ func NewClient(options ...Option) *Client {
 }
 
 // WithAuthentication sets the username and password to be used for authentication.
-func WithAuthentication(username string, password string) Option {
+func WithAuthentication(username, password string) Option {
 	return func(c *Client) {
 		c.password = password
 		c.username = username
@@ -147,7 +147,6 @@ func paginate[T listTypes](ctx context.Context, c *Client, path string, filters 
 
 		for {
 			vList, err = request[paginatedList[T]](ctx, c, u.String(), filters...)
-
 			if err != nil {
 				yield(v, err)
 				return
@@ -164,7 +163,6 @@ func paginate[T listTypes](ctx context.Context, c *Client, path string, filters 
 			}
 
 			u, err = c.baseURL.Parse(*vList.Next)
-
 			if err != nil {
 				yield(v, err)
 				return
@@ -210,7 +208,6 @@ func do[T any](c *Client, ctx context.Context, req *http.Request) (T, error) {
 	}
 
 	res, err := c.client.Do(req)
-
 	if err != nil {
 		return v, err
 	}
@@ -241,7 +238,6 @@ func do[T any](c *Client, ctx context.Context, req *http.Request) (T, error) {
 	}
 
 	body, err := io.ReadAll(res.Body)
-
 	if err != nil {
 		return v, err
 	}
@@ -255,7 +251,6 @@ func request[T any](ctx context.Context, c *Client, path string, filters ...Filt
 	var v T
 
 	u, err := c.baseURL.Parse(path)
-
 	if err != nil {
 		return v, err
 	}
@@ -271,7 +266,6 @@ func request[T any](ctx context.Context, c *Client, path string, filters ...Filt
 	var req *http.Request
 
 	req, err = http.NewRequestWithContext(ctx, http.MethodGet, u.String(), nil)
-
 	if err != nil {
 		return v, err
 	}

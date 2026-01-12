@@ -30,7 +30,6 @@ func cache[T any](c *Client, ctx context.Context, r *http.Request) (T, error) {
 
 	if cacheDir == "" {
 		cacheDir, err = defaultCacheDir()
-
 		if err != nil {
 			return v, err
 		}
@@ -51,7 +50,6 @@ func cache[T any](c *Client, ctx context.Context, r *http.Request) (T, error) {
 	}
 
 	v, err = do[T](c, ctx, r)
-
 	if err != nil {
 		return v, err
 	}
@@ -71,7 +69,6 @@ func cacheGet[T any](cacheKey string) (T, error) {
 	var v T
 
 	f, err := os.Open(cacheKey)
-
 	if err != nil {
 		return v, err
 	}
@@ -79,7 +76,6 @@ func cacheGet[T any](cacheKey string) (T, error) {
 	var b []byte
 
 	b, err = io.ReadAll(f)
-
 	if err != nil {
 		return v, err
 	}
@@ -119,21 +115,15 @@ func cachePut[T any](cacheKey string, v T) error {
 		Resource:  v,
 		ExpiresAt: maxAge,
 	})
-
 	if err != nil {
 		return err
 	}
 
-	if err = os.WriteFile(cacheKey, b, 0600); err != nil {
-		return err
-	}
-
-	return nil
+	return os.WriteFile(cacheKey, b, 0600)
 }
 
 func defaultCacheDir() (string, error) {
 	cacheDir, err := os.UserCacheDir()
-
 	if err != nil {
 		return "", err
 	}
