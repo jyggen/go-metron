@@ -37,7 +37,7 @@ func cache[T any](c *Client, ctx context.Context, r *http.Request) (T, error) {
 
 	key := cacheKey(r, cacheDir)
 
-	_, ok := interface{}(&v).(cacheable)
+	_, ok := any(v).(cacheable)
 
 	if c.enableCaching && ok {
 		if v, err = cacheGet[T](key); err != nil {
@@ -108,7 +108,7 @@ func cachePut[T any](cacheKey string, v T) error {
 		return err
 	}
 
-	c, ok := interface{}(&v).(cacheable)
+	c, ok := any(v).(cacheable)
 
 	if !ok {
 		return errors.New("invalid cache entry")
