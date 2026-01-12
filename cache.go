@@ -73,6 +73,10 @@ func cacheGet[T any](cacheKey string) (T, error) {
 		return v, err
 	}
 
+	defer func() {
+		_ = f.Close()
+	}()
+
 	var b []byte
 
 	b, err = io.ReadAll(f)
@@ -86,7 +90,7 @@ func cacheGet[T any](cacheKey string) (T, error) {
 		return v, err
 	}
 
-	if c.ExpiresAt.Before(time.Now()) {
+	if !c.ExpiresAt.After(time.Now()) {
 		return v, errCacheExpired
 	}
 
