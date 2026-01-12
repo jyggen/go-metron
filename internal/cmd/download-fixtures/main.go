@@ -49,9 +49,8 @@ func main() {
 	}
 }
 
-func makeFixture(c *http.Client, username string, password string, url string, fileName string) error {
+func makeFixture(c *http.Client, username, password, url, fileName string) error {
 	res, err := request(c, username, password, url)
-
 	if err != nil {
 		return err
 	}
@@ -63,7 +62,6 @@ func makeFixture(c *http.Client, username string, password string, url string, f
 	defer res.Body.Close()
 
 	b, err := io.ReadAll(res.Body)
-
 	if err != nil {
 		return err
 	}
@@ -74,12 +72,11 @@ func makeFixture(c *http.Client, username string, password string, url string, f
 		return err
 	}
 
-	return os.WriteFile(filepath.Join("fixtures/", fileName), prettyJSON.Bytes(), 0600)
+	return os.WriteFile(filepath.Join("fixtures/", fileName), prettyJSON.Bytes(), 0o600)
 }
 
-func request(c *http.Client, username string, password string, url string) (*http.Response, error) {
+func request(c *http.Client, username, password, url string) (*http.Response, error) {
 	req, err := http.NewRequestWithContext(context.Background(), http.MethodGet, url, nil)
-
 	if err != nil {
 		return nil, err
 	}

@@ -24,7 +24,7 @@ type cacheEntry[T any] struct {
 	ExpiresAt time.Time `json:"expires_at"`
 }
 
-func cache[T any](c *Client, ctx context.Context, r *http.Request) (T, error) {
+func cache[T any](ctx context.Context, c *Client, r *http.Request) (T, error) {
 	var v T
 	var err error
 
@@ -51,7 +51,7 @@ func cache[T any](c *Client, ctx context.Context, r *http.Request) (T, error) {
 		}
 	}
 
-	v, err = do[T](c, ctx, r)
+	v, err = do[T](ctx, c, r)
 	if err != nil {
 		return v, err
 	}
@@ -106,7 +106,7 @@ func cacheKey(r *http.Request, cacheDir string) string {
 }
 
 func cachePut[T any](cacheKey string, v T) error {
-	if err := os.MkdirAll(filepath.Dir(cacheKey), 0750); err != nil {
+	if err := os.MkdirAll(filepath.Dir(cacheKey), 0o750); err != nil {
 		return err
 	}
 
@@ -125,7 +125,7 @@ func cachePut[T any](cacheKey string, v T) error {
 		return err
 	}
 
-	return maybe.WriteFile(cacheKey, b, 0600)
+	return maybe.WriteFile(cacheKey, b, 0o600)
 }
 
 func defaultCacheDir() (string, error) {

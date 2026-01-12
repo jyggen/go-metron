@@ -16,8 +16,10 @@ import (
 	"github.com/cenkalti/backoff/v5"
 )
 
-const baseURL = "https://metron.cloud/api/"
-const userAgent = "go-metron/0.1.5"
+const (
+	baseURL   = "https://metron.cloud/api/"
+	userAgent = "go-metron/0.1.5"
+)
 
 type listTypes interface {
 	ArcList | CharacterList | CreatorList | ImprintList | IssueList | PublisherList | RoleList | SeriesList | SeriesTypeList | TeamList | UniverseList
@@ -191,18 +193,17 @@ func limitWithRetry(ctx context.Context, limiter core.Limiter, username string) 
 	return err
 }
 
-func limit(c *Client, ctx context.Context) error {
+func limit(ctx context.Context, c *Client) error {
 	return errors.Join(
 		limitWithRetry(ctx, c.limiterBurst, c.username),
 		limitWithRetry(ctx, c.limiterSustained, c.username),
 	)
 }
 
-func do[T any](c *Client, ctx context.Context, req *http.Request) (T, error) {
+func do[T any](ctx context.Context, c *Client, req *http.Request) (T, error) {
 	var v T
 
-	err := limit(c, ctx)
-
+	err := limit(ctx, c)
 	if err != nil {
 		return v, err
 	}
@@ -227,7 +228,7 @@ func do[T any](c *Client, ctx context.Context, req *http.Request) (T, error) {
 		case <-ctx.Done():
 			return v, ctx.Err()
 		case <-time.After(time.Duration(waitTime) * time.Second):
-			return do[T](c, ctx, req)
+			return do[T](ctx, c, req)
 		}
 	}
 
@@ -274,5 +275,5 @@ func request[T any](ctx context.Context, c *Client, path string, filters ...Filt
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", userAgent)
 
-	return cache[T](c, ctx, req)
+	return cache[T](ctx, c, req)
 }
