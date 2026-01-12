@@ -1,14 +1,13 @@
 module github.com/jyggen/go-metron
 
-go 1.24.0
-
-toolchain go1.24.5
+go 1.25
 
 require (
 	cloud.google.com/go v0.120.0
 	github.com/AliRizaAynaci/gorl v1.3.1
-	github.com/cenkalti/backoff/v5 v5.0.2
-	github.com/stretchr/testify v1.10.0
+	github.com/cenkalti/backoff/v5 v5.0.3
+	github.com/google/renameio/v2 v2.0.2
+	github.com/stretchr/testify v1.9.0
 )
 
 require (

@@ -11,6 +11,8 @@ import (
 	"os"
 	"path/filepath"
 	"time"
+
+	"github.com/google/renameio/v2/maybe"
 )
 
 type cacheable interface {
@@ -123,7 +125,7 @@ func cachePut[T any](cacheKey string, v T) error {
 		return err
 	}
 
-	return os.WriteFile(cacheKey, b, 0600)
+	return maybe.WriteFile(cacheKey, b, 0600)
 }
 
 func defaultCacheDir() (string, error) {
