@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"io"
 	"net/http"
 	"net/url"
 	"strconv"
@@ -238,14 +237,7 @@ func do[T any](ctx context.Context, c *Client, req *http.Request) (T, error) {
 		return v, fmt.Errorf("unexpected status code: %d", res.StatusCode)
 	}
 
-	body, err := io.ReadAll(res.Body)
-	if err != nil {
-		return v, err
-	}
-
-	err = json.Unmarshal(body, &v)
-
-	return v, err
+	return v, json.NewDecoder(res.Body).Decode(&v)
 }
 
 func request[T any](ctx context.Context, c *Client, path string, filters ...Filter) (T, error) {
