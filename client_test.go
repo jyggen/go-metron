@@ -4,6 +4,7 @@ import (
 	"context"
 	"embed"
 	"fmt"
+	"iter"
 	"net/http"
 	"net/url"
 	"testing"
@@ -36,11 +37,11 @@ type testCase[T any] struct {
 func testList[T any](
 	t *testing.T,
 	kind string,
-	method func(*metron.Client, context.Context, ...metron.Filter) func(func(T, error) bool),
+	method func(*metron.Client, context.Context, ...metron.Filter) iter.Seq2[T, error],
 	testCases []testCase[T],
 ) {
 	c := newTestClient(t, []requestMock{
-		{fmt.Sprintf("https://metron.cloud/api/%s/", kind), fmt.Sprintf("fixtures/%s_list_1.json", kind)},
+		{fmt.Sprintf("https://metron.cloud/api/%s/?page=1", kind), fmt.Sprintf("fixtures/%s_list_1.json", kind)},
 		{fmt.Sprintf("https://metron.cloud/api/%s/?page=2", kind), fmt.Sprintf("fixtures/%s_list_2.json", kind)},
 	})
 
@@ -66,12 +67,12 @@ func testListByID[T any](
 	kind string,
 	id int,
 	listKind string,
-	method func(*metron.Client, context.Context, int) func(func(T, error) bool),
+	method func(*metron.Client, context.Context, int, ...metron.Filter) iter.Seq2[T, error],
 	testCases []testCase[T],
 ) {
 	c := newTestClient(t, []requestMock{
 		{
-			fmt.Sprintf("https://metron.cloud/api/%s/%d/%s_list/", kind, id, listKind),
+			fmt.Sprintf("https://metron.cloud/api/%s/%d/%s_list/?page=1", kind, id, listKind),
 			fmt.Sprintf("fixtures/%s_%d_%s_list_1.json", kind, id, listKind),
 		},
 		{
@@ -123,7 +124,7 @@ func testByID[T any](
 }
 
 func newTestClient(t *testing.T, mocks []requestMock) *metron.Client {
-	return metron.NewClient(metron.WithClient(&http.Client{
+	c, _ := metron.NewClient("username", "password", metron.WithClient(&http.Client{
 		Transport: roundTripFunc(func(req *http.Request) *http.Response {
 			m := mocks[0]
 			mocks = append(mocks[:0], mocks[1:]...)
@@ -144,7 +145,9 @@ func newTestClient(t *testing.T, mocks []requestMock) *metron.Client {
 				Header:     make(http.Header),
 			}
 		}),
-	}), metron.WithAuthentication("username", "password"))
+	}))
+
+	return c
 }
 
 func parseDate(t *testing.T, dateString string) civil.Date {
@@ -163,12 +166,12 @@ func parseTime(t *testing.T, timeString string) time.Time {
 	return v
 }
 
-func parseURL(t *testing.T, urlString string) metron.URL {
+func parseURL(t *testing.T, urlString string) url.URL {
 	v, err := url.Parse(urlString)
 
 	require.NoError(t, err)
 
-	return metron.URL{URL: v}
+	return *v
 }
 
 func asReference[T any](v T) *T {

@@ -1,0 +1,36 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/oapi-codegen/oapi-codegen/HEAD/configuration-schema.json
+package: internal
+generate:
+  client: true
+  models: true
+output: openapi.gen.go
+output-options:
+  user-templates:
+    param-types.tmpl: |
+      {{range .}}{{$opid := .OperationId}}
+        {{range .TypeDefinitions}}
+          // {{.TypeName}} defines parameters for {{$opid}}.
+          type {{.TypeName}} {{if .IsAlias}}={{end}} {{.Schema.TypeDecl}}
+          
+          {{$typeName := .TypeName}}
+          {{range .Schema.Properties}}
+            func (t *{{$typeName}}) Set{{.GoFieldName}}(v {{.Schema.TypeDecl}}) {
+              t.{{.GoFieldName}} = &v
+            }
+          {{end}}
+        {{end}}
+      {{end}}
+    typedef.tmpl: |
+      {{range .Types}}
+        {{ if .Schema.Description }}{{ toGoComment .Schema.Description .TypeName  }}{{ else }}// {{.TypeName}} defines model for {{.JsonName}}.{{ end }}
+        type {{.TypeName}} {{if .IsAlias }}={{end}} {{.Schema.TypeDecl}}
+        
+        {{$typeName := .TypeName}}
+        {{range .Schema.Properties}}
+          {{if or (eq .GoFieldName "Next") (eq .GoFieldName "Results")}}
+            func (t {{$typeName}}) Get{{.GoFieldName}}() {{.GoTypeDef}} {
+              return t.{{.GoFieldName}}
+            }
+          {{end}}
+        {{end}}
+      {{end}}

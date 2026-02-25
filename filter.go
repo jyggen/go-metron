@@ -1,203 +1,431 @@
 package metron
 
 import (
-	"net/url"
-	"strconv"
 	"time"
 
 	"cloud.google.com/go/civil"
+	openapi_types "github.com/oapi-codegen/runtime/types"
 )
 
-type Filter func(q *url.Values)
+// Filter is a function that applies a query filter to a request parameter object.
+type Filter func(v any)
 
-func FilterByAlternativeNumber(number string) Filter {
-	return func(q *url.Values) {
-		q.Set("alt_number", number)
+func ByAlternativeNumber(v string) Filter {
+	return func(f any) {
+		if p, ok := f.(AlternativeNumberFilterable); ok {
+			p.SetAltNumber(v)
+		}
 	}
 }
 
-func FilterByComicVineID(comicVineID int) Filter {
-	return func(q *url.Values) {
-		q.Set("cv_id", strconv.Itoa(comicVineID))
+func ByComicVineID(v int) Filter {
+	return func(f any) {
+		if p, ok := f.(ComicVineIDFilterable); ok {
+			p.SetCvId(v)
+		}
 	}
 }
 
-func FilterByCoverHash(coverHash string) Filter {
-	return func(q *url.Values) {
-		q.Set("cover_hash", coverHash)
+func ByCoverHash(v string) Filter {
+	return func(f any) {
+		if p, ok := f.(CoverHashFilterable); ok {
+			p.SetCoverHash(v)
+		}
 	}
 }
 
-func FilterByCoverMonth(month time.Month) Filter {
-	return func(q *url.Values) {
-		q.Set("cover_month", strconv.Itoa(int(month)))
+func ByCoverMonth(v int) Filter {
+	return func(f any) {
+		if p, ok := f.(CoverMonthFilterable); ok {
+			p.SetCoverMonth(float32(v))
+		}
 	}
 }
 
-func FilterByCoverYear(year int) Filter {
-	return func(q *url.Values) {
-		q.Set("cover_year", strconv.Itoa(year))
+func ByCoverYear(v int) Filter {
+	return func(f any) {
+		if p, ok := f.(CoverYearFilterable); ok {
+			p.SetCoverYear(float32(v))
+		}
 	}
 }
 
-func FilterByDesignation(designation string) Filter {
-	return func(q *url.Values) {
-		q.Set("designation", designation)
+func ByDesignation(v string) Filter {
+	return func(f any) {
+		if p, ok := f.(DesignationFilterable); ok {
+			p.SetDesignation(v)
+		}
 	}
 }
 
-func FilterByFinalOrderCutoffDate(date civil.Date) Filter {
-	return func(q *url.Values) {
-		q.Set("foc_date", date.String())
+func ByFinalOrderCutoffDate(v civil.Date) Filter {
+	return func(f any) {
+		if p, ok := f.(FinalOrderCutoffDateFilterable); ok {
+			p.SetFocDate(openapi_types.Date{Time: v.In(time.UTC)})
+		}
 	}
 }
 
-func FilterByGrandComicsDatabaseID(grandComicsDatabaseID int) Filter {
-	return func(q *url.Values) {
-		q.Set("gcd_id", strconv.Itoa(grandComicsDatabaseID))
+func ByFinalOrderCutoffDateRangeAfter(v civil.Date) Filter {
+	return func(f any) {
+		if p, ok := f.(FinalOrderCutoffDateRangeAfterFilterable); ok {
+			p.SetFocDateRangeAfter(openapi_types.Date{Time: v.In(time.UTC)})
+		}
 	}
 }
 
-func FilterByImprintID(id int) Filter {
-	return func(q *url.Values) {
-		q.Set("imprint_id", strconv.Itoa(id))
+func ByFinalOrderCutoffDateRangeBefore(v civil.Date) Filter {
+	return func(f any) {
+		if p, ok := f.(FinalOrderCutoffDateRangeBeforeFilterable); ok {
+			p.SetFocDateRangeBefore(openapi_types.Date{Time: v.In(time.UTC)})
+		}
 	}
 }
 
-func FilterByImprintName(name string) Filter {
-	return func(q *url.Values) {
-		q.Set("imprint_name", name)
+func ByGrandComicsDatabaseID(v int) Filter {
+	return func(f any) {
+		if p, ok := f.(GrandComicsDatabaseIDFilterable); ok {
+			p.SetGcdId(v)
+		}
 	}
 }
 
-func FilterByMissingComicVineID(isMissing bool) Filter {
-	return func(q *url.Values) {
-		q.Set("missing_cv_id", strconv.FormatBool(isMissing))
+func ByImprintID(v int) Filter {
+	return func(f any) {
+		if p, ok := f.(ImprintIDFilterable); ok {
+			p.SetImprintId(v)
+		}
 	}
 }
 
-func FilterByModifiedGreaterThan(modified time.Time) Filter {
-	return func(q *url.Values) {
-		q.Set("modified_gt", modified.Format(time.RFC3339))
+func ByImprintName(v string) Filter {
+	return func(f any) {
+		if p, ok := f.(ImprintNameFilterable); ok {
+			p.SetImprintName(v)
+		}
 	}
 }
 
-func FilterByName(name string) Filter {
-	return func(q *url.Values) {
-		q.Set("name", name)
+func ByMissingComicVineID(v bool) Filter {
+	return func(f any) {
+		if p, ok := f.(MissingComicVineIDFilterable); ok {
+			p.SetMissingCvId(v)
+		}
 	}
 }
 
-func FilterByNumber(number string) Filter {
-	return func(q *url.Values) {
-		q.Set("number", number)
+func ByMissingGrandComicsDatabaseID(v bool) Filter {
+	return func(f any) {
+		if p, ok := f.(MissingGrandComicsDatabaseIDFilterable); ok {
+			p.SetMissingGcdId(v)
+		}
 	}
 }
 
-func FilterByPublisherID(id int) Filter {
-	return func(q *url.Values) {
-		q.Set("publisher_id", strconv.Itoa(id))
+func ByModifiedGreaterThan(v time.Time) Filter {
+	return func(f any) {
+		if p, ok := f.(ModifiedGreaterThanFilterable); ok {
+			p.SetModifiedGt(v)
+		}
 	}
 }
 
-func FilterByPublisherName(name string) Filter {
-	return func(q *url.Values) {
-		q.Set("publisher_name", name)
+func ByName(v string) Filter {
+	return func(f any) {
+		if p, ok := f.(NameFilterable); ok {
+			p.SetName(v)
+		}
 	}
 }
 
-func FilterByRating(rating string) Filter {
-	return func(q *url.Values) {
-		q.Set("rating", rating)
+func ByNumber(v string) Filter {
+	return func(f any) {
+		if p, ok := f.(NumberFilterable); ok {
+			p.SetNumber(v)
+		}
 	}
 }
 
-func FilterBySeriesID(id int) Filter {
-	return func(q *url.Values) {
-		q.Set("series_id", strconv.Itoa(id))
+func ByPublisherID(v int) Filter {
+	return func(f any) {
+		if p, ok := f.(PublisherIDFilterable); ok {
+			p.SetPublisherId(v)
+		}
 	}
 }
 
-func FilterBySeriesName(name string) Filter {
-	return func(q *url.Values) {
-		q.Set("series_name", name)
+func ByPublisherName(v string) Filter {
+	return func(f any) {
+		if p, ok := f.(PublisherNameFilterable); ok {
+			p.SetPublisherName(v)
+		}
 	}
 }
 
-func FilterBySeriesType(name string) Filter {
-	return func(q *url.Values) {
-		q.Set("series_type", name)
+func ByRating(v string) Filter {
+	return func(f any) {
+		if p, ok := f.(RatingFilterable); ok {
+			p.SetRating(v)
+		}
 	}
 }
 
-func FilterBySeriesTypeID(id int) Filter {
-	return func(q *url.Values) {
-		q.Set("series_type_id", strconv.Itoa(id))
+func BySeriesID(v int) Filter {
+	return func(f any) {
+		if p, ok := f.(SeriesIDFilterable); ok {
+			p.SetSeriesId(v)
+		}
 	}
 }
 
-func FilterBySeriesVolume(volume int) Filter {
-	return func(q *url.Values) {
-		q.Set("series_volume", strconv.Itoa(volume))
+func BySeriesName(v string) Filter {
+	return func(f any) {
+		if p, ok := f.(SeriesNameFilterable); ok {
+			p.SetSeriesName(v)
+		}
 	}
 }
 
-func FilterBySeriesYearBegan(year int) Filter {
-	return func(q *url.Values) {
-		q.Set("series_year_began", strconv.Itoa(year))
+func BySeriesType(v string) Filter {
+	return func(f any) {
+		if p, ok := f.(SeriesTypeFilterable); ok {
+			p.SetSeriesType(v)
+		}
 	}
 }
 
-func FilterBySKU(sku string) Filter {
-	return func(q *url.Values) {
-		q.Set("sku", sku)
+func BySeriesTypeID(v int) Filter {
+	return func(f any) {
+		if p, ok := f.(SeriesTypeIDFilterable); ok {
+			p.SetSeriesTypeId(v)
+		}
 	}
 }
 
-func FilterByStatus(status int) Filter {
-	return func(q *url.Values) {
-		q.Set("status", strconv.Itoa(status))
+func BySeriesVolume(v int) Filter {
+	return func(f any) {
+		if p, ok := f.(SeriesVolumeFilterable); ok {
+			p.SetSeriesVolume(v)
+		}
 	}
 }
 
-func FilterByStoreDate(date civil.Date) Filter {
-	return func(q *url.Values) {
-		q.Set("store_date", date.String())
+func BySeriesYearBegan(v int) Filter {
+	return func(f any) {
+		if p, ok := f.(SeriesYearBeganFilterable); ok {
+			p.SetSeriesYearBegan(v)
+		}
 	}
 }
 
-func FilterByStoreDateRangeAfter(date civil.Date) Filter {
-	return func(q *url.Values) {
-		q.Set("store_date_range_after", date.String())
+func ByStatus(v int) Filter {
+	return func(f any) {
+		if p, ok := f.(StatusFilterable); ok {
+			p.SetStatus(v)
+		}
 	}
 }
 
-func FilterByStoreDateRangeBefore(date civil.Date) Filter {
-	return func(q *url.Values) {
-		q.Set("store_date_range_before", date.String())
+func ByStockKeepingUnit(v string) Filter {
+	return func(f any) {
+		if p, ok := f.(StockKeepingUnitFilterable); ok {
+			p.SetSku(v)
+		}
 	}
 }
 
-func FilterByUPC(upc string) Filter {
-	return func(q *url.Values) {
-		q.Set("upc", upc)
+func ByStoreDate(v civil.Date) Filter {
+	return func(f any) {
+		if p, ok := f.(StoreDateFilterable); ok {
+			p.SetStoreDate(openapi_types.Date{Time: v.In(time.UTC)})
+		}
 	}
 }
 
-func FilterByVolume(volume int) Filter {
-	return func(q *url.Values) {
-		q.Set("volume", strconv.Itoa(volume))
+func ByStoreDateRangeAfter(v civil.Date) Filter {
+	return func(f any) {
+		if p, ok := f.(StoreDateRangeAfterFilterable); ok {
+			p.SetStoreDateRangeAfter(openapi_types.Date{Time: v.In(time.UTC)})
+		}
 	}
 }
 
-func FilterByYearBegan(year int) Filter {
-	return func(q *url.Values) {
-		q.Set("year_began", strconv.Itoa(year))
+func ByStoreDateRangeBefore(v civil.Date) Filter {
+	return func(f any) {
+		if p, ok := f.(StoreDateRangeBeforeFilterable); ok {
+			p.SetStoreDateRangeBefore(openapi_types.Date{Time: v.In(time.UTC)})
+		}
 	}
 }
 
-func FilterByYearEnded(year int) Filter {
-	return func(q *url.Values) {
-		q.Set("year_end", strconv.Itoa(year))
+func ByUniversalProductCode(v string) Filter {
+	return func(f any) {
+		if p, ok := f.(UniversalProductCodeFilterable); ok {
+			p.SetUpc(v)
+		}
 	}
+}
+
+func ByVolume(v int) Filter {
+	return func(f any) {
+		if p, ok := f.(VolumeFilterable); ok {
+			p.SetVolume(v)
+		}
+	}
+}
+
+func ByYearBegan(v int) Filter {
+	return func(f any) {
+		if p, ok := f.(YearBeganFilterable); ok {
+			p.SetYearBegan(v)
+		}
+	}
+}
+
+func ByYearEnd(v int) Filter {
+	return func(f any) {
+		if p, ok := f.(YearEndFilterable); ok {
+			p.SetYearEnd(v)
+		}
+	}
+}
+
+type AlternativeNumberFilterable interface {
+	SetAltNumber(string)
+}
+
+type ComicVineIDFilterable interface {
+	SetCvId(int)
+}
+
+type CoverHashFilterable interface {
+	SetCoverHash(string)
+}
+
+type CoverMonthFilterable interface {
+	SetCoverMonth(float32)
+}
+
+type CoverYearFilterable interface {
+	SetCoverYear(float32)
+}
+
+type DesignationFilterable interface {
+	SetDesignation(string)
+}
+
+type FinalOrderCutoffDateFilterable interface {
+	SetFocDate(openapi_types.Date)
+}
+
+type FinalOrderCutoffDateRangeAfterFilterable interface {
+	SetFocDateRangeAfter(openapi_types.Date)
+}
+
+type FinalOrderCutoffDateRangeBeforeFilterable interface {
+	SetFocDateRangeBefore(openapi_types.Date)
+}
+
+type GrandComicsDatabaseIDFilterable interface {
+	SetGcdId(int)
+}
+
+type ImprintIDFilterable interface {
+	SetImprintId(int)
+}
+
+type ImprintNameFilterable interface {
+	SetImprintName(string)
+}
+
+type MissingComicVineIDFilterable interface {
+	SetMissingCvId(bool)
+}
+
+type MissingGrandComicsDatabaseIDFilterable interface {
+	SetMissingGcdId(bool)
+}
+
+type ModifiedGreaterThanFilterable interface {
+	SetModifiedGt(time.Time)
+}
+
+type NameFilterable interface {
+	SetName(string)
+}
+
+type NumberFilterable interface {
+	SetNumber(string)
+}
+
+type PublisherIDFilterable interface {
+	SetPublisherId(int)
+}
+
+type PublisherNameFilterable interface {
+	SetPublisherName(string)
+}
+
+type RatingFilterable interface {
+	SetRating(string)
+}
+
+type SeriesIDFilterable interface {
+	SetSeriesId(int)
+}
+
+type SeriesNameFilterable interface {
+	SetSeriesName(string)
+}
+
+type SeriesTypeFilterable interface {
+	SetSeriesType(string)
+}
+
+type SeriesTypeIDFilterable interface {
+	SetSeriesTypeId(int)
+}
+
+type SeriesVolumeFilterable interface {
+	SetSeriesVolume(int)
+}
+
+type SeriesYearBeganFilterable interface {
+	SetSeriesYearBegan(int)
+}
+
+type StatusFilterable interface {
+	SetStatus(int)
+}
+
+type StockKeepingUnitFilterable interface {
+	SetSku(string)
+}
+
+type StoreDateFilterable interface {
+	SetStoreDate(openapi_types.Date)
+}
+
+type StoreDateRangeAfterFilterable interface {
+	SetStoreDateRangeAfter(openapi_types.Date)
+}
+
+type StoreDateRangeBeforeFilterable interface {
+	SetStoreDateRangeBefore(openapi_types.Date)
+}
+
+type UniversalProductCodeFilterable interface {
+	SetUpc(string)
+}
+
+type VolumeFilterable interface {
+	SetVolume(int)
+}
+
+type YearBeganFilterable interface {
+	SetYearBegan(int)
+}
+
+type YearEndFilterable interface {
+	SetYearEnd(int)
 }

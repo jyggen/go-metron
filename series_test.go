@@ -8,10 +8,10 @@ import (
 
 func TestSeriesByID(t *testing.T) {
 	t.Parallel()
-	testByID(t, "series", (*metron.Client).SeriesByID, []testCase[metron.Series]{
+	testByID(t, "series", (*metron.Client).SeriesByID, []testCase[*metron.Series]{
 		{
 			id: 3371,
-			expected: metron.Series{
+			expected: &metron.Series{
 				ID:       3371,
 				Name:     "Batman 2022 Annual",
 				SortName: "Batman 2022 Annual",
@@ -36,10 +36,7 @@ func TestSeriesByID(t *testing.T) {
 						Name: "Super-Hero",
 					},
 				},
-				Associated: []struct {
-					ID   int    `json:"id"`
-					Name string `json:"series"`
-				}{
+				Associated: []metron.Reference{
 					{
 						ID:   93,
 						Name: "Batman (2016)",
@@ -53,7 +50,7 @@ func TestSeriesByID(t *testing.T) {
 		},
 		{
 			id: 793,
-			expected: metron.Series{
+			expected: &metron.Series{
 				ID:       793,
 				Name:     "Fables",
 				SortName: "Fables",
@@ -78,10 +75,7 @@ func TestSeriesByID(t *testing.T) {
 				),
 				IssueCount: 149,
 				Genres:     []metron.Reference{},
-				Associated: []struct {
-					ID   int    `json:"id"`
-					Name string `json:"series"`
-				}{
+				Associated: []metron.Reference{
 					{
 						ID:   3396,
 						Name: "Fables (2022)",
@@ -106,11 +100,11 @@ func TestSeries(t *testing.T) {
 	testList(t, "series", (*metron.Client).Series, seriesListTestCases(t))
 }
 
-func seriesListTestCases(t *testing.T) []testCase[metron.SeriesList] {
-	return []testCase[metron.SeriesList]{
+func seriesListTestCases(t *testing.T) []testCase[*metron.SeriesList] {
+	return []testCase[*metron.SeriesList]{
 		{
 			id: 6227,
-			expected: metron.SeriesList{
+			expected: &metron.SeriesList{
 				ID:         6227,
 				Name:       "'68 (2006)",
 				YearBegan:  2006,
@@ -121,7 +115,7 @@ func seriesListTestCases(t *testing.T) []testCase[metron.SeriesList] {
 		},
 		{
 			id: 6228,
-			expected: metron.SeriesList{
+			expected: &metron.SeriesList{
 				ID:         6228,
 				Name:       "'68 (2011)",
 				YearBegan:  2011,
@@ -132,7 +126,7 @@ func seriesListTestCases(t *testing.T) []testCase[metron.SeriesList] {
 		},
 		{
 			id: 6229,
-			expected: metron.SeriesList{
+			expected: &metron.SeriesList{
 				ID:         6229,
 				Name:       "'68 Hallowed Ground (2013)",
 				YearBegan:  2013,
@@ -143,7 +137,7 @@ func seriesListTestCases(t *testing.T) []testCase[metron.SeriesList] {
 		},
 		{
 			id: 6236,
-			expected: metron.SeriesList{
+			expected: &metron.SeriesList{
 				ID:         6236,
 				Name:       "'68 Hardship (2011)",
 				YearBegan:  2011,

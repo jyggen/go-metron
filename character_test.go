@@ -8,10 +8,10 @@ import (
 
 func TestCharacterByID(t *testing.T) {
 	t.Parallel()
-	testByID(t, "character", (*metron.Client).CharacterByID, []testCase[metron.Character]{
+	testByID(t, "character", (*metron.Client).CharacterByID, []testCase[*metron.Character]{
 		{
 			id: 83,
-			expected: metron.Character{
+			expected: &metron.Character{
 				ID:    83,
 				Name:  "Joker",
 				Alias: asReference([]string{"Red Hood"}),
@@ -89,7 +89,7 @@ func TestCharacterByID(t *testing.T) {
 		},
 		{
 			id: 26153,
-			expected: metron.Character{
+			expected: &metron.Character{
 				ID:          26153,
 				Name:        "176-301",
 				Alias:       asReference([]string{}),
@@ -108,10 +108,10 @@ func TestCharacterByID(t *testing.T) {
 
 func TestCharacters(t *testing.T) {
 	t.Parallel()
-	testList(t, "character", (*metron.Client).Characters, []testCase[metron.CharacterList]{
+	testList(t, "character", (*metron.Client).Characters, []testCase[*metron.CharacterList]{
 		{
 			id: 23817,
-			expected: metron.CharacterList{
+			expected: &metron.CharacterList{
 				ID:       23817,
 				Name:     "'Breed",
 				Modified: parseTime(t, "2023-12-02T11:25:39.275547-05:00"),
@@ -119,7 +119,7 @@ func TestCharacters(t *testing.T) {
 		},
 		{
 			id: 6029,
-			expected: metron.CharacterList{
+			expected: &metron.CharacterList{
 				ID:       6029,
 				Name:     "'Mazing Man",
 				Modified: parseTime(t, "2021-03-12T14:42:27.453937-05:00"),
@@ -127,7 +127,7 @@ func TestCharacters(t *testing.T) {
 		},
 		{
 			id: 21156,
-			expected: metron.CharacterList{
+			expected: &metron.CharacterList{
 				ID:       21156,
 				Name:     "'Saur",
 				Modified: parseTime(t, "2023-07-20T14:54:06.624160-04:00"),
@@ -135,7 +135,7 @@ func TestCharacters(t *testing.T) {
 		},
 		{
 			id: 6211,
-			expected: metron.CharacterList{
+			expected: &metron.CharacterList{
 				ID:       6211,
 				Name:     "0101",
 				Modified: parseTime(t, "2021-03-25T16:19:54.045015-04:00"),

@@ -1,6 +1,7 @@
 package metron_test
 
 import (
+	"net/url"
 	"testing"
 
 	"github.com/jyggen/go-metron"
@@ -8,10 +9,10 @@ import (
 
 func TestIssueByID(t *testing.T) {
 	t.Parallel()
-	testByID(t, "issue", (*metron.Client).IssueByID, []testCase[metron.Issue]{
+	testByID(t, "issue", (*metron.Client).IssueByID, []testCase[*metron.Issue]{
 		{
 			id: 112901,
-			expected: metron.Issue{
+			expected: &metron.Issue{
 				ID: 112901,
 				Publisher: metron.Reference{
 					ID:   2,
@@ -19,13 +20,13 @@ func TestIssueByID(t *testing.T) {
 				},
 				Imprint: nil,
 				Series: struct {
-					ID        int                `json:"id"`
-					Name      string             `json:"name"`
-					SortName  string             `json:"sort_name"`
-					Volume    int                `json:"volume"`
-					YearBegan int                `json:"year_began"`
-					Type      metron.Reference   `json:"series_type"`
-					Genres    []metron.Reference `json:"genres"`
+					ID        int
+					Name      string
+					SortName  string
+					Volume    int
+					YearBegan int
+					Type      metron.Reference
+					Genres    []metron.Reference
 				}{
 					ID:        7133,
 					Name:      "Batman",
@@ -87,9 +88,9 @@ func TestIssueByID(t *testing.T) {
 				CoverHash: asReference("841068ef7e313dec"),
 				Arcs:      []metron.ArcList{},
 				Credits: []struct {
-					ID    int                `json:"id"`
-					Name  string             `json:"creator"`
-					Roles []metron.Reference `json:"role"`
+					ID    int
+					Name  string
+					Roles []metron.Reference
 				}{
 					{
 						ID:   1379,
@@ -413,8 +414,8 @@ func TestIssueByID(t *testing.T) {
 				},
 				Universes: []metron.UniverseList{},
 				Reprints: []struct {
-					ID    int    `json:"id"`
-					Issue string `json:"issue"`
+					ID    int
+					Issue string
 				}{
 					{
 						ID:    6798,
@@ -446,10 +447,10 @@ func TestIssueByID(t *testing.T) {
 					},
 				},
 				Variants: []struct {
-					Name     *string    `json:"name"`
-					SKU      *string    `json:"sku"`
-					UPC      *string    `json:"upc"`
-					ImageURL metron.URL `json:"image"`
+					Name     *string
+					SKU      *string
+					UPC      *string
+					ImageURL url.URL
 				}{},
 				ComicVineID:           nil,
 				GrandComicsDatabaseID: asReference(1035895),
@@ -459,7 +460,7 @@ func TestIssueByID(t *testing.T) {
 		},
 		{
 			id: 2558,
-			expected: metron.Issue{
+			expected: &metron.Issue{
 				ID: 2558,
 				Publisher: metron.Reference{
 					ID:   2,
@@ -470,13 +471,13 @@ func TestIssueByID(t *testing.T) {
 					Name: "DC Black Label",
 				},
 				Series: struct {
-					ID        int                `json:"id"`
-					Name      string             `json:"name"`
-					SortName  string             `json:"sort_name"`
-					Volume    int                `json:"volume"`
-					YearBegan int                `json:"year_began"`
-					Type      metron.Reference   `json:"series_type"`
-					Genres    []metron.Reference `json:"genres"`
+					ID        int
+					Name      string
+					SortName  string
+					Volume    int
+					YearBegan int
+					Type      metron.Reference
+					Genres    []metron.Reference
 				}{
 					ID:        279,
 					Name:      "Batman: Last Knight on Earth",
@@ -519,9 +520,9 @@ func TestIssueByID(t *testing.T) {
 				CoverHash: asReference("ede81312b2337ac5"),
 				Arcs:      []metron.ArcList{},
 				Credits: []struct {
-					ID    int                `json:"id"`
-					Name  string             `json:"creator"`
-					Roles []metron.Reference `json:"role"`
+					ID    int
+					Name  string
+					Roles []metron.Reference
 				}{
 					{
 						ID:   303,
@@ -654,14 +655,14 @@ func TestIssueByID(t *testing.T) {
 				Teams:     []metron.TeamList{},
 				Universes: []metron.UniverseList{},
 				Reprints: []struct {
-					ID    int    `json:"id"`
-					Issue string `json:"issue"`
+					ID    int
+					Issue string
 				}{},
 				Variants: []struct {
-					Name     *string    `json:"name"`
-					SKU      *string    `json:"sku"`
-					UPC      *string    `json:"upc"`
-					ImageURL metron.URL `json:"image"`
+					Name     *string
+					SKU      *string
+					UPC      *string
+					ImageURL url.URL
 				}{
 					{
 						Name: asReference("Variant Cover"),
@@ -707,16 +708,16 @@ func TestIssues(t *testing.T) {
 	testList(t, "issue", (*metron.Client).Issues, issueListTestCases(t))
 }
 
-func issueListTestCases(t *testing.T) []testCase[metron.IssueList] {
-	return []testCase[metron.IssueList]{
+func issueListTestCases(t *testing.T) []testCase[*metron.IssueList] {
+	return []testCase[*metron.IssueList]{
 		{
 			id: 89088,
-			expected: metron.IssueList{
+			expected: &metron.IssueList{
 				ID: 89088,
 				Series: struct {
-					Name      string `json:"name"`
-					Volume    int    `json:"volume"`
-					YearBegan int    `json:"year_began"`
+					Name      string
+					Volume    int
+					YearBegan int
 				}{
 					Name:      "'68",
 					Volume:    1,
@@ -738,12 +739,12 @@ func issueListTestCases(t *testing.T) []testCase[metron.IssueList] {
 		},
 		{
 			id: 89089,
-			expected: metron.IssueList{
+			expected: &metron.IssueList{
 				ID: 89089,
 				Series: struct {
-					Name      string `json:"name"`
-					Volume    int    `json:"volume"`
-					YearBegan int    `json:"year_began"`
+					Name      string
+					Volume    int
+					YearBegan int
 				}{
 					Name:      "'68",
 					Volume:    2,
@@ -765,12 +766,12 @@ func issueListTestCases(t *testing.T) []testCase[metron.IssueList] {
 		},
 		{
 			id: 89090,
-			expected: metron.IssueList{
+			expected: &metron.IssueList{
 				ID: 89090,
 				Series: struct {
-					Name      string `json:"name"`
-					Volume    int    `json:"volume"`
-					YearBegan int    `json:"year_began"`
+					Name      string
+					Volume    int
+					YearBegan int
 				}{
 					Name:      "'68",
 					Volume:    2,
@@ -792,12 +793,12 @@ func issueListTestCases(t *testing.T) []testCase[metron.IssueList] {
 		},
 		{
 			id: 89091,
-			expected: metron.IssueList{
+			expected: &metron.IssueList{
 				ID: 89091,
 				Series: struct {
-					Name      string `json:"name"`
-					Volume    int    `json:"volume"`
-					YearBegan int    `json:"year_began"`
+					Name      string
+					Volume    int
+					YearBegan int
 				}{
 					Name:      "'68",
 					Volume:    2,

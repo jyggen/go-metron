@@ -8,10 +8,10 @@ import (
 
 func TestPublisherByID(t *testing.T) {
 	t.Parallel()
-	testByID(t, "publisher", (*metron.Client).PublisherByID, []testCase[metron.Publisher]{
+	testByID(t, "publisher", (*metron.Client).PublisherByID, []testCase[*metron.Publisher]{
 		{
 			id: 1,
-			expected: metron.Publisher{
+			expected: &metron.Publisher{
 				ID:          1,
 				Name:        "Marvel",
 				Founded:     asReference(1939),
@@ -30,7 +30,7 @@ func TestPublisherByID(t *testing.T) {
 		},
 		{
 			id: 29,
-			expected: metron.Publisher{
+			expected: &metron.Publisher{
 				ID:          29,
 				Name:        "12-Gauge Comics",
 				Founded:     asReference(2004),
@@ -51,10 +51,10 @@ func TestPublisherByID(t *testing.T) {
 
 func TestPublishers(t *testing.T) {
 	t.Parallel()
-	testList(t, "publisher", (*metron.Client).Publishers, []testCase[metron.PublisherList]{
+	testList(t, "publisher", (*metron.Client).Publishers, []testCase[*metron.PublisherList]{
 		{
 			id: 29,
-			expected: metron.PublisherList{
+			expected: &metron.PublisherList{
 				ID:       29,
 				Name:     "12-Gauge Comics",
 				Modified: parseTime(t, "2019-11-03T17:16:03.835821-05:00"),
@@ -62,7 +62,7 @@ func TestPublishers(t *testing.T) {
 		},
 		{
 			id: 64,
-			expected: metron.PublisherList{
+			expected: &metron.PublisherList{
 				ID:       64,
 				Name:     "AAA Pop Comics",
 				Modified: parseTime(t, "2023-07-24T08:21:06.019465-04:00"),
@@ -70,7 +70,7 @@ func TestPublishers(t *testing.T) {
 		},
 		{
 			id: 36,
-			expected: metron.PublisherList{
+			expected: &metron.PublisherList{
 				ID:       36,
 				Name:     "AWA Studios",
 				Modified: parseTime(t, "2020-07-06T21:36:46.414152-04:00"),
@@ -78,7 +78,7 @@ func TestPublishers(t *testing.T) {
 		},
 		{
 			id: 56,
-			expected: metron.PublisherList{
+			expected: &metron.PublisherList{
 				ID:       56,
 				Name:     "Aardvark-Vanaheim",
 				Modified: parseTime(t, "2023-04-29T16:56:46.004672-04:00"),
