@@ -31,12 +31,12 @@ type CharacterList struct {
 	Modified time.Time
 }
 
-// CharacterByID returns the information of an individual character.
+// CharacterByID returns a character by its ID.
 func (c *Client) CharacterByID(ctx context.Context, id int) (*Character, error) {
 	return newByID(ctx, c.cache, fmt.Sprintf("character/%d", id), c.client.ApiCharacterRetrieve, characterMapper, id)
 }
 
-// Characters returns a list of all the characters.
+// Characters returns an iterator over all characters.
 func (c *Client) Characters(ctx context.Context, filters ...Filter) iter.Seq2[*CharacterList, error] {
 	params := &internal.ApiCharacterListParams{}
 
@@ -48,6 +48,18 @@ func (c *Client) Characters(ctx context.Context, filters ...Filter) iter.Seq2[*C
 }
 
 func characterMapper(in internal.CharacterRead) (*Character, error) {
+	if in.Id == nil {
+		return nil, fmt.Errorf("character: nil Id")
+	}
+
+	if in.Modified == nil {
+		return nil, fmt.Errorf("character: nil Modified")
+	}
+
+	if in.ResourceUrl == nil {
+		return nil, fmt.Errorf("character: nil ResourceUrl")
+	}
+
 	var imageURL *url.URL
 	var err error
 
@@ -63,34 +75,46 @@ func characterMapper(in internal.CharacterRead) (*Character, error) {
 		return nil, err
 	}
 
-	creators := make([]CreatorList, 0, len(*in.Creators))
+	var creators []CreatorList
 
-	for _, creator := range *in.Creators {
-		c, innerErr := creatorListMapper(creator)
-		if innerErr != nil {
-			return nil, innerErr
+	if in.Creators != nil {
+		creators = make([]CreatorList, 0, len(*in.Creators))
+
+		for _, creator := range *in.Creators {
+			c, innerErr := creatorListMapper(creator)
+			if innerErr != nil {
+				return nil, innerErr
+			}
+			creators = append(creators, *c)
 		}
-		creators = append(creators, *c)
 	}
 
-	teams := make([]TeamList, 0, len(*in.Teams))
+	var teams []TeamList
 
-	for _, team := range *in.Teams {
-		t, innerErr := teamListMapper(team)
-		if innerErr != nil {
-			return nil, innerErr
+	if in.Teams != nil {
+		teams = make([]TeamList, 0, len(*in.Teams))
+
+		for _, team := range *in.Teams {
+			t, innerErr := teamListMapper(team)
+			if innerErr != nil {
+				return nil, innerErr
+			}
+			teams = append(teams, *t)
 		}
-		teams = append(teams, *t)
 	}
 
-	universes := make([]UniverseList, 0, len(*in.Universes))
+	var universes []UniverseList
 
-	for _, universe := range *in.Universes {
-		u, innerErr := universeListMapper(universe)
-		if innerErr != nil {
-			return nil, innerErr
+	if in.Universes != nil {
+		universes = make([]UniverseList, 0, len(*in.Universes))
+
+		for _, universe := range *in.Universes {
+			u, innerErr := universeListMapper(universe)
+			if innerErr != nil {
+				return nil, innerErr
+			}
+			universes = append(universes, *u)
 		}
-		universes = append(universes, *u)
 	}
 
 	return &Character{
@@ -110,6 +134,14 @@ func characterMapper(in internal.CharacterRead) (*Character, error) {
 }
 
 func characterListMapper(in internal.CharacterList) (*CharacterList, error) {
+	if in.Id == nil {
+		return nil, fmt.Errorf("character: nil Id")
+	}
+
+	if in.Modified == nil {
+		return nil, fmt.Errorf("character: nil Modified")
+	}
+
 	return &CharacterList{
 		ID:       *in.Id,
 		Name:     in.Name,

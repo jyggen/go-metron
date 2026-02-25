@@ -29,12 +29,12 @@ type ImprintList struct {
 	Modified time.Time
 }
 
-// ImprintByID returns the information of an individual imprint.
+// ImprintByID returns an imprint by its ID.
 func (c *Client) ImprintByID(ctx context.Context, id int) (*Imprint, error) {
 	return newByID(ctx, c.cache, fmt.Sprintf("imprint/%d", id), c.client.ApiImprintRetrieve, imprintMapper, id)
 }
 
-// Imprints returns a list of all the imprints.
+// Imprints returns an iterator over all imprints.
 func (c *Client) Imprints(ctx context.Context, filters ...Filter) iter.Seq2[*ImprintList, error] {
 	params := &internal.ApiImprintListParams{}
 
@@ -46,6 +46,22 @@ func (c *Client) Imprints(ctx context.Context, filters ...Filter) iter.Seq2[*Imp
 }
 
 func imprintMapper(in internal.ImprintRead) (*Imprint, error) {
+	if in.Id == nil {
+		return nil, fmt.Errorf("imprint: nil Id")
+	}
+
+	if in.Modified == nil {
+		return nil, fmt.Errorf("imprint: nil Modified")
+	}
+
+	if in.ResourceUrl == nil {
+		return nil, fmt.Errorf("imprint: nil ResourceUrl")
+	}
+
+	if in.Publisher.Id == nil {
+		return nil, fmt.Errorf("imprint: nil Publisher.Id")
+	}
+
 	var imageURL *url.URL
 	var err error
 
@@ -79,6 +95,14 @@ func imprintMapper(in internal.ImprintRead) (*Imprint, error) {
 }
 
 func imprintListMapper(in internal.ImprintList) (*ImprintList, error) {
+	if in.Id == nil {
+		return nil, fmt.Errorf("imprint: nil Id")
+	}
+
+	if in.Modified == nil {
+		return nil, fmt.Errorf("imprint: nil Modified")
+	}
+
 	return &ImprintList{
 		ID:       *in.Id,
 		Name:     in.Name,

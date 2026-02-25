@@ -124,7 +124,7 @@ func testByID[T any](
 }
 
 func newTestClient(t *testing.T, mocks []requestMock) *metron.Client {
-	c, _ := metron.NewClient("username", "password", metron.WithClient(&http.Client{
+	c, err := metron.NewClient("username", "password", metron.WithClient(&http.Client{
 		Transport: roundTripFunc(func(req *http.Request) *http.Response {
 			m := mocks[0]
 			mocks = append(mocks[:0], mocks[1:]...)
@@ -146,6 +146,7 @@ func newTestClient(t *testing.T, mocks []requestMock) *metron.Client {
 			}
 		}),
 	}))
+	require.NoError(t, err)
 
 	return c
 }
@@ -159,7 +160,7 @@ func parseDate(t *testing.T, dateString string) civil.Date {
 }
 
 func parseTime(t *testing.T, timeString string) time.Time {
-	v, err := time.Parse(time.RFC3339, timeString)
+	v, err := time.Parse(time.RFC3339Nano, timeString)
 
 	require.NoError(t, err)
 

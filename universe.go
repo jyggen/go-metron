@@ -28,12 +28,12 @@ type UniverseList struct {
 	Modified time.Time
 }
 
-// UniverseByID returns the information of an individual universe.
+// UniverseByID returns a universe by its ID.
 func (c *Client) UniverseByID(ctx context.Context, id int) (*Universe, error) {
 	return newByID(ctx, c.cache, fmt.Sprintf("universe/%d", id), c.client.ApiUniverseRetrieve, universeMapper, id)
 }
 
-// Universes returns a list of all the universes.
+// Universes returns an iterator over all universes.
 func (c *Client) Universes(ctx context.Context, filters ...Filter) iter.Seq2[*UniverseList, error] {
 	params := &internal.ApiUniverseListParams{}
 
@@ -45,6 +45,22 @@ func (c *Client) Universes(ctx context.Context, filters ...Filter) iter.Seq2[*Un
 }
 
 func universeMapper(in internal.UniverseRead) (*Universe, error) {
+	if in.Id == nil {
+		return nil, fmt.Errorf("universe: nil Id")
+	}
+
+	if in.Modified == nil {
+		return nil, fmt.Errorf("universe: nil Modified")
+	}
+
+	if in.ResourceUrl == nil {
+		return nil, fmt.Errorf("universe: nil ResourceUrl")
+	}
+
+	if in.Publisher.Id == nil {
+		return nil, fmt.Errorf("universe: nil Publisher.Id")
+	}
+
 	var imageURL *url.URL
 	var err error
 
@@ -77,6 +93,14 @@ func universeMapper(in internal.UniverseRead) (*Universe, error) {
 }
 
 func universeListMapper(in internal.UniverseList) (*UniverseList, error) {
+	if in.Id == nil {
+		return nil, fmt.Errorf("universe: nil Id")
+	}
+
+	if in.Modified == nil {
+		return nil, fmt.Errorf("universe: nil Modified")
+	}
+
 	return &UniverseList{
 		ID:       *in.Id,
 		Name:     in.Name,

@@ -81,12 +81,12 @@ type IssueList struct {
 	Modified  time.Time
 }
 
-// IssueByID returns the information of an individual issue.
+// IssueByID returns an issue by its ID.
 func (c *Client) IssueByID(ctx context.Context, id int) (*Issue, error) {
 	return newByID(ctx, c.cache, fmt.Sprintf("issue/%d", id), c.client.ApiIssueRetrieve, issueMapper, id)
 }
 
-// Issues returns a list of all the issues.
+// Issues returns an iterator over all issues.
 func (c *Client) Issues(ctx context.Context, filters ...Filter) iter.Seq2[*IssueList, error] {
 	params := &internal.ApiIssueListParams{}
 
@@ -97,7 +97,7 @@ func (c *Client) Issues(ctx context.Context, filters ...Filter) iter.Seq2[*Issue
 	return newPaginate[internal.PaginatedIssueListList](ctx, c.client.ApiIssueList, issueListMapper, params)
 }
 
-// IssuesByArcID returns a list of all the issues for a story arc.
+// IssuesByArcID returns an iterator over all issues for a story arc.
 func (c *Client) IssuesByArcID(ctx context.Context, id int, filters ...Filter) iter.Seq2[*IssueList, error] {
 	params := &internal.ApiArcIssueListListParams{}
 
@@ -108,7 +108,7 @@ func (c *Client) IssuesByArcID(ctx context.Context, id int, filters ...Filter) i
 	return newIDPaginate[internal.PaginatedIssueListList](ctx, c.client.ApiArcIssueListList, issueListMapper, id, params)
 }
 
-// IssuesByCharacterID returns a list of all the issues for a character.
+// IssuesByCharacterID returns an iterator over all issues for a character.
 func (c *Client) IssuesByCharacterID(ctx context.Context, id int, filters ...Filter) iter.Seq2[*IssueList, error] {
 	params := &internal.ApiCharacterIssueListListParams{}
 
@@ -119,7 +119,7 @@ func (c *Client) IssuesByCharacterID(ctx context.Context, id int, filters ...Fil
 	return newIDPaginate[internal.PaginatedIssueListList](ctx, c.client.ApiCharacterIssueListList, issueListMapper, id, params)
 }
 
-// IssuesBySeriesID returns a list of all the issues for a series.
+// IssuesBySeriesID returns an iterator over all issues for a series.
 func (c *Client) IssuesBySeriesID(ctx context.Context, id int, filters ...Filter) iter.Seq2[*IssueList, error] {
 	params := &internal.ApiSeriesIssueListListParams{}
 
@@ -130,7 +130,7 @@ func (c *Client) IssuesBySeriesID(ctx context.Context, id int, filters ...Filter
 	return newIDPaginate[internal.PaginatedIssueListList](ctx, c.client.ApiSeriesIssueListList, issueListMapper, id, params)
 }
 
-// IssuesByTeamID returns a list of all the issues for a team.
+// IssuesByTeamID returns an iterator over all issues for a team.
 func (c *Client) IssuesByTeamID(ctx context.Context, id int, filters ...Filter) iter.Seq2[*IssueList, error] {
 	params := &internal.ApiTeamIssueListListParams{}
 
@@ -142,6 +142,46 @@ func (c *Client) IssuesByTeamID(ctx context.Context, id int, filters ...Filter) 
 }
 
 func issueMapper(in internal.IssueRead) (*Issue, error) {
+	if in.Id == nil {
+		return nil, fmt.Errorf("issue: nil Id")
+	}
+
+	if in.Modified == nil {
+		return nil, fmt.Errorf("issue: nil Modified")
+	}
+
+	if in.ResourceUrl == nil {
+		return nil, fmt.Errorf("issue: nil ResourceUrl")
+	}
+
+	if in.Publisher.Id == nil {
+		return nil, fmt.Errorf("issue: nil Publisher.Id")
+	}
+
+	if in.Series.Id == nil {
+		return nil, fmt.Errorf("issue: nil Series.Id")
+	}
+
+	if in.Series.SeriesType.Id == nil {
+		return nil, fmt.Errorf("issue: nil Series.SeriesType.Id")
+	}
+
+	if in.AltNumber == nil {
+		return nil, fmt.Errorf("issue: nil AltNumber")
+	}
+
+	if in.Price == nil {
+		return nil, fmt.Errorf("issue: nil Price")
+	}
+
+	if in.Name == nil {
+		return nil, fmt.Errorf("issue: nil Name")
+	}
+
+	if in.Rating.Id == nil {
+		return nil, fmt.Errorf("issue: nil Rating.Id")
+	}
+
 	var imageURL *url.URL
 	var err error
 
@@ -160,6 +200,10 @@ func issueMapper(in internal.IssueRead) (*Issue, error) {
 	var imprint *Reference
 
 	if in.Imprint != nil {
+		if in.Imprint.Id == nil {
+			return nil, fmt.Errorf("issue: nil Imprint.Id")
+		}
+
 		imprint = &Reference{
 			ID:   *in.Imprint.Id,
 			Name: in.Imprint.Name,
@@ -172,6 +216,10 @@ func issueMapper(in internal.IssueRead) (*Issue, error) {
 		genres = make([]Reference, 0, len(*in.Series.Genres))
 
 		for _, genre := range *in.Series.Genres {
+			if genre.Id == nil {
+				return nil, fmt.Errorf("issue: nil Series.Genres[].Id")
+			}
+
 			genres = append(genres, Reference{
 				ID:   *genre.Id,
 				Name: genre.Name,
@@ -195,113 +243,169 @@ func issueMapper(in internal.IssueRead) (*Issue, error) {
 		maybeStoreDate = &storeDate
 	}
 
-	arcs := make([]ArcList, 0, len(*in.Arcs))
+	var arcs []ArcList
 
-	for _, arc := range *in.Arcs {
-		a, innerErr := arcListMapper(arc)
-		if innerErr != nil {
-			return nil, innerErr
+	if in.Arcs != nil {
+		arcs = make([]ArcList, 0, len(*in.Arcs))
+
+		for _, arc := range *in.Arcs {
+			a, innerErr := arcListMapper(arc)
+			if innerErr != nil {
+				return nil, innerErr
+			}
+			arcs = append(arcs, *a)
 		}
-		arcs = append(arcs, *a)
 	}
 
-	credits := make([]struct {
+	var credits []struct {
 		ID    int
 		Name  string
 		Roles []Reference
-	}, 0, len(*in.Credits))
+	}
 
-	for _, credit := range *in.Credits {
-		roles := make([]Reference, 0, len(credit.Role))
-
-		for _, role := range credit.Role {
-			roles = append(roles, Reference{
-				ID:   *role.Id,
-				Name: role.Name,
-			})
-		}
-
-		credits = append(credits, struct {
+	if in.Credits != nil {
+		credits = make([]struct {
 			ID    int
 			Name  string
 			Roles []Reference
-		}{
-			ID:    *credit.Id,
-			Name:  *credit.Creator,
-			Roles: roles,
-		})
-	}
+		}, 0, len(*in.Credits))
 
-	characters := make([]CharacterList, 0, len(*in.Characters))
+		for _, credit := range *in.Credits {
+			if credit.Id == nil {
+				return nil, fmt.Errorf("issue: nil Credits[].Id")
+			}
 
-	for _, character := range *in.Characters {
-		c, innerErr := characterListMapper(character)
-		if innerErr != nil {
-			return nil, innerErr
+			if credit.Creator == nil {
+				return nil, fmt.Errorf("issue: nil Credits[].Creator")
+			}
+
+			roles := make([]Reference, 0, len(credit.Role))
+
+			for _, role := range credit.Role {
+				if role.Id == nil {
+					return nil, fmt.Errorf("issue: nil Credits[].Role[].Id")
+				}
+
+				roles = append(roles, Reference{
+					ID:   *role.Id,
+					Name: role.Name,
+				})
+			}
+
+			credits = append(credits, struct {
+				ID    int
+				Name  string
+				Roles []Reference
+			}{
+				ID:    *credit.Id,
+				Name:  *credit.Creator,
+				Roles: roles,
+			})
 		}
-		characters = append(characters, *c)
 	}
 
-	teams := make([]TeamList, 0, len(*in.Teams))
+	var characters []CharacterList
 
-	for _, team := range *in.Teams {
-		t, innerErr := teamListMapper(team)
-		if innerErr != nil {
-			return nil, innerErr
+	if in.Characters != nil {
+		characters = make([]CharacterList, 0, len(*in.Characters))
+
+		for _, character := range *in.Characters {
+			c, innerErr := characterListMapper(character)
+			if innerErr != nil {
+				return nil, innerErr
+			}
+			characters = append(characters, *c)
 		}
-		teams = append(teams, *t)
 	}
 
-	universes := make([]UniverseList, 0, len(*in.Universes))
+	var teams []TeamList
 
-	for _, universe := range *in.Universes {
-		u, innerErr := universeListMapper(universe)
-		if innerErr != nil {
-			return nil, innerErr
+	if in.Teams != nil {
+		teams = make([]TeamList, 0, len(*in.Teams))
+
+		for _, team := range *in.Teams {
+			t, innerErr := teamListMapper(team)
+			if innerErr != nil {
+				return nil, innerErr
+			}
+			teams = append(teams, *t)
 		}
-		universes = append(universes, *u)
 	}
 
-	reprints := make([]struct {
+	var universes []UniverseList
+
+	if in.Universes != nil {
+		universes = make([]UniverseList, 0, len(*in.Universes))
+
+		for _, universe := range *in.Universes {
+			u, innerErr := universeListMapper(universe)
+			if innerErr != nil {
+				return nil, innerErr
+			}
+			universes = append(universes, *u)
+		}
+	}
+
+	var reprints []struct {
 		ID    int
 		Issue string
-	}, 0, len(*in.Reprints))
-
-	for _, reprint := range *in.Reprints {
-		reprints = append(reprints, struct {
-			ID    int
-			Issue string
-		}{
-			ID:    *reprint.Id,
-			Issue: reprint.Issue,
-		})
 	}
 
-	variants := make([]struct {
+	if in.Reprints != nil {
+		reprints = make([]struct {
+			ID    int
+			Issue string
+		}, 0, len(*in.Reprints))
+
+		for _, reprint := range *in.Reprints {
+			if reprint.Id == nil {
+				return nil, fmt.Errorf("issue: nil Reprints[].Id")
+			}
+
+			reprints = append(reprints, struct {
+				ID    int
+				Issue string
+			}{
+				ID:    *reprint.Id,
+				Issue: reprint.Issue,
+			})
+		}
+	}
+
+	var variants []struct {
 		Name     *string
 		SKU      *string
 		UPC      *string
 		ImageURL url.URL
-	}, 0, len(*in.Variants))
+	}
 
-	for _, variant := range *in.Variants {
-		maybeVariantImageURL, innerErr := url.Parse(variant.Image)
-		if innerErr != nil {
-			return nil, innerErr
-		}
-		variantImageURL := *maybeVariantImageURL
-
-		variants = append(variants, struct {
+	if in.Variants != nil {
+		variants = make([]struct {
 			Name     *string
 			SKU      *string
 			UPC      *string
 			ImageURL url.URL
-		}{
-			Name:     variant.Name,
-			SKU:      variant.Sku,
-			UPC:      variant.Upc,
-			ImageURL: variantImageURL,
-		})
+		}, 0, len(*in.Variants))
+
+		for _, variant := range *in.Variants {
+			maybeVariantImageURL, innerErr := url.Parse(variant.Image)
+			if innerErr != nil {
+				return nil, innerErr
+			}
+			variantImageURL := *maybeVariantImageURL
+
+			variants = append(variants, struct {
+				Name     *string
+				SKU      *string
+				UPC      *string
+				ImageURL url.URL
+			}{
+				Name:     variant.Name,
+				SKU:      variant.Sku,
+				UPC:      variant.Upc,
+				ImageURL: variantImageURL,
+			})
+		}
 	}
 
 	return &Issue{
@@ -365,6 +469,14 @@ func issueMapper(in internal.IssueRead) (*Issue, error) {
 }
 
 func issueListMapper(in internal.IssueList) (*IssueList, error) {
+	if in.Id == nil {
+		return nil, fmt.Errorf("issue: nil Id")
+	}
+
+	if in.Modified == nil {
+		return nil, fmt.Errorf("issue: nil Modified")
+	}
+
 	coverDate := civil.DateOf(in.CoverDate.Time)
 
 	var maybeStoreDate *civil.Date

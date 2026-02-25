@@ -31,12 +31,12 @@ type CreatorList struct {
 	Modified time.Time
 }
 
-// CreatorByID returns the information of an individual creator.
+// CreatorByID returns a creator by its ID.
 func (c *Client) CreatorByID(ctx context.Context, id int) (*Creator, error) {
 	return newByID(ctx, c.cache, fmt.Sprintf("creator/%d", id), c.client.ApiCreatorRetrieve, creatorMapper, id)
 }
 
-// Creators returns a list of all the creators.
+// Creators returns an iterator over all creators.
 func (c *Client) Creators(ctx context.Context, filters ...Filter) iter.Seq2[*CreatorList, error] {
 	params := &internal.ApiCreatorListParams{}
 
@@ -48,6 +48,18 @@ func (c *Client) Creators(ctx context.Context, filters ...Filter) iter.Seq2[*Cre
 }
 
 func creatorMapper(in internal.Creator) (*Creator, error) {
+	if in.Id == nil {
+		return nil, fmt.Errorf("creator: nil Id")
+	}
+
+	if in.Modified == nil {
+		return nil, fmt.Errorf("creator: nil Modified")
+	}
+
+	if in.ResourceUrl == nil {
+		return nil, fmt.Errorf("creator: nil ResourceUrl")
+	}
+
 	var imageURL *url.URL
 	var err error
 
@@ -92,6 +104,14 @@ func creatorMapper(in internal.Creator) (*Creator, error) {
 }
 
 func creatorListMapper(in internal.CreatorList) (*CreatorList, error) {
+	if in.Id == nil {
+		return nil, fmt.Errorf("creator: nil Id")
+	}
+
+	if in.Modified == nil {
+		return nil, fmt.Errorf("creator: nil Modified")
+	}
+
 	return &CreatorList{
 		ID:       *in.Id,
 		Name:     in.Name,

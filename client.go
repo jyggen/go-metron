@@ -13,6 +13,7 @@ import (
 
 	"codeberg.org/jyggen/go-filecache"
 	"codeberg.org/jyggen/go-httpkit"
+	"codeberg.org/jyggen/go-httpkit/middleware/throttle"
 	"github.com/cenkalti/backoff/v5"
 	"github.com/jyggen/go-metron/internal"
 )
@@ -33,7 +34,7 @@ type Client struct {
 	enableCaching bool
 	httpClient    *http.Client
 	maxRetries    uint
-	rateLimiter   *rateLimiter
+	rateLimiter   *throttle.Throttle
 	storagePath   string
 }
 
@@ -67,19 +68,23 @@ func NewClient(username, password string, options ...Option) (*Client, error) {
 		}
 	}
 
-	limiter, err := newRateLimiter(filepath.Join(c.storagePath, fmt.Sprintf("throttle_%x.gob", sha1.Sum([]byte(username)))))
+	rl, err := throttle.New(
+		filepath.Join(c.storagePath, fmt.Sprintf("throttle_%x.gob", sha1.Sum([]byte(username)))),
+		throttle.Limit{Count: 30, Window: time.Minute},
+		throttle.Limit{Count: 10_000, Window: time.Hour * 24},
+	)
 	if err != nil {
 		return nil, err
 	}
 
-	c.rateLimiter = limiter
+	c.rateLimiter = rl
 	c.httpClient = httpkit.NewFromClient(
 		c.httpClient,
-		httpkit.WithMiddleware(newAuthMiddleware(username, password)),
+		httpkit.WithBasicAuth(username, password),
 		httpkit.WithUserAgent(userAgent),
 		httpkit.WithMiddleware(newRetryMiddleware(c.maxRetries)),
 		httpkit.WithMiddleware(newBackOffMiddleware()),
-		httpkit.WithMiddleware(newRateLimitMiddleware(limiter)),
+		httpkit.WithMiddleware(rl.Middleware()),
 	)
 
 	internalClient, err := internal.NewClient(baseURL, internal.WithHTTPClient(c.httpClient))
@@ -92,18 +97,9 @@ func NewClient(username, password string, options ...Option) (*Client, error) {
 	return c, nil
 }
 
+// Close persists rate limit state to disk.
 func (c *Client) Close() error {
 	return c.rateLimiter.Close()
-}
-
-func newAuthMiddleware(username, password string) httpkit.Middleware {
-	return func(next httpkit.MiddlewareFunc) httpkit.MiddlewareFunc {
-		return func(r *http.Request) (*http.Response, error) {
-			r.SetBasicAuth(username, password)
-
-			return next(r)
-		}
-	}
 }
 
 func newBackOffMiddleware() httpkit.Middleware {
@@ -138,30 +134,15 @@ func newBackOffMiddleware() httpkit.Middleware {
 			}
 
 			if res.StatusCode == http.StatusTooManyRequests {
-				waitTime, innerErr := strconv.Atoi(res.Header.Get("Retry-After"))
-
-				if innerErr != nil {
-					return nil, errors.Join(innerErr, res.Body.Close())
+				waitTime, err := strconv.Atoi(res.Header.Get("Retry-After"))
+				if err == nil {
+					m.Lock()
+					backOff = time.Now().Add(time.Duration(waitTime) * time.Second)
+					m.Unlock()
 				}
-
-				m.Lock()
-				backOff = time.Now().Add(time.Duration(waitTime) * time.Second)
-				m.Unlock()
 			}
 
 			return res, nil
-		}
-	}
-}
-
-func newRateLimitMiddleware(limiter *rateLimiter) httpkit.Middleware {
-	return func(next httpkit.MiddlewareFunc) httpkit.MiddlewareFunc {
-		return func(r *http.Request) (*http.Response, error) {
-			if err := limiter.Wait(r.Context()); err != nil {
-				return nil, err
-			}
-
-			return next(r)
 		}
 	}
 }

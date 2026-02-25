@@ -29,12 +29,12 @@ type PublisherList struct {
 	Modified time.Time
 }
 
-// PublisherByID returns the information of an individual publisher.
+// PublisherByID returns a publisher by its ID.
 func (c *Client) PublisherByID(ctx context.Context, id int) (*Publisher, error) {
 	return newByID(ctx, c.cache, fmt.Sprintf("publisher/%d", id), c.client.ApiPublisherRetrieve, publisherMapper, id)
 }
 
-// Publishers returns a list of all the publishers.
+// Publishers returns an iterator over all publishers.
 func (c *Client) Publishers(ctx context.Context, filters ...Filter) iter.Seq2[*PublisherList, error] {
 	params := &internal.ApiPublisherListParams{}
 
@@ -46,6 +46,18 @@ func (c *Client) Publishers(ctx context.Context, filters ...Filter) iter.Seq2[*P
 }
 
 func publisherMapper(in internal.Publisher) (*Publisher, error) {
+	if in.Id == nil {
+		return nil, fmt.Errorf("publisher: nil Id")
+	}
+
+	if in.Modified == nil {
+		return nil, fmt.Errorf("publisher: nil Modified")
+	}
+
+	if in.ResourceUrl == nil {
+		return nil, fmt.Errorf("publisher: nil ResourceUrl")
+	}
+
 	var imageURL *url.URL
 	var err error
 
@@ -86,6 +98,14 @@ func publisherMapper(in internal.Publisher) (*Publisher, error) {
 }
 
 func publisherListMapper(in internal.PublisherList) (*PublisherList, error) {
+	if in.Id == nil {
+		return nil, fmt.Errorf("publisher: nil Id")
+	}
+
+	if in.Modified == nil {
+		return nil, fmt.Errorf("publisher: nil Modified")
+	}
+
 	return &PublisherList{
 		ID:       *in.Id,
 		Name:     in.Name,

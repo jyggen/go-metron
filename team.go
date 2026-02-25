@@ -29,12 +29,12 @@ type TeamList struct {
 	Modified time.Time
 }
 
-// TeamByID returns the information of an individual team.
+// TeamByID returns a team by its ID.
 func (c *Client) TeamByID(ctx context.Context, id int) (*Team, error) {
 	return newByID(ctx, c.cache, fmt.Sprintf("team/%d", id), c.client.ApiTeamRetrieve, teamMapper, id)
 }
 
-// Teams returns a list of all the teams.
+// Teams returns an iterator over all teams.
 func (c *Client) Teams(ctx context.Context, filters ...Filter) iter.Seq2[*TeamList, error] {
 	params := &internal.ApiTeamListParams{}
 
@@ -46,6 +46,18 @@ func (c *Client) Teams(ctx context.Context, filters ...Filter) iter.Seq2[*TeamLi
 }
 
 func teamMapper(in internal.TeamRead) (*Team, error) {
+	if in.Id == nil {
+		return nil, fmt.Errorf("team: nil Id")
+	}
+
+	if in.Modified == nil {
+		return nil, fmt.Errorf("team: nil Modified")
+	}
+
+	if in.ResourceUrl == nil {
+		return nil, fmt.Errorf("team: nil ResourceUrl")
+	}
+
 	var imageURL *url.URL
 	var err error
 
@@ -61,26 +73,34 @@ func teamMapper(in internal.TeamRead) (*Team, error) {
 		return nil, err
 	}
 
-	creators := make([]CreatorList, 0, len(*in.Creators))
+	var creators []CreatorList
 
-	for _, creator := range *in.Creators {
-		c, innerErr := creatorListMapper(creator)
-		if innerErr != nil {
-			return nil, innerErr
+	if in.Creators != nil {
+		creators = make([]CreatorList, 0, len(*in.Creators))
+
+		for _, creator := range *in.Creators {
+			c, innerErr := creatorListMapper(creator)
+			if innerErr != nil {
+				return nil, innerErr
+			}
+
+			creators = append(creators, *c)
 		}
-
-		creators = append(creators, *c)
 	}
 
-	universes := make([]UniverseList, 0, len(*in.Universes))
+	var universes []UniverseList
 
-	for _, universe := range *in.Universes {
-		u, innerErr := universeListMapper(universe)
-		if innerErr != nil {
-			return nil, innerErr
+	if in.Universes != nil {
+		universes = make([]UniverseList, 0, len(*in.Universes))
+
+		for _, universe := range *in.Universes {
+			u, innerErr := universeListMapper(universe)
+			if innerErr != nil {
+				return nil, innerErr
+			}
+
+			universes = append(universes, *u)
 		}
-
-		universes = append(universes, *u)
 	}
 
 	return &Team{
@@ -98,6 +118,14 @@ func teamMapper(in internal.TeamRead) (*Team, error) {
 }
 
 func teamListMapper(in internal.TeamList) (*TeamList, error) {
+	if in.Id == nil {
+		return nil, fmt.Errorf("team: nil Id")
+	}
+
+	if in.Modified == nil {
+		return nil, fmt.Errorf("team: nil Modified")
+	}
+
 	return &TeamList{
 		ID:       *in.Id,
 		Name:     in.Name,

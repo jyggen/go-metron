@@ -18,7 +18,7 @@ func TestUniverseByID(t *testing.T) {
 					Name: "DC Comics",
 				},
 				Name:        "ABC",
-				Designation: asReference("Earth 25"),
+				Designation: "Earth 25",
 				Description: asReference("Home to the characters from Alan Moore's America's Best Comics imprint."),
 				ImageURL: asReference(
 					parseURL(t, "https://static.metron.cloud/media/universe/2024/01/25/earth-abc.webp"),

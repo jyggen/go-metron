@@ -2,6 +2,7 @@ package metron
 
 import (
 	"context"
+	"fmt"
 	"iter"
 
 	"github.com/jyggen/go-metron/internal"
@@ -12,7 +13,7 @@ type SeriesTypeList struct {
 	Name string
 }
 
-// SeriesTypes returns a list of all the series types.
+// SeriesTypes returns an iterator over all series types.
 func (c *Client) SeriesTypes(ctx context.Context, filters ...Filter) iter.Seq2[*SeriesTypeList, error] {
 	params := &internal.ApiSeriesTypeListParams{}
 
@@ -24,6 +25,10 @@ func (c *Client) SeriesTypes(ctx context.Context, filters ...Filter) iter.Seq2[*
 }
 
 func seriesTypeMapper(in internal.SeriesType) (*SeriesTypeList, error) {
+	if in.Id == nil {
+		return nil, fmt.Errorf("series_type: nil Id")
+	}
+
 	return &SeriesTypeList{
 		ID:   *in.Id,
 		Name: in.Name,

@@ -2,6 +2,7 @@ package metron
 
 import (
 	"context"
+	"fmt"
 	"iter"
 
 	"github.com/jyggen/go-metron/internal"
@@ -12,7 +13,7 @@ type RoleList struct {
 	Name string
 }
 
-// Roles returns a list of all the roles.
+// Roles returns an iterator over all roles.
 func (c *Client) Roles(ctx context.Context, filters ...Filter) iter.Seq2[*RoleList, error] {
 	params := &internal.ApiRoleListParams{}
 
@@ -24,6 +25,10 @@ func (c *Client) Roles(ctx context.Context, filters ...Filter) iter.Seq2[*RoleLi
 }
 
 func roleListMapper(in internal.Role) (*RoleList, error) {
+	if in.Id == nil {
+		return nil, fmt.Errorf("role: nil Id")
+	}
+
 	return &RoleList{
 		ID:   *in.Id,
 		Name: in.Name,

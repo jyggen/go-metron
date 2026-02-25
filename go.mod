@@ -4,16 +4,16 @@ go 1.25.6
 
 require (
 	cloud.google.com/go v0.120.0
-	codeberg.org/jyggen/go-httpkit v0.3.0
+	codeberg.org/jyggen/go-filecache v0.0.0-20260225085943-b0984373622d
+	codeberg.org/jyggen/go-httpkit v0.3.1
+	codeberg.org/jyggen/go-httpkit/middleware/throttle v0.1.0
 	github.com/cenkalti/backoff/v5 v5.0.3
-	github.com/maypok86/otter/v2 v2.3.0
 	github.com/oapi-codegen/runtime v1.1.2
 	github.com/stretchr/testify v1.11.1
 	gopkg.in/yaml.v2 v2.4.0
 )
 
 require (
-	codeberg.org/jyggen/go-filecache v0.0.0-20260225085943-b0984373622d // indirect
 	github.com/apapsch/go-jsonmerge/v2 v2.0.0 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/dprotaso/go-yit v0.0.0-20220510233725-9ba8df137936 // indirect

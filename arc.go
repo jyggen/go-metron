@@ -32,12 +32,12 @@ type ArcList struct {
 	Modified time.Time
 }
 
-// ArcByID returns the information of an individual story arc.
+// ArcByID returns a story arc by its ID.
 func (c *Client) ArcByID(ctx context.Context, id int) (*Arc, error) {
 	return newByID(ctx, c.cache, fmt.Sprintf("arc/%d", id), c.client.ApiArcRetrieve, arcMapper, id)
 }
 
-// Arcs returns a list of all the story arcs.
+// Arcs returns an iterator over all story arcs.
 func (c *Client) Arcs(ctx context.Context, filters ...Filter) iter.Seq2[*ArcList, error] {
 	params := &internal.ApiArcListParams{}
 
@@ -49,6 +49,18 @@ func (c *Client) Arcs(ctx context.Context, filters ...Filter) iter.Seq2[*ArcList
 }
 
 func arcMapper(in internal.Arc) (*Arc, error) {
+	if in.Id == nil {
+		return nil, fmt.Errorf("arc: nil Id")
+	}
+
+	if in.Modified == nil {
+		return nil, fmt.Errorf("arc: nil Modified")
+	}
+
+	if in.ResourceUrl == nil {
+		return nil, fmt.Errorf("arc: nil ResourceUrl")
+	}
+
 	var imageURL *url.URL
 	var err error
 
@@ -77,6 +89,14 @@ func arcMapper(in internal.Arc) (*Arc, error) {
 }
 
 func arcListMapper(in internal.ArcList) (*ArcList, error) {
+	if in.Id == nil {
+		return nil, fmt.Errorf("arc: nil Id")
+	}
+
+	if in.Modified == nil {
+		return nil, fmt.Errorf("arc: nil Modified")
+	}
+
 	return &ArcList{
 		ID:       *in.Id,
 		Name:     in.Name,
@@ -131,20 +151,12 @@ func newCall(ctx context.Context, f func(ctx context.Context, fn ...internal.Req
 			return nil, ttl, err
 		}
 
-		if res.StatusCode == http.StatusTooManyRequests {
-			if err = res.Body.Close(); err != nil {
-				return nil, ttl, err
-			}
-
-			return newCall(ctx, f)(header)
-		}
-
 		lastModifiedHeader := res.Header.Get("Last-Modified")
 
 		if lastModifiedHeader != "" {
-			lastModified, innerErr := http.ParseTime(lastModifiedHeader)
-			if innerErr != nil {
-				return nil, ttl, errors.Join(innerErr, res.Body.Close())
+			lastModified, err := http.ParseTime(lastModifiedHeader)
+			if err != nil {
+				return nil, ttl, errors.Join(err, res.Body.Close())
 			}
 
 			ttl = ttl.Add(ttl.Sub(lastModified) / 10)
@@ -175,9 +187,8 @@ func newIDPaginate[Response paginatedResponse[In], In, Out any, Params paginatab
 	return func(yield func(*Out, error) bool) {
 		page := 1
 
-		var res Response
-
 		for {
+			var res Response
 			body, _, err := newCall(ctx, func(ctx context.Context, fn ...internal.RequestEditorFn) (*http.Response, error) {
 				params.SetPage(page)
 				return call(ctx, id, params, fn...)
@@ -216,9 +227,8 @@ func newPaginate[Response paginatedResponse[In], In, Out any, Params paginatable
 	return func(yield func(*Out, error) bool) {
 		page := 1
 
-		var res Response
-
 		for {
+			var res Response
 			body, _, err := newCall(ctx, func(ctx context.Context, fn ...internal.RequestEditorFn) (*http.Response, error) {
 				params.SetPage(page)
 				return call(ctx, params, fn...)
