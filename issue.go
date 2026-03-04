@@ -57,6 +57,7 @@ type Issue struct {
 		Name     *string
 		SKU      *string
 		UPC      *string
+		Price    *string
 		ImageURL url.URL
 	}
 	ComicVineID           *int
@@ -388,6 +389,7 @@ func issueMapper(in internal.IssueRead) (*Issue, error) {
 		Name     *string
 		SKU      *string
 		UPC      *string
+		Price    *string
 		ImageURL url.URL
 	}
 
@@ -396,6 +398,7 @@ func issueMapper(in internal.IssueRead) (*Issue, error) {
 			Name     *string
 			SKU      *string
 			UPC      *string
+			Price    *string
 			ImageURL url.URL
 		}, 0, len(*in.Variants))
 
@@ -410,11 +413,13 @@ func issueMapper(in internal.IssueRead) (*Issue, error) {
 				Name     *string
 				SKU      *string
 				UPC      *string
+				Price    *string
 				ImageURL url.URL
 			}{
 				Name:     variant.Name,
 				SKU:      variant.Sku,
 				UPC:      variant.Upc,
+				Price:    nullableToPtr(variant.Price),
 				ImageURL: variantImageURL,
 			})
 		}

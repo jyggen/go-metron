@@ -450,6 +450,7 @@ func TestIssueByID(t *testing.T) {
 					Name     *string
 					SKU      *string
 					UPC      *string
+					Price    *string
 					ImageURL url.URL
 				}{},
 				ComicVineID:           nil,
@@ -662,12 +663,14 @@ func TestIssueByID(t *testing.T) {
 					Name     *string
 					SKU      *string
 					UPC      *string
+					Price    *string
 					ImageURL url.URL
 				}{
 					{
-						Name: asReference("Variant Cover"),
-						SKU:  asReference(""),
-						UPC:  asReference(""),
+						Name:  asReference("Variant Cover"),
+						SKU:   asReference(""),
+						UPC:   asReference(""),
+						Price: nil,
 						ImageURL: parseURL(
 							t,
 							"https://static.metron.cloud/media/variants/2019/05/27/batman-last-knight-1a.jpg",
