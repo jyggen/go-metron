@@ -126,8 +126,8 @@ func characterMapper(in internal.CharacterRead) (*Character, error) {
 		Creators:              creators,
 		Teams:                 teams,
 		Universes:             universes,
-		ComicVineID:           in.CvId,
-		GrandComicsDatabaseID: in.GcdId,
+		ComicVineID:           nullableToPtr(in.CvId),
+		GrandComicsDatabaseID: nullableToPtr(in.GcdId),
 		ResourceURL:           *resourceURL,
 		Modified:              *in.Modified,
 	}, nil

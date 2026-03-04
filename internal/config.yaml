@@ -5,6 +5,7 @@ generate:
   models: true
 output: openapi.gen.go
 output-options:
+  nullable-type: true
   user-templates:
     param-types.tmpl: |
       {{range .}}{{$opid := .OperationId}}

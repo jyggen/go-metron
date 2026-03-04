@@ -110,8 +110,8 @@ func teamMapper(in internal.TeamRead) (*Team, error) {
 		ImageURL:              imageURL,
 		Creators:              creators,
 		Universes:             universes,
-		ComicVineID:           in.CvId,
-		GrandComicsDatabaseID: in.GcdId,
+		ComicVineID:           nullableToPtr(in.CvId),
+		GrandComicsDatabaseID: nullableToPtr(in.GcdId),
 		ResourceURL:           *resourceURL,
 		Modified:              *in.Modified,
 	}, nil

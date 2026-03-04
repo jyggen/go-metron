@@ -13,7 +13,16 @@ import (
 
 	"codeberg.org/jyggen/go-filecache"
 	"github.com/jyggen/go-metron/internal"
+	"github.com/oapi-codegen/nullable"
 )
+
+func nullableToPtr[T any](n nullable.Nullable[T]) *T {
+	if v, err := n.Get(); err == nil {
+		return &v
+	}
+
+	return nil
+}
 
 type Arc struct {
 	ID                    int
@@ -81,8 +90,8 @@ func arcMapper(in internal.Arc) (*Arc, error) {
 		Name:                  in.Name,
 		Description:           in.Desc,
 		ImageURL:              imageURL,
-		ComicVineID:           in.CvId,
-		GrandComicsDatabaseID: in.GcdId,
+		ComicVineID:           nullableToPtr(in.CvId),
+		GrandComicsDatabaseID: nullableToPtr(in.GcdId),
 		ResourceURL:           *resourceURL,
 		Modified:              *in.Modified,
 	}, nil
@@ -179,7 +188,7 @@ type paginatable interface {
 }
 
 type paginatedResponse[T any] interface {
-	GetNext() *string
+	GetNext() nullable.Nullable[string]
 	GetResults() []T
 }
 
@@ -214,7 +223,7 @@ func newIDPaginate[Response paginatedResponse[In], In, Out any, Params paginatab
 				}
 			}
 
-			if res.GetNext() == nil {
+			if _, err = res.GetNext().Get(); err != nil {
 				break
 			}
 
@@ -253,7 +262,7 @@ func newPaginate[Response paginatedResponse[In], In, Out any, Params paginatable
 				}
 			}
 
-			if res.GetNext() == nil {
+			if _, err = res.GetNext().Get(); err != nil {
 				break
 			}
 

@@ -84,8 +84,16 @@ func seriesMapper(in internal.SeriesRead) (*Series, error) {
 		return nil, fmt.Errorf("series: nil Status")
 	}
 
+	if in.Publisher == nil {
+		return nil, fmt.Errorf("series: nil Publisher")
+	}
+
 	if in.Publisher.Id == nil {
 		return nil, fmt.Errorf("series: nil Publisher.Id")
+	}
+
+	if in.SeriesType == nil {
+		return nil, fmt.Errorf("series: nil SeriesType")
 	}
 
 	if in.SeriesType.Id == nil {
@@ -164,13 +172,13 @@ func seriesMapper(in internal.SeriesRead) (*Series, error) {
 		},
 		Imprint:               imprint,
 		YearBegan:             in.YearBegan,
-		YearEnded:             in.YearEnd,
+		YearEnded:             nullableToPtr(in.YearEnd),
 		Description:           in.Desc,
 		IssueCount:            *in.IssueCount,
 		Genres:                genres,
 		Associated:            associated,
-		ComicVineID:           in.CvId,
-		GrandComicsDatabaseID: in.GcdId,
+		ComicVineID:           nullableToPtr(in.CvId),
+		GrandComicsDatabaseID: nullableToPtr(in.GcdId),
 		ResourceURL:           *resourceURL,
 		Modified:              *in.Modified,
 	}, nil

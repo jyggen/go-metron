@@ -3,12 +3,13 @@ module github.com/jyggen/go-metron
 go 1.25.6
 
 require (
-	cloud.google.com/go v0.120.0
+	cloud.google.com/go v0.123.0
 	codeberg.org/jyggen/go-filecache v0.0.0-20260225085943-b0984373622d
 	codeberg.org/jyggen/go-httpkit v0.3.1
 	codeberg.org/jyggen/go-httpkit/middleware/throttle v0.1.0
 	github.com/cenkalti/backoff/v5 v5.0.3
-	github.com/oapi-codegen/runtime v1.1.2
+	github.com/oapi-codegen/nullable v1.1.0
+	github.com/oapi-codegen/runtime v1.2.0
 	github.com/stretchr/testify v1.11.1
 	gopkg.in/yaml.v2 v2.4.0
 )
@@ -23,7 +24,7 @@ require (
 	github.com/google/renameio/v2 v2.0.2 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
-	github.com/klauspost/compress v1.18.3 // indirect
+	github.com/klauspost/compress v1.18.4 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/mohae/deepcopy v0.0.0-20170929034955-c48cc78d4826 // indirect
 	github.com/oapi-codegen/oapi-codegen/v2 v2.5.1 // indirect

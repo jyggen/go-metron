@@ -57,6 +57,10 @@ func universeMapper(in internal.UniverseRead) (*Universe, error) {
 		return nil, fmt.Errorf("universe: nil ResourceUrl")
 	}
 
+	if in.Publisher == nil {
+		return nil, fmt.Errorf("universe: nil Publisher")
+	}
+
 	if in.Publisher.Id == nil {
 		return nil, fmt.Errorf("universe: nil Publisher.Id")
 	}
@@ -85,7 +89,7 @@ func universeMapper(in internal.UniverseRead) (*Universe, error) {
 		Name:                  in.Name,
 		Designation:           in.Designation,
 		Description:           in.Desc,
-		GrandComicsDatabaseID: in.GcdId,
+		GrandComicsDatabaseID: nullableToPtr(in.GcdId),
 		ImageURL:              imageURL,
 		ResourceURL:           *resourceURL,
 		Modified:              *in.Modified,

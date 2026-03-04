@@ -31,7 +31,7 @@ type Issue struct {
 	CoverDate            civil.Date
 	StoreDate            *civil.Date
 	FinalOrderCutoffDate *civil.Date
-	Price                string
+	Price                *string
 	Rating               Reference
 	SKU                  *string
 	ISBN                 *string
@@ -154,24 +154,36 @@ func issueMapper(in internal.IssueRead) (*Issue, error) {
 		return nil, fmt.Errorf("issue: nil ResourceUrl")
 	}
 
+	if in.Publisher == nil {
+		return nil, fmt.Errorf("issue: nil Publisher")
+	}
+
 	if in.Publisher.Id == nil {
 		return nil, fmt.Errorf("issue: nil Publisher.Id")
+	}
+
+	if in.Series == nil {
+		return nil, fmt.Errorf("issue: nil Series")
 	}
 
 	if in.Series.Id == nil {
 		return nil, fmt.Errorf("issue: nil Series.Id")
 	}
 
+	if in.Series.SeriesType == nil {
+		return nil, fmt.Errorf("issue: nil Series.SeriesType")
+	}
+
 	if in.Series.SeriesType.Id == nil {
 		return nil, fmt.Errorf("issue: nil Series.SeriesType.Id")
 	}
 
-	if in.AltNumber == nil {
-		return nil, fmt.Errorf("issue: nil AltNumber")
+	if in.Rating == nil {
+		return nil, fmt.Errorf("issue: nil Rating")
 	}
 
-	if in.Price == nil {
-		return nil, fmt.Errorf("issue: nil Price")
+	if in.AltNumber == nil {
+		return nil, fmt.Errorf("issue: nil AltNumber")
 	}
 
 	if in.Name == nil {
@@ -231,15 +243,15 @@ func issueMapper(in internal.IssueRead) (*Issue, error) {
 
 	var maybeFinalOrderCutoffDate *civil.Date
 
-	if in.FocDate != nil {
-		finalOrderCutoffDate := civil.DateOf(in.FocDate.Time)
+	if d, err := in.FocDate.Get(); err == nil {
+		finalOrderCutoffDate := civil.DateOf(d.Time)
 		maybeFinalOrderCutoffDate = &finalOrderCutoffDate
 	}
 
 	var maybeStoreDate *civil.Date
 
-	if in.StoreDate != nil {
-		storeDate := civil.DateOf(in.StoreDate.Time)
+	if d, err := in.StoreDate.Get(); err == nil {
+		storeDate := civil.DateOf(d.Time)
 		maybeStoreDate = &storeDate
 	}
 
@@ -442,7 +454,7 @@ func issueMapper(in internal.IssueRead) (*Issue, error) {
 		CoverDate:            coverDate,
 		StoreDate:            maybeStoreDate,
 		FinalOrderCutoffDate: maybeFinalOrderCutoffDate,
-		Price:                *in.Price,
+		Price:                nullableToPtr(in.Price),
 		Rating: Reference{
 			ID:   *in.Rating.Id,
 			Name: in.Rating.Name,
@@ -450,7 +462,7 @@ func issueMapper(in internal.IssueRead) (*Issue, error) {
 		SKU:                   in.Sku,
 		ISBN:                  in.Isbn,
 		UPC:                   in.Upc,
-		PageCount:             in.Page,
+		PageCount:             nullableToPtr(in.Page),
 		Description:           in.Desc,
 		ImageURL:              imageURL,
 		CoverHash:             in.CoverHash,
@@ -461,8 +473,8 @@ func issueMapper(in internal.IssueRead) (*Issue, error) {
 		Universes:             universes,
 		Reprints:              reprints,
 		Variants:              variants,
-		ComicVineID:           in.CvId,
-		GrandComicsDatabaseID: in.GcdId,
+		ComicVineID:           nullableToPtr(in.CvId),
+		GrandComicsDatabaseID: nullableToPtr(in.GcdId),
 		ResourceURL:           *resourceURL,
 		Modified:              *in.Modified,
 	}, nil
@@ -477,12 +489,16 @@ func issueListMapper(in internal.IssueList) (*IssueList, error) {
 		return nil, fmt.Errorf("issue: nil Modified")
 	}
 
+	if in.Series == nil {
+		return nil, fmt.Errorf("issue: nil Series")
+	}
+
 	coverDate := civil.DateOf(in.CoverDate.Time)
 
 	var maybeStoreDate *civil.Date
 
-	if in.StoreDate != nil {
-		storeDate := civil.DateOf(in.StoreDate.Time)
+	if d, err := in.StoreDate.Get(); err == nil {
+		storeDate := civil.DateOf(d.Time)
 		maybeStoreDate = &storeDate
 	}
 

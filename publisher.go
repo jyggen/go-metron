@@ -86,12 +86,12 @@ func publisherMapper(in internal.Publisher) (*Publisher, error) {
 	return &Publisher{
 		ID:                    *in.Id,
 		Name:                  in.Name,
-		Founded:               in.Founded,
+		Founded:               nullableToPtr(in.Founded),
 		CountryCode:           countryCode,
 		Description:           in.Desc,
 		ImageURL:              imageURL,
-		ComicVineID:           in.CvId,
-		GrandComicsDatabaseID: in.GcdId,
+		ComicVineID:           nullableToPtr(in.CvId),
+		GrandComicsDatabaseID: nullableToPtr(in.GcdId),
 		ResourceURL:           *resourceURL,
 		Modified:              *in.Modified,
 	}, nil

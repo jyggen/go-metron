@@ -78,13 +78,13 @@ func creatorMapper(in internal.Creator) (*Creator, error) {
 	var birth *civil.Date
 	var death *civil.Date
 
-	if in.Birth != nil {
-		noRefBirth := civil.DateOf(in.Birth.Time)
+	if d, err := in.Birth.Get(); err == nil {
+		noRefBirth := civil.DateOf(d.Time)
 		birth = &noRefBirth
 	}
 
-	if in.Death != nil {
-		noRefDeath := civil.DateOf(in.Death.Time)
+	if d, err := in.Death.Get(); err == nil {
+		noRefDeath := civil.DateOf(d.Time)
 		death = &noRefDeath
 	}
 
@@ -96,8 +96,8 @@ func creatorMapper(in internal.Creator) (*Creator, error) {
 		Description:           in.Desc,
 		ImageURL:              imageURL,
 		Alias:                 in.Alias,
-		ComicVineID:           in.CvId,
-		GrandComicsDatabaseID: in.GcdId,
+		ComicVineID:           nullableToPtr(in.CvId),
+		GrandComicsDatabaseID: nullableToPtr(in.GcdId),
 		ResourceURL:           *resourceURL,
 		Modified:              *in.Modified,
 	}, nil

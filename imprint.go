@@ -58,6 +58,10 @@ func imprintMapper(in internal.ImprintRead) (*Imprint, error) {
 		return nil, fmt.Errorf("imprint: nil ResourceUrl")
 	}
 
+	if in.Publisher == nil {
+		return nil, fmt.Errorf("imprint: nil Publisher")
+	}
+
 	if in.Publisher.Id == nil {
 		return nil, fmt.Errorf("imprint: nil Publisher.Id")
 	}
@@ -65,8 +69,8 @@ func imprintMapper(in internal.ImprintRead) (*Imprint, error) {
 	var imageURL *url.URL
 	var err error
 
-	if in.Image != nil {
-		imageURL, err = url.Parse(*in.Image)
+	if imgStr, imgErr := in.Image.Get(); imgErr == nil {
+		imageURL, err = url.Parse(imgStr)
 		if err != nil {
 			return nil, err
 		}
@@ -80,11 +84,11 @@ func imprintMapper(in internal.ImprintRead) (*Imprint, error) {
 	return &Imprint{
 		ID:                    *in.Id,
 		Name:                  in.Name,
-		Founded:               in.Founded,
+		Founded:               nullableToPtr(in.Founded),
 		Description:           in.Desc,
 		ImageURL:              imageURL,
-		ComicVineID:           in.CvId,
-		GrandComicsDatabaseID: in.GcdId,
+		ComicVineID:           nullableToPtr(in.CvId),
+		GrandComicsDatabaseID: nullableToPtr(in.GcdId),
 		Publisher: Reference{
 			ID:   *in.Publisher.Id,
 			Name: in.Publisher.Name,

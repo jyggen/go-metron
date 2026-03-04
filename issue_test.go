@@ -67,7 +67,7 @@ func TestIssueByID(t *testing.T) {
 				CoverDate:            parseDate(t, "2012-07-01"),
 				StoreDate:            asReference(parseDate(t, "2012-05-09")),
 				FinalOrderCutoffDate: nil,
-				Price:                "24.99",
+				Price:                asReference("24.99"),
 				Rating: metron.Reference{
 					ID:   1,
 					Name: "Unknown",
@@ -502,7 +502,7 @@ func TestIssueByID(t *testing.T) {
 				},
 				CoverDate: parseDate(t, "2019-07-01"),
 				StoreDate: asReference(parseDate(t, "2019-05-29")),
-				Price:     "5.99",
+				Price:     asReference("5.99"),
 				Rating: metron.Reference{
 					ID:   5,
 					Name: "Mature",

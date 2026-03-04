@@ -16,6 +16,7 @@ import (
 
 	"gopkg.in/yaml.v2"
 
+	"github.com/oapi-codegen/nullable"
 	"github.com/oapi-codegen/runtime"
 	openapi_types "github.com/oapi-codegen/runtime/types"
 )
@@ -494,14 +495,14 @@ const (
 
 // Arc defines model for Arc.
 type Arc struct {
-	CvId        *int       `json:"cv_id"`
-	Desc        *string    `json:"desc,omitempty"`
-	GcdId       *int       `json:"gcd_id"`
-	Id          *int       `json:"id,omitempty"`
-	Image       *string    `json:"image,omitempty"`
-	Modified    *time.Time `json:"modified,omitempty"`
-	Name        string     `json:"name"`
-	ResourceUrl *string    `json:"resource_url,omitempty"`
+	CvId        nullable.Nullable[int] `json:"cv_id,omitempty"`
+	Desc        *string                `json:"desc,omitempty"`
+	GcdId       nullable.Nullable[int] `json:"gcd_id,omitempty"`
+	Id          *int                   `json:"id,omitempty"`
+	Image       *string                `json:"image,omitempty"`
+	Modified    *time.Time             `json:"modified,omitempty"`
+	Name        string                 `json:"name"`
+	ResourceUrl *string                `json:"resource_url,omitempty"`
 }
 
 // ArcList defines model for ArcList.
@@ -551,28 +552,28 @@ type CharacterList struct {
 
 // CharacterRead defines model for CharacterRead.
 type CharacterRead struct {
-	Alias       *[]string       `json:"alias,omitempty"`
-	Creators    *[]CreatorList  `json:"creators,omitempty"`
-	CvId        *int            `json:"cv_id"`
-	Desc        *string         `json:"desc,omitempty"`
-	GcdId       *int            `json:"gcd_id"`
-	Id          *int            `json:"id,omitempty"`
-	Image       *string         `json:"image,omitempty"`
-	Modified    *time.Time      `json:"modified,omitempty"`
-	Name        string          `json:"name"`
-	ResourceUrl *string         `json:"resource_url,omitempty"`
-	Teams       *[]TeamList     `json:"teams,omitempty"`
-	Universes   *[]UniverseList `json:"universes,omitempty"`
+	Alias       *[]string              `json:"alias,omitempty"`
+	Creators    *[]CreatorList         `json:"creators,omitempty"`
+	CvId        nullable.Nullable[int] `json:"cv_id,omitempty"`
+	Desc        *string                `json:"desc,omitempty"`
+	GcdId       nullable.Nullable[int] `json:"gcd_id,omitempty"`
+	Id          *int                   `json:"id,omitempty"`
+	Image       *string                `json:"image,omitempty"`
+	Modified    *time.Time             `json:"modified,omitempty"`
+	Name        string                 `json:"name"`
+	ResourceUrl *string                `json:"resource_url,omitempty"`
+	Teams       *[]TeamList            `json:"teams,omitempty"`
+	Universes   *[]UniverseList        `json:"universes,omitempty"`
 }
 
 // CollectionIssue Serializer for issues in collection (without image and cover_hash).
 type CollectionIssue struct {
-	CoverDate openapi_types.Date  `json:"cover_date"`
-	Id        *int                `json:"id,omitempty"`
-	Modified  *time.Time          `json:"modified,omitempty"`
-	Number    string              `json:"number"`
-	Series    *IssueListSeries    `json:"series,omitempty"`
-	StoreDate *openapi_types.Date `json:"store_date"`
+	CoverDate openapi_types.Date                    `json:"cover_date"`
+	Id        *int                                  `json:"id,omitempty"`
+	Modified  *time.Time                            `json:"modified,omitempty"`
+	Number    string                                `json:"number"`
+	Series    *IssueListSeries                      `json:"series,omitempty"`
+	StoreDate nullable.Nullable[openapi_types.Date] `json:"store_date,omitempty"`
 }
 
 // CollectionList List serializer for collection items - minimal data for list view.
@@ -606,9 +607,9 @@ type CollectionList struct {
 	// * `1.5` - 1.5 (FR/GD - Fair/Good)
 	// * `1.0` - 1.0 (FR - Fair)
 	// * `0.5` - 0.5 (PR - Poor)
-	Grade          *CollectionList_Grade `json:"grade"`
-	GradingCompany *string               `json:"grading_company,omitempty"`
-	Id             *int                  `json:"id,omitempty"`
+	Grade          nullable.Nullable[CollectionList_Grade] `json:"grade,omitempty"`
+	GradingCompany *string                                 `json:"grading_company,omitempty"`
+	Id             *int                                    `json:"id,omitempty"`
 
 	// IsRead Whether the issue has been read
 	IsRead   *bool            `json:"is_read,omitempty"`
@@ -616,7 +617,7 @@ type CollectionList struct {
 	Modified *time.Time       `json:"modified,omitempty"`
 
 	// PurchaseDate Date when the issue was purchased
-	PurchaseDate *openapi_types.Date `json:"purchase_date"`
+	PurchaseDate nullable.Nullable[openapi_types.Date] `json:"purchase_date,omitempty"`
 
 	// Quantity Number of copies owned
 	Quantity *int `json:"quantity,omitempty"`
@@ -628,10 +629,10 @@ type CollectionList struct {
 	// * `3` - 3
 	// * `4` - 4
 	// * `5` - 5
-	Rating    *CollectionList_Rating `json:"rating"`
-	ReadCount *int                   `json:"read_count,omitempty"`
-	ReadDates *[]ReadDate            `json:"read_dates,omitempty"`
-	User      *User                  `json:"user,omitempty"`
+	Rating    nullable.Nullable[CollectionList_Rating] `json:"rating,omitempty"`
+	ReadCount *int                                     `json:"read_count,omitempty"`
+	ReadDates *[]ReadDate                              `json:"read_dates,omitempty"`
+	User      *User                                    `json:"user,omitempty"`
 }
 
 // CollectionList_Grade Comic book grade (CGC scale)
@@ -682,7 +683,7 @@ type CollectionRead struct {
 	CreatedOn  time.Time `json:"created_on"`
 
 	// DateRead Date and time when the issue was last read (synced from read_dates)
-	DateRead *time.Time `json:"date_read"`
+	DateRead nullable.Nullable[time.Time] `json:"date_read,omitempty"`
 
 	// Grade Comic book grade (CGC scale)
 	//
@@ -711,9 +712,9 @@ type CollectionRead struct {
 	// * `1.5` - 1.5 (FR/GD - Fair/Good)
 	// * `1.0` - 1.0 (FR - Fair)
 	// * `0.5` - 0.5 (PR - Poor)
-	Grade          *CollectionRead_Grade `json:"grade"`
-	GradingCompany *string               `json:"grading_company,omitempty"`
-	Id             *int                  `json:"id,omitempty"`
+	Grade          nullable.Nullable[CollectionRead_Grade] `json:"grade,omitempty"`
+	GradingCompany *string                                 `json:"grading_company,omitempty"`
+	Id             *int                                    `json:"id,omitempty"`
 
 	// IsRead Whether the issue has been read
 	IsRead   *bool            `json:"is_read,omitempty"`
@@ -724,10 +725,10 @@ type CollectionRead struct {
 	Notes *string `json:"notes,omitempty"`
 
 	// PurchaseDate Date when the issue was purchased
-	PurchaseDate *openapi_types.Date `json:"purchase_date"`
+	PurchaseDate nullable.Nullable[openapi_types.Date] `json:"purchase_date,omitempty"`
 
 	// PurchasePrice Price paid for this issue
-	PurchasePrice *string `json:"purchase_price"`
+	PurchasePrice nullable.Nullable[string] `json:"purchase_price,omitempty"`
 
 	// PurchaseStore Store or vendor where purchased
 	PurchaseStore *string `json:"purchase_store,omitempty"`
@@ -742,10 +743,10 @@ type CollectionRead struct {
 	// * `3` - 3
 	// * `4` - 4
 	// * `5` - 5
-	Rating      *CollectionRead_Rating `json:"rating"`
-	ReadCount   *int                   `json:"read_count,omitempty"`
-	ReadDates   *[]ReadDate            `json:"read_dates,omitempty"`
-	ResourceUrl *string                `json:"resource_url,omitempty"`
+	Rating      nullable.Nullable[CollectionRead_Rating] `json:"rating,omitempty"`
+	ReadCount   *int                                     `json:"read_count,omitempty"`
+	ReadDates   *[]ReadDate                              `json:"read_dates,omitempty"`
+	ResourceUrl *string                                  `json:"resource_url,omitempty"`
 
 	// StorageLocation Physical location where the issue is stored
 	StorageLocation *string `json:"storage_location,omitempty"`
@@ -1047,17 +1048,17 @@ type CountryEnum string
 
 // Creator defines model for Creator.
 type Creator struct {
-	Alias       *[]string           `json:"alias,omitempty"`
-	Birth       *openapi_types.Date `json:"birth"`
-	CvId        *int                `json:"cv_id"`
-	Death       *openapi_types.Date `json:"death"`
-	Desc        *string             `json:"desc,omitempty"`
-	GcdId       *int                `json:"gcd_id"`
-	Id          *int                `json:"id,omitempty"`
-	Image       *string             `json:"image,omitempty"`
-	Modified    *time.Time          `json:"modified,omitempty"`
-	Name        string              `json:"name"`
-	ResourceUrl *string             `json:"resource_url,omitempty"`
+	Alias       *[]string                             `json:"alias,omitempty"`
+	Birth       nullable.Nullable[openapi_types.Date] `json:"birth,omitempty"`
+	CvId        nullable.Nullable[int]                `json:"cv_id,omitempty"`
+	Death       nullable.Nullable[openapi_types.Date] `json:"death,omitempty"`
+	Desc        *string                               `json:"desc,omitempty"`
+	GcdId       nullable.Nullable[int]                `json:"gcd_id,omitempty"`
+	Id          *int                                  `json:"id,omitempty"`
+	Image       *string                               `json:"image,omitempty"`
+	Modified    *time.Time                            `json:"modified,omitempty"`
+	Name        string                                `json:"name"`
+	ResourceUrl *string                               `json:"resource_url,omitempty"`
 }
 
 // CreatorList defines model for CreatorList.
@@ -1116,29 +1117,29 @@ type ImprintList struct {
 
 // ImprintRead defines model for ImprintRead.
 type ImprintRead struct {
-	CvId        *int            `json:"cv_id"`
-	Desc        *string         `json:"desc,omitempty"`
-	Founded     *int            `json:"founded"`
-	GcdId       *int            `json:"gcd_id"`
-	Id          *int            `json:"id,omitempty"`
-	Image       *string         `json:"image"`
-	Modified    *time.Time      `json:"modified,omitempty"`
-	Name        string          `json:"name"`
-	Publisher   *BasicPublisher `json:"publisher,omitempty"`
-	ResourceUrl *string         `json:"resource_url,omitempty"`
+	CvId        nullable.Nullable[int]    `json:"cv_id,omitempty"`
+	Desc        *string                   `json:"desc,omitempty"`
+	Founded     nullable.Nullable[int]    `json:"founded,omitempty"`
+	GcdId       nullable.Nullable[int]    `json:"gcd_id,omitempty"`
+	Id          *int                      `json:"id,omitempty"`
+	Image       nullable.Nullable[string] `json:"image,omitempty"`
+	Modified    *time.Time                `json:"modified,omitempty"`
+	Name        string                    `json:"name"`
+	Publisher   *BasicPublisher           `json:"publisher,omitempty"`
+	ResourceUrl *string                   `json:"resource_url,omitempty"`
 }
 
 // IssueList defines model for IssueList.
 type IssueList struct {
-	CoverDate openapi_types.Date  `json:"cover_date"`
-	CoverHash *string             `json:"cover_hash,omitempty"`
-	Id        *int                `json:"id,omitempty"`
-	Image     *string             `json:"image,omitempty"`
-	Issue     string              `json:"issue"`
-	Modified  *time.Time          `json:"modified,omitempty"`
-	Number    string              `json:"number"`
-	Series    *IssueListSeries    `json:"series,omitempty"`
-	StoreDate *openapi_types.Date `json:"store_date"`
+	CoverDate openapi_types.Date                    `json:"cover_date"`
+	CoverHash *string                               `json:"cover_hash,omitempty"`
+	Id        *int                                  `json:"id,omitempty"`
+	Image     *string                               `json:"image,omitempty"`
+	Issue     string                                `json:"issue"`
+	Modified  *time.Time                            `json:"modified,omitempty"`
+	Number    string                                `json:"number"`
+	Series    *IssueListSeries                      `json:"series,omitempty"`
+	StoreDate nullable.Nullable[openapi_types.Date] `json:"store_date,omitempty"`
 }
 
 // IssueListSeries defines model for IssueListSeries.
@@ -1150,42 +1151,42 @@ type IssueListSeries struct {
 
 // IssueRead defines model for IssueRead.
 type IssueRead struct {
-	AltNumber  *string             `json:"alt_number,omitempty"`
-	Arcs       *[]ArcList          `json:"arcs,omitempty"`
-	Characters *[]CharacterList    `json:"characters,omitempty"`
-	CoverDate  openapi_types.Date  `json:"cover_date"`
-	CoverHash  *string             `json:"cover_hash,omitempty"`
-	Credits    *[]CreditRead       `json:"credits,omitempty"`
-	CvId       *int                `json:"cv_id"`
-	Desc       *string             `json:"desc,omitempty"`
-	FocDate    *openapi_types.Date `json:"foc_date"`
-	GcdId      *int                `json:"gcd_id"`
-	Id         *int                `json:"id,omitempty"`
-	Image      *string             `json:"image,omitempty"`
-	Imprint    *BasicImprint       `json:"imprint,omitempty"`
-	Isbn       *string             `json:"isbn,omitempty"`
-	Modified   *time.Time          `json:"modified,omitempty"`
-	Name       *[]string           `json:"name,omitempty"`
-	Number     string              `json:"number"`
-	Page       *int                `json:"page"`
+	AltNumber  *string                               `json:"alt_number,omitempty"`
+	Arcs       *[]ArcList                            `json:"arcs,omitempty"`
+	Characters *[]CharacterList                      `json:"characters,omitempty"`
+	CoverDate  openapi_types.Date                    `json:"cover_date"`
+	CoverHash  *string                               `json:"cover_hash,omitempty"`
+	Credits    *[]CreditRead                         `json:"credits,omitempty"`
+	CvId       nullable.Nullable[int]                `json:"cv_id,omitempty"`
+	Desc       *string                               `json:"desc,omitempty"`
+	FocDate    nullable.Nullable[openapi_types.Date] `json:"foc_date,omitempty"`
+	GcdId      nullable.Nullable[int]                `json:"gcd_id,omitempty"`
+	Id         *int                                  `json:"id,omitempty"`
+	Image      *string                               `json:"image,omitempty"`
+	Imprint    *BasicImprint                         `json:"imprint,omitempty"`
+	Isbn       *string                               `json:"isbn,omitempty"`
+	Modified   *time.Time                            `json:"modified,omitempty"`
+	Name       *[]string                             `json:"name,omitempty"`
+	Number     string                                `json:"number"`
+	Page       nullable.Nullable[int]                `json:"page,omitempty"`
 
 	// Price Price amount as decimal string (e.g., '3.99'). Currency information available in price_currency field.
-	Price *string `json:"price"`
+	Price nullable.Nullable[string] `json:"price,omitempty"`
 
 	// PriceCurrency Return the currency code for the price field.
-	PriceCurrency *string             `json:"price_currency,omitempty"`
-	Publisher     *BasicPublisher     `json:"publisher,omitempty"`
-	Rating        *Rating             `json:"rating,omitempty"`
-	Reprints      *[]Reprint          `json:"reprints,omitempty"`
-	ResourceUrl   *string             `json:"resource_url,omitempty"`
-	Series        *IssueSeries        `json:"series,omitempty"`
-	Sku           *string             `json:"sku,omitempty"`
-	StoreDate     *openapi_types.Date `json:"store_date"`
-	Teams         *[]TeamList         `json:"teams,omitempty"`
-	Title         *string             `json:"title,omitempty"`
-	Universes     *[]UniverseList     `json:"universes,omitempty"`
-	Upc           *string             `json:"upc,omitempty"`
-	Variants      *[]VariantsIssue    `json:"variants,omitempty"`
+	PriceCurrency *string                               `json:"price_currency,omitempty"`
+	Publisher     *BasicPublisher                       `json:"publisher,omitempty"`
+	Rating        *Rating                               `json:"rating,omitempty"`
+	Reprints      *[]Reprint                            `json:"reprints,omitempty"`
+	ResourceUrl   *string                               `json:"resource_url,omitempty"`
+	Series        *IssueSeries                          `json:"series,omitempty"`
+	Sku           *string                               `json:"sku,omitempty"`
+	StoreDate     nullable.Nullable[openapi_types.Date] `json:"store_date,omitempty"`
+	Teams         *[]TeamList                           `json:"teams,omitempty"`
+	Title         *string                               `json:"title,omitempty"`
+	Universes     *[]UniverseList                       `json:"universes,omitempty"`
+	Upc           *string                               `json:"upc,omitempty"`
+	Variants      *[]VariantsIssue                      `json:"variants,omitempty"`
 }
 
 // IssueSeries defines model for IssueSeries.
@@ -1201,27 +1202,27 @@ type IssueSeries struct {
 
 // MissingIssue Serializer for missing issues in a series.
 type MissingIssue struct {
-	CoverDate openapi_types.Date  `json:"cover_date"`
-	Id        *int                `json:"id,omitempty"`
-	Number    string              `json:"number"`
-	Series    *IssueListSeries    `json:"series,omitempty"`
-	StoreDate *openapi_types.Date `json:"store_date"`
+	CoverDate openapi_types.Date                    `json:"cover_date"`
+	Id        *int                                  `json:"id,omitempty"`
+	Number    string                                `json:"number"`
+	Series    *IssueListSeries                      `json:"series,omitempty"`
+	StoreDate nullable.Nullable[openapi_types.Date] `json:"store_date,omitempty"`
 }
 
 // MissingSeries Serializer for series with missing issues.
 type MissingSeries struct {
 	// CompletionPercentage Calculate completion percentage.
-	CompletionPercentage *float64        `json:"completion_percentage,omitempty"`
-	Id                   *int            `json:"id,omitempty"`
-	MissingCount         *int            `json:"missing_count,omitempty"`
-	Name                 string          `json:"name"`
-	OwnedIssues          *int            `json:"owned_issues,omitempty"`
-	Publisher            *BasicPublisher `json:"publisher,omitempty"`
-	SeriesType           *SeriesType     `json:"series_type,omitempty"`
-	SortName             string          `json:"sort_name"`
-	TotalIssues          *int            `json:"total_issues,omitempty"`
-	YearBegan            int             `json:"year_began"`
-	YearEnd              *int            `json:"year_end"`
+	CompletionPercentage *float64               `json:"completion_percentage,omitempty"`
+	Id                   *int                   `json:"id,omitempty"`
+	MissingCount         *int                   `json:"missing_count,omitempty"`
+	Name                 string                 `json:"name"`
+	OwnedIssues          *int                   `json:"owned_issues,omitempty"`
+	Publisher            *BasicPublisher        `json:"publisher,omitempty"`
+	SeriesType           *SeriesType            `json:"series_type,omitempty"`
+	SortName             string                 `json:"sort_name"`
+	TotalIssues          *int                   `json:"total_issues,omitempty"`
+	YearBegan            int                    `json:"year_began"`
+	YearEnd              nullable.Nullable[int] `json:"year_end,omitempty"`
 }
 
 // NullEnum defines model for NullEnum.
@@ -1229,13 +1230,13 @@ type NullEnum = interface{}
 
 // PaginatedArcListList defines model for PaginatedArcListList.
 type PaginatedArcListList struct {
-	Count    int       `json:"count"`
-	Next     *string   `json:"next"`
-	Previous *string   `json:"previous"`
-	Results  []ArcList `json:"results"`
+	Count    int                       `json:"count"`
+	Next     nullable.Nullable[string] `json:"next,omitempty"`
+	Previous nullable.Nullable[string] `json:"previous,omitempty"`
+	Results  []ArcList                 `json:"results"`
 }
 
-func (t PaginatedArcListList) GetNext() *string {
+func (t PaginatedArcListList) GetNext() nullable.Nullable[string] {
 	return t.Next
 }
 
@@ -1245,13 +1246,13 @@ func (t PaginatedArcListList) GetResults() []ArcList {
 
 // PaginatedCharacterListList defines model for PaginatedCharacterListList.
 type PaginatedCharacterListList struct {
-	Count    int             `json:"count"`
-	Next     *string         `json:"next"`
-	Previous *string         `json:"previous"`
-	Results  []CharacterList `json:"results"`
+	Count    int                       `json:"count"`
+	Next     nullable.Nullable[string] `json:"next,omitempty"`
+	Previous nullable.Nullable[string] `json:"previous,omitempty"`
+	Results  []CharacterList           `json:"results"`
 }
 
-func (t PaginatedCharacterListList) GetNext() *string {
+func (t PaginatedCharacterListList) GetNext() nullable.Nullable[string] {
 	return t.Next
 }
 
@@ -1261,13 +1262,13 @@ func (t PaginatedCharacterListList) GetResults() []CharacterList {
 
 // PaginatedCollectionListList defines model for PaginatedCollectionListList.
 type PaginatedCollectionListList struct {
-	Count    int              `json:"count"`
-	Next     *string          `json:"next"`
-	Previous *string          `json:"previous"`
-	Results  []CollectionList `json:"results"`
+	Count    int                       `json:"count"`
+	Next     nullable.Nullable[string] `json:"next,omitempty"`
+	Previous nullable.Nullable[string] `json:"previous,omitempty"`
+	Results  []CollectionList          `json:"results"`
 }
 
-func (t PaginatedCollectionListList) GetNext() *string {
+func (t PaginatedCollectionListList) GetNext() nullable.Nullable[string] {
 	return t.Next
 }
 
@@ -1277,13 +1278,13 @@ func (t PaginatedCollectionListList) GetResults() []CollectionList {
 
 // PaginatedCreatorListList defines model for PaginatedCreatorListList.
 type PaginatedCreatorListList struct {
-	Count    int           `json:"count"`
-	Next     *string       `json:"next"`
-	Previous *string       `json:"previous"`
-	Results  []CreatorList `json:"results"`
+	Count    int                       `json:"count"`
+	Next     nullable.Nullable[string] `json:"next,omitempty"`
+	Previous nullable.Nullable[string] `json:"previous,omitempty"`
+	Results  []CreatorList             `json:"results"`
 }
 
-func (t PaginatedCreatorListList) GetNext() *string {
+func (t PaginatedCreatorListList) GetNext() nullable.Nullable[string] {
 	return t.Next
 }
 
@@ -1293,13 +1294,13 @@ func (t PaginatedCreatorListList) GetResults() []CreatorList {
 
 // PaginatedImprintListList defines model for PaginatedImprintListList.
 type PaginatedImprintListList struct {
-	Count    int           `json:"count"`
-	Next     *string       `json:"next"`
-	Previous *string       `json:"previous"`
-	Results  []ImprintList `json:"results"`
+	Count    int                       `json:"count"`
+	Next     nullable.Nullable[string] `json:"next,omitempty"`
+	Previous nullable.Nullable[string] `json:"previous,omitempty"`
+	Results  []ImprintList             `json:"results"`
 }
 
-func (t PaginatedImprintListList) GetNext() *string {
+func (t PaginatedImprintListList) GetNext() nullable.Nullable[string] {
 	return t.Next
 }
 
@@ -1309,13 +1310,13 @@ func (t PaginatedImprintListList) GetResults() []ImprintList {
 
 // PaginatedIssueListList defines model for PaginatedIssueListList.
 type PaginatedIssueListList struct {
-	Count    int         `json:"count"`
-	Next     *string     `json:"next"`
-	Previous *string     `json:"previous"`
-	Results  []IssueList `json:"results"`
+	Count    int                       `json:"count"`
+	Next     nullable.Nullable[string] `json:"next,omitempty"`
+	Previous nullable.Nullable[string] `json:"previous,omitempty"`
+	Results  []IssueList               `json:"results"`
 }
 
-func (t PaginatedIssueListList) GetNext() *string {
+func (t PaginatedIssueListList) GetNext() nullable.Nullable[string] {
 	return t.Next
 }
 
@@ -1325,13 +1326,13 @@ func (t PaginatedIssueListList) GetResults() []IssueList {
 
 // PaginatedMissingIssueList defines model for PaginatedMissingIssueList.
 type PaginatedMissingIssueList struct {
-	Count    int            `json:"count"`
-	Next     *string        `json:"next"`
-	Previous *string        `json:"previous"`
-	Results  []MissingIssue `json:"results"`
+	Count    int                       `json:"count"`
+	Next     nullable.Nullable[string] `json:"next,omitempty"`
+	Previous nullable.Nullable[string] `json:"previous,omitempty"`
+	Results  []MissingIssue            `json:"results"`
 }
 
-func (t PaginatedMissingIssueList) GetNext() *string {
+func (t PaginatedMissingIssueList) GetNext() nullable.Nullable[string] {
 	return t.Next
 }
 
@@ -1341,13 +1342,13 @@ func (t PaginatedMissingIssueList) GetResults() []MissingIssue {
 
 // PaginatedMissingSeriesList defines model for PaginatedMissingSeriesList.
 type PaginatedMissingSeriesList struct {
-	Count    int             `json:"count"`
-	Next     *string         `json:"next"`
-	Previous *string         `json:"previous"`
-	Results  []MissingSeries `json:"results"`
+	Count    int                       `json:"count"`
+	Next     nullable.Nullable[string] `json:"next,omitempty"`
+	Previous nullable.Nullable[string] `json:"previous,omitempty"`
+	Results  []MissingSeries           `json:"results"`
 }
 
-func (t PaginatedMissingSeriesList) GetNext() *string {
+func (t PaginatedMissingSeriesList) GetNext() nullable.Nullable[string] {
 	return t.Next
 }
 
@@ -1357,13 +1358,13 @@ func (t PaginatedMissingSeriesList) GetResults() []MissingSeries {
 
 // PaginatedPublisherListList defines model for PaginatedPublisherListList.
 type PaginatedPublisherListList struct {
-	Count    int             `json:"count"`
-	Next     *string         `json:"next"`
-	Previous *string         `json:"previous"`
-	Results  []PublisherList `json:"results"`
+	Count    int                       `json:"count"`
+	Next     nullable.Nullable[string] `json:"next,omitempty"`
+	Previous nullable.Nullable[string] `json:"previous,omitempty"`
+	Results  []PublisherList           `json:"results"`
 }
 
-func (t PaginatedPublisherListList) GetNext() *string {
+func (t PaginatedPublisherListList) GetNext() nullable.Nullable[string] {
 	return t.Next
 }
 
@@ -1373,13 +1374,13 @@ func (t PaginatedPublisherListList) GetResults() []PublisherList {
 
 // PaginatedReadingListItemList defines model for PaginatedReadingListItemList.
 type PaginatedReadingListItemList struct {
-	Count    int               `json:"count"`
-	Next     *string           `json:"next"`
-	Previous *string           `json:"previous"`
-	Results  []ReadingListItem `json:"results"`
+	Count    int                       `json:"count"`
+	Next     nullable.Nullable[string] `json:"next,omitempty"`
+	Previous nullable.Nullable[string] `json:"previous,omitempty"`
+	Results  []ReadingListItem         `json:"results"`
 }
 
-func (t PaginatedReadingListItemList) GetNext() *string {
+func (t PaginatedReadingListItemList) GetNext() nullable.Nullable[string] {
 	return t.Next
 }
 
@@ -1389,13 +1390,13 @@ func (t PaginatedReadingListItemList) GetResults() []ReadingListItem {
 
 // PaginatedReadingListListList defines model for PaginatedReadingListListList.
 type PaginatedReadingListListList struct {
-	Count    int               `json:"count"`
-	Next     *string           `json:"next"`
-	Previous *string           `json:"previous"`
-	Results  []ReadingListList `json:"results"`
+	Count    int                       `json:"count"`
+	Next     nullable.Nullable[string] `json:"next,omitempty"`
+	Previous nullable.Nullable[string] `json:"previous,omitempty"`
+	Results  []ReadingListList         `json:"results"`
 }
 
-func (t PaginatedReadingListListList) GetNext() *string {
+func (t PaginatedReadingListListList) GetNext() nullable.Nullable[string] {
 	return t.Next
 }
 
@@ -1405,13 +1406,13 @@ func (t PaginatedReadingListListList) GetResults() []ReadingListList {
 
 // PaginatedRoleList defines model for PaginatedRoleList.
 type PaginatedRoleList struct {
-	Count    int     `json:"count"`
-	Next     *string `json:"next"`
-	Previous *string `json:"previous"`
-	Results  []Role  `json:"results"`
+	Count    int                       `json:"count"`
+	Next     nullable.Nullable[string] `json:"next,omitempty"`
+	Previous nullable.Nullable[string] `json:"previous,omitempty"`
+	Results  []Role                    `json:"results"`
 }
 
-func (t PaginatedRoleList) GetNext() *string {
+func (t PaginatedRoleList) GetNext() nullable.Nullable[string] {
 	return t.Next
 }
 
@@ -1421,13 +1422,13 @@ func (t PaginatedRoleList) GetResults() []Role {
 
 // PaginatedSeriesListList defines model for PaginatedSeriesListList.
 type PaginatedSeriesListList struct {
-	Count    int          `json:"count"`
-	Next     *string      `json:"next"`
-	Previous *string      `json:"previous"`
-	Results  []SeriesList `json:"results"`
+	Count    int                       `json:"count"`
+	Next     nullable.Nullable[string] `json:"next,omitempty"`
+	Previous nullable.Nullable[string] `json:"previous,omitempty"`
+	Results  []SeriesList              `json:"results"`
 }
 
-func (t PaginatedSeriesListList) GetNext() *string {
+func (t PaginatedSeriesListList) GetNext() nullable.Nullable[string] {
 	return t.Next
 }
 
@@ -1437,13 +1438,13 @@ func (t PaginatedSeriesListList) GetResults() []SeriesList {
 
 // PaginatedSeriesTypeList defines model for PaginatedSeriesTypeList.
 type PaginatedSeriesTypeList struct {
-	Count    int          `json:"count"`
-	Next     *string      `json:"next"`
-	Previous *string      `json:"previous"`
-	Results  []SeriesType `json:"results"`
+	Count    int                       `json:"count"`
+	Next     nullable.Nullable[string] `json:"next,omitempty"`
+	Previous nullable.Nullable[string] `json:"previous,omitempty"`
+	Results  []SeriesType              `json:"results"`
 }
 
-func (t PaginatedSeriesTypeList) GetNext() *string {
+func (t PaginatedSeriesTypeList) GetNext() nullable.Nullable[string] {
 	return t.Next
 }
 
@@ -1453,13 +1454,13 @@ func (t PaginatedSeriesTypeList) GetResults() []SeriesType {
 
 // PaginatedTeamListList defines model for PaginatedTeamListList.
 type PaginatedTeamListList struct {
-	Count    int        `json:"count"`
-	Next     *string    `json:"next"`
-	Previous *string    `json:"previous"`
-	Results  []TeamList `json:"results"`
+	Count    int                       `json:"count"`
+	Next     nullable.Nullable[string] `json:"next,omitempty"`
+	Previous nullable.Nullable[string] `json:"previous,omitempty"`
+	Results  []TeamList                `json:"results"`
 }
 
-func (t PaginatedTeamListList) GetNext() *string {
+func (t PaginatedTeamListList) GetNext() nullable.Nullable[string] {
 	return t.Next
 }
 
@@ -1469,13 +1470,13 @@ func (t PaginatedTeamListList) GetResults() []TeamList {
 
 // PaginatedUniverseListList defines model for PaginatedUniverseListList.
 type PaginatedUniverseListList struct {
-	Count    int            `json:"count"`
-	Next     *string        `json:"next"`
-	Previous *string        `json:"previous"`
-	Results  []UniverseList `json:"results"`
+	Count    int                       `json:"count"`
+	Next     nullable.Nullable[string] `json:"next,omitempty"`
+	Previous nullable.Nullable[string] `json:"previous,omitempty"`
+	Results  []UniverseList            `json:"results"`
 }
 
-func (t PaginatedUniverseListList) GetNext() *string {
+func (t PaginatedUniverseListList) GetNext() nullable.Nullable[string] {
 	return t.Next
 }
 
@@ -1734,16 +1735,16 @@ type Publisher struct {
 	// * `YE` - Yemen
 	// * `ZM` - Zambia
 	// * `ZW` - Zimbabwe
-	Country     *CountryEnum `json:"country,omitempty"`
-	CvId        *int         `json:"cv_id"`
-	Desc        *string      `json:"desc,omitempty"`
-	Founded     *int         `json:"founded"`
-	GcdId       *int         `json:"gcd_id"`
-	Id          *int         `json:"id,omitempty"`
-	Image       *string      `json:"image,omitempty"`
-	Modified    *time.Time   `json:"modified,omitempty"`
-	Name        string       `json:"name"`
-	ResourceUrl *string      `json:"resource_url,omitempty"`
+	Country     *CountryEnum           `json:"country,omitempty"`
+	CvId        nullable.Nullable[int] `json:"cv_id,omitempty"`
+	Desc        *string                `json:"desc,omitempty"`
+	Founded     nullable.Nullable[int] `json:"founded,omitempty"`
+	GcdId       nullable.Nullable[int] `json:"gcd_id,omitempty"`
+	Id          *int                   `json:"id,omitempty"`
+	Image       *string                `json:"image,omitempty"`
+	Modified    *time.Time             `json:"modified,omitempty"`
+	Name        string                 `json:"name"`
+	ResourceUrl *string                `json:"resource_url,omitempty"`
 }
 
 // PublisherList defines model for PublisherList.
@@ -1777,14 +1778,14 @@ type ReadDate struct {
 
 // ReadingListIssue Serializer for issues in reading lists (without image and cover_hash).
 type ReadingListIssue struct {
-	CoverDate openapi_types.Date  `json:"cover_date"`
-	CvId      *int                `json:"cv_id"`
-	GcdId     *int                `json:"gcd_id"`
-	Id        *int                `json:"id,omitempty"`
-	Modified  *time.Time          `json:"modified,omitempty"`
-	Number    string              `json:"number"`
-	Series    *IssueListSeries    `json:"series,omitempty"`
-	StoreDate *openapi_types.Date `json:"store_date"`
+	CoverDate openapi_types.Date                    `json:"cover_date"`
+	CvId      nullable.Nullable[int]                `json:"cv_id,omitempty"`
+	GcdId     nullable.Nullable[int]                `json:"gcd_id,omitempty"`
+	Id        *int                                  `json:"id,omitempty"`
+	Modified  *time.Time                            `json:"modified,omitempty"`
+	Number    string                                `json:"number"`
+	Series    *IssueListSeries                      `json:"series,omitempty"`
+	StoreDate nullable.Nullable[openapi_types.Date] `json:"store_date,omitempty"`
 }
 
 // ReadingListItem defines model for ReadingListItem.
@@ -1873,9 +1874,9 @@ type Role struct {
 
 // ScrobbleRequest Serializer for scrobble request validation.
 type ScrobbleRequest struct {
-	DateRead *time.Time `json:"date_read"`
-	IssueId  int        `json:"issue_id"`
-	Rating   *int       `json:"rating"`
+	DateRead nullable.Nullable[time.Time] `json:"date_read,omitempty"`
+	IssueId  int                          `json:"issue_id"`
+	Rating   nullable.Nullable[int]       `json:"rating,omitempty"`
 }
 
 // ScrobbleResponse Serializer for scrobble response.
@@ -1883,8 +1884,8 @@ type ScrobbleResponse struct {
 	Created *bool `json:"created,omitempty"`
 
 	// DateRead Date and time when the issue was last read (synced from read_dates)
-	DateRead *time.Time `json:"date_read"`
-	Id       *int       `json:"id,omitempty"`
+	DateRead nullable.Nullable[time.Time] `json:"date_read,omitempty"`
+	Id       *int                         `json:"id,omitempty"`
 
 	// IsRead Whether the issue has been read
 	IsRead   *bool            `json:"is_read,omitempty"`
@@ -1898,7 +1899,7 @@ type ScrobbleResponse struct {
 	// * `3` - 3
 	// * `4` - 4
 	// * `5` - 5
-	Rating *ScrobbleResponse_Rating `json:"rating"`
+	Rating nullable.Nullable[ScrobbleResponse_Rating] `json:"rating,omitempty"`
 }
 
 // ScrobbleResponse_Rating Star rating (1-5) for this issue
@@ -1924,24 +1925,24 @@ type SeriesList struct {
 
 // SeriesRead defines model for SeriesRead.
 type SeriesRead struct {
-	Associated  *[]AssociatedSeries `json:"associated,omitempty"`
-	CvId        *int                `json:"cv_id"`
-	Desc        *string             `json:"desc,omitempty"`
-	GcdId       *int                `json:"gcd_id"`
-	Genres      *[]Genre            `json:"genres,omitempty"`
-	Id          *int                `json:"id,omitempty"`
-	Imprint     *BasicImprint       `json:"imprint,omitempty"`
-	IssueCount  *int                `json:"issue_count,omitempty"`
-	Modified    *time.Time          `json:"modified,omitempty"`
-	Name        string              `json:"name"`
-	Publisher   *BasicPublisher     `json:"publisher,omitempty"`
-	ResourceUrl *string             `json:"resource_url,omitempty"`
-	SeriesType  *SeriesType         `json:"series_type,omitempty"`
-	SortName    string              `json:"sort_name"`
-	Status      *string             `json:"status,omitempty"`
-	Volume      int                 `json:"volume"`
-	YearBegan   int                 `json:"year_began"`
-	YearEnd     *int                `json:"year_end"`
+	Associated  *[]AssociatedSeries    `json:"associated,omitempty"`
+	CvId        nullable.Nullable[int] `json:"cv_id,omitempty"`
+	Desc        *string                `json:"desc,omitempty"`
+	GcdId       nullable.Nullable[int] `json:"gcd_id,omitempty"`
+	Genres      *[]Genre               `json:"genres,omitempty"`
+	Id          *int                   `json:"id,omitempty"`
+	Imprint     *BasicImprint          `json:"imprint,omitempty"`
+	IssueCount  *int                   `json:"issue_count,omitempty"`
+	Modified    *time.Time             `json:"modified,omitempty"`
+	Name        string                 `json:"name"`
+	Publisher   *BasicPublisher        `json:"publisher,omitempty"`
+	ResourceUrl *string                `json:"resource_url,omitempty"`
+	SeriesType  *SeriesType            `json:"series_type,omitempty"`
+	SortName    string                 `json:"sort_name"`
+	Status      *string                `json:"status,omitempty"`
+	Volume      int                    `json:"volume"`
+	YearBegan   int                    `json:"year_began"`
+	YearEnd     nullable.Nullable[int] `json:"year_end,omitempty"`
 }
 
 // SeriesType defines model for SeriesType.
@@ -1959,16 +1960,16 @@ type TeamList struct {
 
 // TeamRead defines model for TeamRead.
 type TeamRead struct {
-	Creators    *[]CreatorList  `json:"creators,omitempty"`
-	CvId        *int            `json:"cv_id"`
-	Desc        *string         `json:"desc,omitempty"`
-	GcdId       *int            `json:"gcd_id"`
-	Id          *int            `json:"id,omitempty"`
-	Image       *string         `json:"image,omitempty"`
-	Modified    *time.Time      `json:"modified,omitempty"`
-	Name        string          `json:"name"`
-	ResourceUrl *string         `json:"resource_url,omitempty"`
-	Universes   *[]UniverseList `json:"universes,omitempty"`
+	Creators    *[]CreatorList         `json:"creators,omitempty"`
+	CvId        nullable.Nullable[int] `json:"cv_id,omitempty"`
+	Desc        *string                `json:"desc,omitempty"`
+	GcdId       nullable.Nullable[int] `json:"gcd_id,omitempty"`
+	Id          *int                   `json:"id,omitempty"`
+	Image       *string                `json:"image,omitempty"`
+	Modified    *time.Time             `json:"modified,omitempty"`
+	Name        string                 `json:"name"`
+	ResourceUrl *string                `json:"resource_url,omitempty"`
+	Universes   *[]UniverseList        `json:"universes,omitempty"`
 }
 
 // UniverseList defines model for UniverseList.
@@ -1980,15 +1981,15 @@ type UniverseList struct {
 
 // UniverseRead defines model for UniverseRead.
 type UniverseRead struct {
-	Desc        *string         `json:"desc,omitempty"`
-	Designation string          `json:"designation"`
-	GcdId       *int            `json:"gcd_id"`
-	Id          *int            `json:"id,omitempty"`
-	Image       *string         `json:"image,omitempty"`
-	Modified    *time.Time      `json:"modified,omitempty"`
-	Name        string          `json:"name"`
-	Publisher   *BasicPublisher `json:"publisher,omitempty"`
-	ResourceUrl *string         `json:"resource_url,omitempty"`
+	Desc        *string                `json:"desc,omitempty"`
+	Designation string                 `json:"designation"`
+	GcdId       nullable.Nullable[int] `json:"gcd_id,omitempty"`
+	Id          *int                   `json:"id,omitempty"`
+	Image       *string                `json:"image,omitempty"`
+	Modified    *time.Time             `json:"modified,omitempty"`
+	Name        string                 `json:"name"`
+	Publisher   *BasicPublisher        `json:"publisher,omitempty"`
+	ResourceUrl *string                `json:"resource_url,omitempty"`
 }
 
 // User defines model for User.
@@ -2005,9 +2006,9 @@ type VariantsIssue struct {
 	Name  *string `json:"name,omitempty"`
 
 	// Price Price amount as decimal string (e.g., '3.99'). Currency information available in price_currency field.
-	Price *string `json:"price"`
-	Sku   *string `json:"sku,omitempty"`
-	Upc   *string `json:"upc,omitempty"`
+	Price nullable.Nullable[string] `json:"price,omitempty"`
+	Sku   *string                   `json:"sku,omitempty"`
+	Upc   *string                   `json:"upc,omitempty"`
 }
 
 // ApiArcListParams defines parameters for ApiArcList.
