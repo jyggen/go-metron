@@ -74,7 +74,7 @@ func NewClient(client *http.Client, options ...Option) (*Client, error) {
 	burst, err := gorl.New(core.Config{
 		Strategy: core.SlidingWindow,
 		KeyBy:    core.KeyByAPIKey,
-		Limit:    30,
+		Limit:    20,
 		Window:   1 * time.Minute,
 	})
 	if err != nil {
@@ -84,7 +84,7 @@ func NewClient(client *http.Client, options ...Option) (*Client, error) {
 	sustained, err := gorl.New(core.Config{
 		Strategy: core.SlidingWindow,
 		KeyBy:    core.KeyByAPIKey,
-		Limit:    10_000,
+		Limit:    5000,
 		Window:   24 * time.Hour,
 	})
 	if err != nil {
