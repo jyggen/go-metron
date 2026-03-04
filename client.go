@@ -70,36 +70,26 @@ type Client struct {
 
 type Option func(*Client)
 
-func NewClient(client *http.Client, options ...Option) (*Client, error) {
-	burst, err := gorl.New(core.Config{
+func NewClient(options ...Option) *Client {
+	burst, _ := gorl.New(core.Config{
 		Strategy: core.SlidingWindow,
 		KeyBy:    core.KeyByAPIKey,
 		Limit:    20,
 		Window:   1 * time.Minute,
 	})
-	if err != nil {
-		return nil, err
-	}
 
-	sustained, err := gorl.New(core.Config{
+	sustained, _ := gorl.New(core.Config{
 		Strategy: core.SlidingWindow,
 		KeyBy:    core.KeyByAPIKey,
 		Limit:    5000,
 		Window:   24 * time.Hour,
 	})
-	if err != nil {
-		return nil, err
-	}
 
-	b, err := url.Parse(baseURL)
-	if err != nil {
-		return nil, err
-	}
-
+	b, _ := url.Parse(baseURL)
 	c := &Client{
 		baseURL:          b,
 		cacheDir:         "",
-		client:           client,
+		client:           &http.Client{},
 		enableCaching:    false,
 		limiterBurst:     burst,
 		limiterSustained: sustained,
@@ -111,7 +101,7 @@ func NewClient(client *http.Client, options ...Option) (*Client, error) {
 		option(c)
 	}
 
-	return c, nil
+	return c
 }
 
 // WithAuthentication sets the username and password to be used for authentication.
