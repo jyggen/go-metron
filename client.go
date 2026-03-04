@@ -70,8 +70,8 @@ func NewClient(username, password string, options ...Option) (*Client, error) {
 
 	rl, err := throttle.New(
 		filepath.Join(c.storagePath, fmt.Sprintf("throttle_%x.gob", sha1.Sum([]byte(username)))),
-		throttle.Limit{Count: 30, Window: time.Minute},
-		throttle.Limit{Count: 10_000, Window: time.Hour * 24},
+		throttle.Limit{Count: 20, Window: time.Minute},
+		throttle.Limit{Count: 5000, Window: time.Hour * 24},
 	)
 	if err != nil {
 		return nil, err
