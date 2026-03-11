@@ -41,7 +41,7 @@ func (c *Client) Universes(ctx context.Context, filters ...Filter) iter.Seq2[*Un
 		f(params)
 	}
 
-	return newPaginate[internal.PaginatedUniverseListList](ctx, c.client.ApiUniverseList, universeListMapper, params)
+	return newPaginate[internal.PaginatedUniverseListList](ctx, c.cache, "universe", c.client.ApiUniverseList, universeListMapper, params)
 }
 
 func universeMapper(in internal.UniverseRead) (*Universe, error) {

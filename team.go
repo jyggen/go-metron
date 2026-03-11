@@ -42,7 +42,7 @@ func (c *Client) Teams(ctx context.Context, filters ...Filter) iter.Seq2[*TeamLi
 		f(params)
 	}
 
-	return newPaginate[internal.PaginatedTeamListList](ctx, c.client.ApiTeamList, teamListMapper, params)
+	return newPaginate[internal.PaginatedTeamListList](ctx, c.cache, "team", c.client.ApiTeamList, teamListMapper, params)
 }
 
 func teamMapper(in internal.TeamRead) (*Team, error) {

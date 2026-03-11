@@ -44,7 +44,7 @@ func (c *Client) Creators(ctx context.Context, filters ...Filter) iter.Seq2[*Cre
 		f(params)
 	}
 
-	return newPaginate[internal.PaginatedCreatorListList](ctx, c.client.ApiCreatorList, creatorListMapper, params)
+	return newPaginate[internal.PaginatedCreatorListList](ctx, c.cache, "creator", c.client.ApiCreatorList, creatorListMapper, params)
 }
 
 func creatorMapper(in internal.Creator) (*Creator, error) {

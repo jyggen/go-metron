@@ -54,7 +54,7 @@ func (c *Client) Arcs(ctx context.Context, filters ...Filter) iter.Seq2[*ArcList
 		f(params)
 	}
 
-	return newPaginate[internal.PaginatedArcListList](ctx, c.client.ApiArcList, arcListMapper, params)
+	return newPaginate[internal.PaginatedArcListList](ctx, c.cache, "arc", c.client.ApiArcList, arcListMapper, params)
 }
 
 func arcMapper(in internal.Arc) (*Arc, error) {
@@ -192,16 +192,33 @@ type paginatedResponse[T any] interface {
 	GetResults() []T
 }
 
-func newIDPaginate[Response paginatedResponse[In], In, Out any, Params paginatable](ctx context.Context, call func(context.Context, int, Params, ...internal.RequestEditorFn) (*http.Response, error), m func(In) (*Out, error), id int, params Params) iter.Seq2[*Out, error] {
+func cacheKey(kind string, params any) string {
+	b, _ := json.Marshal(params)
+	return kind + "/" + string(b)
+}
+
+func cacheKeyWithID(kind string, id int, params any) string {
+	b, _ := json.Marshal(params)
+	return fmt.Sprintf("%s/%d/%s", kind, id, string(b))
+}
+
+func newIDPaginate[Response paginatedResponse[In], In, Out any, Params paginatable](ctx context.Context, cache *filecache.FileCache, kind string, call func(context.Context, int, Params, ...internal.RequestEditorFn) (*http.Response, error), m func(In) (*Out, error), id int, params Params) iter.Seq2[*Out, error] {
 	return func(yield func(*Out, error) bool) {
 		page := 1
 
 		for {
 			var res Response
-			body, _, err := newCall(ctx, func(ctx context.Context, fn ...internal.RequestEditorFn) (*http.Response, error) {
-				params.SetPage(page)
+			params.SetPage(page)
+			req := func(ctx context.Context, fn ...internal.RequestEditorFn) (*http.Response, error) {
 				return call(ctx, id, params, fn...)
-			})(nil)
+			}
+			var body io.ReadCloser
+			var err error
+			if cache != nil {
+				body, err = cache.Get(cacheKeyWithID(kind, id, params), newCall(ctx, req))
+			} else {
+				body, _, err = newCall(ctx, req)(nil)
+			}
 			if err != nil {
 				yield(nil, err)
 				return
@@ -232,16 +249,23 @@ func newIDPaginate[Response paginatedResponse[In], In, Out any, Params paginatab
 	}
 }
 
-func newPaginate[Response paginatedResponse[In], In, Out any, Params paginatable](ctx context.Context, call func(context.Context, Params, ...internal.RequestEditorFn) (*http.Response, error), m func(In) (*Out, error), params Params) iter.Seq2[*Out, error] {
+func newPaginate[Response paginatedResponse[In], In, Out any, Params paginatable](ctx context.Context, cache *filecache.FileCache, kind string, call func(context.Context, Params, ...internal.RequestEditorFn) (*http.Response, error), m func(In) (*Out, error), params Params) iter.Seq2[*Out, error] {
 	return func(yield func(*Out, error) bool) {
 		page := 1
 
 		for {
 			var res Response
-			body, _, err := newCall(ctx, func(ctx context.Context, fn ...internal.RequestEditorFn) (*http.Response, error) {
-				params.SetPage(page)
+			params.SetPage(page)
+			req := func(ctx context.Context, fn ...internal.RequestEditorFn) (*http.Response, error) {
 				return call(ctx, params, fn...)
-			})(nil)
+			}
+			var body io.ReadCloser
+			var err error
+			if cache != nil {
+				body, err = cache.Get(cacheKey(kind, params), newCall(ctx, req))
+			} else {
+				body, _, err = newCall(ctx, req)(nil)
+			}
 			if err != nil {
 				yield(nil, err)
 				return

@@ -42,7 +42,7 @@ func (c *Client) Publishers(ctx context.Context, filters ...Filter) iter.Seq2[*P
 		f(params)
 	}
 
-	return newPaginate[internal.PaginatedPublisherListList](ctx, c.client.ApiPublisherList, publisherListMapper, params)
+	return newPaginate[internal.PaginatedPublisherListList](ctx, c.cache, "publisher", c.client.ApiPublisherList, publisherListMapper, params)
 }
 
 func publisherMapper(in internal.Publisher) (*Publisher, error) {

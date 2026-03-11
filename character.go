@@ -44,7 +44,7 @@ func (c *Client) Characters(ctx context.Context, filters ...Filter) iter.Seq2[*C
 		f(params)
 	}
 
-	return newPaginate[internal.PaginatedCharacterListList](ctx, c.client.ApiCharacterList, characterListMapper, params)
+	return newPaginate[internal.PaginatedCharacterListList](ctx, c.cache, "character", c.client.ApiCharacterList, characterListMapper, params)
 }
 
 func characterMapper(in internal.CharacterRead) (*Character, error) {

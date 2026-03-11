@@ -53,7 +53,7 @@ func (c *Client) Series(ctx context.Context, filters ...Filter) iter.Seq2[*Serie
 		f(params)
 	}
 
-	return newPaginate[internal.PaginatedSeriesListList](ctx, c.client.ApiSeriesList, seriesListMapper, params)
+	return newPaginate[internal.PaginatedSeriesListList](ctx, c.cache, "series", c.client.ApiSeriesList, seriesListMapper, params)
 }
 
 // SeriesByPublisherID returns an iterator over all series for a publisher.
@@ -64,7 +64,7 @@ func (c *Client) SeriesByPublisherID(ctx context.Context, id int, filters ...Fil
 		f(params)
 	}
 
-	return newIDPaginate[internal.PaginatedSeriesListList](ctx, c.client.ApiPublisherSeriesListList, seriesListMapper, id, params)
+	return newIDPaginate[internal.PaginatedSeriesListList](ctx, c.cache, "publisher/series", c.client.ApiPublisherSeriesListList, seriesListMapper, id, params)
 }
 
 func seriesMapper(in internal.SeriesRead) (*Series, error) {

@@ -95,7 +95,7 @@ func (c *Client) Issues(ctx context.Context, filters ...Filter) iter.Seq2[*Issue
 		f(params)
 	}
 
-	return newPaginate[internal.PaginatedIssueListList](ctx, c.client.ApiIssueList, issueListMapper, params)
+	return newPaginate[internal.PaginatedIssueListList](ctx, c.cache, "issue", c.client.ApiIssueList, issueListMapper, params)
 }
 
 // IssuesByArcID returns an iterator over all issues for a story arc.
@@ -106,7 +106,7 @@ func (c *Client) IssuesByArcID(ctx context.Context, id int, filters ...Filter) i
 		f(params)
 	}
 
-	return newIDPaginate[internal.PaginatedIssueListList](ctx, c.client.ApiArcIssueListList, issueListMapper, id, params)
+	return newIDPaginate[internal.PaginatedIssueListList](ctx, c.cache, "arc/issue", c.client.ApiArcIssueListList, issueListMapper, id, params)
 }
 
 // IssuesByCharacterID returns an iterator over all issues for a character.
@@ -117,7 +117,7 @@ func (c *Client) IssuesByCharacterID(ctx context.Context, id int, filters ...Fil
 		f(params)
 	}
 
-	return newIDPaginate[internal.PaginatedIssueListList](ctx, c.client.ApiCharacterIssueListList, issueListMapper, id, params)
+	return newIDPaginate[internal.PaginatedIssueListList](ctx, c.cache, "character/issue", c.client.ApiCharacterIssueListList, issueListMapper, id, params)
 }
 
 // IssuesBySeriesID returns an iterator over all issues for a series.
@@ -128,7 +128,7 @@ func (c *Client) IssuesBySeriesID(ctx context.Context, id int, filters ...Filter
 		f(params)
 	}
 
-	return newIDPaginate[internal.PaginatedIssueListList](ctx, c.client.ApiSeriesIssueListList, issueListMapper, id, params)
+	return newIDPaginate[internal.PaginatedIssueListList](ctx, c.cache, "series/issue", c.client.ApiSeriesIssueListList, issueListMapper, id, params)
 }
 
 // IssuesByTeamID returns an iterator over all issues for a team.
@@ -139,7 +139,7 @@ func (c *Client) IssuesByTeamID(ctx context.Context, id int, filters ...Filter) 
 		f(params)
 	}
 
-	return newIDPaginate[internal.PaginatedIssueListList](ctx, c.client.ApiTeamIssueListList, issueListMapper, id, params)
+	return newIDPaginate[internal.PaginatedIssueListList](ctx, c.cache, "team/issue", c.client.ApiTeamIssueListList, issueListMapper, id, params)
 }
 
 func issueMapper(in internal.IssueRead) (*Issue, error) {

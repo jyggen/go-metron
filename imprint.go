@@ -42,7 +42,7 @@ func (c *Client) Imprints(ctx context.Context, filters ...Filter) iter.Seq2[*Imp
 		f(params)
 	}
 
-	return newPaginate[internal.PaginatedImprintListList](ctx, c.client.ApiImprintList, imprintListMapper, params)
+	return newPaginate[internal.PaginatedImprintListList](ctx, c.cache, "imprint", c.client.ApiImprintList, imprintListMapper, params)
 }
 
 func imprintMapper(in internal.ImprintRead) (*Imprint, error) {
