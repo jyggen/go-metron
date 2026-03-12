@@ -14,7 +14,6 @@ import (
 	"codeberg.org/jyggen/go-filecache"
 	"codeberg.org/jyggen/go-httpkit"
 	"codeberg.org/jyggen/go-httpkit/middleware/throttle"
-	"github.com/cenkalti/backoff/v5"
 	"github.com/jyggen/go-metron/internal"
 )
 
@@ -33,7 +32,6 @@ type Client struct {
 	client        internal.ClientInterface
 	enableCaching bool
 	httpClient    *http.Client
-	maxRetries    uint
 	rateLimiter   *throttle.Throttle
 	storagePath   string
 }
@@ -49,7 +47,6 @@ func NewClient(username, password string, options ...Option) (*Client, error) {
 	c := &Client{
 		enableCaching: false,
 		httpClient:    &http.Client{},
-		maxRetries:    5,
 		storagePath:   filepath.Join(storagePath, "go-metron"),
 	}
 
@@ -82,7 +79,6 @@ func NewClient(username, password string, options ...Option) (*Client, error) {
 		c.httpClient,
 		httpkit.WithBasicAuth(username, password),
 		httpkit.WithUserAgent(userAgent),
-		httpkit.WithMiddleware(newRetryMiddleware(c.maxRetries)),
 		httpkit.WithMiddleware(newBackOffMiddleware()),
 		httpkit.WithMiddleware(rl.Middleware()),
 	)
@@ -109,26 +105,27 @@ func newBackOffMiddleware() httpkit.Middleware {
 
 	return func(next httpkit.MiddlewareFunc) httpkit.MiddlewareFunc {
 		return func(r *http.Request) (*http.Response, error) {
-			for {
-				m.RLock()
-				wait := time.Until(backOff)
-				m.RUnlock()
+			m.RLock()
+			wait := time.Until(backOff)
+			m.RUnlock()
 
-				if wait <= 0 {
-					break
-				}
-
-				ctx := r.Context()
-
-				select {
-				case <-ctx.Done():
-					return nil, ctx.Err()
-				case <-time.After(wait):
-					continue
-				}
+			if wait > 0 {
+				return nil, httpkit.NewRetryAfterError(wait)
 			}
 
 			res, err := next(r)
+
+			var retryAfterErr *httpkit.RetryAfterError
+			if errors.As(err, &retryAfterErr) {
+				m.Lock()
+				if t := time.Now().Add(retryAfterErr.RetryAfter()); t.After(backOff) {
+					backOff = t
+				}
+				m.Unlock()
+
+				return nil, retryAfterErr
+			}
+
 			if err != nil {
 				return nil, err
 			}
@@ -136,37 +133,19 @@ func newBackOffMiddleware() httpkit.Middleware {
 			if res.StatusCode == http.StatusTooManyRequests {
 				waitTime, err := strconv.Atoi(res.Header.Get("Retry-After"))
 				if err == nil {
+					d := time.Duration(waitTime) * time.Second
+
 					m.Lock()
-					backOff = time.Now().Add(time.Duration(waitTime) * time.Second)
+					if t := time.Now().Add(d); t.After(backOff) {
+						backOff = t
+					}
 					m.Unlock()
+
+					return nil, errors.Join(httpkit.NewRetryAfterError(d), res.Body.Close())
 				}
 			}
 
 			return res, nil
-		}
-	}
-}
-
-func newRetryMiddleware(maxTries uint) httpkit.Middleware {
-	return func(next httpkit.MiddlewareFunc) httpkit.MiddlewareFunc {
-		return func(r *http.Request) (*http.Response, error) {
-			return backoff.Retry(
-				r.Context(),
-				func() (*http.Response, error) {
-					res, err := next(r)
-					if err != nil {
-						return nil, backoff.Permanent(err)
-					}
-
-					if res.StatusCode == http.StatusTooManyRequests {
-						return nil, errors.Join(errors.New("too many requests"), res.Body.Close())
-					}
-
-					return res, nil
-				},
-				backoff.WithBackOff(backoff.NewExponentialBackOff()),
-				backoff.WithMaxTries(maxTries),
-			)
 		}
 	}
 }

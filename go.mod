@@ -5,9 +5,8 @@ go 1.25.6
 require (
 	cloud.google.com/go v0.123.0
 	codeberg.org/jyggen/go-filecache v0.0.0-20260225085943-b0984373622d
-	codeberg.org/jyggen/go-httpkit v0.3.1
-	codeberg.org/jyggen/go-httpkit/middleware/throttle v0.1.0
-	github.com/cenkalti/backoff/v5 v5.0.3
+	codeberg.org/jyggen/go-httpkit v0.3.2
+	codeberg.org/jyggen/go-httpkit/middleware/throttle v0.2.0
 	github.com/oapi-codegen/nullable v1.1.0
 	github.com/oapi-codegen/runtime v1.2.0
 	github.com/stretchr/testify v1.11.1
@@ -39,7 +38,7 @@ require (
 	github.com/woodsbury/decimal128 v1.3.0 // indirect
 	golang.org/x/mod v0.30.0 // indirect
 	golang.org/x/net v0.48.0 // indirect
-	golang.org/x/sync v0.19.0 // indirect
+	golang.org/x/sync v0.20.0 // indirect
 	golang.org/x/sys v0.39.0 // indirect
 	golang.org/x/text v0.32.0 // indirect
 	golang.org/x/tools v0.39.0 // indirect
