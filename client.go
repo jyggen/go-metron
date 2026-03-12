@@ -32,6 +32,7 @@ type Client struct {
 	client        internal.ClientInterface
 	enableCaching bool
 	httpClient    *http.Client
+	maxRetries    uint
 	rateLimiter   *throttle.Throttle
 	storagePath   string
 }
@@ -75,13 +76,22 @@ func NewClient(username, password string, options ...Option) (*Client, error) {
 	}
 
 	c.rateLimiter = rl
-	c.httpClient = httpkit.NewFromClient(
-		c.httpClient,
+
+	middlewares := []httpkit.Option{
 		httpkit.WithBasicAuth(username, password),
 		httpkit.WithUserAgent(userAgent),
+	}
+
+	if c.maxRetries > 0 {
+		middlewares = append(middlewares, httpkit.WithMiddleware(newRetryMiddleware(c.maxRetries)))
+	}
+
+	middlewares = append(middlewares,
 		httpkit.WithMiddleware(newBackOffMiddleware()),
 		httpkit.WithMiddleware(rl.Middleware()),
 	)
+
+	c.httpClient = httpkit.NewFromClient(c.httpClient, middlewares...)
 
 	internalClient, err := internal.NewClient(baseURL, internal.WithHTTPClient(c.httpClient))
 	if err != nil {
@@ -150,6 +160,29 @@ func newBackOffMiddleware() httpkit.Middleware {
 	}
 }
 
+func newRetryMiddleware(maxRetries uint) httpkit.Middleware {
+	return func(next httpkit.MiddlewareFunc) httpkit.MiddlewareFunc {
+		return func(r *http.Request) (*http.Response, error) {
+			for range maxRetries {
+				res, err := next(r)
+
+				var retryErr *httpkit.RetryAfterError
+				if !errors.As(err, &retryErr) {
+					return res, err
+				}
+
+				select {
+				case <-r.Context().Done():
+					return nil, r.Context().Err()
+				case <-time.After(retryErr.RetryAfter()):
+				}
+			}
+
+			return next(r)
+		}
+	}
+}
+
 func WithCaching() Option {
 	return func(c *Client) {
 		c.enableCaching = true
@@ -159,6 +192,12 @@ func WithCaching() Option {
 func WithClient(client *http.Client) Option {
 	return func(c *Client) {
 		c.httpClient = client
+	}
+}
+
+func WithRetry(maxRetries uint) Option {
+	return func(c *Client) {
+		c.maxRetries = maxRetries
 	}
 }
 
