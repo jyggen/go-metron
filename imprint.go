@@ -31,7 +31,7 @@ type ImprintList struct {
 
 // ImprintByID returns an imprint by its ID.
 func (c *Client) ImprintByID(ctx context.Context, id int) (*Imprint, error) {
-	return newByID(ctx, c.cache, fmt.Sprintf("imprint/%d", id), c.client.ApiImprintRetrieve, imprintMapper, id)
+	return newByID(ctx, c.cache, c.maxRetries, fmt.Sprintf("imprint/%d", id), c.client.ApiImprintRetrieve, imprintMapper, id)
 }
 
 // Imprints returns an iterator over all imprints.
@@ -42,7 +42,7 @@ func (c *Client) Imprints(ctx context.Context, filters ...Filter) iter.Seq2[*Imp
 		f(params)
 	}
 
-	return newPaginate[internal.PaginatedImprintListList](ctx, c.cache, "imprint", c.client.ApiImprintList, imprintListMapper, params)
+	return newPaginate[internal.PaginatedImprintListList](ctx, c.cache, c.maxRetries, "imprint", c.client.ApiImprintList, imprintListMapper, params)
 }
 
 func imprintMapper(in internal.ImprintRead) (*Imprint, error) {

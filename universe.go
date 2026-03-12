@@ -30,7 +30,7 @@ type UniverseList struct {
 
 // UniverseByID returns a universe by its ID.
 func (c *Client) UniverseByID(ctx context.Context, id int) (*Universe, error) {
-	return newByID(ctx, c.cache, fmt.Sprintf("universe/%d", id), c.client.ApiUniverseRetrieve, universeMapper, id)
+	return newByID(ctx, c.cache, c.maxRetries, fmt.Sprintf("universe/%d", id), c.client.ApiUniverseRetrieve, universeMapper, id)
 }
 
 // Universes returns an iterator over all universes.
@@ -41,7 +41,7 @@ func (c *Client) Universes(ctx context.Context, filters ...Filter) iter.Seq2[*Un
 		f(params)
 	}
 
-	return newPaginate[internal.PaginatedUniverseListList](ctx, c.cache, "universe", c.client.ApiUniverseList, universeListMapper, params)
+	return newPaginate[internal.PaginatedUniverseListList](ctx, c.cache, c.maxRetries, "universe", c.client.ApiUniverseList, universeListMapper, params)
 }
 
 func universeMapper(in internal.UniverseRead) (*Universe, error) {

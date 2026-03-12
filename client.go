@@ -77,21 +77,13 @@ func NewClient(username, password string, options ...Option) (*Client, error) {
 
 	c.rateLimiter = rl
 
-	middlewares := []httpkit.Option{
+	c.httpClient = httpkit.NewFromClient(
+		c.httpClient,
 		httpkit.WithBasicAuth(username, password),
 		httpkit.WithUserAgent(userAgent),
-	}
-
-	if c.maxRetries > 0 {
-		middlewares = append(middlewares, httpkit.WithMiddleware(newRetryMiddleware(c.maxRetries)))
-	}
-
-	middlewares = append(middlewares,
 		httpkit.WithMiddleware(newBackOffMiddleware()),
 		httpkit.WithMiddleware(rl.Middleware()),
 	)
-
-	c.httpClient = httpkit.NewFromClient(c.httpClient, middlewares...)
 
 	internalClient, err := internal.NewClient(baseURL, internal.WithHTTPClient(c.httpClient))
 	if err != nil {
@@ -156,29 +148,6 @@ func newBackOffMiddleware() httpkit.Middleware {
 			}
 
 			return res, nil
-		}
-	}
-}
-
-func newRetryMiddleware(maxRetries uint) httpkit.Middleware {
-	return func(next httpkit.MiddlewareFunc) httpkit.MiddlewareFunc {
-		return func(r *http.Request) (*http.Response, error) {
-			for range maxRetries {
-				res, err := next(r)
-
-				var retryErr *httpkit.RetryAfterError
-				if !errors.As(err, &retryErr) {
-					return res, err
-				}
-
-				select {
-				case <-r.Context().Done():
-					return nil, r.Context().Err()
-				case <-time.After(retryErr.RetryAfter()):
-				}
-			}
-
-			return next(r)
 		}
 	}
 }

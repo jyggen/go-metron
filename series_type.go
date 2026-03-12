@@ -21,7 +21,7 @@ func (c *Client) SeriesTypes(ctx context.Context, filters ...Filter) iter.Seq2[*
 		f(params)
 	}
 
-	return newPaginate[internal.PaginatedSeriesTypeList](ctx, c.cache, "series_type", c.client.ApiSeriesTypeList, seriesTypeMapper, params)
+	return newPaginate[internal.PaginatedSeriesTypeList](ctx, c.cache, c.maxRetries, "series_type", c.client.ApiSeriesTypeList, seriesTypeMapper, params)
 }
 
 func seriesTypeMapper(in internal.SeriesType) (*SeriesTypeList, error) {
