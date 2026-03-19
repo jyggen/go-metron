@@ -4,6 +4,7 @@ import (
 	"context"
 	"embed"
 	"fmt"
+	"io"
 	"iter"
 	"net/http"
 	"net/url"
@@ -26,7 +27,9 @@ func (f roundTripFunc) RoundTrip(req *http.Request) (*http.Response, error) {
 
 type requestMock struct {
 	expectedURL         string
+	expectedMethod      string
 	responseBodyFixture string
+	validateBody        func(t *testing.T, body []byte)
 }
 
 type testCase[T any] struct {
@@ -41,8 +44,8 @@ func testList[T any](
 	testCases []testCase[T],
 ) {
 	c := newTestClient(t, []requestMock{
-		{fmt.Sprintf("https://metron.cloud/api/%s/?page=1", kind), fmt.Sprintf("fixtures/%s_list_1.json", kind)},
-		{fmt.Sprintf("https://metron.cloud/api/%s/?page=2", kind), fmt.Sprintf("fixtures/%s_list_2.json", kind)},
+		{expectedURL: fmt.Sprintf("https://metron.cloud/api/%s/?page=1", kind), responseBodyFixture: fmt.Sprintf("fixtures/%s_list_1.json", kind)},
+		{expectedURL: fmt.Sprintf("https://metron.cloud/api/%s/?page=2", kind), responseBodyFixture: fmt.Sprintf("fixtures/%s_list_2.json", kind)},
 	})
 
 	resources := make([]T, 0, 4)
@@ -72,12 +75,12 @@ func testListByID[T any](
 ) {
 	c := newTestClient(t, []requestMock{
 		{
-			fmt.Sprintf("https://metron.cloud/api/%s/%d/%s_list/?page=1", kind, id, listKind),
-			fmt.Sprintf("fixtures/%s_%d_%s_list_1.json", kind, id, listKind),
+			expectedURL:         fmt.Sprintf("https://metron.cloud/api/%s/%d/%s_list/?page=1", kind, id, listKind),
+			responseBodyFixture: fmt.Sprintf("fixtures/%s_%d_%s_list_1.json", kind, id, listKind),
 		},
 		{
-			fmt.Sprintf("https://metron.cloud/api/%s/%d/%s_list/?page=2", kind, id, listKind),
-			fmt.Sprintf("fixtures/%s_%d_%s_list_2.json", kind, id, listKind),
+			expectedURL:         fmt.Sprintf("https://metron.cloud/api/%s/%d/%s_list/?page=2", kind, id, listKind),
+			responseBodyFixture: fmt.Sprintf("fixtures/%s_%d_%s_list_2.json", kind, id, listKind),
 		},
 	})
 
@@ -110,8 +113,8 @@ func testByID[T any](
 
 			c := newTestClient(t, []requestMock{
 				{
-					fmt.Sprintf("https://metron.cloud/api/%s/%d/", kind, tc.id),
-					fmt.Sprintf("fixtures/%s_%d.json", kind, tc.id),
+					expectedURL:         fmt.Sprintf("https://metron.cloud/api/%s/%d/", kind, tc.id),
+					responseBodyFixture: fmt.Sprintf("fixtures/%s_%d.json", kind, tc.id),
 				},
 			})
 
@@ -131,10 +134,20 @@ func newTestClient(t *testing.T, mocks []requestMock) *metron.Client {
 
 			require.Equal(t, m.expectedURL, req.URL.String())
 
+			if m.expectedMethod != "" {
+				require.Equal(t, m.expectedMethod, req.Method)
+			}
+
 			username, password, _ := req.BasicAuth()
 
 			require.Equal(t, "username", username)
 			require.Equal(t, "password", password)
+
+			if m.validateBody != nil {
+				bodyBytes, err := io.ReadAll(req.Body)
+				require.NoError(t, err)
+				m.validateBody(t, bodyBytes)
+			}
 
 			f, err := fs.Open(m.responseBodyFixture)
 			require.NoError(t, err)

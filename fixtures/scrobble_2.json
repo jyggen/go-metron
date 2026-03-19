@@ -1,0 +1,20 @@
+{
+  "id": 42,
+  "created": false,
+  "issue": {
+    "id": 12345,
+    "number": "1",
+    "cover_date": "2023-06-15",
+    "store_date": "2023-06-13",
+    "series": {
+      "name": "Amazing Spider-Man",
+      "volume": 6,
+      "year_began": 2022
+    },
+    "modified": "2024-01-15T10:30:00.123456-05:00"
+  },
+  "is_read": true,
+  "date_read": "2024-03-01T12:00:00Z",
+  "rating": 4,
+  "modified": "2024-03-01T12:00:00.654321-05:00"
+}

@@ -51,8 +51,8 @@ func TestArcsCached(t *testing.T) {
 	var requestCount atomic.Int64
 
 	mocks := []requestMock{
-		{"https://metron.cloud/api/arc/?page=1", "fixtures/arc_list_1.json"},
-		{"https://metron.cloud/api/arc/?page=2", "fixtures/arc_list_2.json"},
+		{expectedURL: "https://metron.cloud/api/arc/?page=1", responseBodyFixture: "fixtures/arc_list_1.json"},
+		{expectedURL: "https://metron.cloud/api/arc/?page=2", responseBodyFixture: "fixtures/arc_list_2.json"},
 	}
 
 	c, err := metron.NewClient("username", "password",

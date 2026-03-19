@@ -201,7 +201,7 @@ func doCall(ctx context.Context, f func(ctx context.Context, fn ...internal.Requ
 		return nil, ttl, res.Body.Close()
 	}
 
-	if res.StatusCode != http.StatusOK {
+	if res.StatusCode != http.StatusOK && res.StatusCode != http.StatusCreated {
 		return nil, ttl, errors.Join(fmt.Errorf("unexpected status code: %d", res.StatusCode), res.Body.Close())
 	}
 
