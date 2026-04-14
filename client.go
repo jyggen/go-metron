@@ -24,8 +24,8 @@ import (
 )
 
 const (
-	baseURL   = "https://metron.cloud"
-	userAgent = "go-metron/0.1.5"
+	baseURL          = "https://metron.cloud"
+	defaultUserAgent = "go-metron/0.1.5"
 )
 
 // Reference identifies a related resource by ID and display name.
@@ -43,6 +43,7 @@ type Client struct {
 	maxRetries    uint
 	rateLimiter   *throttle.Throttle
 	storagePath   string
+	userAgent     string
 }
 
 // Option configures a Client.
@@ -59,6 +60,7 @@ func NewClient(username, password string, options ...Option) (*Client, error) {
 		enableCaching: false,
 		httpClient:    &http.Client{},
 		storagePath:   filepath.Join(storagePath, "go-metron"),
+		userAgent:     defaultUserAgent,
 	}
 
 	for _, option := range options {
@@ -90,7 +92,7 @@ func NewClient(username, password string, options ...Option) (*Client, error) {
 	c.httpClient = httpkit.NewFromClient(
 		c.httpClient,
 		httpkit.WithBasicAuth(username, password),
-		httpkit.WithUserAgent(userAgent),
+		httpkit.WithUserAgent(c.userAgent),
 		httpkit.WithMiddleware(newBackOffMiddleware()),
 		httpkit.WithMiddleware(rl.Middleware()),
 	)
@@ -187,6 +189,12 @@ func WithRetry(maxRetries uint) Option {
 func WithStoragePath(storagePath string) Option {
 	return func(c *Client) {
 		c.storagePath = storagePath
+	}
+}
+
+func WithUserAgent(userAgent string) Option {
+	return func(c *Client) {
+		c.userAgent = fmt.Sprintf("%s %s", userAgent, defaultUserAgent)
 	}
 }
 
