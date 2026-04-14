@@ -40,7 +40,7 @@ type ArcList struct {
 
 // ArcByID returns a story arc by its ID.
 func (c *Client) ArcByID(ctx context.Context, id int) (*Arc, error) {
-	return byID(ctx, c.cache, c.maxRetries, fmt.Sprintf("arc/%d", id), c.client.ApiArcRetrieve, arcMapper, id)
+	return byID(ctx, c, fmt.Sprintf("arc/%d", id), c.client.ApiArcRetrieve, arcMapper, id)
 }
 
 // Arcs returns an iterator over all story arcs.
@@ -51,7 +51,7 @@ func (c *Client) Arcs(ctx context.Context, filters ...Filter) iter.Seq2[*ArcList
 		f(params)
 	}
 
-	return paginate[internal.PaginatedArcListList](ctx, c.cache, c.maxRetries, "arc", c.client.ApiArcList, arcListMapper, params)
+	return paginate[internal.PaginatedArcListList](ctx, c, "arc", c.client.ApiArcList, arcListMapper, params)
 }
 
 func arcMapper(in internal.Arc) (*Arc, error) {

@@ -22,7 +22,7 @@ func (c *Client) Roles(ctx context.Context, filters ...Filter) iter.Seq2[*RoleLi
 		f(params)
 	}
 
-	return paginate[internal.PaginatedRoleList](ctx, c.cache, c.maxRetries, "role", c.client.ApiRoleList, roleListMapper, params)
+	return paginate[internal.PaginatedRoleList](ctx, c, "role", c.client.ApiRoleList, roleListMapper, params)
 }
 
 func roleListMapper(in internal.Role) (*RoleList, error) {

@@ -44,7 +44,7 @@ type SeriesList struct {
 
 // SeriesByID returns a series by its ID.
 func (c *Client) SeriesByID(ctx context.Context, id int) (*Series, error) {
-	return byID(ctx, c.cache, c.maxRetries, fmt.Sprintf("series/%d", id), c.client.ApiSeriesRetrieve, seriesMapper, id)
+	return byID(ctx, c, fmt.Sprintf("series/%d", id), c.client.ApiSeriesRetrieve, seriesMapper, id)
 }
 
 // Series returns an iterator over all series.
@@ -55,7 +55,7 @@ func (c *Client) Series(ctx context.Context, filters ...Filter) iter.Seq2[*Serie
 		f(params)
 	}
 
-	return paginate[internal.PaginatedSeriesListList](ctx, c.cache, c.maxRetries, "series", c.client.ApiSeriesList, seriesListMapper, params)
+	return paginate[internal.PaginatedSeriesListList](ctx, c, "series", c.client.ApiSeriesList, seriesListMapper, params)
 }
 
 // SeriesByPublisherID returns an iterator over all series for a publisher.
@@ -66,7 +66,7 @@ func (c *Client) SeriesByPublisherID(ctx context.Context, id int, filters ...Fil
 		f(params)
 	}
 
-	return idPaginate[internal.PaginatedSeriesListList](ctx, c.cache, c.maxRetries, "publisher/series", c.client.ApiPublisherSeriesListList, seriesListMapper, id, params)
+	return idPaginate[internal.PaginatedSeriesListList](ctx, c, "publisher/series", c.client.ApiPublisherSeriesListList, seriesListMapper, id, params)
 }
 
 func seriesMapper(in internal.SeriesRead) (*Series, error) {

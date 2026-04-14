@@ -190,20 +190,22 @@ func WithStoragePath(storagePath string) Option {
 	}
 }
 
-func byID[In, Out any](ctx context.Context, cache *filecache.FileCache, maxRetries uint, key string, f func(context.Context, int, ...internal.RequestEditorFn) (*http.Response, error), m func(In) (*Out, error), id int) (*Out, error) {
-	var body io.ReadCloser
-	var err error
+type reqFn func(ctx context.Context, fn ...internal.RequestEditorFn) (*http.Response, error)
 
-	req := func(ctx context.Context, fn ...internal.RequestEditorFn) (*http.Response, error) {
+func (c *Client) fetch(ctx context.Context, key string, req reqFn) (io.ReadCloser, error) {
+	if c.cache != nil {
+		return c.cache.Get(key, call(ctx, c.maxRetries, req))
+	}
+
+	body, _, err := call(ctx, c.maxRetries, req)(nil)
+
+	return body, err
+}
+
+func byID[In, Out any](ctx context.Context, c *Client, key string, f func(context.Context, int, ...internal.RequestEditorFn) (*http.Response, error), m func(In) (*Out, error), id int) (*Out, error) {
+	body, err := c.fetch(ctx, key, func(ctx context.Context, fn ...internal.RequestEditorFn) (*http.Response, error) {
 		return f(ctx, id, fn...)
-	}
-
-	if cache != nil {
-		body, err = cache.Get(key, call(ctx, maxRetries, req))
-	} else {
-		body, _, err = call(ctx, maxRetries, req)(nil)
-	}
-
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -298,31 +300,24 @@ func cacheKey(kind string, params any) string {
 	return kind + "/" + string(b)
 }
 
-func idPaginate[Response paginatedResponse[In], In, Out any, Params paginatable](ctx context.Context, cache *filecache.FileCache, maxRetries uint, kind string, f func(context.Context, int, Params, ...internal.RequestEditorFn) (*http.Response, error), m func(In) (*Out, error), id int, params Params) iter.Seq2[*Out, error] {
+func idPaginate[Response paginatedResponse[In], In, Out any, Params paginatable](ctx context.Context, c *Client, kind string, f func(context.Context, int, Params, ...internal.RequestEditorFn) (*http.Response, error), m func(In) (*Out, error), id int, params Params) iter.Seq2[*Out, error] {
 	wrapped := func(ctx context.Context, p Params, fn ...internal.RequestEditorFn) (*http.Response, error) {
 		return f(ctx, id, p, fn...)
 	}
 
-	return paginate[Response, In, Out](ctx, cache, maxRetries, fmt.Sprintf("%s/%d", kind, id), wrapped, m, params)
+	return paginate[Response, In, Out](ctx, c, fmt.Sprintf("%s/%d", kind, id), wrapped, m, params)
 }
 
-func paginate[Response paginatedResponse[In], In, Out any, Params paginatable](ctx context.Context, cache *filecache.FileCache, maxRetries uint, kind string, f func(context.Context, Params, ...internal.RequestEditorFn) (*http.Response, error), m func(In) (*Out, error), params Params) iter.Seq2[*Out, error] {
+func paginate[Response paginatedResponse[In], In, Out any, Params paginatable](ctx context.Context, c *Client, kind string, f func(context.Context, Params, ...internal.RequestEditorFn) (*http.Response, error), m func(In) (*Out, error), params Params) iter.Seq2[*Out, error] {
 	return func(yield func(*Out, error) bool) {
 		page := 1
 
 		for {
 			var res Response
 			params.SetPage(page)
-			req := func(ctx context.Context, fn ...internal.RequestEditorFn) (*http.Response, error) {
+			body, err := c.fetch(ctx, cacheKey(kind, params), func(ctx context.Context, fn ...internal.RequestEditorFn) (*http.Response, error) {
 				return f(ctx, params, fn...)
-			}
-			var body io.ReadCloser
-			var err error
-			if cache != nil {
-				body, err = cache.Get(cacheKey(kind, params), call(ctx, maxRetries, req))
-			} else {
-				body, _, err = call(ctx, maxRetries, req)(nil)
-			}
+			})
 			if err != nil {
 				yield(nil, err)
 				return

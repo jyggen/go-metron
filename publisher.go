@@ -33,7 +33,7 @@ type PublisherList struct {
 
 // PublisherByID returns a publisher by its ID.
 func (c *Client) PublisherByID(ctx context.Context, id int) (*Publisher, error) {
-	return byID(ctx, c.cache, c.maxRetries, fmt.Sprintf("publisher/%d", id), c.client.ApiPublisherRetrieve, publisherMapper, id)
+	return byID(ctx, c, fmt.Sprintf("publisher/%d", id), c.client.ApiPublisherRetrieve, publisherMapper, id)
 }
 
 // Publishers returns an iterator over all publishers.
@@ -44,7 +44,7 @@ func (c *Client) Publishers(ctx context.Context, filters ...Filter) iter.Seq2[*P
 		f(params)
 	}
 
-	return paginate[internal.PaginatedPublisherListList](ctx, c.cache, c.maxRetries, "publisher", c.client.ApiPublisherList, publisherListMapper, params)
+	return paginate[internal.PaginatedPublisherListList](ctx, c, "publisher", c.client.ApiPublisherList, publisherListMapper, params)
 }
 
 func publisherMapper(in internal.Publisher) (*Publisher, error) {
