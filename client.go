@@ -298,56 +298,12 @@ func cacheKey(kind string, params any) string {
 	return kind + "/" + string(b)
 }
 
-func cacheKeyWithID(kind string, id int, params any) string {
-	b, _ := json.Marshal(params)
-	return fmt.Sprintf("%s/%d/%s", kind, id, string(b))
-}
-
 func idPaginate[Response paginatedResponse[In], In, Out any, Params paginatable](ctx context.Context, cache *filecache.FileCache, maxRetries uint, kind string, f func(context.Context, int, Params, ...internal.RequestEditorFn) (*http.Response, error), m func(In) (*Out, error), id int, params Params) iter.Seq2[*Out, error] {
-	return func(yield func(*Out, error) bool) {
-		page := 1
-
-		for {
-			var res Response
-			params.SetPage(page)
-			req := func(ctx context.Context, fn ...internal.RequestEditorFn) (*http.Response, error) {
-				return f(ctx, id, params, fn...)
-			}
-			var body io.ReadCloser
-			var err error
-			if cache != nil {
-				body, err = cache.Get(cacheKeyWithID(kind, id, params), call(ctx, maxRetries, req))
-			} else {
-				body, _, err = call(ctx, maxRetries, req)(nil)
-			}
-			if err != nil {
-				yield(nil, err)
-				return
-			}
-
-			if err = json.NewDecoder(body).Decode(&res); err != nil {
-				yield(nil, errors.Join(err, body.Close()))
-				return
-			}
-
-			if err = body.Close(); err != nil {
-				yield(nil, err)
-				return
-			}
-
-			for _, v := range res.GetResults() {
-				if !yield(m(v)) {
-					return
-				}
-			}
-
-			if _, err = res.GetNext().Get(); err != nil {
-				break
-			}
-
-			page++
-		}
+	wrapped := func(ctx context.Context, p Params, fn ...internal.RequestEditorFn) (*http.Response, error) {
+		return f(ctx, id, p, fn...)
 	}
+
+	return paginate[Response, In, Out](ctx, cache, maxRetries, fmt.Sprintf("%s/%d", kind, id), wrapped, m, params)
 }
 
 func paginate[Response paginatedResponse[In], In, Out any, Params paginatable](ctx context.Context, cache *filecache.FileCache, maxRetries uint, kind string, f func(context.Context, Params, ...internal.RequestEditorFn) (*http.Response, error), m func(In) (*Out, error), params Params) iter.Seq2[*Out, error] {
