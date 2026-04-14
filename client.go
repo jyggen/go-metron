@@ -1,3 +1,4 @@
+// Package metron is a Go client library for the Metron comic book database API.
 package metron
 
 import (
@@ -22,11 +23,13 @@ const (
 	userAgent = "go-metron/0.1.5"
 )
 
+// Reference identifies a related resource by ID and display name.
 type Reference struct {
 	ID   int    `json:"id"`
 	Name string `json:"name"`
 }
 
+// Client is a Metron API client.
 type Client struct {
 	cache         *filecache.FileCache
 	client        internal.ClientInterface
@@ -37,8 +40,10 @@ type Client struct {
 	storagePath   string
 }
 
+// Option configures a Client.
 type Option func(*Client)
 
+// NewClient returns a Metron client authenticated with the given username and password.
 func NewClient(username, password string, options ...Option) (*Client, error) {
 	storagePath, err := os.UserCacheDir()
 	if err != nil {
@@ -152,24 +157,28 @@ func newBackOffMiddleware() httpkit.Middleware {
 	}
 }
 
+// WithCaching enables on-disk response caching.
 func WithCaching() Option {
 	return func(c *Client) {
 		c.enableCaching = true
 	}
 }
 
+// WithClient sets the underlying HTTP client.
 func WithClient(client *http.Client) Option {
 	return func(c *Client) {
 		c.httpClient = client
 	}
 }
 
+// WithRetry sets the maximum number of retries for rate-limited requests.
 func WithRetry(maxRetries uint) Option {
 	return func(c *Client) {
 		c.maxRetries = maxRetries
 	}
 }
 
+// WithStoragePath sets the directory used for cache and rate limiter state.
 func WithStoragePath(storagePath string) Option {
 	return func(c *Client) {
 		c.storagePath = storagePath

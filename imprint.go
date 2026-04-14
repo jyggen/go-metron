@@ -10,6 +10,7 @@ import (
 	"github.com/jyggen/go-metron/internal"
 )
 
+// Imprint is a publisher imprint.
 type Imprint struct {
 	ID                    int
 	Name                  string
@@ -23,6 +24,7 @@ type Imprint struct {
 	Modified              time.Time
 }
 
+// ImprintList is an imprint as it appears in list responses.
 type ImprintList struct {
 	ID       int
 	Name     string

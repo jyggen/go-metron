@@ -13,6 +13,7 @@ import (
 	"github.com/oapi-codegen/nullable"
 )
 
+// ScrobbleIssue is the issue summary returned in a scrobble response.
 type ScrobbleIssue struct {
 	ID        int
 	Number    string
@@ -26,6 +27,7 @@ type ScrobbleIssue struct {
 	Modified time.Time
 }
 
+// ScrobbleResult is the result of marking an issue as read.
 type ScrobbleResult struct {
 	ID       int
 	Issue    ScrobbleIssue

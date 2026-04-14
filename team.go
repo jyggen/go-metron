@@ -10,6 +10,7 @@ import (
 	"github.com/jyggen/go-metron/internal"
 )
 
+// Team is a team of characters.
 type Team struct {
 	ID                    int
 	Name                  string
@@ -23,6 +24,7 @@ type Team struct {
 	Modified              time.Time
 }
 
+// TeamList is a team as it appears in list responses.
 type TeamList struct {
 	ID       int
 	Name     string

@@ -25,6 +25,7 @@ func nullableToPtr[T any](n nullable.Nullable[T]) *T {
 	return nil
 }
 
+// Arc is a story arc.
 type Arc struct {
 	ID                    int
 	Name                  string
@@ -36,6 +37,7 @@ type Arc struct {
 	Modified              time.Time
 }
 
+// ArcList is a story arc as it appears in list responses.
 type ArcList struct {
 	ID       int
 	Name     string

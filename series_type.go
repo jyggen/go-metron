@@ -8,6 +8,7 @@ import (
 	"github.com/jyggen/go-metron/internal"
 )
 
+// SeriesTypeList is a series type as it appears in list responses.
 type SeriesTypeList struct {
 	ID   int
 	Name string

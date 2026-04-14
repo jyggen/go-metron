@@ -10,6 +10,7 @@ import (
 	"github.com/jyggen/go-metron/internal"
 )
 
+// Series is a comic book series.
 type Series struct {
 	ID                    int
 	Name                  string
@@ -31,6 +32,7 @@ type Series struct {
 	Modified              time.Time
 }
 
+// SeriesList is a series as it appears in list responses.
 type SeriesList struct {
 	ID         int
 	Name       string

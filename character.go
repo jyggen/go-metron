@@ -10,6 +10,7 @@ import (
 	"github.com/jyggen/go-metron/internal"
 )
 
+// Character is a comic book character.
 type Character struct {
 	ID                    int
 	Name                  string
@@ -25,6 +26,7 @@ type Character struct {
 	Modified              time.Time
 }
 
+// CharacterList is a character as it appears in list responses.
 type CharacterList struct {
 	ID       int
 	Name     string

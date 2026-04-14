@@ -8,6 +8,7 @@ import (
 	"github.com/jyggen/go-metron/internal"
 )
 
+// RoleList is a credit role as it appears in list responses.
 type RoleList struct {
 	ID   int
 	Name string

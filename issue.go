@@ -11,6 +11,7 @@ import (
 	"github.com/jyggen/go-metron/internal"
 )
 
+// Issue is a comic book issue.
 type Issue struct {
 	ID        int
 	Publisher Reference
@@ -66,6 +67,7 @@ type Issue struct {
 	Modified              time.Time
 }
 
+// IssueList is an issue as it appears in list responses.
 type IssueList struct {
 	ID     int
 	Series struct {

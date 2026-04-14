@@ -11,6 +11,7 @@ import (
 	"github.com/jyggen/go-metron/internal"
 )
 
+// Creator is a comic book creator.
 type Creator struct {
 	ID                    int
 	Name                  string
@@ -25,6 +26,7 @@ type Creator struct {
 	Modified              time.Time
 }
 
+// CreatorList is a creator as it appears in list responses.
 type CreatorList struct {
 	ID       int
 	Name     string

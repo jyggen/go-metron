@@ -10,6 +10,7 @@ import (
 	"github.com/jyggen/go-metron/internal"
 )
 
+// Publisher is a comic book publisher.
 type Publisher struct {
 	ID                    int
 	Name                  string
@@ -23,6 +24,7 @@ type Publisher struct {
 	Modified              time.Time
 }
 
+// PublisherList is a publisher as it appears in list responses.
 type PublisherList struct {
 	ID       int
 	Name     string

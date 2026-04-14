@@ -10,6 +10,7 @@ import (
 	"github.com/jyggen/go-metron/internal"
 )
 
+// Universe is a fictional universe.
 type Universe struct {
 	ID                    int
 	Publisher             Reference
@@ -22,6 +23,7 @@ type Universe struct {
 	Modified              time.Time
 }
 
+// UniverseList is a universe as it appears in list responses.
 type UniverseList struct {
 	ID       int
 	Name     string
