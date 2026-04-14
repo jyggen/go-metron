@@ -35,7 +35,7 @@ type CharacterList struct {
 
 // CharacterByID returns a character by its ID.
 func (c *Client) CharacterByID(ctx context.Context, id int) (*Character, error) {
-	return newByID(ctx, c.cache, c.maxRetries, fmt.Sprintf("character/%d", id), c.client.ApiCharacterRetrieve, characterMapper, id)
+	return byID(ctx, c.cache, c.maxRetries, fmt.Sprintf("character/%d", id), c.client.ApiCharacterRetrieve, characterMapper, id)
 }
 
 // Characters returns an iterator over all characters.
@@ -46,7 +46,7 @@ func (c *Client) Characters(ctx context.Context, filters ...Filter) iter.Seq2[*C
 		f(params)
 	}
 
-	return newPaginate[internal.PaginatedCharacterListList](ctx, c.cache, c.maxRetries, "character", c.client.ApiCharacterList, characterListMapper, params)
+	return paginate[internal.PaginatedCharacterListList](ctx, c.cache, c.maxRetries, "character", c.client.ApiCharacterList, characterListMapper, params)
 }
 
 func characterMapper(in internal.CharacterRead) (*Character, error) {

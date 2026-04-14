@@ -35,7 +35,7 @@ type CreatorList struct {
 
 // CreatorByID returns a creator by its ID.
 func (c *Client) CreatorByID(ctx context.Context, id int) (*Creator, error) {
-	return newByID(ctx, c.cache, c.maxRetries, fmt.Sprintf("creator/%d", id), c.client.ApiCreatorRetrieve, creatorMapper, id)
+	return byID(ctx, c.cache, c.maxRetries, fmt.Sprintf("creator/%d", id), c.client.ApiCreatorRetrieve, creatorMapper, id)
 }
 
 // Creators returns an iterator over all creators.
@@ -46,7 +46,7 @@ func (c *Client) Creators(ctx context.Context, filters ...Filter) iter.Seq2[*Cre
 		f(params)
 	}
 
-	return newPaginate[internal.PaginatedCreatorListList](ctx, c.cache, c.maxRetries, "creator", c.client.ApiCreatorList, creatorListMapper, params)
+	return paginate[internal.PaginatedCreatorListList](ctx, c.cache, c.maxRetries, "creator", c.client.ApiCreatorList, creatorListMapper, params)
 }
 
 func creatorMapper(in internal.Creator) (*Creator, error) {

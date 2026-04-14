@@ -65,7 +65,7 @@ func (c *Client) Scrobble(ctx context.Context, issueID int, opts ...ScrobbleOpti
 		opt(&req)
 	}
 
-	body, _, err := newCall(ctx, c.maxRetries, func(ctx context.Context, fn ...internal.RequestEditorFn) (*http.Response, error) {
+	body, _, err := call(ctx, c.maxRetries, func(ctx context.Context, fn ...internal.RequestEditorFn) (*http.Response, error) {
 		return c.client.ApiCollectionScrobbleCreate(ctx, req, fn...)
 	})(nil)
 	if err != nil {

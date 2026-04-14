@@ -33,7 +33,7 @@ type TeamList struct {
 
 // TeamByID returns a team by its ID.
 func (c *Client) TeamByID(ctx context.Context, id int) (*Team, error) {
-	return newByID(ctx, c.cache, c.maxRetries, fmt.Sprintf("team/%d", id), c.client.ApiTeamRetrieve, teamMapper, id)
+	return byID(ctx, c.cache, c.maxRetries, fmt.Sprintf("team/%d", id), c.client.ApiTeamRetrieve, teamMapper, id)
 }
 
 // Teams returns an iterator over all teams.
@@ -44,7 +44,7 @@ func (c *Client) Teams(ctx context.Context, filters ...Filter) iter.Seq2[*TeamLi
 		f(params)
 	}
 
-	return newPaginate[internal.PaginatedTeamListList](ctx, c.cache, c.maxRetries, "team", c.client.ApiTeamList, teamListMapper, params)
+	return paginate[internal.PaginatedTeamListList](ctx, c.cache, c.maxRetries, "team", c.client.ApiTeamList, teamListMapper, params)
 }
 
 func teamMapper(in internal.TeamRead) (*Team, error) {
