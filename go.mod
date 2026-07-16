@@ -6,7 +6,6 @@ require (
 	cloud.google.com/go v0.123.0
 	codeberg.org/jyggen/go-filecache v0.0.0-20260225085943-b0984373622d
 	codeberg.org/jyggen/go-httpkit v0.3.2
-	codeberg.org/jyggen/go-httpkit/middleware/throttle v0.2.0
 	github.com/oapi-codegen/nullable v1.1.0
 	github.com/oapi-codegen/runtime v1.2.0
 	github.com/stretchr/testify v1.11.1

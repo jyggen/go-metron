@@ -3,7 +3,6 @@ package metron
 
 import (
 	"context"
-	"crypto/sha1"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -18,7 +17,6 @@ import (
 
 	"codeberg.org/jyggen/go-filecache"
 	"codeberg.org/jyggen/go-httpkit"
-	"codeberg.org/jyggen/go-httpkit/middleware/throttle"
 	"github.com/jyggen/go-metron/internal"
 	"github.com/oapi-codegen/nullable"
 )
@@ -41,7 +39,6 @@ type Client struct {
 	enableCaching bool
 	httpClient    *http.Client
 	maxRetries    uint
-	rateLimiter   *throttle.Throttle
 	storagePath   string
 	userAgent     string
 }
@@ -78,23 +75,12 @@ func NewClient(username, password string, options ...Option) (*Client, error) {
 		}
 	}
 
-	rl, err := throttle.New(
-		filepath.Join(c.storagePath, fmt.Sprintf("throttle_%x.gob", sha1.Sum([]byte(username)))),
-		throttle.Limit{Count: 18, Window: time.Minute},
-		throttle.Limit{Count: 5000, Window: time.Hour * 24},
-	)
-	if err != nil {
-		return nil, err
-	}
-
-	c.rateLimiter = rl
-
 	c.httpClient = httpkit.NewFromClient(
 		c.httpClient,
 		httpkit.WithBasicAuth(username, password),
 		httpkit.WithUserAgent(c.userAgent),
 		httpkit.WithMiddleware(newBackOffMiddleware()),
-		httpkit.WithMiddleware(rl.Middleware()),
+		httpkit.WithMiddleware(newRateLimitMiddleware()),
 	)
 
 	internalClient, err := internal.NewClient(baseURL, internal.WithHTTPClient(c.httpClient))
@@ -107,9 +93,10 @@ func NewClient(username, password string, options ...Option) (*Client, error) {
 	return c, nil
 }
 
-// Close persists rate limit state to disk.
+// Close is a no-op kept for backward compatibility. Rate-limit state is now
+// tracked in memory from response headers rather than persisted to disk.
 func (c *Client) Close() error {
-	return c.rateLimiter.Close()
+	return nil
 }
 
 func newBackOffMiddleware() httpkit.Middleware {

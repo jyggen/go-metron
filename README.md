@@ -18,7 +18,7 @@
 
 ### Rate Limiting
 
-`go-metron` will at most make 30 requests per minute and 10,000 requests per day, adhering to [Metron's API guidelines](https://metron.cloud/pages/guidelines/api/).
+`go-metron` respects [Metron's API guidelines](https://metron.cloud/pages/guidelines/api/) by reacting to the `X-RateLimit-*` response headers Metron returns with every request.
 
 ## Example Usage
 

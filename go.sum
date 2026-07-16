@@ -4,8 +4,6 @@ codeberg.org/jyggen/go-filecache v0.0.0-20260225085943-b0984373622d h1:auD21HSlg
 codeberg.org/jyggen/go-filecache v0.0.0-20260225085943-b0984373622d/go.mod h1:eOe1fe7Lv5eSyQV5sJTumGcbxcaODBo9Ds8phFvhBgs=
 codeberg.org/jyggen/go-httpkit v0.3.2 h1:W9V/RpYLHdSqRIpxjs1grB7q4xWg6r9mRTtV+cXPkys=
 codeberg.org/jyggen/go-httpkit v0.3.2/go.mod h1:ruzqtHKWDULo+a0k1ZkE8/OwvxmySPbTPXCqxFNkCaE=
-codeberg.org/jyggen/go-httpkit/middleware/throttle v0.2.0 h1:0EI7/lhZWNzmPdRGeuINpc5jc7lwWoLBuUQvgTDKw8w=
-codeberg.org/jyggen/go-httpkit/middleware/throttle v0.2.0/go.mod h1:vAjydAaDbE/11xj2bpUdT21G4tDZij85GJ/e/FW1gC8=
 github.com/RaveNoX/go-jsoncommentstrip v1.0.0/go.mod h1:78ihd09MekBnJnxpICcwzCMzGrKSKYe4AqU6PDYYpjk=
 github.com/apapsch/go-jsonmerge/v2 v2.0.0 h1:axGnT1gRIfimI7gJifB699GoE/oq+F2MU7Dml6nw9rQ=
 github.com/apapsch/go-jsonmerge/v2 v2.0.0/go.mod h1:lvDnEdqiQrp0O42VQGgmlKpxL1AP2+08jFMw88y4klk=
