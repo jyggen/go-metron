@@ -200,8 +200,8 @@ func issueMapper(in internal.IssueRead) (*Issue, error) {
 	var imageURL *url.URL
 	var err error
 
-	if in.Image != nil {
-		imageURL, err = url.Parse(*in.Image)
+	if image := nullableToPtr(in.Image); image != nil {
+		imageURL, err = url.Parse(*image)
 		if err != nil {
 			return nil, err
 		}
@@ -411,6 +411,16 @@ func issueMapper(in internal.IssueRead) (*Issue, error) {
 			}
 			variantImageURL := *maybeVariantImageURL
 
+			var variantPrice *string
+
+			if p, priceErr := variant.Price.Get(); priceErr == nil {
+				s, asErr := p.AsVariantsIssuePrice0()
+				if asErr != nil {
+					return nil, fmt.Errorf("issue: variants price: %w", asErr)
+				}
+				variantPrice = &s
+			}
+
 			variants = append(variants, struct {
 				Name     *string
 				SKU      *string
@@ -421,10 +431,20 @@ func issueMapper(in internal.IssueRead) (*Issue, error) {
 				Name:     variant.Name,
 				SKU:      variant.Sku,
 				UPC:      variant.Upc,
-				Price:    nullableToPtr(variant.Price),
+				Price:    variantPrice,
 				ImageURL: variantImageURL,
 			})
 		}
+	}
+
+	var price *string
+
+	if p, priceErr := in.Price.Get(); priceErr == nil {
+		s, asErr := p.AsIssueReadPrice0()
+		if asErr != nil {
+			return nil, fmt.Errorf("issue: price: %w", asErr)
+		}
+		price = &s
 	}
 
 	return &Issue{
@@ -461,7 +481,7 @@ func issueMapper(in internal.IssueRead) (*Issue, error) {
 		CoverDate:            coverDate,
 		StoreDate:            maybeStoreDate,
 		FinalOrderCutoffDate: maybeFinalOrderCutoffDate,
-		Price:                nullableToPtr(in.Price),
+		Price:                price,
 		Rating: Reference{
 			ID:   *in.Rating.Id,
 			Name: in.Rating.Name,
@@ -512,8 +532,8 @@ func issueListMapper(in internal.IssueList) (*IssueList, error) {
 	var imageURL *url.URL
 	var err error
 
-	if in.Image != nil {
-		imageURL, err = url.Parse(*in.Image)
+	if image := nullableToPtr(in.Image); image != nil {
+		imageURL, err = url.Parse(*image)
 		if err != nil {
 			return nil, err
 		}

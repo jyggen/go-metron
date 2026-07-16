@@ -291,33 +291,66 @@ const (
 	CountryEnumZW CountryEnum = "ZW"
 )
 
-// Defines values for GradeEnum.
+// Defines values for CurrencyEnum.
 const (
-	GradeEnumN05 GradeEnum = 0.5
-	GradeEnumN1  GradeEnum = 1
-	GradeEnumN10 GradeEnum = 10
-	GradeEnumN15 GradeEnum = 1.5
-	GradeEnumN18 GradeEnum = 1.8
-	GradeEnumN2  GradeEnum = 2
-	GradeEnumN25 GradeEnum = 2.5
-	GradeEnumN3  GradeEnum = 3
-	GradeEnumN35 GradeEnum = 3.5
-	GradeEnumN4  GradeEnum = 4
-	GradeEnumN45 GradeEnum = 4.5
-	GradeEnumN5  GradeEnum = 5
-	GradeEnumN55 GradeEnum = 5.5
-	GradeEnumN6  GradeEnum = 6
-	GradeEnumN65 GradeEnum = 6.5
-	GradeEnumN7  GradeEnum = 7
-	GradeEnumN75 GradeEnum = 7.5
-	GradeEnumN8  GradeEnum = 8
-	GradeEnumN85 GradeEnum = 8.5
-	GradeEnumN9  GradeEnum = 9
-	GradeEnumN92 GradeEnum = 9.2
-	GradeEnumN94 GradeEnum = 9.4
-	GradeEnumN96 GradeEnum = 9.6
-	GradeEnumN98 GradeEnum = 9.8
-	GradeEnumN99 GradeEnum = 9.9
+	CurrencyEnumGBP CurrencyEnum = "GBP"
+	CurrencyEnumUSD CurrencyEnum = "USD"
+)
+
+// Defines values for DesiredGradeEnum.
+const (
+	DesiredGradeEnumN05 DesiredGradeEnum = 0.5
+	DesiredGradeEnumN1  DesiredGradeEnum = 1
+	DesiredGradeEnumN10 DesiredGradeEnum = 10
+	DesiredGradeEnumN15 DesiredGradeEnum = 1.5
+	DesiredGradeEnumN18 DesiredGradeEnum = 1.8
+	DesiredGradeEnumN2  DesiredGradeEnum = 2
+	DesiredGradeEnumN25 DesiredGradeEnum = 2.5
+	DesiredGradeEnumN3  DesiredGradeEnum = 3
+	DesiredGradeEnumN35 DesiredGradeEnum = 3.5
+	DesiredGradeEnumN4  DesiredGradeEnum = 4
+	DesiredGradeEnumN45 DesiredGradeEnum = 4.5
+	DesiredGradeEnumN5  DesiredGradeEnum = 5
+	DesiredGradeEnumN55 DesiredGradeEnum = 5.5
+	DesiredGradeEnumN6  DesiredGradeEnum = 6
+	DesiredGradeEnumN65 DesiredGradeEnum = 6.5
+	DesiredGradeEnumN7  DesiredGradeEnum = 7
+	DesiredGradeEnumN75 DesiredGradeEnum = 7.5
+	DesiredGradeEnumN8  DesiredGradeEnum = 8
+	DesiredGradeEnumN85 DesiredGradeEnum = 8.5
+	DesiredGradeEnumN9  DesiredGradeEnum = 9
+	DesiredGradeEnumN92 DesiredGradeEnum = 9.2
+	DesiredGradeEnumN94 DesiredGradeEnum = 9.4
+	DesiredGradeEnumN96 DesiredGradeEnum = 9.6
+	DesiredGradeEnumN98 DesiredGradeEnum = 9.8
+	DesiredGradeEnumN99 DesiredGradeEnum = 9.9
+)
+
+// Defines values for IssuePrice1Currency.
+const (
+	IssuePrice1CurrencyGBP IssuePrice1Currency = "GBP"
+	IssuePrice1CurrencyUSD IssuePrice1Currency = "USD"
+)
+
+// Defines values for IssueReadPrice1Currency.
+const (
+	IssueReadPrice1CurrencyGBP IssueReadPrice1Currency = "GBP"
+	IssueReadPrice1CurrencyUSD IssueReadPrice1Currency = "USD"
+)
+
+// Defines values for PatchedIssuePrice1Currency.
+const (
+	PatchedIssuePrice1CurrencyGBP PatchedIssuePrice1Currency = "GBP"
+	PatchedIssuePrice1CurrencyUSD PatchedIssuePrice1Currency = "USD"
+)
+
+// Defines values for PriorityEnum.
+const (
+	PriorityEnumN1 PriorityEnum = 1
+	PriorityEnumN2 PriorityEnum = 2
+	PriorityEnumN3 PriorityEnum = 3
+	PriorityEnumN4 PriorityEnum = 4
+	PriorityEnumN5 PriorityEnum = 5
 )
 
 // Defines values for RatingEnum.
@@ -327,6 +360,20 @@ const (
 	RatingEnumN3 RatingEnum = 3
 	RatingEnumN4 RatingEnum = 4
 	RatingEnumN5 RatingEnum = 5
+)
+
+// Defines values for StatusEnum.
+const (
+	StatusEnumN1 StatusEnum = 1
+	StatusEnumN2 StatusEnum = 2
+	StatusEnumN3 StatusEnum = 3
+	StatusEnumN4 StatusEnum = 4
+)
+
+// Defines values for VariantsIssuePrice1Currency.
+const (
+	GBP VariantsIssuePrice1Currency = "GBP"
+	USD VariantsIssuePrice1Currency = "USD"
 )
 
 // Defines values for ApiCollectionListParamsBookFormat.
@@ -384,6 +431,16 @@ const (
 	OTHER ApiReadingListListParamsAttributionSource = "OTHER"
 )
 
+// Defines values for ApiReadingListListParamsListType.
+const (
+	CHARACTERS ApiReadingListListParamsListType = "CHARACTERS"
+	CREATOR    ApiReadingListListParamsListType = "CREATOR"
+	EVENT      ApiReadingListListParamsListType = "EVENT"
+	MASTER     ApiReadingListListParamsListType = "MASTER"
+	STORY      ApiReadingListListParamsListType = "STORY"
+	TEAMS      ApiReadingListListParamsListType = "TEAMS"
+)
+
 // Defines values for ApiSchemaRetrieveParamsFormat.
 const (
 	Json ApiSchemaRetrieveParamsFormat = "json"
@@ -433,6 +490,7 @@ const (
 	Hi     ApiSchemaRetrieveParamsLang = "hi"
 	Hr     ApiSchemaRetrieveParamsLang = "hr"
 	Hsb    ApiSchemaRetrieveParamsLang = "hsb"
+	Ht     ApiSchemaRetrieveParamsLang = "ht"
 	Hu     ApiSchemaRetrieveParamsLang = "hu"
 	Hy     ApiSchemaRetrieveParamsLang = "hy"
 	Ia     ApiSchemaRetrieveParamsLang = "ia"
@@ -493,16 +551,25 @@ const (
 	ZhHant ApiSchemaRetrieveParamsLang = "zh-hant"
 )
 
+// AcquireWishListItem defines model for AcquireWishListItem.
+type AcquireWishListItem struct {
+	Notes                 *string                               `json:"notes,omitempty"`
+	PurchaseDate          nullable.Nullable[openapi_types.Date] `json:"purchase_date,omitempty"`
+	PurchasePrice         nullable.Nullable[string]             `json:"purchase_price,omitempty"`
+	PurchasePriceCurrency *CurrencyEnum                         `json:"purchase_price_currency,omitempty"`
+	PurchaseStore         *string                               `json:"purchase_store,omitempty"`
+}
+
 // Arc defines model for Arc.
 type Arc struct {
-	CvId        nullable.Nullable[int] `json:"cv_id,omitempty"`
-	Desc        *string                `json:"desc,omitempty"`
-	GcdId       nullable.Nullable[int] `json:"gcd_id,omitempty"`
-	Id          *int                   `json:"id,omitempty"`
-	Image       *string                `json:"image,omitempty"`
-	Modified    *time.Time             `json:"modified,omitempty"`
-	Name        string                 `json:"name"`
-	ResourceUrl *string                `json:"resource_url,omitempty"`
+	CvId        nullable.Nullable[int]    `json:"cv_id,omitempty"`
+	Desc        *string                   `json:"desc,omitempty"`
+	GcdId       nullable.Nullable[int]    `json:"gcd_id,omitempty"`
+	Id          *int                      `json:"id,omitempty"`
+	Image       nullable.Nullable[string] `json:"image,omitempty"`
+	Modified    *time.Time                `json:"modified,omitempty"`
+	Name        string                    `json:"name"`
+	ResourceUrl *string                   `json:"resource_url,omitempty"`
 }
 
 // ArcList defines model for ArcList.
@@ -543,6 +610,22 @@ type BasicPublisher struct {
 // BlankEnum defines model for BlankEnum.
 type BlankEnum = interface{}
 
+// Character defines model for Character.
+type Character struct {
+	Alias       *[]string                 `json:"alias,omitempty"`
+	Creators    *[]int                    `json:"creators,omitempty"`
+	CvId        nullable.Nullable[int]    `json:"cv_id,omitempty"`
+	Desc        *string                   `json:"desc,omitempty"`
+	GcdId       nullable.Nullable[int]    `json:"gcd_id,omitempty"`
+	Id          *int                      `json:"id,omitempty"`
+	Image       nullable.Nullable[string] `json:"image,omitempty"`
+	Modified    *time.Time                `json:"modified,omitempty"`
+	Name        string                    `json:"name"`
+	ResourceUrl *string                   `json:"resource_url,omitempty"`
+	Teams       *[]int                    `json:"teams,omitempty"`
+	Universes   *[]int                    `json:"universes,omitempty"`
+}
+
 // CharacterList defines model for CharacterList.
 type CharacterList struct {
 	Id       *int       `json:"id,omitempty"`
@@ -552,18 +635,18 @@ type CharacterList struct {
 
 // CharacterRead defines model for CharacterRead.
 type CharacterRead struct {
-	Alias       *[]string              `json:"alias,omitempty"`
-	Creators    *[]CreatorList         `json:"creators,omitempty"`
-	CvId        nullable.Nullable[int] `json:"cv_id,omitempty"`
-	Desc        *string                `json:"desc,omitempty"`
-	GcdId       nullable.Nullable[int] `json:"gcd_id,omitempty"`
-	Id          *int                   `json:"id,omitempty"`
-	Image       *string                `json:"image,omitempty"`
-	Modified    *time.Time             `json:"modified,omitempty"`
-	Name        string                 `json:"name"`
-	ResourceUrl *string                `json:"resource_url,omitempty"`
-	Teams       *[]TeamList            `json:"teams,omitempty"`
-	Universes   *[]UniverseList        `json:"universes,omitempty"`
+	Alias       *[]string                 `json:"alias,omitempty"`
+	Creators    *[]CreatorList            `json:"creators,omitempty"`
+	CvId        nullable.Nullable[int]    `json:"cv_id,omitempty"`
+	Desc        *string                   `json:"desc,omitempty"`
+	GcdId       nullable.Nullable[int]    `json:"gcd_id,omitempty"`
+	Id          *int                      `json:"id,omitempty"`
+	Image       nullable.Nullable[string] `json:"image,omitempty"`
+	Modified    *time.Time                `json:"modified,omitempty"`
+	Name        string                    `json:"name"`
+	ResourceUrl *string                   `json:"resource_url,omitempty"`
+	Teams       *[]TeamList               `json:"teams,omitempty"`
+	Universes   *[]UniverseList           `json:"universes,omitempty"`
 }
 
 // CollectionIssue Serializer for issues in collection (without image and cover_hash).
@@ -674,6 +757,35 @@ type CollectionList_Grade struct {
 // * `4` - 4
 // * `5` - 5
 type CollectionList_Rating struct {
+	union json.RawMessage
+}
+
+// CollectionRatingUpdate Update serializer for collection items - rating only.
+//
+// Read-tracking (is_read/date_read) is handled exclusively through the
+// scrobble action, so this serializer intentionally excludes those fields.
+type CollectionRatingUpdate struct {
+	Id       *int       `json:"id,omitempty"`
+	Modified *time.Time `json:"modified,omitempty"`
+
+	// Rating Star rating (1-5) for this issue
+	//
+	// * `1` - 1
+	// * `2` - 2
+	// * `3` - 3
+	// * `4` - 4
+	// * `5` - 5
+	Rating nullable.Nullable[CollectionRatingUpdate_Rating] `json:"rating,omitempty"`
+}
+
+// CollectionRatingUpdate_Rating Star rating (1-5) for this issue
+//
+// * `1` - 1
+// * `2` - 2
+// * `3` - 3
+// * `4` - 4
+// * `5` - 5
+type CollectionRatingUpdate_Rating struct {
 	union json.RawMessage
 }
 
@@ -1055,7 +1167,7 @@ type Creator struct {
 	Desc        *string                               `json:"desc,omitempty"`
 	GcdId       nullable.Nullable[int]                `json:"gcd_id,omitempty"`
 	Id          *int                                  `json:"id,omitempty"`
-	Image       *string                               `json:"image,omitempty"`
+	Image       nullable.Nullable[string]             `json:"image,omitempty"`
 	Modified    *time.Time                            `json:"modified,omitempty"`
 	Name        string                                `json:"name"`
 	ResourceUrl *string                               `json:"resource_url,omitempty"`
@@ -1068,6 +1180,15 @@ type CreatorList struct {
 	Name     string     `json:"name"`
 }
 
+// Credit defines model for Credit.
+type Credit struct {
+	Creator  int        `json:"creator"`
+	Id       *int       `json:"id,omitempty"`
+	Issue    int        `json:"issue"`
+	Modified *time.Time `json:"modified,omitempty"`
+	Role     []int      `json:"role"`
+}
+
 // CreditRead defines model for CreditRead.
 type CreditRead struct {
 	Creator *string `json:"creator,omitempty"`
@@ -1075,13 +1196,11 @@ type CreditRead struct {
 	Role    []Role  `json:"role"`
 }
 
-// Genre defines model for Genre.
-type Genre struct {
-	Id   *int   `json:"id,omitempty"`
-	Name string `json:"name"`
-}
+// CurrencyEnum * `USD` - USD
+// * `GBP` - GBP
+type CurrencyEnum string
 
-// GradeEnum * `10.0` - 10.0 (Gem Mint)
+// DesiredGradeEnum * `10.0` - 10.0 (Gem Mint)
 // * `9.9` - 9.9 (Mint)
 // * `9.8` - 9.8 (NM/M - Near Mint/Mint)
 // * `9.6` - 9.6 (NM+ - Near Mint+)
@@ -1106,7 +1225,27 @@ type Genre struct {
 // * `1.5` - 1.5 (FR/GD - Fair/Good)
 // * `1.0` - 1.0 (FR - Fair)
 // * `0.5` - 0.5 (PR - Poor)
-type GradeEnum float32
+type DesiredGradeEnum float32
+
+// Genre defines model for Genre.
+type Genre struct {
+	Id   *int   `json:"id,omitempty"`
+	Name string `json:"name"`
+}
+
+// Imprint defines model for Imprint.
+type Imprint struct {
+	CvId        nullable.Nullable[int]    `json:"cv_id,omitempty"`
+	Desc        *string                   `json:"desc,omitempty"`
+	Founded     nullable.Nullable[int]    `json:"founded,omitempty"`
+	GcdId       nullable.Nullable[int]    `json:"gcd_id,omitempty"`
+	Id          *int                      `json:"id,omitempty"`
+	Image       nullable.Nullable[string] `json:"image,omitempty"`
+	Modified    *time.Time                `json:"modified,omitempty"`
+	Name        string                    `json:"name"`
+	Publisher   int                       `json:"publisher"`
+	ResourceUrl *string                   `json:"resource_url,omitempty"`
+}
 
 // ImprintList defines model for ImprintList.
 type ImprintList struct {
@@ -1129,12 +1268,60 @@ type ImprintRead struct {
 	ResourceUrl *string                   `json:"resource_url,omitempty"`
 }
 
+// Issue defines model for Issue.
+type Issue struct {
+	AltNumber  *string                               `json:"alt_number,omitempty"`
+	Arcs       *[]int                                `json:"arcs,omitempty"`
+	Characters *[]int                                `json:"characters,omitempty"`
+	CoverDate  openapi_types.Date                    `json:"cover_date"`
+	CvId       nullable.Nullable[int]                `json:"cv_id,omitempty"`
+	Desc       *string                               `json:"desc,omitempty"`
+	FocDate    nullable.Nullable[openapi_types.Date] `json:"foc_date,omitempty"`
+	GcdId      nullable.Nullable[int]                `json:"gcd_id,omitempty"`
+	Id         *int                                  `json:"id,omitempty"`
+	Image      nullable.Nullable[string]             `json:"image,omitempty"`
+	Isbn       *string                               `json:"isbn,omitempty"`
+	Name       *[]string                             `json:"name,omitempty"`
+	Number     string                                `json:"number"`
+	Page       nullable.Nullable[int]                `json:"page,omitempty"`
+
+	// Price Cover price. For reads, returns the amount as a decimal string; see price_currency for the currency. For writes, pass a plain decimal string (defaults to USD) or {"amount": 3.99, "currency": "GBP"} for UK publishers. Supported currencies: USD, GBP.
+	Price       nullable.Nullable[Issue_Price]        `json:"price,omitempty"`
+	Rating      *int                                  `json:"rating,omitempty"`
+	Reprints    *[]int                                `json:"reprints,omitempty"`
+	ResourceUrl *string                               `json:"resource_url,omitempty"`
+	Series      int                                   `json:"series"`
+	Sku         *string                               `json:"sku,omitempty"`
+	StoreDate   nullable.Nullable[openapi_types.Date] `json:"store_date,omitempty"`
+	Teams       *[]int                                `json:"teams,omitempty"`
+	Title       *string                               `json:"title,omitempty"`
+	Universes   *[]int                                `json:"universes,omitempty"`
+	Upc         *string                               `json:"upc,omitempty"`
+}
+
+// IssuePrice0 Decimal string — defaults to USD (e.g. '3.99').
+type IssuePrice0 = string
+
+// IssuePrice1 Object format for non-USD prices (e.g. GBP for UK publishers).
+type IssuePrice1 struct {
+	Amount   float32             `json:"amount"`
+	Currency IssuePrice1Currency `json:"currency"`
+}
+
+// IssuePrice1Currency defines model for Issue.Price.1.Currency.
+type IssuePrice1Currency string
+
+// Issue_Price Cover price. For reads, returns the amount as a decimal string; see price_currency for the currency. For writes, pass a plain decimal string (defaults to USD) or {"amount": 3.99, "currency": "GBP"} for UK publishers. Supported currencies: USD, GBP.
+type Issue_Price struct {
+	union json.RawMessage
+}
+
 // IssueList defines model for IssueList.
 type IssueList struct {
 	CoverDate openapi_types.Date                    `json:"cover_date"`
 	CoverHash *string                               `json:"cover_hash,omitempty"`
 	Id        *int                                  `json:"id,omitempty"`
-	Image     *string                               `json:"image,omitempty"`
+	Image     nullable.Nullable[string]             `json:"image,omitempty"`
 	Issue     string                                `json:"issue"`
 	Modified  *time.Time                            `json:"modified,omitempty"`
 	Number    string                                `json:"number"`
@@ -1144,6 +1331,7 @@ type IssueList struct {
 
 // IssueListSeries defines model for IssueListSeries.
 type IssueListSeries struct {
+	Id        *int   `json:"id,omitempty"`
 	Name      string `json:"name"`
 	Volume    int    `json:"volume"`
 	YearBegan int    `json:"year_began"`
@@ -1162,7 +1350,7 @@ type IssueRead struct {
 	FocDate    nullable.Nullable[openapi_types.Date] `json:"foc_date,omitempty"`
 	GcdId      nullable.Nullable[int]                `json:"gcd_id,omitempty"`
 	Id         *int                                  `json:"id,omitempty"`
-	Image      *string                               `json:"image,omitempty"`
+	Image      nullable.Nullable[string]             `json:"image,omitempty"`
 	Imprint    *BasicImprint                         `json:"imprint,omitempty"`
 	Isbn       *string                               `json:"isbn,omitempty"`
 	Modified   *time.Time                            `json:"modified,omitempty"`
@@ -1170,8 +1358,8 @@ type IssueRead struct {
 	Number     string                                `json:"number"`
 	Page       nullable.Nullable[int]                `json:"page,omitempty"`
 
-	// Price Price amount as decimal string (e.g., '3.99'). Currency information available in price_currency field.
-	Price nullable.Nullable[string] `json:"price,omitempty"`
+	// Price Cover price. For reads, returns the amount as a decimal string; see price_currency for the currency. For writes, pass a plain decimal string (defaults to USD) or {"amount": 3.99, "currency": "GBP"} for UK publishers. Supported currencies: USD, GBP.
+	Price nullable.Nullable[IssueRead_Price] `json:"price,omitempty"`
 
 	// PriceCurrency Return the currency code for the price field.
 	PriceCurrency *string                               `json:"price_currency,omitempty"`
@@ -1187,6 +1375,23 @@ type IssueRead struct {
 	Universes     *[]UniverseList                       `json:"universes,omitempty"`
 	Upc           *string                               `json:"upc,omitempty"`
 	Variants      *[]VariantsIssue                      `json:"variants,omitempty"`
+}
+
+// IssueReadPrice0 Decimal string — defaults to USD (e.g. '3.99').
+type IssueReadPrice0 = string
+
+// IssueReadPrice1 Object format for non-USD prices (e.g. GBP for UK publishers).
+type IssueReadPrice1 struct {
+	Amount   float32                 `json:"amount"`
+	Currency IssueReadPrice1Currency `json:"currency"`
+}
+
+// IssueReadPrice1Currency defines model for IssueRead.Price.1.Currency.
+type IssueReadPrice1Currency string
+
+// IssueRead_Price Cover price. For reads, returns the amount as a decimal string; see price_currency for the currency. For writes, pass a plain decimal string (defaults to USD) or {"amount": 3.99, "currency": "GBP"} for UK publishers. Supported currencies: USD, GBP.
+type IssueRead_Price struct {
+	union json.RawMessage
 }
 
 // IssueSeries defines model for IssueSeries.
@@ -1372,6 +1577,54 @@ func (t PaginatedPublisherListList) GetResults() []PublisherList {
 	return t.Results
 }
 
+// PaginatedPullListIssueList defines model for PaginatedPullListIssueList.
+type PaginatedPullListIssueList struct {
+	Count    int                       `json:"count"`
+	Next     nullable.Nullable[string] `json:"next,omitempty"`
+	Previous nullable.Nullable[string] `json:"previous,omitempty"`
+	Results  []PullListIssue           `json:"results"`
+}
+
+func (t PaginatedPullListIssueList) GetNext() nullable.Nullable[string] {
+	return t.Next
+}
+
+func (t PaginatedPullListIssueList) GetResults() []PullListIssue {
+	return t.Results
+}
+
+// PaginatedPullListReadList defines model for PaginatedPullListReadList.
+type PaginatedPullListReadList struct {
+	Count    int                       `json:"count"`
+	Next     nullable.Nullable[string] `json:"next,omitempty"`
+	Previous nullable.Nullable[string] `json:"previous,omitempty"`
+	Results  []PullListRead            `json:"results"`
+}
+
+func (t PaginatedPullListReadList) GetNext() nullable.Nullable[string] {
+	return t.Next
+}
+
+func (t PaginatedPullListReadList) GetResults() []PullListRead {
+	return t.Results
+}
+
+// PaginatedPullListSeriesList defines model for PaginatedPullListSeriesList.
+type PaginatedPullListSeriesList struct {
+	Count    int                       `json:"count"`
+	Next     nullable.Nullable[string] `json:"next,omitempty"`
+	Previous nullable.Nullable[string] `json:"previous,omitempty"`
+	Results  []PullListSeries          `json:"results"`
+}
+
+func (t PaginatedPullListSeriesList) GetNext() nullable.Nullable[string] {
+	return t.Next
+}
+
+func (t PaginatedPullListSeriesList) GetResults() []PullListSeries {
+	return t.Results
+}
+
 // PaginatedReadingListItemList defines model for PaginatedReadingListItemList.
 type PaginatedReadingListItemList struct {
 	Count    int                       `json:"count"`
@@ -1483,6 +1736,508 @@ func (t PaginatedUniverseListList) GetNext() nullable.Nullable[string] {
 func (t PaginatedUniverseListList) GetResults() []UniverseList {
 	return t.Results
 }
+
+// PaginatedWishListItemListList defines model for PaginatedWishListItemListList.
+type PaginatedWishListItemListList struct {
+	Count    int                       `json:"count"`
+	Next     nullable.Nullable[string] `json:"next,omitempty"`
+	Previous nullable.Nullable[string] `json:"previous,omitempty"`
+	Results  []WishListItemList        `json:"results"`
+}
+
+func (t PaginatedWishListItemListList) GetNext() nullable.Nullable[string] {
+	return t.Next
+}
+
+func (t PaginatedWishListItemListList) GetResults() []WishListItemList {
+	return t.Results
+}
+
+// PaginatedWishListList defines model for PaginatedWishListList.
+type PaginatedWishListList struct {
+	Count    int                       `json:"count"`
+	Next     nullable.Nullable[string] `json:"next,omitempty"`
+	Previous nullable.Nullable[string] `json:"previous,omitempty"`
+	Results  []WishList                `json:"results"`
+}
+
+func (t PaginatedWishListList) GetNext() nullable.Nullable[string] {
+	return t.Next
+}
+
+func (t PaginatedWishListList) GetResults() []WishList {
+	return t.Results
+}
+
+// PatchedArc defines model for PatchedArc.
+type PatchedArc struct {
+	CvId        nullable.Nullable[int]    `json:"cv_id,omitempty"`
+	Desc        *string                   `json:"desc,omitempty"`
+	GcdId       nullable.Nullable[int]    `json:"gcd_id,omitempty"`
+	Id          *int                      `json:"id,omitempty"`
+	Image       nullable.Nullable[string] `json:"image,omitempty"`
+	Modified    *time.Time                `json:"modified,omitempty"`
+	Name        *string                   `json:"name,omitempty"`
+	ResourceUrl *string                   `json:"resource_url,omitempty"`
+}
+
+// PatchedCharacter defines model for PatchedCharacter.
+type PatchedCharacter struct {
+	Alias       *[]string                 `json:"alias,omitempty"`
+	Creators    *[]int                    `json:"creators,omitempty"`
+	CvId        nullable.Nullable[int]    `json:"cv_id,omitempty"`
+	Desc        *string                   `json:"desc,omitempty"`
+	GcdId       nullable.Nullable[int]    `json:"gcd_id,omitempty"`
+	Id          *int                      `json:"id,omitempty"`
+	Image       nullable.Nullable[string] `json:"image,omitempty"`
+	Modified    *time.Time                `json:"modified,omitempty"`
+	Name        *string                   `json:"name,omitempty"`
+	ResourceUrl *string                   `json:"resource_url,omitempty"`
+	Teams       *[]int                    `json:"teams,omitempty"`
+	Universes   *[]int                    `json:"universes,omitempty"`
+}
+
+// PatchedCollectionRatingUpdate Update serializer for collection items - rating only.
+//
+// Read-tracking (is_read/date_read) is handled exclusively through the
+// scrobble action, so this serializer intentionally excludes those fields.
+type PatchedCollectionRatingUpdate struct {
+	Id       *int       `json:"id,omitempty"`
+	Modified *time.Time `json:"modified,omitempty"`
+
+	// Rating Star rating (1-5) for this issue
+	//
+	// * `1` - 1
+	// * `2` - 2
+	// * `3` - 3
+	// * `4` - 4
+	// * `5` - 5
+	Rating nullable.Nullable[PatchedCollectionRatingUpdate_Rating] `json:"rating,omitempty"`
+}
+
+// PatchedCollectionRatingUpdate_Rating Star rating (1-5) for this issue
+//
+// * `1` - 1
+// * `2` - 2
+// * `3` - 3
+// * `4` - 4
+// * `5` - 5
+type PatchedCollectionRatingUpdate_Rating struct {
+	union json.RawMessage
+}
+
+// PatchedCreator defines model for PatchedCreator.
+type PatchedCreator struct {
+	Alias       *[]string                             `json:"alias,omitempty"`
+	Birth       nullable.Nullable[openapi_types.Date] `json:"birth,omitempty"`
+	CvId        nullable.Nullable[int]                `json:"cv_id,omitempty"`
+	Death       nullable.Nullable[openapi_types.Date] `json:"death,omitempty"`
+	Desc        *string                               `json:"desc,omitempty"`
+	GcdId       nullable.Nullable[int]                `json:"gcd_id,omitempty"`
+	Id          *int                                  `json:"id,omitempty"`
+	Image       nullable.Nullable[string]             `json:"image,omitempty"`
+	Modified    *time.Time                            `json:"modified,omitempty"`
+	Name        *string                               `json:"name,omitempty"`
+	ResourceUrl *string                               `json:"resource_url,omitempty"`
+}
+
+// PatchedImprint defines model for PatchedImprint.
+type PatchedImprint struct {
+	CvId        nullable.Nullable[int]    `json:"cv_id,omitempty"`
+	Desc        *string                   `json:"desc,omitempty"`
+	Founded     nullable.Nullable[int]    `json:"founded,omitempty"`
+	GcdId       nullable.Nullable[int]    `json:"gcd_id,omitempty"`
+	Id          *int                      `json:"id,omitempty"`
+	Image       nullable.Nullable[string] `json:"image,omitempty"`
+	Modified    *time.Time                `json:"modified,omitempty"`
+	Name        *string                   `json:"name,omitempty"`
+	Publisher   *int                      `json:"publisher,omitempty"`
+	ResourceUrl *string                   `json:"resource_url,omitempty"`
+}
+
+// PatchedIssue defines model for PatchedIssue.
+type PatchedIssue struct {
+	AltNumber  *string                               `json:"alt_number,omitempty"`
+	Arcs       *[]int                                `json:"arcs,omitempty"`
+	Characters *[]int                                `json:"characters,omitempty"`
+	CoverDate  *openapi_types.Date                   `json:"cover_date,omitempty"`
+	CvId       nullable.Nullable[int]                `json:"cv_id,omitempty"`
+	Desc       *string                               `json:"desc,omitempty"`
+	FocDate    nullable.Nullable[openapi_types.Date] `json:"foc_date,omitempty"`
+	GcdId      nullable.Nullable[int]                `json:"gcd_id,omitempty"`
+	Id         *int                                  `json:"id,omitempty"`
+	Image      nullable.Nullable[string]             `json:"image,omitempty"`
+	Isbn       *string                               `json:"isbn,omitempty"`
+	Name       *[]string                             `json:"name,omitempty"`
+	Number     *string                               `json:"number,omitempty"`
+	Page       nullable.Nullable[int]                `json:"page,omitempty"`
+
+	// Price Cover price. For reads, returns the amount as a decimal string; see price_currency for the currency. For writes, pass a plain decimal string (defaults to USD) or {"amount": 3.99, "currency": "GBP"} for UK publishers. Supported currencies: USD, GBP.
+	Price       nullable.Nullable[PatchedIssue_Price] `json:"price,omitempty"`
+	Rating      *int                                  `json:"rating,omitempty"`
+	Reprints    *[]int                                `json:"reprints,omitempty"`
+	ResourceUrl *string                               `json:"resource_url,omitempty"`
+	Series      *int                                  `json:"series,omitempty"`
+	Sku         *string                               `json:"sku,omitempty"`
+	StoreDate   nullable.Nullable[openapi_types.Date] `json:"store_date,omitempty"`
+	Teams       *[]int                                `json:"teams,omitempty"`
+	Title       *string                               `json:"title,omitempty"`
+	Universes   *[]int                                `json:"universes,omitempty"`
+	Upc         *string                               `json:"upc,omitempty"`
+}
+
+// PatchedIssuePrice0 Decimal string — defaults to USD (e.g. '3.99').
+type PatchedIssuePrice0 = string
+
+// PatchedIssuePrice1 Object format for non-USD prices (e.g. GBP for UK publishers).
+type PatchedIssuePrice1 struct {
+	Amount   float32                    `json:"amount"`
+	Currency PatchedIssuePrice1Currency `json:"currency"`
+}
+
+// PatchedIssuePrice1Currency defines model for PatchedIssue.Price.1.Currency.
+type PatchedIssuePrice1Currency string
+
+// PatchedIssue_Price Cover price. For reads, returns the amount as a decimal string; see price_currency for the currency. For writes, pass a plain decimal string (defaults to USD) or {"amount": 3.99, "currency": "GBP"} for UK publishers. Supported currencies: USD, GBP.
+type PatchedIssue_Price struct {
+	union json.RawMessage
+}
+
+// PatchedPublisher defines model for PatchedPublisher.
+type PatchedPublisher struct {
+	// Country * `AF` - Afghanistan
+	// * `AX` - Åland Islands
+	// * `AL` - Albania
+	// * `DZ` - Algeria
+	// * `AS` - American Samoa
+	// * `AD` - Andorra
+	// * `AO` - Angola
+	// * `AI` - Anguilla
+	// * `AQ` - Antarctica
+	// * `AG` - Antigua and Barbuda
+	// * `AR` - Argentina
+	// * `AM` - Armenia
+	// * `AW` - Aruba
+	// * `AU` - Australia
+	// * `AT` - Austria
+	// * `AZ` - Azerbaijan
+	// * `BS` - Bahamas (The)
+	// * `BH` - Bahrain
+	// * `BD` - Bangladesh
+	// * `BB` - Barbados
+	// * `BY` - Belarus
+	// * `BE` - Belgium
+	// * `BZ` - Belize
+	// * `BJ` - Benin
+	// * `BM` - Bermuda
+	// * `BT` - Bhutan
+	// * `BO` - Bolivia
+	// * `BQ` - Bonaire, Sint Eustatius and Saba
+	// * `BA` - Bosnia and Herzegovina
+	// * `BW` - Botswana
+	// * `BV` - Bouvet Island
+	// * `BR` - Brazil
+	// * `IO` - British Indian Ocean Territory
+	// * `BN` - Brunei
+	// * `BG` - Bulgaria
+	// * `BF` - Burkina Faso
+	// * `BI` - Burundi
+	// * `CV` - Cabo Verde
+	// * `KH` - Cambodia
+	// * `CM` - Cameroon
+	// * `CA` - Canada
+	// * `KY` - Cayman Islands
+	// * `CF` - Central African Republic
+	// * `TD` - Chad
+	// * `CL` - Chile
+	// * `CN` - China
+	// * `CX` - Christmas Island
+	// * `CC` - Cocos (Keeling) Islands
+	// * `CO` - Colombia
+	// * `KM` - Comoros
+	// * `CG` - Congo
+	// * `CK` - Cook Islands
+	// * `CR` - Costa Rica
+	// * `CI` - Côte d'Ivoire
+	// * `HR` - Croatia
+	// * `CU` - Cuba
+	// * `CW` - Curaçao
+	// * `CY` - Cyprus
+	// * `CZ` - Czechia
+	// * `CD` - Democratic Republic of the Congo
+	// * `DK` - Denmark
+	// * `DJ` - Djibouti
+	// * `DM` - Dominica
+	// * `DO` - Dominican Republic
+	// * `EC` - Ecuador
+	// * `EG` - Egypt
+	// * `SV` - El Salvador
+	// * `GQ` - Equatorial Guinea
+	// * `ER` - Eritrea
+	// * `EE` - Estonia
+	// * `SZ` - Eswatini
+	// * `ET` - Ethiopia
+	// * `FK` - Falkland Islands (Malvinas)
+	// * `FO` - Faroe Islands
+	// * `FJ` - Fiji
+	// * `FI` - Finland
+	// * `FR` - France
+	// * `GF` - French Guiana
+	// * `PF` - French Polynesia
+	// * `TF` - French Southern Territories
+	// * `GA` - Gabon
+	// * `GM` - Gambia
+	// * `GE` - Georgia
+	// * `DE` - Germany
+	// * `GH` - Ghana
+	// * `GI` - Gibraltar
+	// * `GR` - Greece
+	// * `GL` - Greenland
+	// * `GD` - Grenada
+	// * `GP` - Guadeloupe
+	// * `GU` - Guam
+	// * `GT` - Guatemala
+	// * `GG` - Guernsey
+	// * `GN` - Guinea
+	// * `GW` - Guinea-Bissau
+	// * `GY` - Guyana
+	// * `HT` - Haiti
+	// * `HM` - Heard Island and McDonald Islands
+	// * `HN` - Honduras
+	// * `HK` - Hong Kong
+	// * `HU` - Hungary
+	// * `IS` - Iceland
+	// * `IN` - India
+	// * `ID` - Indonesia
+	// * `IR` - Iran
+	// * `IQ` - Iraq
+	// * `IE` - Ireland
+	// * `IM` - Isle of Man
+	// * `IL` - Israel
+	// * `IT` - Italy
+	// * `JM` - Jamaica
+	// * `JP` - Japan
+	// * `JE` - Jersey
+	// * `JO` - Jordan
+	// * `KZ` - Kazakhstan
+	// * `KE` - Kenya
+	// * `KI` - Kiribati
+	// * `KW` - Kuwait
+	// * `KG` - Kyrgyzstan
+	// * `LA` - Laos
+	// * `LV` - Latvia
+	// * `LB` - Lebanon
+	// * `LS` - Lesotho
+	// * `LR` - Liberia
+	// * `LY` - Libya
+	// * `LI` - Liechtenstein
+	// * `LT` - Lithuania
+	// * `LU` - Luxembourg
+	// * `MO` - Macao
+	// * `MG` - Madagascar
+	// * `MW` - Malawi
+	// * `MY` - Malaysia
+	// * `MV` - Maldives
+	// * `ML` - Mali
+	// * `MT` - Malta
+	// * `MH` - Marshall Islands
+	// * `MQ` - Martinique
+	// * `MR` - Mauritania
+	// * `MU` - Mauritius
+	// * `YT` - Mayotte
+	// * `MX` - Mexico
+	// * `FM` - Micronesia
+	// * `MD` - Moldova
+	// * `MC` - Monaco
+	// * `MN` - Mongolia
+	// * `ME` - Montenegro
+	// * `MS` - Montserrat
+	// * `MA` - Morocco
+	// * `MZ` - Mozambique
+	// * `MM` - Myanmar
+	// * `NA` - Namibia
+	// * `NR` - Nauru
+	// * `NP` - Nepal
+	// * `NL` - Netherlands
+	// * `NC` - New Caledonia
+	// * `NZ` - New Zealand
+	// * `NI` - Nicaragua
+	// * `NE` - Niger
+	// * `NG` - Nigeria
+	// * `NU` - Niue
+	// * `NF` - Norfolk Island
+	// * `KP` - North Korea
+	// * `MK` - North Macedonia
+	// * `MP` - Northern Mariana Islands
+	// * `NO` - Norway
+	// * `OM` - Oman
+	// * `PK` - Pakistan
+	// * `PW` - Palau
+	// * `PS` - Palestine
+	// * `PA` - Panama
+	// * `PG` - Papua New Guinea
+	// * `PY` - Paraguay
+	// * `PE` - Peru
+	// * `PH` - Philippines
+	// * `PN` - Pitcairn
+	// * `PL` - Poland
+	// * `PT` - Portugal
+	// * `PR` - Puerto Rico
+	// * `QA` - Qatar
+	// * `RE` - Réunion
+	// * `RO` - Romania
+	// * `RU` - Russia
+	// * `RW` - Rwanda
+	// * `BL` - Saint Barthélemy
+	// * `SH` - Saint Helena
+	// * `KN` - Saint Kitts and Nevis
+	// * `LC` - Saint Lucia
+	// * `MF` - Saint Martin (French part)
+	// * `PM` - Saint Pierre and Miquelon
+	// * `VC` - Saint Vincent and the Grenadines
+	// * `WS` - Samoa
+	// * `SM` - San Marino
+	// * `ST` - Sao Tome and Principe
+	// * `SA` - Saudi Arabia
+	// * `SN` - Senegal
+	// * `RS` - Serbia
+	// * `SC` - Seychelles
+	// * `SL` - Sierra Leone
+	// * `SG` - Singapore
+	// * `SX` - Sint Maarten (Dutch part)
+	// * `SK` - Slovakia
+	// * `SI` - Slovenia
+	// * `SB` - Solomon Islands
+	// * `SO` - Somalia
+	// * `ZA` - South Africa
+	// * `GS` - South Georgia
+	// * `KR` - South Korea
+	// * `SS` - South Sudan
+	// * `ES` - Spain
+	// * `LK` - Sri Lanka
+	// * `SD` - Sudan
+	// * `SR` - Suriname
+	// * `SJ` - Svalbard and Jan Mayen
+	// * `SE` - Sweden
+	// * `CH` - Switzerland
+	// * `SY` - Syria
+	// * `TW` - Taiwan
+	// * `TJ` - Tajikistan
+	// * `TZ` - Tanzania
+	// * `TH` - Thailand
+	// * `TL` - Timor-Leste
+	// * `TG` - Togo
+	// * `TK` - Tokelau
+	// * `TO` - Tonga
+	// * `TT` - Trinidad and Tobago
+	// * `TN` - Tunisia
+	// * `TR` - Türkiye
+	// * `TM` - Turkmenistan
+	// * `TC` - Turks and Caicos Islands
+	// * `TV` - Tuvalu
+	// * `UG` - Uganda
+	// * `UA` - Ukraine
+	// * `AE` - United Arab Emirates
+	// * `GB` - United Kingdom
+	// * `UM` - United States Minor Outlying Islands
+	// * `US` - United States of America
+	// * `UY` - Uruguay
+	// * `UZ` - Uzbekistan
+	// * `VU` - Vanuatu
+	// * `VA` - Vatican City
+	// * `VE` - Venezuela
+	// * `VN` - Vietnam
+	// * `VG` - Virgin Islands (British)
+	// * `VI` - Virgin Islands (U.S.)
+	// * `WF` - Wallis and Futuna
+	// * `EH` - Western Sahara
+	// * `YE` - Yemen
+	// * `ZM` - Zambia
+	// * `ZW` - Zimbabwe
+	Country     *CountryEnum              `json:"country,omitempty"`
+	CvId        nullable.Nullable[int]    `json:"cv_id,omitempty"`
+	Desc        *string                   `json:"desc,omitempty"`
+	Founded     nullable.Nullable[int]    `json:"founded,omitempty"`
+	GcdId       nullable.Nullable[int]    `json:"gcd_id,omitempty"`
+	Id          *int                      `json:"id,omitempty"`
+	Image       nullable.Nullable[string] `json:"image,omitempty"`
+	Modified    *time.Time                `json:"modified,omitempty"`
+	Name        *string                   `json:"name,omitempty"`
+	ResourceUrl *string                   `json:"resource_url,omitempty"`
+}
+
+// PatchedSeries defines model for PatchedSeries.
+type PatchedSeries struct {
+	Associated  *[]int                 `json:"associated,omitempty"`
+	CvId        nullable.Nullable[int] `json:"cv_id,omitempty"`
+	Desc        *string                `json:"desc,omitempty"`
+	GcdId       nullable.Nullable[int] `json:"gcd_id,omitempty"`
+	Genres      *[]int                 `json:"genres,omitempty"`
+	Id          *int                   `json:"id,omitempty"`
+	Imprint     nullable.Nullable[int] `json:"imprint,omitempty"`
+	IssueCount  *int                   `json:"issue_count,omitempty"`
+	Modified    *time.Time             `json:"modified,omitempty"`
+	Name        *string                `json:"name,omitempty"`
+	Publisher   *int                   `json:"publisher,omitempty"`
+	ResourceUrl *string                `json:"resource_url,omitempty"`
+	SeriesType  *int                   `json:"series_type,omitempty"`
+	SortName    *string                `json:"sort_name,omitempty"`
+
+	// Status * `1` - Cancelled
+	// * `2` - Completed
+	// * `3` - Hiatus
+	// * `4` - Ongoing
+	Status    *StatusEnum            `json:"status,omitempty"`
+	Volume    *int                   `json:"volume,omitempty"`
+	YearBegan *int                   `json:"year_began,omitempty"`
+	YearEnd   nullable.Nullable[int] `json:"year_end,omitempty"`
+}
+
+// PatchedTeam defines model for PatchedTeam.
+type PatchedTeam struct {
+	Creators    *[]int                    `json:"creators,omitempty"`
+	CvId        nullable.Nullable[int]    `json:"cv_id,omitempty"`
+	Desc        *string                   `json:"desc,omitempty"`
+	GcdId       nullable.Nullable[int]    `json:"gcd_id,omitempty"`
+	Id          *int                      `json:"id,omitempty"`
+	Image       nullable.Nullable[string] `json:"image,omitempty"`
+	Modified    *time.Time                `json:"modified,omitempty"`
+	Name        *string                   `json:"name,omitempty"`
+	ResourceUrl *string                   `json:"resource_url,omitempty"`
+	Universes   *[]int                    `json:"universes,omitempty"`
+}
+
+// PatchedUniverse defines model for PatchedUniverse.
+type PatchedUniverse struct {
+	Desc        *string                   `json:"desc,omitempty"`
+	Designation *string                   `json:"designation,omitempty"`
+	GcdId       nullable.Nullable[int]    `json:"gcd_id,omitempty"`
+	Id          *int                      `json:"id,omitempty"`
+	Image       nullable.Nullable[string] `json:"image,omitempty"`
+	Modified    *time.Time                `json:"modified,omitempty"`
+	Name        *string                   `json:"name,omitempty"`
+	Publisher   *int                      `json:"publisher,omitempty"`
+	ResourceUrl *string                   `json:"resource_url,omitempty"`
+}
+
+// PatchedVariant defines model for PatchedVariant.
+type PatchedVariant struct {
+	Id            *int                      `json:"id,omitempty"`
+	Image         *string                   `json:"image,omitempty"`
+	Issue         *int                      `json:"issue,omitempty"`
+	Name          *string                   `json:"name,omitempty"`
+	Price         nullable.Nullable[string] `json:"price,omitempty"`
+	PriceCurrency nullable.Nullable[string] `json:"price_currency,omitempty"`
+	Sku           *string                   `json:"sku,omitempty"`
+	Upc           *string                   `json:"upc,omitempty"`
+}
+
+// PriorityEnum * `1` - 1
+// * `2` - 2
+// * `3` - 3
+// * `4` - 4
+// * `5` - 5
+type PriorityEnum int
 
 // Publisher defines model for Publisher.
 type Publisher struct {
@@ -1735,16 +2490,16 @@ type Publisher struct {
 	// * `YE` - Yemen
 	// * `ZM` - Zambia
 	// * `ZW` - Zimbabwe
-	Country     *CountryEnum           `json:"country,omitempty"`
-	CvId        nullable.Nullable[int] `json:"cv_id,omitempty"`
-	Desc        *string                `json:"desc,omitempty"`
-	Founded     nullable.Nullable[int] `json:"founded,omitempty"`
-	GcdId       nullable.Nullable[int] `json:"gcd_id,omitempty"`
-	Id          *int                   `json:"id,omitempty"`
-	Image       *string                `json:"image,omitempty"`
-	Modified    *time.Time             `json:"modified,omitempty"`
-	Name        string                 `json:"name"`
-	ResourceUrl *string                `json:"resource_url,omitempty"`
+	Country     *CountryEnum              `json:"country,omitempty"`
+	CvId        nullable.Nullable[int]    `json:"cv_id,omitempty"`
+	Desc        *string                   `json:"desc,omitempty"`
+	Founded     nullable.Nullable[int]    `json:"founded,omitempty"`
+	GcdId       nullable.Nullable[int]    `json:"gcd_id,omitempty"`
+	Id          *int                      `json:"id,omitempty"`
+	Image       nullable.Nullable[string] `json:"image,omitempty"`
+	Modified    *time.Time                `json:"modified,omitempty"`
+	Name        string                    `json:"name"`
+	ResourceUrl *string                   `json:"resource_url,omitempty"`
 }
 
 // PublisherList defines model for PublisherList.
@@ -1752,6 +2507,33 @@ type PublisherList struct {
 	Id       *int       `json:"id,omitempty"`
 	Modified *time.Time `json:"modified,omitempty"`
 	Name     string     `json:"name"`
+}
+
+// PullListIssue defines model for PullListIssue.
+type PullListIssue struct {
+	CoverDate openapi_types.Date                    `json:"cover_date"`
+	Id        *int                                  `json:"id,omitempty"`
+	Image     nullable.Nullable[string]             `json:"image,omitempty"`
+	Issue     string                                `json:"issue"`
+	Modified  *time.Time                            `json:"modified,omitempty"`
+	Number    string                                `json:"number"`
+	Series    *IssueListSeries                      `json:"series,omitempty"`
+	StoreDate nullable.Nullable[openapi_types.Date] `json:"store_date,omitempty"`
+}
+
+// PullListRead defines model for PullListRead.
+type PullListRead struct {
+	Id          *int       `json:"id,omitempty"`
+	Modified    *time.Time `json:"modified,omitempty"`
+	SeriesCount *int       `json:"series_count,omitempty"`
+	SeriesUrl   *string    `json:"series_url,omitempty"`
+}
+
+// PullListSeries defines model for PullListSeries.
+type PullListSeries struct {
+	AddedOn time.Time   `json:"added_on"`
+	Id      *int        `json:"id,omitempty"`
+	Series  *SeriesList `json:"series,omitempty"`
 }
 
 // Rating defines model for Rating.
@@ -1810,12 +2592,13 @@ type ReadingListList struct {
 	// * `HTLC` - How To Love Comics
 	// * `LOCG` - League of ComicGeeks
 	// * `OTHER` - Other
-	AttributionSource *ReadingListList_AttributionSource `json:"attribution_source,omitempty"`
-	AverageRating     *float64                           `json:"average_rating,omitempty"`
-	Id                *int                               `json:"id,omitempty"`
+	AttributionSource ReadingListList_AttributionSource `json:"attribution_source"`
+	AverageRating     *float64                          `json:"average_rating,omitempty"`
+	Id                *int                              `json:"id,omitempty"`
 
 	// IsPrivate Whether this list is private (only visible to the owner)
 	IsPrivate   *bool      `json:"is_private,omitempty"`
+	ListType    *string    `json:"list_type,omitempty"`
 	Modified    *time.Time `json:"modified,omitempty"`
 	Name        string     `json:"name"`
 	RatingCount *int       `json:"rating_count,omitempty"`
@@ -1842,22 +2625,35 @@ type ReadingListRead struct {
 	AttributionSource *string `json:"attribution_source,omitempty"`
 
 	// AttributionUrl URL of the specific page where this reading list was obtained
-	AttributionUrl *string  `json:"attribution_url,omitempty"`
-	AverageRating  *float64 `json:"average_rating,omitempty"`
-	Desc           *string  `json:"desc,omitempty"`
-	Id             *int     `json:"id,omitempty"`
+	AttributionUrl *ReadingListRead_AttributionUrl `json:"attribution_url,omitempty"`
+	AverageRating  *float64                        `json:"average_rating,omitempty"`
+	Desc           *string                         `json:"desc,omitempty"`
+	Id             *int                            `json:"id,omitempty"`
+	Image          nullable.Nullable[string]       `json:"image,omitempty"`
 
 	// IsPrivate Whether this list is private (only visible to the owner)
 	IsPrivate *bool `json:"is_private,omitempty"`
 
 	// ItemsUrl Get the URL to the paginated items endpoint.
 	ItemsUrl    *string    `json:"items_url,omitempty"`
+	ListType    *string    `json:"list_type,omitempty"`
 	Modified    *time.Time `json:"modified,omitempty"`
 	Name        string     `json:"name"`
 	RatingCount *int       `json:"rating_count,omitempty"`
 	ResourceUrl *string    `json:"resource_url,omitempty"`
 	Slug        string     `json:"slug"`
 	User        *User      `json:"user,omitempty"`
+}
+
+// ReadingListReadAttributionUrl0 defines model for .
+type ReadingListReadAttributionUrl0 = string
+
+// ReadingListReadAttributionUrl1 defines model for .
+type ReadingListReadAttributionUrl1 = string
+
+// ReadingListRead_AttributionUrl URL of the specific page where this reading list was obtained
+type ReadingListRead_AttributionUrl struct {
+	union json.RawMessage
 }
 
 // Reprint defines model for Reprint.
@@ -1913,14 +2709,42 @@ type ScrobbleResponse_Rating struct {
 	union json.RawMessage
 }
 
+// Series defines model for Series.
+type Series struct {
+	Associated  *[]int                 `json:"associated,omitempty"`
+	CvId        nullable.Nullable[int] `json:"cv_id,omitempty"`
+	Desc        *string                `json:"desc,omitempty"`
+	GcdId       nullable.Nullable[int] `json:"gcd_id,omitempty"`
+	Genres      *[]int                 `json:"genres,omitempty"`
+	Id          *int                   `json:"id,omitempty"`
+	Imprint     nullable.Nullable[int] `json:"imprint,omitempty"`
+	IssueCount  *int                   `json:"issue_count,omitempty"`
+	Modified    *time.Time             `json:"modified,omitempty"`
+	Name        string                 `json:"name"`
+	Publisher   int                    `json:"publisher"`
+	ResourceUrl *string                `json:"resource_url,omitempty"`
+	SeriesType  int                    `json:"series_type"`
+	SortName    string                 `json:"sort_name"`
+
+	// Status * `1` - Cancelled
+	// * `2` - Completed
+	// * `3` - Hiatus
+	// * `4` - Ongoing
+	Status    StatusEnum             `json:"status"`
+	Volume    int                    `json:"volume"`
+	YearBegan int                    `json:"year_began"`
+	YearEnd   nullable.Nullable[int] `json:"year_end,omitempty"`
+}
+
 // SeriesList defines model for SeriesList.
 type SeriesList struct {
-	Id         *int       `json:"id,omitempty"`
-	IssueCount *int       `json:"issue_count,omitempty"`
-	Modified   *time.Time `json:"modified,omitempty"`
-	Series     string     `json:"series"`
-	Volume     int        `json:"volume"`
-	YearBegan  int        `json:"year_began"`
+	Id         *int                   `json:"id,omitempty"`
+	IssueCount *int                   `json:"issue_count,omitempty"`
+	Modified   *time.Time             `json:"modified,omitempty"`
+	Series     string                 `json:"series"`
+	Volume     int                    `json:"volume"`
+	YearBegan  int                    `json:"year_began"`
+	YearEnd    nullable.Nullable[int] `json:"year_end,omitempty"`
 }
 
 // SeriesRead defines model for SeriesRead.
@@ -1951,6 +2775,26 @@ type SeriesType struct {
 	Name string `json:"name"`
 }
 
+// StatusEnum * `1` - Cancelled
+// * `2` - Completed
+// * `3` - Hiatus
+// * `4` - Ongoing
+type StatusEnum int
+
+// Team defines model for Team.
+type Team struct {
+	Creators    *[]int                    `json:"creators,omitempty"`
+	CvId        nullable.Nullable[int]    `json:"cv_id,omitempty"`
+	Desc        *string                   `json:"desc,omitempty"`
+	GcdId       nullable.Nullable[int]    `json:"gcd_id,omitempty"`
+	Id          *int                      `json:"id,omitempty"`
+	Image       nullable.Nullable[string] `json:"image,omitempty"`
+	Modified    *time.Time                `json:"modified,omitempty"`
+	Name        string                    `json:"name"`
+	ResourceUrl *string                   `json:"resource_url,omitempty"`
+	Universes   *[]int                    `json:"universes,omitempty"`
+}
+
 // TeamList defines model for TeamList.
 type TeamList struct {
 	Id       *int       `json:"id,omitempty"`
@@ -1960,16 +2804,29 @@ type TeamList struct {
 
 // TeamRead defines model for TeamRead.
 type TeamRead struct {
-	Creators    *[]CreatorList         `json:"creators,omitempty"`
-	CvId        nullable.Nullable[int] `json:"cv_id,omitempty"`
-	Desc        *string                `json:"desc,omitempty"`
-	GcdId       nullable.Nullable[int] `json:"gcd_id,omitempty"`
-	Id          *int                   `json:"id,omitempty"`
-	Image       *string                `json:"image,omitempty"`
-	Modified    *time.Time             `json:"modified,omitempty"`
-	Name        string                 `json:"name"`
-	ResourceUrl *string                `json:"resource_url,omitempty"`
-	Universes   *[]UniverseList        `json:"universes,omitempty"`
+	Creators    *[]CreatorList            `json:"creators,omitempty"`
+	CvId        nullable.Nullable[int]    `json:"cv_id,omitempty"`
+	Desc        *string                   `json:"desc,omitempty"`
+	GcdId       nullable.Nullable[int]    `json:"gcd_id,omitempty"`
+	Id          *int                      `json:"id,omitempty"`
+	Image       nullable.Nullable[string] `json:"image,omitempty"`
+	Modified    *time.Time                `json:"modified,omitempty"`
+	Name        string                    `json:"name"`
+	ResourceUrl *string                   `json:"resource_url,omitempty"`
+	Universes   *[]UniverseList           `json:"universes,omitempty"`
+}
+
+// Universe defines model for Universe.
+type Universe struct {
+	Desc        *string                   `json:"desc,omitempty"`
+	Designation string                    `json:"designation"`
+	GcdId       nullable.Nullable[int]    `json:"gcd_id,omitempty"`
+	Id          *int                      `json:"id,omitempty"`
+	Image       nullable.Nullable[string] `json:"image,omitempty"`
+	Modified    *time.Time                `json:"modified,omitempty"`
+	Name        string                    `json:"name"`
+	Publisher   int                       `json:"publisher"`
+	ResourceUrl *string                   `json:"resource_url,omitempty"`
 }
 
 // UniverseList defines model for UniverseList.
@@ -1981,15 +2838,15 @@ type UniverseList struct {
 
 // UniverseRead defines model for UniverseRead.
 type UniverseRead struct {
-	Desc        *string                `json:"desc,omitempty"`
-	Designation string                 `json:"designation"`
-	GcdId       nullable.Nullable[int] `json:"gcd_id,omitempty"`
-	Id          *int                   `json:"id,omitempty"`
-	Image       *string                `json:"image,omitempty"`
-	Modified    *time.Time             `json:"modified,omitempty"`
-	Name        string                 `json:"name"`
-	Publisher   *BasicPublisher        `json:"publisher,omitempty"`
-	ResourceUrl *string                `json:"resource_url,omitempty"`
+	Desc        *string                   `json:"desc,omitempty"`
+	Designation string                    `json:"designation"`
+	GcdId       nullable.Nullable[int]    `json:"gcd_id,omitempty"`
+	Id          *int                      `json:"id,omitempty"`
+	Image       nullable.Nullable[string] `json:"image,omitempty"`
+	Modified    *time.Time                `json:"modified,omitempty"`
+	Name        string                    `json:"name"`
+	Publisher   *BasicPublisher           `json:"publisher,omitempty"`
+	ResourceUrl *string                   `json:"resource_url,omitempty"`
 }
 
 // User defines model for User.
@@ -2000,15 +2857,96 @@ type User struct {
 	Username string `json:"username"`
 }
 
+// Variant defines model for Variant.
+type Variant struct {
+	Id            *int                      `json:"id,omitempty"`
+	Image         string                    `json:"image"`
+	Issue         int                       `json:"issue"`
+	Name          *string                   `json:"name,omitempty"`
+	Price         nullable.Nullable[string] `json:"price,omitempty"`
+	PriceCurrency nullable.Nullable[string] `json:"price_currency,omitempty"`
+	Sku           *string                   `json:"sku,omitempty"`
+	Upc           *string                   `json:"upc,omitempty"`
+}
+
 // VariantsIssue defines model for VariantsIssue.
 type VariantsIssue struct {
 	Image string  `json:"image"`
 	Name  *string `json:"name,omitempty"`
 
-	// Price Price amount as decimal string (e.g., '3.99'). Currency information available in price_currency field.
-	Price nullable.Nullable[string] `json:"price,omitempty"`
-	Sku   *string                   `json:"sku,omitempty"`
-	Upc   *string                   `json:"upc,omitempty"`
+	// Price Cover price. For reads, returns the amount as a decimal string; see price_currency for the currency. For writes, pass a plain decimal string (defaults to USD) or {"amount": 3.99, "currency": "GBP"} for UK publishers. Supported currencies: USD, GBP.
+	Price nullable.Nullable[VariantsIssue_Price] `json:"price,omitempty"`
+	Sku   *string                                `json:"sku,omitempty"`
+	Upc   *string                                `json:"upc,omitempty"`
+}
+
+// VariantsIssuePrice0 Decimal string — defaults to USD (e.g. '3.99').
+type VariantsIssuePrice0 = string
+
+// VariantsIssuePrice1 Object format for non-USD prices (e.g. GBP for UK publishers).
+type VariantsIssuePrice1 struct {
+	Amount   float32                     `json:"amount"`
+	Currency VariantsIssuePrice1Currency `json:"currency"`
+}
+
+// VariantsIssuePrice1Currency defines model for VariantsIssue.Price.1.Currency.
+type VariantsIssuePrice1Currency string
+
+// VariantsIssue_Price Cover price. For reads, returns the amount as a decimal string; see price_currency for the currency. For writes, pass a plain decimal string (defaults to USD) or {"amount": 3.99, "currency": "GBP"} for UK publishers. Supported currencies: USD, GBP.
+type VariantsIssue_Price struct {
+	union json.RawMessage
+}
+
+// WishList defines model for WishList.
+type WishList struct {
+	Id        *int       `json:"id,omitempty"`
+	ItemCount *int       `json:"item_count,omitempty"`
+	ItemsUrl  *string    `json:"items_url,omitempty"`
+	Modified  *time.Time `json:"modified,omitempty"`
+}
+
+// WishListAddItem defines model for WishListAddItem.
+type WishListAddItem struct {
+	DesiredGrade     nullable.Nullable[string] `json:"desired_grade,omitempty"`
+	IssueId          int                       `json:"issue_id"`
+	MaxPrice         nullable.Nullable[string] `json:"max_price,omitempty"`
+	MaxPriceCurrency *CurrencyEnum             `json:"max_price_currency,omitempty"`
+	Notes            *string                   `json:"notes,omitempty"`
+	Priority         *int                      `json:"priority,omitempty"`
+}
+
+// WishListItemList defines model for WishListItemList.
+type WishListItemList struct {
+	DesiredGrade nullable.Nullable[WishListItemList_DesiredGrade] `json:"desired_grade,omitempty"`
+	Id           *int                                             `json:"id,omitempty"`
+	Issue        *CollectionIssue                                 `json:"issue,omitempty"`
+	Modified     *time.Time                                       `json:"modified,omitempty"`
+	Priority     *PriorityEnum                                    `json:"priority,omitempty"`
+	Status       *string                                          `json:"status,omitempty"`
+}
+
+// WishListItemList_DesiredGrade defines model for WishListItemList.DesiredGrade.
+type WishListItemList_DesiredGrade struct {
+	union json.RawMessage
+}
+
+// WishListItemRead defines model for WishListItemRead.
+type WishListItemRead struct {
+	AddedOn          time.Time                                        `json:"added_on"`
+	DesiredGrade     nullable.Nullable[WishListItemRead_DesiredGrade] `json:"desired_grade,omitempty"`
+	Id               *int                                             `json:"id,omitempty"`
+	Issue            *CollectionIssue                                 `json:"issue,omitempty"`
+	MaxPrice         nullable.Nullable[string]                        `json:"max_price,omitempty"`
+	MaxPriceCurrency nullable.Nullable[string]                        `json:"max_price_currency,omitempty"`
+	Modified         *time.Time                                       `json:"modified,omitempty"`
+	Notes            *string                                          `json:"notes,omitempty"`
+	Priority         *PriorityEnum                                    `json:"priority,omitempty"`
+	Status           *string                                          `json:"status,omitempty"`
+}
+
+// WishListItemRead_DesiredGrade defines model for WishListItemRead.DesiredGrade.
+type WishListItemRead_DesiredGrade struct {
+	union json.RawMessage
 }
 
 // ApiArcListParams defines parameters for ApiArcList.
@@ -2356,6 +3294,9 @@ type ApiIssueListParams struct {
 	// AltNumber Alternate Number
 	AltNumber *string `form:"alt_number,omitempty" json:"alt_number,omitempty"`
 
+	// CharacterId Character Metron ID
+	CharacterId *int `form:"character_id,omitempty" json:"character_id,omitempty"`
+
 	// CoverHash Cover Hash
 	CoverHash *string `form:"cover_hash,omitempty" json:"cover_hash,omitempty"`
 
@@ -2364,6 +3305,9 @@ type ApiIssueListParams struct {
 
 	// CoverYear Cover Year
 	CoverYear *float32 `form:"cover_year,omitempty" json:"cover_year,omitempty"`
+
+	// CreatorId Creator Metron ID
+	CreatorId *int `form:"creator_id,omitempty" json:"creator_id,omitempty"`
 
 	// CvId Comic Vine ID
 	CvId               *int                `form:"cv_id,omitempty" json:"cv_id,omitempty"`
@@ -2400,6 +3344,9 @@ type ApiIssueListParams struct {
 	// Rating Rating
 	Rating *string `form:"rating,omitempty" json:"rating,omitempty"`
 
+	// RoleId Multiple values may be separated by commas.
+	RoleId *[]int `form:"role_id,omitempty" json:"role_id,omitempty"`
+
 	// SeriesId Series Metron ID
 	SeriesId *int `form:"series_id,omitempty" json:"series_id,omitempty"`
 
@@ -2418,12 +3365,22 @@ type ApiIssueListParams struct {
 	StoreDateRangeAfter  *openapi_types.Date `form:"store_date_range_after,omitempty" json:"store_date_range_after,omitempty"`
 	StoreDateRangeBefore *openapi_types.Date `form:"store_date_range_before,omitempty" json:"store_date_range_before,omitempty"`
 
+	// TeamId Team Metron ID
+	TeamId *int `form:"team_id,omitempty" json:"team_id,omitempty"`
+
+	// UniverseId Universe Metron ID
+	UniverseId *int `form:"universe_id,omitempty" json:"universe_id,omitempty"`
+
 	// Upc UPC Code
 	Upc *string `form:"upc,omitempty" json:"upc,omitempty"`
 }
 
 func (t *ApiIssueListParams) SetAltNumber(v string) {
 	t.AltNumber = &v
+}
+
+func (t *ApiIssueListParams) SetCharacterId(v int) {
+	t.CharacterId = &v
 }
 
 func (t *ApiIssueListParams) SetCoverHash(v string) {
@@ -2436,6 +3393,10 @@ func (t *ApiIssueListParams) SetCoverMonth(v float32) {
 
 func (t *ApiIssueListParams) SetCoverYear(v float32) {
 	t.CoverYear = &v
+}
+
+func (t *ApiIssueListParams) SetCreatorId(v int) {
+	t.CreatorId = &v
 }
 
 func (t *ApiIssueListParams) SetCvId(v int) {
@@ -2498,6 +3459,10 @@ func (t *ApiIssueListParams) SetRating(v string) {
 	t.Rating = &v
 }
 
+func (t *ApiIssueListParams) SetRoleId(v []int) {
+	t.RoleId = &v
+}
+
 func (t *ApiIssueListParams) SetSeriesId(v int) {
 	t.SeriesId = &v
 }
@@ -2528,6 +3493,14 @@ func (t *ApiIssueListParams) SetStoreDateRangeAfter(v openapi_types.Date) {
 
 func (t *ApiIssueListParams) SetStoreDateRangeBefore(v openapi_types.Date) {
 	t.StoreDateRangeBefore = &v
+}
+
+func (t *ApiIssueListParams) SetTeamId(v int) {
+	t.TeamId = &v
+}
+
+func (t *ApiIssueListParams) SetUniverseId(v int) {
+	t.UniverseId = &v
 }
 
 func (t *ApiIssueListParams) SetUpc(v string) {
@@ -2580,6 +3553,59 @@ func (t *ApiPublisherSeriesListListParams) SetPage(v int) {
 	t.Page = &v
 }
 
+// ApiPullListListParams defines parameters for ApiPullListList.
+type ApiPullListListParams struct {
+	// Page A page number within the paginated result set.
+	Page *int `form:"page,omitempty" json:"page,omitempty"`
+}
+
+func (t *ApiPullListListParams) SetPage(v int) {
+	t.Page = &v
+}
+
+// ApiPullListIssuesListParams defines parameters for ApiPullListIssuesList.
+type ApiPullListIssuesListParams struct {
+	// Page A page number within the paginated result set.
+	Page *int `form:"page,omitempty" json:"page,omitempty"`
+
+	// StoreDateAfter Return issues with a store date on or after this date (YYYY-MM-DD).
+	StoreDateAfter *string `form:"store_date_after,omitempty" json:"store_date_after,omitempty"`
+
+	// StoreDateBefore Return issues with a store date on or before this date (YYYY-MM-DD).
+	StoreDateBefore *string `form:"store_date_before,omitempty" json:"store_date_before,omitempty"`
+}
+
+func (t *ApiPullListIssuesListParams) SetPage(v int) {
+	t.Page = &v
+}
+
+func (t *ApiPullListIssuesListParams) SetStoreDateAfter(v string) {
+	t.StoreDateAfter = &v
+}
+
+func (t *ApiPullListIssuesListParams) SetStoreDateBefore(v string) {
+	t.StoreDateBefore = &v
+}
+
+// ApiPullListSeriesListParams defines parameters for ApiPullListSeriesList.
+type ApiPullListSeriesListParams struct {
+	// Page A page number within the paginated result set.
+	Page *int `form:"page,omitempty" json:"page,omitempty"`
+}
+
+func (t *ApiPullListSeriesListParams) SetPage(v int) {
+	t.Page = &v
+}
+
+// ApiPullListSeriesAddCreateParams defines parameters for ApiPullListSeriesAddCreate.
+type ApiPullListSeriesAddCreateParams struct {
+	SeriesId int `form:"series_id" json:"series_id"`
+}
+
+func (t *ApiPullListSeriesAddCreateParams) SetSeriesId(v int) {
+	t.SeriesId = v
+}
+
 // ApiReadingListListParams defines parameters for ApiReadingListList.
 type ApiReadingListListParams struct {
 	// AttributionSource Source where this reading list information was obtained
@@ -2598,14 +3624,27 @@ type ApiReadingListListParams struct {
 	AverageRatingGte *float32 `form:"average_rating__gte,omitempty" json:"average_rating__gte,omitempty"`
 	IsPrivate        *bool    `form:"is_private,omitempty" json:"is_private,omitempty"`
 
+	// ListType The type of reading list
+	//
+	// * `CREATOR` - Creator
+	// * `EVENT` - Event
+	// * `STORY` - Story
+	// * `CHARACTERS` - Characters
+	// * `TEAMS` - Teams
+	// * `MASTER` - Master
+	ListType *ApiReadingListListParamsListType `form:"list_type,omitempty" json:"list_type,omitempty"`
+
 	// ModifiedGt Greater than Modified DateTime
 	ModifiedGt *time.Time `form:"modified_gt,omitempty" json:"modified_gt,omitempty"`
 	Name       *string    `form:"name,omitempty" json:"name,omitempty"`
 
 	// Page A page number within the paginated result set.
-	Page     *int    `form:"page,omitempty" json:"page,omitempty"`
-	User     *int    `form:"user,omitempty" json:"user,omitempty"`
-	Username *string `form:"username,omitempty" json:"username,omitempty"`
+	Page *int `form:"page,omitempty" json:"page,omitempty"`
+
+	// Publisher Publisher
+	Publisher *string `form:"publisher,omitempty" json:"publisher,omitempty"`
+	User      *int    `form:"user,omitempty" json:"user,omitempty"`
+	Username  *string `form:"username,omitempty" json:"username,omitempty"`
 }
 
 func (t *ApiReadingListListParams) SetAttributionSource(v ApiReadingListListParamsAttributionSource) {
@@ -2620,6 +3659,10 @@ func (t *ApiReadingListListParams) SetIsPrivate(v bool) {
 	t.IsPrivate = &v
 }
 
+func (t *ApiReadingListListParams) SetListType(v ApiReadingListListParamsListType) {
+	t.ListType = &v
+}
+
 func (t *ApiReadingListListParams) SetModifiedGt(v time.Time) {
 	t.ModifiedGt = &v
 }
@@ -2632,6 +3675,10 @@ func (t *ApiReadingListListParams) SetPage(v int) {
 	t.Page = &v
 }
 
+func (t *ApiReadingListListParams) SetPublisher(v string) {
+	t.Publisher = &v
+}
+
 func (t *ApiReadingListListParams) SetUser(v int) {
 	t.User = &v
 }
@@ -2642,6 +3689,9 @@ func (t *ApiReadingListListParams) SetUsername(v string) {
 
 // ApiReadingListListParamsAttributionSource defines parameters for ApiReadingListList.
 type ApiReadingListListParamsAttributionSource string
+
+// ApiReadingListListParamsListType defines parameters for ApiReadingListList.
+type ApiReadingListListParamsListType string
 
 // ApiReadingListItemsListParams defines parameters for ApiReadingListItemsList.
 type ApiReadingListItemsListParams struct {
@@ -2697,11 +3747,20 @@ type ApiSchemaRetrieveParamsLang string
 
 // ApiSeriesListParams defines parameters for ApiSeriesList.
 type ApiSeriesListParams struct {
+	// CharacterId Character Metron ID
+	CharacterId *int `form:"character_id,omitempty" json:"character_id,omitempty"`
+
+	// CreatorId Creator Metron ID
+	CreatorId *int `form:"creator_id,omitempty" json:"creator_id,omitempty"`
+
 	// CvId Comic Vine ID
 	CvId *int `form:"cv_id,omitempty" json:"cv_id,omitempty"`
 
 	// GcdId Grand Comics Database ID
-	GcdId        *int    `form:"gcd_id,omitempty" json:"gcd_id,omitempty"`
+	GcdId *int `form:"gcd_id,omitempty" json:"gcd_id,omitempty"`
+
+	// ImprintId Imprint Metron ID
+	ImprintId    *int    `form:"imprint_id,omitempty" json:"imprint_id,omitempty"`
 	ImprintName  *string `form:"imprint_name,omitempty" json:"imprint_name,omitempty"`
 	MissingCvId  *bool   `form:"missing_cv_id,omitempty" json:"missing_cv_id,omitempty"`
 	MissingGcdId *bool   `form:"missing_gcd_id,omitempty" json:"missing_gcd_id,omitempty"`
@@ -2714,12 +3773,29 @@ type ApiSeriesListParams struct {
 	Page          *int    `form:"page,omitempty" json:"page,omitempty"`
 	PublisherId   *int    `form:"publisher_id,omitempty" json:"publisher_id,omitempty"`
 	PublisherName *string `form:"publisher_name,omitempty" json:"publisher_name,omitempty"`
-	SeriesType    *string `form:"series_type,omitempty" json:"series_type,omitempty"`
-	SeriesTypeId  *int    `form:"series_type_id,omitempty" json:"series_type_id,omitempty"`
-	Status        *int    `form:"status,omitempty" json:"status,omitempty"`
-	Volume        *int    `form:"volume,omitempty" json:"volume,omitempty"`
-	YearBegan     *int    `form:"year_began,omitempty" json:"year_began,omitempty"`
-	YearEnd       *int    `form:"year_end,omitempty" json:"year_end,omitempty"`
+
+	// RoleId Multiple values may be separated by commas.
+	RoleId       *[]int  `form:"role_id,omitempty" json:"role_id,omitempty"`
+	SeriesType   *string `form:"series_type,omitempty" json:"series_type,omitempty"`
+	SeriesTypeId *int    `form:"series_type_id,omitempty" json:"series_type_id,omitempty"`
+	Status       *int    `form:"status,omitempty" json:"status,omitempty"`
+
+	// TeamId Team Metron ID
+	TeamId *int `form:"team_id,omitempty" json:"team_id,omitempty"`
+
+	// UniverseId Universe Metron ID
+	UniverseId *int `form:"universe_id,omitempty" json:"universe_id,omitempty"`
+	Volume     *int `form:"volume,omitempty" json:"volume,omitempty"`
+	YearBegan  *int `form:"year_began,omitempty" json:"year_began,omitempty"`
+	YearEnd    *int `form:"year_end,omitempty" json:"year_end,omitempty"`
+}
+
+func (t *ApiSeriesListParams) SetCharacterId(v int) {
+	t.CharacterId = &v
+}
+
+func (t *ApiSeriesListParams) SetCreatorId(v int) {
+	t.CreatorId = &v
 }
 
 func (t *ApiSeriesListParams) SetCvId(v int) {
@@ -2728,6 +3804,10 @@ func (t *ApiSeriesListParams) SetCvId(v int) {
 
 func (t *ApiSeriesListParams) SetGcdId(v int) {
 	t.GcdId = &v
+}
+
+func (t *ApiSeriesListParams) SetImprintId(v int) {
+	t.ImprintId = &v
 }
 
 func (t *ApiSeriesListParams) SetImprintName(v string) {
@@ -2762,6 +3842,10 @@ func (t *ApiSeriesListParams) SetPublisherName(v string) {
 	t.PublisherName = &v
 }
 
+func (t *ApiSeriesListParams) SetRoleId(v []int) {
+	t.RoleId = &v
+}
+
 func (t *ApiSeriesListParams) SetSeriesType(v string) {
 	t.SeriesType = &v
 }
@@ -2772,6 +3856,14 @@ func (t *ApiSeriesListParams) SetSeriesTypeId(v int) {
 
 func (t *ApiSeriesListParams) SetStatus(v int) {
 	t.Status = &v
+}
+
+func (t *ApiSeriesListParams) SetTeamId(v int) {
+	t.TeamId = &v
+}
+
+func (t *ApiSeriesListParams) SetUniverseId(v int) {
+	t.UniverseId = &v
 }
 
 func (t *ApiSeriesListParams) SetVolume(v int) {
@@ -2892,6 +3984,62 @@ func (t *ApiUniverseListParams) SetPage(v int) {
 	t.Page = &v
 }
 
+// ApiWishListListParams defines parameters for ApiWishListList.
+type ApiWishListListParams struct {
+	// Page A page number within the paginated result set.
+	Page *int `form:"page,omitempty" json:"page,omitempty"`
+}
+
+func (t *ApiWishListListParams) SetPage(v int) {
+	t.Page = &v
+}
+
+// ApiWishListItemsListParams defines parameters for ApiWishListItemsList.
+type ApiWishListItemsListParams struct {
+	// Page A page number within the paginated result set.
+	Page *int `form:"page,omitempty" json:"page,omitempty"`
+}
+
+func (t *ApiWishListItemsListParams) SetPage(v int) {
+	t.Page = &v
+}
+
+// ApiArcCreateFormdataRequestBody defines body for ApiArcCreate for application/x-www-form-urlencoded ContentType.
+type ApiArcCreateFormdataRequestBody = Arc
+
+// ApiArcCreateMultipartRequestBody defines body for ApiArcCreate for multipart/form-data ContentType.
+type ApiArcCreateMultipartRequestBody = Arc
+
+// ApiArcPartialUpdateFormdataRequestBody defines body for ApiArcPartialUpdate for application/x-www-form-urlencoded ContentType.
+type ApiArcPartialUpdateFormdataRequestBody = PatchedArc
+
+// ApiArcPartialUpdateMultipartRequestBody defines body for ApiArcPartialUpdate for multipart/form-data ContentType.
+type ApiArcPartialUpdateMultipartRequestBody = PatchedArc
+
+// ApiArcUpdateFormdataRequestBody defines body for ApiArcUpdate for application/x-www-form-urlencoded ContentType.
+type ApiArcUpdateFormdataRequestBody = Arc
+
+// ApiArcUpdateMultipartRequestBody defines body for ApiArcUpdate for multipart/form-data ContentType.
+type ApiArcUpdateMultipartRequestBody = Arc
+
+// ApiCharacterCreateFormdataRequestBody defines body for ApiCharacterCreate for application/x-www-form-urlencoded ContentType.
+type ApiCharacterCreateFormdataRequestBody = Character
+
+// ApiCharacterCreateMultipartRequestBody defines body for ApiCharacterCreate for multipart/form-data ContentType.
+type ApiCharacterCreateMultipartRequestBody = Character
+
+// ApiCharacterPartialUpdateFormdataRequestBody defines body for ApiCharacterPartialUpdate for application/x-www-form-urlencoded ContentType.
+type ApiCharacterPartialUpdateFormdataRequestBody = PatchedCharacter
+
+// ApiCharacterPartialUpdateMultipartRequestBody defines body for ApiCharacterPartialUpdate for multipart/form-data ContentType.
+type ApiCharacterPartialUpdateMultipartRequestBody = PatchedCharacter
+
+// ApiCharacterUpdateFormdataRequestBody defines body for ApiCharacterUpdate for application/x-www-form-urlencoded ContentType.
+type ApiCharacterUpdateFormdataRequestBody = Character
+
+// ApiCharacterUpdateMultipartRequestBody defines body for ApiCharacterUpdate for multipart/form-data ContentType.
+type ApiCharacterUpdateMultipartRequestBody = Character
+
 // ApiCollectionScrobbleCreateJSONRequestBody defines body for ApiCollectionScrobbleCreate for application/json ContentType.
 type ApiCollectionScrobbleCreateJSONRequestBody = ScrobbleRequest
 
@@ -2901,22 +4049,238 @@ type ApiCollectionScrobbleCreateFormdataRequestBody = ScrobbleRequest
 // ApiCollectionScrobbleCreateMultipartRequestBody defines body for ApiCollectionScrobbleCreate for multipart/form-data ContentType.
 type ApiCollectionScrobbleCreateMultipartRequestBody = ScrobbleRequest
 
-// AsGradeEnum returns the union data inside the CollectionList_Grade as a GradeEnum
-func (t CollectionList_Grade) AsGradeEnum() (GradeEnum, error) {
-	var body GradeEnum
+// ApiCollectionPartialUpdateJSONRequestBody defines body for ApiCollectionPartialUpdate for application/json ContentType.
+type ApiCollectionPartialUpdateJSONRequestBody = PatchedCollectionRatingUpdate
+
+// ApiCollectionPartialUpdateFormdataRequestBody defines body for ApiCollectionPartialUpdate for application/x-www-form-urlencoded ContentType.
+type ApiCollectionPartialUpdateFormdataRequestBody = PatchedCollectionRatingUpdate
+
+// ApiCollectionPartialUpdateMultipartRequestBody defines body for ApiCollectionPartialUpdate for multipart/form-data ContentType.
+type ApiCollectionPartialUpdateMultipartRequestBody = PatchedCollectionRatingUpdate
+
+// ApiCollectionUpdateJSONRequestBody defines body for ApiCollectionUpdate for application/json ContentType.
+type ApiCollectionUpdateJSONRequestBody = CollectionRatingUpdate
+
+// ApiCollectionUpdateFormdataRequestBody defines body for ApiCollectionUpdate for application/x-www-form-urlencoded ContentType.
+type ApiCollectionUpdateFormdataRequestBody = CollectionRatingUpdate
+
+// ApiCollectionUpdateMultipartRequestBody defines body for ApiCollectionUpdate for multipart/form-data ContentType.
+type ApiCollectionUpdateMultipartRequestBody = CollectionRatingUpdate
+
+// ApiCreatorCreateFormdataRequestBody defines body for ApiCreatorCreate for application/x-www-form-urlencoded ContentType.
+type ApiCreatorCreateFormdataRequestBody = Creator
+
+// ApiCreatorCreateMultipartRequestBody defines body for ApiCreatorCreate for multipart/form-data ContentType.
+type ApiCreatorCreateMultipartRequestBody = Creator
+
+// ApiCreatorPartialUpdateFormdataRequestBody defines body for ApiCreatorPartialUpdate for application/x-www-form-urlencoded ContentType.
+type ApiCreatorPartialUpdateFormdataRequestBody = PatchedCreator
+
+// ApiCreatorPartialUpdateMultipartRequestBody defines body for ApiCreatorPartialUpdate for multipart/form-data ContentType.
+type ApiCreatorPartialUpdateMultipartRequestBody = PatchedCreator
+
+// ApiCreatorUpdateFormdataRequestBody defines body for ApiCreatorUpdate for application/x-www-form-urlencoded ContentType.
+type ApiCreatorUpdateFormdataRequestBody = Creator
+
+// ApiCreatorUpdateMultipartRequestBody defines body for ApiCreatorUpdate for multipart/form-data ContentType.
+type ApiCreatorUpdateMultipartRequestBody = Creator
+
+// ApiCreditCreateJSONRequestBody defines body for ApiCreditCreate for application/json ContentType.
+type ApiCreditCreateJSONRequestBody = Credit
+
+// ApiCreditCreateFormdataRequestBody defines body for ApiCreditCreate for application/x-www-form-urlencoded ContentType.
+type ApiCreditCreateFormdataRequestBody = Credit
+
+// ApiCreditCreateMultipartRequestBody defines body for ApiCreditCreate for multipart/form-data ContentType.
+type ApiCreditCreateMultipartRequestBody = Credit
+
+// ApiImprintCreateFormdataRequestBody defines body for ApiImprintCreate for application/x-www-form-urlencoded ContentType.
+type ApiImprintCreateFormdataRequestBody = Imprint
+
+// ApiImprintCreateMultipartRequestBody defines body for ApiImprintCreate for multipart/form-data ContentType.
+type ApiImprintCreateMultipartRequestBody = Imprint
+
+// ApiImprintPartialUpdateFormdataRequestBody defines body for ApiImprintPartialUpdate for application/x-www-form-urlencoded ContentType.
+type ApiImprintPartialUpdateFormdataRequestBody = PatchedImprint
+
+// ApiImprintPartialUpdateMultipartRequestBody defines body for ApiImprintPartialUpdate for multipart/form-data ContentType.
+type ApiImprintPartialUpdateMultipartRequestBody = PatchedImprint
+
+// ApiImprintUpdateFormdataRequestBody defines body for ApiImprintUpdate for application/x-www-form-urlencoded ContentType.
+type ApiImprintUpdateFormdataRequestBody = Imprint
+
+// ApiImprintUpdateMultipartRequestBody defines body for ApiImprintUpdate for multipart/form-data ContentType.
+type ApiImprintUpdateMultipartRequestBody = Imprint
+
+// ApiIssueCreateJSONRequestBody defines body for ApiIssueCreate for application/json ContentType.
+type ApiIssueCreateJSONRequestBody = Issue
+
+// ApiIssueCreateFormdataRequestBody defines body for ApiIssueCreate for application/x-www-form-urlencoded ContentType.
+type ApiIssueCreateFormdataRequestBody = Issue
+
+// ApiIssueCreateMultipartRequestBody defines body for ApiIssueCreate for multipart/form-data ContentType.
+type ApiIssueCreateMultipartRequestBody = Issue
+
+// ApiIssuePartialUpdateJSONRequestBody defines body for ApiIssuePartialUpdate for application/json ContentType.
+type ApiIssuePartialUpdateJSONRequestBody = PatchedIssue
+
+// ApiIssuePartialUpdateFormdataRequestBody defines body for ApiIssuePartialUpdate for application/x-www-form-urlencoded ContentType.
+type ApiIssuePartialUpdateFormdataRequestBody = PatchedIssue
+
+// ApiIssuePartialUpdateMultipartRequestBody defines body for ApiIssuePartialUpdate for multipart/form-data ContentType.
+type ApiIssuePartialUpdateMultipartRequestBody = PatchedIssue
+
+// ApiIssueUpdateJSONRequestBody defines body for ApiIssueUpdate for application/json ContentType.
+type ApiIssueUpdateJSONRequestBody = Issue
+
+// ApiIssueUpdateFormdataRequestBody defines body for ApiIssueUpdate for application/x-www-form-urlencoded ContentType.
+type ApiIssueUpdateFormdataRequestBody = Issue
+
+// ApiIssueUpdateMultipartRequestBody defines body for ApiIssueUpdate for multipart/form-data ContentType.
+type ApiIssueUpdateMultipartRequestBody = Issue
+
+// ApiPublisherCreateFormdataRequestBody defines body for ApiPublisherCreate for application/x-www-form-urlencoded ContentType.
+type ApiPublisherCreateFormdataRequestBody = Publisher
+
+// ApiPublisherCreateMultipartRequestBody defines body for ApiPublisherCreate for multipart/form-data ContentType.
+type ApiPublisherCreateMultipartRequestBody = Publisher
+
+// ApiPublisherPartialUpdateFormdataRequestBody defines body for ApiPublisherPartialUpdate for application/x-www-form-urlencoded ContentType.
+type ApiPublisherPartialUpdateFormdataRequestBody = PatchedPublisher
+
+// ApiPublisherPartialUpdateMultipartRequestBody defines body for ApiPublisherPartialUpdate for multipart/form-data ContentType.
+type ApiPublisherPartialUpdateMultipartRequestBody = PatchedPublisher
+
+// ApiPublisherUpdateFormdataRequestBody defines body for ApiPublisherUpdate for application/x-www-form-urlencoded ContentType.
+type ApiPublisherUpdateFormdataRequestBody = Publisher
+
+// ApiPublisherUpdateMultipartRequestBody defines body for ApiPublisherUpdate for multipart/form-data ContentType.
+type ApiPublisherUpdateMultipartRequestBody = Publisher
+
+// ApiSeriesCreateJSONRequestBody defines body for ApiSeriesCreate for application/json ContentType.
+type ApiSeriesCreateJSONRequestBody = Series
+
+// ApiSeriesCreateFormdataRequestBody defines body for ApiSeriesCreate for application/x-www-form-urlencoded ContentType.
+type ApiSeriesCreateFormdataRequestBody = Series
+
+// ApiSeriesCreateMultipartRequestBody defines body for ApiSeriesCreate for multipart/form-data ContentType.
+type ApiSeriesCreateMultipartRequestBody = Series
+
+// ApiSeriesPartialUpdateJSONRequestBody defines body for ApiSeriesPartialUpdate for application/json ContentType.
+type ApiSeriesPartialUpdateJSONRequestBody = PatchedSeries
+
+// ApiSeriesPartialUpdateFormdataRequestBody defines body for ApiSeriesPartialUpdate for application/x-www-form-urlencoded ContentType.
+type ApiSeriesPartialUpdateFormdataRequestBody = PatchedSeries
+
+// ApiSeriesPartialUpdateMultipartRequestBody defines body for ApiSeriesPartialUpdate for multipart/form-data ContentType.
+type ApiSeriesPartialUpdateMultipartRequestBody = PatchedSeries
+
+// ApiSeriesUpdateJSONRequestBody defines body for ApiSeriesUpdate for application/json ContentType.
+type ApiSeriesUpdateJSONRequestBody = Series
+
+// ApiSeriesUpdateFormdataRequestBody defines body for ApiSeriesUpdate for application/x-www-form-urlencoded ContentType.
+type ApiSeriesUpdateFormdataRequestBody = Series
+
+// ApiSeriesUpdateMultipartRequestBody defines body for ApiSeriesUpdate for multipart/form-data ContentType.
+type ApiSeriesUpdateMultipartRequestBody = Series
+
+// ApiTeamCreateFormdataRequestBody defines body for ApiTeamCreate for application/x-www-form-urlencoded ContentType.
+type ApiTeamCreateFormdataRequestBody = Team
+
+// ApiTeamCreateMultipartRequestBody defines body for ApiTeamCreate for multipart/form-data ContentType.
+type ApiTeamCreateMultipartRequestBody = Team
+
+// ApiTeamPartialUpdateFormdataRequestBody defines body for ApiTeamPartialUpdate for application/x-www-form-urlencoded ContentType.
+type ApiTeamPartialUpdateFormdataRequestBody = PatchedTeam
+
+// ApiTeamPartialUpdateMultipartRequestBody defines body for ApiTeamPartialUpdate for multipart/form-data ContentType.
+type ApiTeamPartialUpdateMultipartRequestBody = PatchedTeam
+
+// ApiTeamUpdateFormdataRequestBody defines body for ApiTeamUpdate for application/x-www-form-urlencoded ContentType.
+type ApiTeamUpdateFormdataRequestBody = Team
+
+// ApiTeamUpdateMultipartRequestBody defines body for ApiTeamUpdate for multipart/form-data ContentType.
+type ApiTeamUpdateMultipartRequestBody = Team
+
+// ApiUniverseCreateFormdataRequestBody defines body for ApiUniverseCreate for application/x-www-form-urlencoded ContentType.
+type ApiUniverseCreateFormdataRequestBody = Universe
+
+// ApiUniverseCreateMultipartRequestBody defines body for ApiUniverseCreate for multipart/form-data ContentType.
+type ApiUniverseCreateMultipartRequestBody = Universe
+
+// ApiUniversePartialUpdateFormdataRequestBody defines body for ApiUniversePartialUpdate for application/x-www-form-urlencoded ContentType.
+type ApiUniversePartialUpdateFormdataRequestBody = PatchedUniverse
+
+// ApiUniversePartialUpdateMultipartRequestBody defines body for ApiUniversePartialUpdate for multipart/form-data ContentType.
+type ApiUniversePartialUpdateMultipartRequestBody = PatchedUniverse
+
+// ApiUniverseUpdateFormdataRequestBody defines body for ApiUniverseUpdate for application/x-www-form-urlencoded ContentType.
+type ApiUniverseUpdateFormdataRequestBody = Universe
+
+// ApiUniverseUpdateMultipartRequestBody defines body for ApiUniverseUpdate for multipart/form-data ContentType.
+type ApiUniverseUpdateMultipartRequestBody = Universe
+
+// ApiVariantCreateJSONRequestBody defines body for ApiVariantCreate for application/json ContentType.
+type ApiVariantCreateJSONRequestBody = Variant
+
+// ApiVariantCreateFormdataRequestBody defines body for ApiVariantCreate for application/x-www-form-urlencoded ContentType.
+type ApiVariantCreateFormdataRequestBody = Variant
+
+// ApiVariantCreateMultipartRequestBody defines body for ApiVariantCreate for multipart/form-data ContentType.
+type ApiVariantCreateMultipartRequestBody = Variant
+
+// ApiVariantPartialUpdateJSONRequestBody defines body for ApiVariantPartialUpdate for application/json ContentType.
+type ApiVariantPartialUpdateJSONRequestBody = PatchedVariant
+
+// ApiVariantPartialUpdateFormdataRequestBody defines body for ApiVariantPartialUpdate for application/x-www-form-urlencoded ContentType.
+type ApiVariantPartialUpdateFormdataRequestBody = PatchedVariant
+
+// ApiVariantPartialUpdateMultipartRequestBody defines body for ApiVariantPartialUpdate for multipart/form-data ContentType.
+type ApiVariantPartialUpdateMultipartRequestBody = PatchedVariant
+
+// ApiVariantUpdateJSONRequestBody defines body for ApiVariantUpdate for application/json ContentType.
+type ApiVariantUpdateJSONRequestBody = Variant
+
+// ApiVariantUpdateFormdataRequestBody defines body for ApiVariantUpdate for application/x-www-form-urlencoded ContentType.
+type ApiVariantUpdateFormdataRequestBody = Variant
+
+// ApiVariantUpdateMultipartRequestBody defines body for ApiVariantUpdate for multipart/form-data ContentType.
+type ApiVariantUpdateMultipartRequestBody = Variant
+
+// ApiWishListItemsAddCreateJSONRequestBody defines body for ApiWishListItemsAddCreate for application/json ContentType.
+type ApiWishListItemsAddCreateJSONRequestBody = WishListAddItem
+
+// ApiWishListItemsAddCreateFormdataRequestBody defines body for ApiWishListItemsAddCreate for application/x-www-form-urlencoded ContentType.
+type ApiWishListItemsAddCreateFormdataRequestBody = WishListAddItem
+
+// ApiWishListItemsAddCreateMultipartRequestBody defines body for ApiWishListItemsAddCreate for multipart/form-data ContentType.
+type ApiWishListItemsAddCreateMultipartRequestBody = WishListAddItem
+
+// ApiWishListItemsAcquireCreateJSONRequestBody defines body for ApiWishListItemsAcquireCreate for application/json ContentType.
+type ApiWishListItemsAcquireCreateJSONRequestBody = AcquireWishListItem
+
+// ApiWishListItemsAcquireCreateFormdataRequestBody defines body for ApiWishListItemsAcquireCreate for application/x-www-form-urlencoded ContentType.
+type ApiWishListItemsAcquireCreateFormdataRequestBody = AcquireWishListItem
+
+// ApiWishListItemsAcquireCreateMultipartRequestBody defines body for ApiWishListItemsAcquireCreate for multipart/form-data ContentType.
+type ApiWishListItemsAcquireCreateMultipartRequestBody = AcquireWishListItem
+
+// AsDesiredGradeEnum returns the union data inside the CollectionList_Grade as a DesiredGradeEnum
+func (t CollectionList_Grade) AsDesiredGradeEnum() (DesiredGradeEnum, error) {
+	var body DesiredGradeEnum
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromGradeEnum overwrites any union data inside the CollectionList_Grade as the provided GradeEnum
-func (t *CollectionList_Grade) FromGradeEnum(v GradeEnum) error {
+// FromDesiredGradeEnum overwrites any union data inside the CollectionList_Grade as the provided DesiredGradeEnum
+func (t *CollectionList_Grade) FromDesiredGradeEnum(v DesiredGradeEnum) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeGradeEnum performs a merge with any union data inside the CollectionList_Grade, using the provided GradeEnum
-func (t *CollectionList_Grade) MergeGradeEnum(v GradeEnum) error {
+// MergeDesiredGradeEnum performs a merge with any union data inside the CollectionList_Grade, using the provided DesiredGradeEnum
+func (t *CollectionList_Grade) MergeDesiredGradeEnum(v DesiredGradeEnum) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -3025,22 +4389,84 @@ func (t *CollectionList_Rating) UnmarshalJSON(b []byte) error {
 	return err
 }
 
-// AsGradeEnum returns the union data inside the CollectionRead_Grade as a GradeEnum
-func (t CollectionRead_Grade) AsGradeEnum() (GradeEnum, error) {
-	var body GradeEnum
+// AsRatingEnum returns the union data inside the CollectionRatingUpdate_Rating as a RatingEnum
+func (t CollectionRatingUpdate_Rating) AsRatingEnum() (RatingEnum, error) {
+	var body RatingEnum
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromGradeEnum overwrites any union data inside the CollectionRead_Grade as the provided GradeEnum
-func (t *CollectionRead_Grade) FromGradeEnum(v GradeEnum) error {
+// FromRatingEnum overwrites any union data inside the CollectionRatingUpdate_Rating as the provided RatingEnum
+func (t *CollectionRatingUpdate_Rating) FromRatingEnum(v RatingEnum) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeGradeEnum performs a merge with any union data inside the CollectionRead_Grade, using the provided GradeEnum
-func (t *CollectionRead_Grade) MergeGradeEnum(v GradeEnum) error {
+// MergeRatingEnum performs a merge with any union data inside the CollectionRatingUpdate_Rating, using the provided RatingEnum
+func (t *CollectionRatingUpdate_Rating) MergeRatingEnum(v RatingEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the CollectionRatingUpdate_Rating as a NullEnum
+func (t CollectionRatingUpdate_Rating) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the CollectionRatingUpdate_Rating as the provided NullEnum
+func (t *CollectionRatingUpdate_Rating) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the CollectionRatingUpdate_Rating, using the provided NullEnum
+func (t *CollectionRatingUpdate_Rating) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t CollectionRatingUpdate_Rating) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *CollectionRatingUpdate_Rating) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsDesiredGradeEnum returns the union data inside the CollectionRead_Grade as a DesiredGradeEnum
+func (t CollectionRead_Grade) AsDesiredGradeEnum() (DesiredGradeEnum, error) {
+	var body DesiredGradeEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromDesiredGradeEnum overwrites any union data inside the CollectionRead_Grade as the provided DesiredGradeEnum
+func (t *CollectionRead_Grade) FromDesiredGradeEnum(v DesiredGradeEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeDesiredGradeEnum performs a merge with any union data inside the CollectionRead_Grade, using the provided DesiredGradeEnum
+func (t *CollectionRead_Grade) MergeDesiredGradeEnum(v DesiredGradeEnum) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -3149,6 +4575,254 @@ func (t *CollectionRead_Rating) UnmarshalJSON(b []byte) error {
 	return err
 }
 
+// AsIssuePrice0 returns the union data inside the Issue_Price as a IssuePrice0
+func (t Issue_Price) AsIssuePrice0() (IssuePrice0, error) {
+	var body IssuePrice0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIssuePrice0 overwrites any union data inside the Issue_Price as the provided IssuePrice0
+func (t *Issue_Price) FromIssuePrice0(v IssuePrice0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIssuePrice0 performs a merge with any union data inside the Issue_Price, using the provided IssuePrice0
+func (t *Issue_Price) MergeIssuePrice0(v IssuePrice0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIssuePrice1 returns the union data inside the Issue_Price as a IssuePrice1
+func (t Issue_Price) AsIssuePrice1() (IssuePrice1, error) {
+	var body IssuePrice1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIssuePrice1 overwrites any union data inside the Issue_Price as the provided IssuePrice1
+func (t *Issue_Price) FromIssuePrice1(v IssuePrice1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIssuePrice1 performs a merge with any union data inside the Issue_Price, using the provided IssuePrice1
+func (t *Issue_Price) MergeIssuePrice1(v IssuePrice1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t Issue_Price) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *Issue_Price) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsIssueReadPrice0 returns the union data inside the IssueRead_Price as a IssueReadPrice0
+func (t IssueRead_Price) AsIssueReadPrice0() (IssueReadPrice0, error) {
+	var body IssueReadPrice0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIssueReadPrice0 overwrites any union data inside the IssueRead_Price as the provided IssueReadPrice0
+func (t *IssueRead_Price) FromIssueReadPrice0(v IssueReadPrice0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIssueReadPrice0 performs a merge with any union data inside the IssueRead_Price, using the provided IssueReadPrice0
+func (t *IssueRead_Price) MergeIssueReadPrice0(v IssueReadPrice0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIssueReadPrice1 returns the union data inside the IssueRead_Price as a IssueReadPrice1
+func (t IssueRead_Price) AsIssueReadPrice1() (IssueReadPrice1, error) {
+	var body IssueReadPrice1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIssueReadPrice1 overwrites any union data inside the IssueRead_Price as the provided IssueReadPrice1
+func (t *IssueRead_Price) FromIssueReadPrice1(v IssueReadPrice1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIssueReadPrice1 performs a merge with any union data inside the IssueRead_Price, using the provided IssueReadPrice1
+func (t *IssueRead_Price) MergeIssueReadPrice1(v IssueReadPrice1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t IssueRead_Price) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *IssueRead_Price) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsRatingEnum returns the union data inside the PatchedCollectionRatingUpdate_Rating as a RatingEnum
+func (t PatchedCollectionRatingUpdate_Rating) AsRatingEnum() (RatingEnum, error) {
+	var body RatingEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRatingEnum overwrites any union data inside the PatchedCollectionRatingUpdate_Rating as the provided RatingEnum
+func (t *PatchedCollectionRatingUpdate_Rating) FromRatingEnum(v RatingEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeRatingEnum performs a merge with any union data inside the PatchedCollectionRatingUpdate_Rating, using the provided RatingEnum
+func (t *PatchedCollectionRatingUpdate_Rating) MergeRatingEnum(v RatingEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the PatchedCollectionRatingUpdate_Rating as a NullEnum
+func (t PatchedCollectionRatingUpdate_Rating) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the PatchedCollectionRatingUpdate_Rating as the provided NullEnum
+func (t *PatchedCollectionRatingUpdate_Rating) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the PatchedCollectionRatingUpdate_Rating, using the provided NullEnum
+func (t *PatchedCollectionRatingUpdate_Rating) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t PatchedCollectionRatingUpdate_Rating) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *PatchedCollectionRatingUpdate_Rating) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsPatchedIssuePrice0 returns the union data inside the PatchedIssue_Price as a PatchedIssuePrice0
+func (t PatchedIssue_Price) AsPatchedIssuePrice0() (PatchedIssuePrice0, error) {
+	var body PatchedIssuePrice0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPatchedIssuePrice0 overwrites any union data inside the PatchedIssue_Price as the provided PatchedIssuePrice0
+func (t *PatchedIssue_Price) FromPatchedIssuePrice0(v PatchedIssuePrice0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePatchedIssuePrice0 performs a merge with any union data inside the PatchedIssue_Price, using the provided PatchedIssuePrice0
+func (t *PatchedIssue_Price) MergePatchedIssuePrice0(v PatchedIssuePrice0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPatchedIssuePrice1 returns the union data inside the PatchedIssue_Price as a PatchedIssuePrice1
+func (t PatchedIssue_Price) AsPatchedIssuePrice1() (PatchedIssuePrice1, error) {
+	var body PatchedIssuePrice1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPatchedIssuePrice1 overwrites any union data inside the PatchedIssue_Price as the provided PatchedIssuePrice1
+func (t *PatchedIssue_Price) FromPatchedIssuePrice1(v PatchedIssuePrice1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePatchedIssuePrice1 performs a merge with any union data inside the PatchedIssue_Price, using the provided PatchedIssuePrice1
+func (t *PatchedIssue_Price) MergePatchedIssuePrice1(v PatchedIssuePrice1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t PatchedIssue_Price) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *PatchedIssue_Price) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsAttributionSourceEnum returns the union data inside the ReadingListList_AttributionSource as a AttributionSourceEnum
 func (t ReadingListList_AttributionSource) AsAttributionSourceEnum() (AttributionSourceEnum, error) {
 	var body AttributionSourceEnum
@@ -3211,6 +4885,68 @@ func (t *ReadingListList_AttributionSource) UnmarshalJSON(b []byte) error {
 	return err
 }
 
+// AsReadingListReadAttributionUrl0 returns the union data inside the ReadingListRead_AttributionUrl as a ReadingListReadAttributionUrl0
+func (t ReadingListRead_AttributionUrl) AsReadingListReadAttributionUrl0() (ReadingListReadAttributionUrl0, error) {
+	var body ReadingListReadAttributionUrl0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromReadingListReadAttributionUrl0 overwrites any union data inside the ReadingListRead_AttributionUrl as the provided ReadingListReadAttributionUrl0
+func (t *ReadingListRead_AttributionUrl) FromReadingListReadAttributionUrl0(v ReadingListReadAttributionUrl0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeReadingListReadAttributionUrl0 performs a merge with any union data inside the ReadingListRead_AttributionUrl, using the provided ReadingListReadAttributionUrl0
+func (t *ReadingListRead_AttributionUrl) MergeReadingListReadAttributionUrl0(v ReadingListReadAttributionUrl0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsReadingListReadAttributionUrl1 returns the union data inside the ReadingListRead_AttributionUrl as a ReadingListReadAttributionUrl1
+func (t ReadingListRead_AttributionUrl) AsReadingListReadAttributionUrl1() (ReadingListReadAttributionUrl1, error) {
+	var body ReadingListReadAttributionUrl1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromReadingListReadAttributionUrl1 overwrites any union data inside the ReadingListRead_AttributionUrl as the provided ReadingListReadAttributionUrl1
+func (t *ReadingListRead_AttributionUrl) FromReadingListReadAttributionUrl1(v ReadingListReadAttributionUrl1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeReadingListReadAttributionUrl1 performs a merge with any union data inside the ReadingListRead_AttributionUrl, using the provided ReadingListReadAttributionUrl1
+func (t *ReadingListRead_AttributionUrl) MergeReadingListReadAttributionUrl1(v ReadingListReadAttributionUrl1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t ReadingListRead_AttributionUrl) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *ReadingListRead_AttributionUrl) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsRatingEnum returns the union data inside the ScrobbleResponse_Rating as a RatingEnum
 func (t ScrobbleResponse_Rating) AsRatingEnum() (RatingEnum, error) {
 	var body RatingEnum
@@ -3269,6 +5005,192 @@ func (t ScrobbleResponse_Rating) MarshalJSON() ([]byte, error) {
 }
 
 func (t *ScrobbleResponse_Rating) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsVariantsIssuePrice0 returns the union data inside the VariantsIssue_Price as a VariantsIssuePrice0
+func (t VariantsIssue_Price) AsVariantsIssuePrice0() (VariantsIssuePrice0, error) {
+	var body VariantsIssuePrice0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromVariantsIssuePrice0 overwrites any union data inside the VariantsIssue_Price as the provided VariantsIssuePrice0
+func (t *VariantsIssue_Price) FromVariantsIssuePrice0(v VariantsIssuePrice0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeVariantsIssuePrice0 performs a merge with any union data inside the VariantsIssue_Price, using the provided VariantsIssuePrice0
+func (t *VariantsIssue_Price) MergeVariantsIssuePrice0(v VariantsIssuePrice0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsVariantsIssuePrice1 returns the union data inside the VariantsIssue_Price as a VariantsIssuePrice1
+func (t VariantsIssue_Price) AsVariantsIssuePrice1() (VariantsIssuePrice1, error) {
+	var body VariantsIssuePrice1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromVariantsIssuePrice1 overwrites any union data inside the VariantsIssue_Price as the provided VariantsIssuePrice1
+func (t *VariantsIssue_Price) FromVariantsIssuePrice1(v VariantsIssuePrice1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeVariantsIssuePrice1 performs a merge with any union data inside the VariantsIssue_Price, using the provided VariantsIssuePrice1
+func (t *VariantsIssue_Price) MergeVariantsIssuePrice1(v VariantsIssuePrice1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t VariantsIssue_Price) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *VariantsIssue_Price) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsDesiredGradeEnum returns the union data inside the WishListItemList_DesiredGrade as a DesiredGradeEnum
+func (t WishListItemList_DesiredGrade) AsDesiredGradeEnum() (DesiredGradeEnum, error) {
+	var body DesiredGradeEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromDesiredGradeEnum overwrites any union data inside the WishListItemList_DesiredGrade as the provided DesiredGradeEnum
+func (t *WishListItemList_DesiredGrade) FromDesiredGradeEnum(v DesiredGradeEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeDesiredGradeEnum performs a merge with any union data inside the WishListItemList_DesiredGrade, using the provided DesiredGradeEnum
+func (t *WishListItemList_DesiredGrade) MergeDesiredGradeEnum(v DesiredGradeEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the WishListItemList_DesiredGrade as a NullEnum
+func (t WishListItemList_DesiredGrade) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the WishListItemList_DesiredGrade as the provided NullEnum
+func (t *WishListItemList_DesiredGrade) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the WishListItemList_DesiredGrade, using the provided NullEnum
+func (t *WishListItemList_DesiredGrade) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t WishListItemList_DesiredGrade) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *WishListItemList_DesiredGrade) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsDesiredGradeEnum returns the union data inside the WishListItemRead_DesiredGrade as a DesiredGradeEnum
+func (t WishListItemRead_DesiredGrade) AsDesiredGradeEnum() (DesiredGradeEnum, error) {
+	var body DesiredGradeEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromDesiredGradeEnum overwrites any union data inside the WishListItemRead_DesiredGrade as the provided DesiredGradeEnum
+func (t *WishListItemRead_DesiredGrade) FromDesiredGradeEnum(v DesiredGradeEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeDesiredGradeEnum performs a merge with any union data inside the WishListItemRead_DesiredGrade, using the provided DesiredGradeEnum
+func (t *WishListItemRead_DesiredGrade) MergeDesiredGradeEnum(v DesiredGradeEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the WishListItemRead_DesiredGrade as a NullEnum
+func (t WishListItemRead_DesiredGrade) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the WishListItemRead_DesiredGrade as the provided NullEnum
+func (t *WishListItemRead_DesiredGrade) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the WishListItemRead_DesiredGrade, using the provided NullEnum
+func (t *WishListItemRead_DesiredGrade) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t WishListItemRead_DesiredGrade) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *WishListItemRead_DesiredGrade) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -3349,8 +5271,23 @@ type ClientInterface interface {
 	// ApiArcList request
 	ApiArcList(ctx context.Context, params *ApiArcListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ApiArcCreateWithBody request with any body
+	ApiArcCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiArcCreateWithFormdataBody(ctx context.Context, body ApiArcCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ApiArcRetrieve request
 	ApiArcRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ApiArcPartialUpdateWithBody request with any body
+	ApiArcPartialUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiArcPartialUpdateWithFormdataBody(ctx context.Context, id int, body ApiArcPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ApiArcUpdateWithBody request with any body
+	ApiArcUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiArcUpdateWithFormdataBody(ctx context.Context, id int, body ApiArcUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ApiArcIssueListList request
 	ApiArcIssueListList(ctx context.Context, id int, params *ApiArcIssueListListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -3358,8 +5295,23 @@ type ClientInterface interface {
 	// ApiCharacterList request
 	ApiCharacterList(ctx context.Context, params *ApiCharacterListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ApiCharacterCreateWithBody request with any body
+	ApiCharacterCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiCharacterCreateWithFormdataBody(ctx context.Context, body ApiCharacterCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ApiCharacterRetrieve request
 	ApiCharacterRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ApiCharacterPartialUpdateWithBody request with any body
+	ApiCharacterPartialUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiCharacterPartialUpdateWithFormdataBody(ctx context.Context, id int, body ApiCharacterPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ApiCharacterUpdateWithBody request with any body
+	ApiCharacterUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiCharacterUpdateWithFormdataBody(ctx context.Context, id int, body ApiCharacterUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ApiCharacterIssueListList request
 	ApiCharacterIssueListList(ctx context.Context, id int, params *ApiCharacterIssueListListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -3386,32 +5338,137 @@ type ClientInterface interface {
 	// ApiCollectionRetrieve request
 	ApiCollectionRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ApiCollectionPartialUpdateWithBody request with any body
+	ApiCollectionPartialUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiCollectionPartialUpdate(ctx context.Context, id int, body ApiCollectionPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiCollectionPartialUpdateWithFormdataBody(ctx context.Context, id int, body ApiCollectionPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ApiCollectionUpdateWithBody request with any body
+	ApiCollectionUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiCollectionUpdate(ctx context.Context, id int, body ApiCollectionUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiCollectionUpdateWithFormdataBody(ctx context.Context, id int, body ApiCollectionUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ApiCreatorList request
 	ApiCreatorList(ctx context.Context, params *ApiCreatorListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ApiCreatorCreateWithBody request with any body
+	ApiCreatorCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiCreatorCreateWithFormdataBody(ctx context.Context, body ApiCreatorCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ApiCreatorRetrieve request
 	ApiCreatorRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ApiCreatorPartialUpdateWithBody request with any body
+	ApiCreatorPartialUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiCreatorPartialUpdateWithFormdataBody(ctx context.Context, id int, body ApiCreatorPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ApiCreatorUpdateWithBody request with any body
+	ApiCreatorUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiCreatorUpdateWithFormdataBody(ctx context.Context, id int, body ApiCreatorUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ApiCreditCreateWithBody request with any body
+	ApiCreditCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiCreditCreate(ctx context.Context, body ApiCreditCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiCreditCreateWithFormdataBody(ctx context.Context, body ApiCreditCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ApiImprintList request
 	ApiImprintList(ctx context.Context, params *ApiImprintListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ApiImprintCreateWithBody request with any body
+	ApiImprintCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiImprintCreateWithFormdataBody(ctx context.Context, body ApiImprintCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ApiImprintRetrieve request
 	ApiImprintRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ApiImprintPartialUpdateWithBody request with any body
+	ApiImprintPartialUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiImprintPartialUpdateWithFormdataBody(ctx context.Context, id int, body ApiImprintPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ApiImprintUpdateWithBody request with any body
+	ApiImprintUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiImprintUpdateWithFormdataBody(ctx context.Context, id int, body ApiImprintUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ApiIssueList request
 	ApiIssueList(ctx context.Context, params *ApiIssueListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ApiIssueCreateWithBody request with any body
+	ApiIssueCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiIssueCreate(ctx context.Context, body ApiIssueCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiIssueCreateWithFormdataBody(ctx context.Context, body ApiIssueCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ApiIssueRetrieve request
 	ApiIssueRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ApiIssuePartialUpdateWithBody request with any body
+	ApiIssuePartialUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiIssuePartialUpdate(ctx context.Context, id int, body ApiIssuePartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiIssuePartialUpdateWithFormdataBody(ctx context.Context, id int, body ApiIssuePartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ApiIssueUpdateWithBody request with any body
+	ApiIssueUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiIssueUpdate(ctx context.Context, id int, body ApiIssueUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiIssueUpdateWithFormdataBody(ctx context.Context, id int, body ApiIssueUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ApiPublisherList request
 	ApiPublisherList(ctx context.Context, params *ApiPublisherListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ApiPublisherCreateWithBody request with any body
+	ApiPublisherCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiPublisherCreateWithFormdataBody(ctx context.Context, body ApiPublisherCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ApiPublisherRetrieve request
 	ApiPublisherRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ApiPublisherPartialUpdateWithBody request with any body
+	ApiPublisherPartialUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiPublisherPartialUpdateWithFormdataBody(ctx context.Context, id int, body ApiPublisherPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ApiPublisherUpdateWithBody request with any body
+	ApiPublisherUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiPublisherUpdateWithFormdataBody(ctx context.Context, id int, body ApiPublisherUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ApiPublisherSeriesListList request
 	ApiPublisherSeriesListList(ctx context.Context, id int, params *ApiPublisherSeriesListListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ApiPullListList request
+	ApiPullListList(ctx context.Context, params *ApiPullListListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ApiPullListIssuesList request
+	ApiPullListIssuesList(ctx context.Context, params *ApiPullListIssuesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ApiPullListSeriesList request
+	ApiPullListSeriesList(ctx context.Context, params *ApiPullListSeriesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ApiPullListSeriesAddCreate request
+	ApiPullListSeriesAddCreate(ctx context.Context, params *ApiPullListSeriesAddCreateParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ApiPullListSeriesRemoveDestroy request
+	ApiPullListSeriesRemoveDestroy(ctx context.Context, seriesPk int, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ApiPullListRetrieve request
+	ApiPullListRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ApiReadingListList request
 	ApiReadingListList(ctx context.Context, params *ApiReadingListListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -3431,8 +5488,29 @@ type ClientInterface interface {
 	// ApiSeriesList request
 	ApiSeriesList(ctx context.Context, params *ApiSeriesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ApiSeriesCreateWithBody request with any body
+	ApiSeriesCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiSeriesCreate(ctx context.Context, body ApiSeriesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiSeriesCreateWithFormdataBody(ctx context.Context, body ApiSeriesCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ApiSeriesRetrieve request
 	ApiSeriesRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ApiSeriesPartialUpdateWithBody request with any body
+	ApiSeriesPartialUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiSeriesPartialUpdate(ctx context.Context, id int, body ApiSeriesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiSeriesPartialUpdateWithFormdataBody(ctx context.Context, id int, body ApiSeriesPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ApiSeriesUpdateWithBody request with any body
+	ApiSeriesUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiSeriesUpdate(ctx context.Context, id int, body ApiSeriesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiSeriesUpdateWithFormdataBody(ctx context.Context, id int, body ApiSeriesUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ApiSeriesIssueListList request
 	ApiSeriesIssueListList(ctx context.Context, id int, params *ApiSeriesIssueListListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -3443,8 +5521,23 @@ type ClientInterface interface {
 	// ApiTeamList request
 	ApiTeamList(ctx context.Context, params *ApiTeamListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ApiTeamCreateWithBody request with any body
+	ApiTeamCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiTeamCreateWithFormdataBody(ctx context.Context, body ApiTeamCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ApiTeamRetrieve request
 	ApiTeamRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ApiTeamPartialUpdateWithBody request with any body
+	ApiTeamPartialUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiTeamPartialUpdateWithFormdataBody(ctx context.Context, id int, body ApiTeamPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ApiTeamUpdateWithBody request with any body
+	ApiTeamUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiTeamUpdateWithFormdataBody(ctx context.Context, id int, body ApiTeamUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ApiTeamIssueListList request
 	ApiTeamIssueListList(ctx context.Context, id int, params *ApiTeamIssueListListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -3452,8 +5545,70 @@ type ClientInterface interface {
 	// ApiUniverseList request
 	ApiUniverseList(ctx context.Context, params *ApiUniverseListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ApiUniverseCreateWithBody request with any body
+	ApiUniverseCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiUniverseCreateWithFormdataBody(ctx context.Context, body ApiUniverseCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ApiUniverseRetrieve request
 	ApiUniverseRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ApiUniversePartialUpdateWithBody request with any body
+	ApiUniversePartialUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiUniversePartialUpdateWithFormdataBody(ctx context.Context, id int, body ApiUniversePartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ApiUniverseUpdateWithBody request with any body
+	ApiUniverseUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiUniverseUpdateWithFormdataBody(ctx context.Context, id int, body ApiUniverseUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ApiVariantCreateWithBody request with any body
+	ApiVariantCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiVariantCreate(ctx context.Context, body ApiVariantCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiVariantCreateWithFormdataBody(ctx context.Context, body ApiVariantCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ApiVariantPartialUpdateWithBody request with any body
+	ApiVariantPartialUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiVariantPartialUpdate(ctx context.Context, id int, body ApiVariantPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiVariantPartialUpdateWithFormdataBody(ctx context.Context, id int, body ApiVariantPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ApiVariantUpdateWithBody request with any body
+	ApiVariantUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiVariantUpdate(ctx context.Context, id int, body ApiVariantUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiVariantUpdateWithFormdataBody(ctx context.Context, id int, body ApiVariantUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ApiWishListList request
+	ApiWishListList(ctx context.Context, params *ApiWishListListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ApiWishListItemsList request
+	ApiWishListItemsList(ctx context.Context, params *ApiWishListItemsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ApiWishListItemsAddCreateWithBody request with any body
+	ApiWishListItemsAddCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiWishListItemsAddCreate(ctx context.Context, body ApiWishListItemsAddCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiWishListItemsAddCreateWithFormdataBody(ctx context.Context, body ApiWishListItemsAddCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ApiWishListItemsAcquireCreateWithBody request with any body
+	ApiWishListItemsAcquireCreateWithBody(ctx context.Context, itemPk int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiWishListItemsAcquireCreate(ctx context.Context, itemPk int, body ApiWishListItemsAcquireCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiWishListItemsAcquireCreateWithFormdataBody(ctx context.Context, itemPk int, body ApiWishListItemsAcquireCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ApiWishListItemsRemoveDestroy request
+	ApiWishListItemsRemoveDestroy(ctx context.Context, itemPk int, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ApiWishListRetrieve request
+	ApiWishListRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
 }
 
 func (c *Client) ApiArcList(ctx context.Context, params *ApiArcListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -3468,8 +5623,80 @@ func (c *Client) ApiArcList(ctx context.Context, params *ApiArcListParams, reqEd
 	return c.Client.Do(req)
 }
 
+func (c *Client) ApiArcCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiArcCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiArcCreateWithFormdataBody(ctx context.Context, body ApiArcCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiArcCreateRequestWithFormdataBody(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) ApiArcRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewApiArcRetrieveRequest(c.Server, id)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiArcPartialUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiArcPartialUpdateRequestWithBody(c.Server, id, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiArcPartialUpdateWithFormdataBody(ctx context.Context, id int, body ApiArcPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiArcPartialUpdateRequestWithFormdataBody(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiArcUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiArcUpdateRequestWithBody(c.Server, id, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiArcUpdateWithFormdataBody(ctx context.Context, id int, body ApiArcUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiArcUpdateRequestWithFormdataBody(c.Server, id, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3504,8 +5731,80 @@ func (c *Client) ApiCharacterList(ctx context.Context, params *ApiCharacterListP
 	return c.Client.Do(req)
 }
 
+func (c *Client) ApiCharacterCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiCharacterCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiCharacterCreateWithFormdataBody(ctx context.Context, body ApiCharacterCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiCharacterCreateRequestWithFormdataBody(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) ApiCharacterRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewApiCharacterRetrieveRequest(c.Server, id)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiCharacterPartialUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiCharacterPartialUpdateRequestWithBody(c.Server, id, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiCharacterPartialUpdateWithFormdataBody(ctx context.Context, id int, body ApiCharacterPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiCharacterPartialUpdateRequestWithFormdataBody(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiCharacterUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiCharacterUpdateRequestWithBody(c.Server, id, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiCharacterUpdateWithFormdataBody(ctx context.Context, id int, body ApiCharacterUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiCharacterUpdateRequestWithFormdataBody(c.Server, id, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3624,8 +5923,104 @@ func (c *Client) ApiCollectionRetrieve(ctx context.Context, id int, reqEditors .
 	return c.Client.Do(req)
 }
 
+func (c *Client) ApiCollectionPartialUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiCollectionPartialUpdateRequestWithBody(c.Server, id, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiCollectionPartialUpdate(ctx context.Context, id int, body ApiCollectionPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiCollectionPartialUpdateRequest(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiCollectionPartialUpdateWithFormdataBody(ctx context.Context, id int, body ApiCollectionPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiCollectionPartialUpdateRequestWithFormdataBody(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiCollectionUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiCollectionUpdateRequestWithBody(c.Server, id, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiCollectionUpdate(ctx context.Context, id int, body ApiCollectionUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiCollectionUpdateRequest(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiCollectionUpdateWithFormdataBody(ctx context.Context, id int, body ApiCollectionUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiCollectionUpdateRequestWithFormdataBody(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) ApiCreatorList(ctx context.Context, params *ApiCreatorListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewApiCreatorListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiCreatorCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiCreatorCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiCreatorCreateWithFormdataBody(ctx context.Context, body ApiCreatorCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiCreatorCreateRequestWithFormdataBody(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3648,8 +6043,116 @@ func (c *Client) ApiCreatorRetrieve(ctx context.Context, id int, reqEditors ...R
 	return c.Client.Do(req)
 }
 
+func (c *Client) ApiCreatorPartialUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiCreatorPartialUpdateRequestWithBody(c.Server, id, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiCreatorPartialUpdateWithFormdataBody(ctx context.Context, id int, body ApiCreatorPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiCreatorPartialUpdateRequestWithFormdataBody(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiCreatorUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiCreatorUpdateRequestWithBody(c.Server, id, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiCreatorUpdateWithFormdataBody(ctx context.Context, id int, body ApiCreatorUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiCreatorUpdateRequestWithFormdataBody(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiCreditCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiCreditCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiCreditCreate(ctx context.Context, body ApiCreditCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiCreditCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiCreditCreateWithFormdataBody(ctx context.Context, body ApiCreditCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiCreditCreateRequestWithFormdataBody(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) ApiImprintList(ctx context.Context, params *ApiImprintListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewApiImprintListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiImprintCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiImprintCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiImprintCreateWithFormdataBody(ctx context.Context, body ApiImprintCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiImprintCreateRequestWithFormdataBody(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3672,8 +6175,92 @@ func (c *Client) ApiImprintRetrieve(ctx context.Context, id int, reqEditors ...R
 	return c.Client.Do(req)
 }
 
+func (c *Client) ApiImprintPartialUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiImprintPartialUpdateRequestWithBody(c.Server, id, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiImprintPartialUpdateWithFormdataBody(ctx context.Context, id int, body ApiImprintPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiImprintPartialUpdateRequestWithFormdataBody(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiImprintUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiImprintUpdateRequestWithBody(c.Server, id, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiImprintUpdateWithFormdataBody(ctx context.Context, id int, body ApiImprintUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiImprintUpdateRequestWithFormdataBody(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) ApiIssueList(ctx context.Context, params *ApiIssueListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewApiIssueListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiIssueCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiIssueCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiIssueCreate(ctx context.Context, body ApiIssueCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiIssueCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiIssueCreateWithFormdataBody(ctx context.Context, body ApiIssueCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiIssueCreateRequestWithFormdataBody(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3696,8 +6283,104 @@ func (c *Client) ApiIssueRetrieve(ctx context.Context, id int, reqEditors ...Req
 	return c.Client.Do(req)
 }
 
+func (c *Client) ApiIssuePartialUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiIssuePartialUpdateRequestWithBody(c.Server, id, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiIssuePartialUpdate(ctx context.Context, id int, body ApiIssuePartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiIssuePartialUpdateRequest(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiIssuePartialUpdateWithFormdataBody(ctx context.Context, id int, body ApiIssuePartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiIssuePartialUpdateRequestWithFormdataBody(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiIssueUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiIssueUpdateRequestWithBody(c.Server, id, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiIssueUpdate(ctx context.Context, id int, body ApiIssueUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiIssueUpdateRequest(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiIssueUpdateWithFormdataBody(ctx context.Context, id int, body ApiIssueUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiIssueUpdateRequestWithFormdataBody(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) ApiPublisherList(ctx context.Context, params *ApiPublisherListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewApiPublisherListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiPublisherCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiPublisherCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiPublisherCreateWithFormdataBody(ctx context.Context, body ApiPublisherCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiPublisherCreateRequestWithFormdataBody(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3720,8 +6403,128 @@ func (c *Client) ApiPublisherRetrieve(ctx context.Context, id int, reqEditors ..
 	return c.Client.Do(req)
 }
 
+func (c *Client) ApiPublisherPartialUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiPublisherPartialUpdateRequestWithBody(c.Server, id, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiPublisherPartialUpdateWithFormdataBody(ctx context.Context, id int, body ApiPublisherPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiPublisherPartialUpdateRequestWithFormdataBody(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiPublisherUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiPublisherUpdateRequestWithBody(c.Server, id, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiPublisherUpdateWithFormdataBody(ctx context.Context, id int, body ApiPublisherUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiPublisherUpdateRequestWithFormdataBody(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) ApiPublisherSeriesListList(ctx context.Context, id int, params *ApiPublisherSeriesListListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewApiPublisherSeriesListListRequest(c.Server, id, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiPullListList(ctx context.Context, params *ApiPullListListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiPullListListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiPullListIssuesList(ctx context.Context, params *ApiPullListIssuesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiPullListIssuesListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiPullListSeriesList(ctx context.Context, params *ApiPullListSeriesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiPullListSeriesListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiPullListSeriesAddCreate(ctx context.Context, params *ApiPullListSeriesAddCreateParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiPullListSeriesAddCreateRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiPullListSeriesRemoveDestroy(ctx context.Context, seriesPk int, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiPullListSeriesRemoveDestroyRequest(c.Server, seriesPk)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiPullListRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiPullListRetrieveRequest(c.Server, id)
 	if err != nil {
 		return nil, err
 	}
@@ -3804,8 +6607,116 @@ func (c *Client) ApiSeriesList(ctx context.Context, params *ApiSeriesListParams,
 	return c.Client.Do(req)
 }
 
+func (c *Client) ApiSeriesCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiSeriesCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiSeriesCreate(ctx context.Context, body ApiSeriesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiSeriesCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiSeriesCreateWithFormdataBody(ctx context.Context, body ApiSeriesCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiSeriesCreateRequestWithFormdataBody(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) ApiSeriesRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewApiSeriesRetrieveRequest(c.Server, id)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiSeriesPartialUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiSeriesPartialUpdateRequestWithBody(c.Server, id, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiSeriesPartialUpdate(ctx context.Context, id int, body ApiSeriesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiSeriesPartialUpdateRequest(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiSeriesPartialUpdateWithFormdataBody(ctx context.Context, id int, body ApiSeriesPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiSeriesPartialUpdateRequestWithFormdataBody(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiSeriesUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiSeriesUpdateRequestWithBody(c.Server, id, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiSeriesUpdate(ctx context.Context, id int, body ApiSeriesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiSeriesUpdateRequest(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiSeriesUpdateWithFormdataBody(ctx context.Context, id int, body ApiSeriesUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiSeriesUpdateRequestWithFormdataBody(c.Server, id, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3852,8 +6763,80 @@ func (c *Client) ApiTeamList(ctx context.Context, params *ApiTeamListParams, req
 	return c.Client.Do(req)
 }
 
+func (c *Client) ApiTeamCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiTeamCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiTeamCreateWithFormdataBody(ctx context.Context, body ApiTeamCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiTeamCreateRequestWithFormdataBody(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) ApiTeamRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewApiTeamRetrieveRequest(c.Server, id)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiTeamPartialUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiTeamPartialUpdateRequestWithBody(c.Server, id, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiTeamPartialUpdateWithFormdataBody(ctx context.Context, id int, body ApiTeamPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiTeamPartialUpdateRequestWithFormdataBody(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiTeamUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiTeamUpdateRequestWithBody(c.Server, id, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiTeamUpdateWithFormdataBody(ctx context.Context, id int, body ApiTeamUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiTeamUpdateRequestWithFormdataBody(c.Server, id, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3888,8 +6871,308 @@ func (c *Client) ApiUniverseList(ctx context.Context, params *ApiUniverseListPar
 	return c.Client.Do(req)
 }
 
+func (c *Client) ApiUniverseCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiUniverseCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiUniverseCreateWithFormdataBody(ctx context.Context, body ApiUniverseCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiUniverseCreateRequestWithFormdataBody(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) ApiUniverseRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewApiUniverseRetrieveRequest(c.Server, id)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiUniversePartialUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiUniversePartialUpdateRequestWithBody(c.Server, id, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiUniversePartialUpdateWithFormdataBody(ctx context.Context, id int, body ApiUniversePartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiUniversePartialUpdateRequestWithFormdataBody(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiUniverseUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiUniverseUpdateRequestWithBody(c.Server, id, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiUniverseUpdateWithFormdataBody(ctx context.Context, id int, body ApiUniverseUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiUniverseUpdateRequestWithFormdataBody(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiVariantCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiVariantCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiVariantCreate(ctx context.Context, body ApiVariantCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiVariantCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiVariantCreateWithFormdataBody(ctx context.Context, body ApiVariantCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiVariantCreateRequestWithFormdataBody(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiVariantPartialUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiVariantPartialUpdateRequestWithBody(c.Server, id, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiVariantPartialUpdate(ctx context.Context, id int, body ApiVariantPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiVariantPartialUpdateRequest(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiVariantPartialUpdateWithFormdataBody(ctx context.Context, id int, body ApiVariantPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiVariantPartialUpdateRequestWithFormdataBody(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiVariantUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiVariantUpdateRequestWithBody(c.Server, id, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiVariantUpdate(ctx context.Context, id int, body ApiVariantUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiVariantUpdateRequest(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiVariantUpdateWithFormdataBody(ctx context.Context, id int, body ApiVariantUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiVariantUpdateRequestWithFormdataBody(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiWishListList(ctx context.Context, params *ApiWishListListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiWishListListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiWishListItemsList(ctx context.Context, params *ApiWishListItemsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiWishListItemsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiWishListItemsAddCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiWishListItemsAddCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiWishListItemsAddCreate(ctx context.Context, body ApiWishListItemsAddCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiWishListItemsAddCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiWishListItemsAddCreateWithFormdataBody(ctx context.Context, body ApiWishListItemsAddCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiWishListItemsAddCreateRequestWithFormdataBody(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiWishListItemsAcquireCreateWithBody(ctx context.Context, itemPk int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiWishListItemsAcquireCreateRequestWithBody(c.Server, itemPk, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiWishListItemsAcquireCreate(ctx context.Context, itemPk int, body ApiWishListItemsAcquireCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiWishListItemsAcquireCreateRequest(c.Server, itemPk, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiWishListItemsAcquireCreateWithFormdataBody(ctx context.Context, itemPk int, body ApiWishListItemsAcquireCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiWishListItemsAcquireCreateRequestWithFormdataBody(c.Server, itemPk, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiWishListItemsRemoveDestroy(ctx context.Context, itemPk int, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiWishListItemsRemoveDestroyRequest(c.Server, itemPk)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiWishListRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiWishListRetrieveRequest(c.Server, id)
 	if err != nil {
 		return nil, err
 	}
@@ -4013,6 +7296,46 @@ func NewApiArcListRequest(server string, params *ApiArcListParams) (*http.Reques
 	return req, nil
 }
 
+// NewApiArcCreateRequestWithFormdataBody calls the generic ApiArcCreate builder with application/x-www-form-urlencoded body
+func NewApiArcCreateRequestWithFormdataBody(server string, body ApiArcCreateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewApiArcCreateRequestWithBody(server, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewApiArcCreateRequestWithBody generates requests for ApiArcCreate with any type of body
+func NewApiArcCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/arc/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewApiArcRetrieveRequest generates requests for ApiArcRetrieve
 func NewApiArcRetrieveRequest(server string, id int) (*http.Request, error) {
 	var err error
@@ -4043,6 +7366,100 @@ func NewApiArcRetrieveRequest(server string, id int) (*http.Request, error) {
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewApiArcPartialUpdateRequestWithFormdataBody calls the generic ApiArcPartialUpdate builder with application/x-www-form-urlencoded body
+func NewApiArcPartialUpdateRequestWithFormdataBody(server string, id int, body ApiArcPartialUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewApiArcPartialUpdateRequestWithBody(server, id, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewApiArcPartialUpdateRequestWithBody generates requests for ApiArcPartialUpdate with any type of body
+func NewApiArcPartialUpdateRequestWithBody(server string, id int, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/arc/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewApiArcUpdateRequestWithFormdataBody calls the generic ApiArcUpdate builder with application/x-www-form-urlencoded body
+func NewApiArcUpdateRequestWithFormdataBody(server string, id int, body ApiArcUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewApiArcUpdateRequestWithBody(server, id, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewApiArcUpdateRequestWithBody generates requests for ApiArcUpdate with any type of body
+func NewApiArcUpdateRequestWithBody(server string, id int, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/arc/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -4216,6 +7633,46 @@ func NewApiCharacterListRequest(server string, params *ApiCharacterListParams) (
 	return req, nil
 }
 
+// NewApiCharacterCreateRequestWithFormdataBody calls the generic ApiCharacterCreate builder with application/x-www-form-urlencoded body
+func NewApiCharacterCreateRequestWithFormdataBody(server string, body ApiCharacterCreateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewApiCharacterCreateRequestWithBody(server, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewApiCharacterCreateRequestWithBody generates requests for ApiCharacterCreate with any type of body
+func NewApiCharacterCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/character/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewApiCharacterRetrieveRequest generates requests for ApiCharacterRetrieve
 func NewApiCharacterRetrieveRequest(server string, id int) (*http.Request, error) {
 	var err error
@@ -4246,6 +7703,100 @@ func NewApiCharacterRetrieveRequest(server string, id int) (*http.Request, error
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewApiCharacterPartialUpdateRequestWithFormdataBody calls the generic ApiCharacterPartialUpdate builder with application/x-www-form-urlencoded body
+func NewApiCharacterPartialUpdateRequestWithFormdataBody(server string, id int, body ApiCharacterPartialUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewApiCharacterPartialUpdateRequestWithBody(server, id, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewApiCharacterPartialUpdateRequestWithBody generates requests for ApiCharacterPartialUpdate with any type of body
+func NewApiCharacterPartialUpdateRequestWithBody(server string, id int, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/character/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewApiCharacterUpdateRequestWithFormdataBody calls the generic ApiCharacterUpdate builder with application/x-www-form-urlencoded body
+func NewApiCharacterUpdateRequestWithFormdataBody(server string, id int, body ApiCharacterUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewApiCharacterUpdateRequestWithBody(server, id, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewApiCharacterUpdateRequestWithBody generates requests for ApiCharacterUpdate with any type of body
+func NewApiCharacterUpdateRequestWithBody(server string, id int, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/character/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -4876,6 +8427,122 @@ func NewApiCollectionRetrieveRequest(server string, id int) (*http.Request, erro
 	return req, nil
 }
 
+// NewApiCollectionPartialUpdateRequest calls the generic ApiCollectionPartialUpdate builder with application/json body
+func NewApiCollectionPartialUpdateRequest(server string, id int, body ApiCollectionPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewApiCollectionPartialUpdateRequestWithBody(server, id, "application/json", bodyReader)
+}
+
+// NewApiCollectionPartialUpdateRequestWithFormdataBody calls the generic ApiCollectionPartialUpdate builder with application/x-www-form-urlencoded body
+func NewApiCollectionPartialUpdateRequestWithFormdataBody(server string, id int, body ApiCollectionPartialUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewApiCollectionPartialUpdateRequestWithBody(server, id, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewApiCollectionPartialUpdateRequestWithBody generates requests for ApiCollectionPartialUpdate with any type of body
+func NewApiCollectionPartialUpdateRequestWithBody(server string, id int, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/collection/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewApiCollectionUpdateRequest calls the generic ApiCollectionUpdate builder with application/json body
+func NewApiCollectionUpdateRequest(server string, id int, body ApiCollectionUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewApiCollectionUpdateRequestWithBody(server, id, "application/json", bodyReader)
+}
+
+// NewApiCollectionUpdateRequestWithFormdataBody calls the generic ApiCollectionUpdate builder with application/x-www-form-urlencoded body
+func NewApiCollectionUpdateRequestWithFormdataBody(server string, id int, body ApiCollectionUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewApiCollectionUpdateRequestWithBody(server, id, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewApiCollectionUpdateRequestWithBody generates requests for ApiCollectionUpdate with any type of body
+func NewApiCollectionUpdateRequestWithBody(server string, id int, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/collection/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewApiCreatorListRequest generates requests for ApiCreatorList
 func NewApiCreatorListRequest(server string, params *ApiCreatorListParams) (*http.Request, error) {
 	var err error
@@ -4989,6 +8656,46 @@ func NewApiCreatorListRequest(server string, params *ApiCreatorListParams) (*htt
 	return req, nil
 }
 
+// NewApiCreatorCreateRequestWithFormdataBody calls the generic ApiCreatorCreate builder with application/x-www-form-urlencoded body
+func NewApiCreatorCreateRequestWithFormdataBody(server string, body ApiCreatorCreateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewApiCreatorCreateRequestWithBody(server, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewApiCreatorCreateRequestWithBody generates requests for ApiCreatorCreate with any type of body
+func NewApiCreatorCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/creator/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewApiCreatorRetrieveRequest generates requests for ApiCreatorRetrieve
 func NewApiCreatorRetrieveRequest(server string, id int) (*http.Request, error) {
 	var err error
@@ -5019,6 +8726,151 @@ func NewApiCreatorRetrieveRequest(server string, id int) (*http.Request, error) 
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewApiCreatorPartialUpdateRequestWithFormdataBody calls the generic ApiCreatorPartialUpdate builder with application/x-www-form-urlencoded body
+func NewApiCreatorPartialUpdateRequestWithFormdataBody(server string, id int, body ApiCreatorPartialUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewApiCreatorPartialUpdateRequestWithBody(server, id, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewApiCreatorPartialUpdateRequestWithBody generates requests for ApiCreatorPartialUpdate with any type of body
+func NewApiCreatorPartialUpdateRequestWithBody(server string, id int, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/creator/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewApiCreatorUpdateRequestWithFormdataBody calls the generic ApiCreatorUpdate builder with application/x-www-form-urlencoded body
+func NewApiCreatorUpdateRequestWithFormdataBody(server string, id int, body ApiCreatorUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewApiCreatorUpdateRequestWithBody(server, id, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewApiCreatorUpdateRequestWithBody generates requests for ApiCreatorUpdate with any type of body
+func NewApiCreatorUpdateRequestWithBody(server string, id int, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/creator/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewApiCreditCreateRequest calls the generic ApiCreditCreate builder with application/json body
+func NewApiCreditCreateRequest(server string, body ApiCreditCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewApiCreditCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewApiCreditCreateRequestWithFormdataBody calls the generic ApiCreditCreate builder with application/x-www-form-urlencoded body
+func NewApiCreditCreateRequestWithFormdataBody(server string, body ApiCreditCreateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewApiCreditCreateRequestWithBody(server, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewApiCreditCreateRequestWithBody generates requests for ApiCreditCreate with any type of body
+func NewApiCreditCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/credit/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -5136,6 +8988,46 @@ func NewApiImprintListRequest(server string, params *ApiImprintListParams) (*htt
 	return req, nil
 }
 
+// NewApiImprintCreateRequestWithFormdataBody calls the generic ApiImprintCreate builder with application/x-www-form-urlencoded body
+func NewApiImprintCreateRequestWithFormdataBody(server string, body ApiImprintCreateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewApiImprintCreateRequestWithBody(server, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewApiImprintCreateRequestWithBody generates requests for ApiImprintCreate with any type of body
+func NewApiImprintCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/imprint/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewApiImprintRetrieveRequest generates requests for ApiImprintRetrieve
 func NewApiImprintRetrieveRequest(server string, id int) (*http.Request, error) {
 	var err error
@@ -5170,6 +9062,100 @@ func NewApiImprintRetrieveRequest(server string, id int) (*http.Request, error) 
 	return req, nil
 }
 
+// NewApiImprintPartialUpdateRequestWithFormdataBody calls the generic ApiImprintPartialUpdate builder with application/x-www-form-urlencoded body
+func NewApiImprintPartialUpdateRequestWithFormdataBody(server string, id int, body ApiImprintPartialUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewApiImprintPartialUpdateRequestWithBody(server, id, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewApiImprintPartialUpdateRequestWithBody generates requests for ApiImprintPartialUpdate with any type of body
+func NewApiImprintPartialUpdateRequestWithBody(server string, id int, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/imprint/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewApiImprintUpdateRequestWithFormdataBody calls the generic ApiImprintUpdate builder with application/x-www-form-urlencoded body
+func NewApiImprintUpdateRequestWithFormdataBody(server string, id int, body ApiImprintUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewApiImprintUpdateRequestWithBody(server, id, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewApiImprintUpdateRequestWithBody generates requests for ApiImprintUpdate with any type of body
+func NewApiImprintUpdateRequestWithBody(server string, id int, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/imprint/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewApiIssueListRequest generates requests for ApiIssueList
 func NewApiIssueListRequest(server string, params *ApiIssueListParams) (*http.Request, error) {
 	var err error
@@ -5195,6 +9181,22 @@ func NewApiIssueListRequest(server string, params *ApiIssueListParams) (*http.Re
 		if params.AltNumber != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "alt_number", runtime.ParamLocationQuery, *params.AltNumber); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CharacterId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "character_id", runtime.ParamLocationQuery, *params.CharacterId); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -5243,6 +9245,22 @@ func NewApiIssueListRequest(server string, params *ApiIssueListParams) (*http.Re
 		if params.CoverYear != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "cover_year", runtime.ParamLocationQuery, *params.CoverYear); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CreatorId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "creator_id", runtime.ParamLocationQuery, *params.CreatorId); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -5496,6 +9514,22 @@ func NewApiIssueListRequest(server string, params *ApiIssueListParams) (*http.Re
 
 		}
 
+		if params.RoleId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "role_id", runtime.ParamLocationQuery, *params.RoleId); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.SeriesId != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "series_id", runtime.ParamLocationQuery, *params.SeriesId); err != nil {
@@ -5624,6 +9658,38 @@ func NewApiIssueListRequest(server string, params *ApiIssueListParams) (*http.Re
 
 		}
 
+		if params.TeamId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "team_id", runtime.ParamLocationQuery, *params.TeamId); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UniverseId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "universe_id", runtime.ParamLocationQuery, *params.UniverseId); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Upc != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "upc", runtime.ParamLocationQuery, *params.Upc); err != nil {
@@ -5647,6 +9713,57 @@ func NewApiIssueListRequest(server string, params *ApiIssueListParams) (*http.Re
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewApiIssueCreateRequest calls the generic ApiIssueCreate builder with application/json body
+func NewApiIssueCreateRequest(server string, body ApiIssueCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewApiIssueCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewApiIssueCreateRequestWithFormdataBody calls the generic ApiIssueCreate builder with application/x-www-form-urlencoded body
+func NewApiIssueCreateRequestWithFormdataBody(server string, body ApiIssueCreateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewApiIssueCreateRequestWithBody(server, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewApiIssueCreateRequestWithBody generates requests for ApiIssueCreate with any type of body
+func NewApiIssueCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/issue/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -5681,6 +9798,122 @@ func NewApiIssueRetrieveRequest(server string, id int) (*http.Request, error) {
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewApiIssuePartialUpdateRequest calls the generic ApiIssuePartialUpdate builder with application/json body
+func NewApiIssuePartialUpdateRequest(server string, id int, body ApiIssuePartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewApiIssuePartialUpdateRequestWithBody(server, id, "application/json", bodyReader)
+}
+
+// NewApiIssuePartialUpdateRequestWithFormdataBody calls the generic ApiIssuePartialUpdate builder with application/x-www-form-urlencoded body
+func NewApiIssuePartialUpdateRequestWithFormdataBody(server string, id int, body ApiIssuePartialUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewApiIssuePartialUpdateRequestWithBody(server, id, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewApiIssuePartialUpdateRequestWithBody generates requests for ApiIssuePartialUpdate with any type of body
+func NewApiIssuePartialUpdateRequestWithBody(server string, id int, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/issue/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewApiIssueUpdateRequest calls the generic ApiIssueUpdate builder with application/json body
+func NewApiIssueUpdateRequest(server string, id int, body ApiIssueUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewApiIssueUpdateRequestWithBody(server, id, "application/json", bodyReader)
+}
+
+// NewApiIssueUpdateRequestWithFormdataBody calls the generic ApiIssueUpdate builder with application/x-www-form-urlencoded body
+func NewApiIssueUpdateRequestWithFormdataBody(server string, id int, body ApiIssueUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewApiIssueUpdateRequestWithBody(server, id, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewApiIssueUpdateRequestWithBody generates requests for ApiIssueUpdate with any type of body
+func NewApiIssueUpdateRequestWithBody(server string, id int, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/issue/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -5798,6 +10031,46 @@ func NewApiPublisherListRequest(server string, params *ApiPublisherListParams) (
 	return req, nil
 }
 
+// NewApiPublisherCreateRequestWithFormdataBody calls the generic ApiPublisherCreate builder with application/x-www-form-urlencoded body
+func NewApiPublisherCreateRequestWithFormdataBody(server string, body ApiPublisherCreateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewApiPublisherCreateRequestWithBody(server, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewApiPublisherCreateRequestWithBody generates requests for ApiPublisherCreate with any type of body
+func NewApiPublisherCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/publisher/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewApiPublisherRetrieveRequest generates requests for ApiPublisherRetrieve
 func NewApiPublisherRetrieveRequest(server string, id int) (*http.Request, error) {
 	var err error
@@ -5828,6 +10101,100 @@ func NewApiPublisherRetrieveRequest(server string, id int) (*http.Request, error
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewApiPublisherPartialUpdateRequestWithFormdataBody calls the generic ApiPublisherPartialUpdate builder with application/x-www-form-urlencoded body
+func NewApiPublisherPartialUpdateRequestWithFormdataBody(server string, id int, body ApiPublisherPartialUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewApiPublisherPartialUpdateRequestWithBody(server, id, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewApiPublisherPartialUpdateRequestWithBody generates requests for ApiPublisherPartialUpdate with any type of body
+func NewApiPublisherPartialUpdateRequestWithBody(server string, id int, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/publisher/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewApiPublisherUpdateRequestWithFormdataBody calls the generic ApiPublisherUpdate builder with application/x-www-form-urlencoded body
+func NewApiPublisherUpdateRequestWithFormdataBody(server string, id int, body ApiPublisherUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewApiPublisherUpdateRequestWithBody(server, id, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewApiPublisherUpdateRequestWithBody generates requests for ApiPublisherUpdate with any type of body
+func NewApiPublisherUpdateRequestWithBody(server string, id int, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/publisher/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -5878,6 +10245,298 @@ func NewApiPublisherSeriesListListRequest(server string, id int, params *ApiPubl
 		}
 
 		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewApiPullListListRequest generates requests for ApiPullListList
+func NewApiPullListListRequest(server string, params *ApiPullListListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/pull_list/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewApiPullListIssuesListRequest generates requests for ApiPullListIssuesList
+func NewApiPullListIssuesListRequest(server string, params *ApiPullListIssuesListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/pull_list/issues/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.StoreDateAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "store_date_after", runtime.ParamLocationQuery, *params.StoreDateAfter); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.StoreDateBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "store_date_before", runtime.ParamLocationQuery, *params.StoreDateBefore); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewApiPullListSeriesListRequest generates requests for ApiPullListSeriesList
+func NewApiPullListSeriesListRequest(server string, params *ApiPullListSeriesListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/pull_list/series/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewApiPullListSeriesAddCreateRequest generates requests for ApiPullListSeriesAddCreate
+func NewApiPullListSeriesAddCreateRequest(server string, params *ApiPullListSeriesAddCreateParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/pull_list/series/add/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "series_id", runtime.ParamLocationQuery, params.SeriesId); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewApiPullListSeriesRemoveDestroyRequest generates requests for ApiPullListSeriesRemoveDestroy
+func NewApiPullListSeriesRemoveDestroyRequest(server string, seriesPk int) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "series_pk", runtime.ParamLocationPath, seriesPk)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/pull_list/series/%s/remove/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewApiPullListRetrieveRequest generates requests for ApiPullListRetrieve
+func NewApiPullListRetrieveRequest(server string, id int) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/pull_list/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
@@ -5958,6 +10617,22 @@ func NewApiReadingListListRequest(server string, params *ApiReadingListListParam
 
 		}
 
+		if params.ListType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "list_type", runtime.ParamLocationQuery, *params.ListType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.ModifiedGt != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified_gt", runtime.ParamLocationQuery, *params.ModifiedGt); err != nil {
@@ -5993,6 +10668,22 @@ func NewApiReadingListListRequest(server string, params *ApiReadingListListParam
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Publisher != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "publisher", runtime.ParamLocationQuery, *params.Publisher); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -6307,6 +10998,38 @@ func NewApiSeriesListRequest(server string, params *ApiSeriesListParams) (*http.
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.CharacterId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "character_id", runtime.ParamLocationQuery, *params.CharacterId); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CreatorId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "creator_id", runtime.ParamLocationQuery, *params.CreatorId); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.CvId != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "cv_id", runtime.ParamLocationQuery, *params.CvId); err != nil {
@@ -6326,6 +11049,22 @@ func NewApiSeriesListRequest(server string, params *ApiSeriesListParams) (*http.
 		if params.GcdId != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "gcd_id", runtime.ParamLocationQuery, *params.GcdId); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ImprintId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "imprint_id", runtime.ParamLocationQuery, *params.ImprintId); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -6467,6 +11206,22 @@ func NewApiSeriesListRequest(server string, params *ApiSeriesListParams) (*http.
 
 		}
 
+		if params.RoleId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "role_id", runtime.ParamLocationQuery, *params.RoleId); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.SeriesType != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "series_type", runtime.ParamLocationQuery, *params.SeriesType); err != nil {
@@ -6502,6 +11257,38 @@ func NewApiSeriesListRequest(server string, params *ApiSeriesListParams) (*http.
 		if params.Status != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "status", runtime.ParamLocationQuery, *params.Status); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TeamId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "team_id", runtime.ParamLocationQuery, *params.TeamId); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UniverseId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "universe_id", runtime.ParamLocationQuery, *params.UniverseId); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -6574,6 +11361,57 @@ func NewApiSeriesListRequest(server string, params *ApiSeriesListParams) (*http.
 	return req, nil
 }
 
+// NewApiSeriesCreateRequest calls the generic ApiSeriesCreate builder with application/json body
+func NewApiSeriesCreateRequest(server string, body ApiSeriesCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewApiSeriesCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewApiSeriesCreateRequestWithFormdataBody calls the generic ApiSeriesCreate builder with application/x-www-form-urlencoded body
+func NewApiSeriesCreateRequestWithFormdataBody(server string, body ApiSeriesCreateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewApiSeriesCreateRequestWithBody(server, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewApiSeriesCreateRequestWithBody generates requests for ApiSeriesCreate with any type of body
+func NewApiSeriesCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/series/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewApiSeriesRetrieveRequest generates requests for ApiSeriesRetrieve
 func NewApiSeriesRetrieveRequest(server string, id int) (*http.Request, error) {
 	var err error
@@ -6604,6 +11442,122 @@ func NewApiSeriesRetrieveRequest(server string, id int) (*http.Request, error) {
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewApiSeriesPartialUpdateRequest calls the generic ApiSeriesPartialUpdate builder with application/json body
+func NewApiSeriesPartialUpdateRequest(server string, id int, body ApiSeriesPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewApiSeriesPartialUpdateRequestWithBody(server, id, "application/json", bodyReader)
+}
+
+// NewApiSeriesPartialUpdateRequestWithFormdataBody calls the generic ApiSeriesPartialUpdate builder with application/x-www-form-urlencoded body
+func NewApiSeriesPartialUpdateRequestWithFormdataBody(server string, id int, body ApiSeriesPartialUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewApiSeriesPartialUpdateRequestWithBody(server, id, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewApiSeriesPartialUpdateRequestWithBody generates requests for ApiSeriesPartialUpdate with any type of body
+func NewApiSeriesPartialUpdateRequestWithBody(server string, id int, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/series/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewApiSeriesUpdateRequest calls the generic ApiSeriesUpdate builder with application/json body
+func NewApiSeriesUpdateRequest(server string, id int, body ApiSeriesUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewApiSeriesUpdateRequestWithBody(server, id, "application/json", bodyReader)
+}
+
+// NewApiSeriesUpdateRequestWithFormdataBody calls the generic ApiSeriesUpdate builder with application/x-www-form-urlencoded body
+func NewApiSeriesUpdateRequestWithFormdataBody(server string, id int, body ApiSeriesUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewApiSeriesUpdateRequestWithBody(server, id, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewApiSeriesUpdateRequestWithBody generates requests for ApiSeriesUpdate with any type of body
+func NewApiSeriesUpdateRequestWithBody(server string, id int, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/series/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -6858,6 +11812,46 @@ func NewApiTeamListRequest(server string, params *ApiTeamListParams) (*http.Requ
 	return req, nil
 }
 
+// NewApiTeamCreateRequestWithFormdataBody calls the generic ApiTeamCreate builder with application/x-www-form-urlencoded body
+func NewApiTeamCreateRequestWithFormdataBody(server string, body ApiTeamCreateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewApiTeamCreateRequestWithBody(server, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewApiTeamCreateRequestWithBody generates requests for ApiTeamCreate with any type of body
+func NewApiTeamCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/team/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewApiTeamRetrieveRequest generates requests for ApiTeamRetrieve
 func NewApiTeamRetrieveRequest(server string, id int) (*http.Request, error) {
 	var err error
@@ -6888,6 +11882,100 @@ func NewApiTeamRetrieveRequest(server string, id int) (*http.Request, error) {
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewApiTeamPartialUpdateRequestWithFormdataBody calls the generic ApiTeamPartialUpdate builder with application/x-www-form-urlencoded body
+func NewApiTeamPartialUpdateRequestWithFormdataBody(server string, id int, body ApiTeamPartialUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewApiTeamPartialUpdateRequestWithBody(server, id, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewApiTeamPartialUpdateRequestWithBody generates requests for ApiTeamPartialUpdate with any type of body
+func NewApiTeamPartialUpdateRequestWithBody(server string, id int, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/team/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewApiTeamUpdateRequestWithFormdataBody calls the generic ApiTeamUpdate builder with application/x-www-form-urlencoded body
+func NewApiTeamUpdateRequestWithFormdataBody(server string, id int, body ApiTeamUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewApiTeamUpdateRequestWithBody(server, id, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewApiTeamUpdateRequestWithBody generates requests for ApiTeamUpdate with any type of body
+func NewApiTeamUpdateRequestWithBody(server string, id int, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/team/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -7045,6 +12133,46 @@ func NewApiUniverseListRequest(server string, params *ApiUniverseListParams) (*h
 	return req, nil
 }
 
+// NewApiUniverseCreateRequestWithFormdataBody calls the generic ApiUniverseCreate builder with application/x-www-form-urlencoded body
+func NewApiUniverseCreateRequestWithFormdataBody(server string, body ApiUniverseCreateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewApiUniverseCreateRequestWithBody(server, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewApiUniverseCreateRequestWithBody generates requests for ApiUniverseCreate with any type of body
+func NewApiUniverseCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/universe/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewApiUniverseRetrieveRequest generates requests for ApiUniverseRetrieve
 func NewApiUniverseRetrieveRequest(server string, id int) (*http.Request, error) {
 	var err error
@@ -7062,6 +12190,542 @@ func NewApiUniverseRetrieveRequest(server string, id int) (*http.Request, error)
 	}
 
 	operationPath := fmt.Sprintf("/api/universe/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewApiUniversePartialUpdateRequestWithFormdataBody calls the generic ApiUniversePartialUpdate builder with application/x-www-form-urlencoded body
+func NewApiUniversePartialUpdateRequestWithFormdataBody(server string, id int, body ApiUniversePartialUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewApiUniversePartialUpdateRequestWithBody(server, id, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewApiUniversePartialUpdateRequestWithBody generates requests for ApiUniversePartialUpdate with any type of body
+func NewApiUniversePartialUpdateRequestWithBody(server string, id int, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/universe/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewApiUniverseUpdateRequestWithFormdataBody calls the generic ApiUniverseUpdate builder with application/x-www-form-urlencoded body
+func NewApiUniverseUpdateRequestWithFormdataBody(server string, id int, body ApiUniverseUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewApiUniverseUpdateRequestWithBody(server, id, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewApiUniverseUpdateRequestWithBody generates requests for ApiUniverseUpdate with any type of body
+func NewApiUniverseUpdateRequestWithBody(server string, id int, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/universe/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewApiVariantCreateRequest calls the generic ApiVariantCreate builder with application/json body
+func NewApiVariantCreateRequest(server string, body ApiVariantCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewApiVariantCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewApiVariantCreateRequestWithFormdataBody calls the generic ApiVariantCreate builder with application/x-www-form-urlencoded body
+func NewApiVariantCreateRequestWithFormdataBody(server string, body ApiVariantCreateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewApiVariantCreateRequestWithBody(server, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewApiVariantCreateRequestWithBody generates requests for ApiVariantCreate with any type of body
+func NewApiVariantCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/variant/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewApiVariantPartialUpdateRequest calls the generic ApiVariantPartialUpdate builder with application/json body
+func NewApiVariantPartialUpdateRequest(server string, id int, body ApiVariantPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewApiVariantPartialUpdateRequestWithBody(server, id, "application/json", bodyReader)
+}
+
+// NewApiVariantPartialUpdateRequestWithFormdataBody calls the generic ApiVariantPartialUpdate builder with application/x-www-form-urlencoded body
+func NewApiVariantPartialUpdateRequestWithFormdataBody(server string, id int, body ApiVariantPartialUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewApiVariantPartialUpdateRequestWithBody(server, id, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewApiVariantPartialUpdateRequestWithBody generates requests for ApiVariantPartialUpdate with any type of body
+func NewApiVariantPartialUpdateRequestWithBody(server string, id int, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/variant/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewApiVariantUpdateRequest calls the generic ApiVariantUpdate builder with application/json body
+func NewApiVariantUpdateRequest(server string, id int, body ApiVariantUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewApiVariantUpdateRequestWithBody(server, id, "application/json", bodyReader)
+}
+
+// NewApiVariantUpdateRequestWithFormdataBody calls the generic ApiVariantUpdate builder with application/x-www-form-urlencoded body
+func NewApiVariantUpdateRequestWithFormdataBody(server string, id int, body ApiVariantUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewApiVariantUpdateRequestWithBody(server, id, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewApiVariantUpdateRequestWithBody generates requests for ApiVariantUpdate with any type of body
+func NewApiVariantUpdateRequestWithBody(server string, id int, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/variant/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewApiWishListListRequest generates requests for ApiWishListList
+func NewApiWishListListRequest(server string, params *ApiWishListListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/wish_list/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewApiWishListItemsListRequest generates requests for ApiWishListItemsList
+func NewApiWishListItemsListRequest(server string, params *ApiWishListItemsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/wish_list/items/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewApiWishListItemsAddCreateRequest calls the generic ApiWishListItemsAddCreate builder with application/json body
+func NewApiWishListItemsAddCreateRequest(server string, body ApiWishListItemsAddCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewApiWishListItemsAddCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewApiWishListItemsAddCreateRequestWithFormdataBody calls the generic ApiWishListItemsAddCreate builder with application/x-www-form-urlencoded body
+func NewApiWishListItemsAddCreateRequestWithFormdataBody(server string, body ApiWishListItemsAddCreateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewApiWishListItemsAddCreateRequestWithBody(server, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewApiWishListItemsAddCreateRequestWithBody generates requests for ApiWishListItemsAddCreate with any type of body
+func NewApiWishListItemsAddCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/wish_list/items/add/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewApiWishListItemsAcquireCreateRequest calls the generic ApiWishListItemsAcquireCreate builder with application/json body
+func NewApiWishListItemsAcquireCreateRequest(server string, itemPk int, body ApiWishListItemsAcquireCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewApiWishListItemsAcquireCreateRequestWithBody(server, itemPk, "application/json", bodyReader)
+}
+
+// NewApiWishListItemsAcquireCreateRequestWithFormdataBody calls the generic ApiWishListItemsAcquireCreate builder with application/x-www-form-urlencoded body
+func NewApiWishListItemsAcquireCreateRequestWithFormdataBody(server string, itemPk int, body ApiWishListItemsAcquireCreateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewApiWishListItemsAcquireCreateRequestWithBody(server, itemPk, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewApiWishListItemsAcquireCreateRequestWithBody generates requests for ApiWishListItemsAcquireCreate with any type of body
+func NewApiWishListItemsAcquireCreateRequestWithBody(server string, itemPk int, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "item_pk", runtime.ParamLocationPath, itemPk)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/wish_list/items/%s/acquire/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewApiWishListItemsRemoveDestroyRequest generates requests for ApiWishListItemsRemoveDestroy
+func NewApiWishListItemsRemoveDestroyRequest(server string, itemPk int) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "item_pk", runtime.ParamLocationPath, itemPk)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/wish_list/items/%s/remove/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewApiWishListRetrieveRequest generates requests for ApiWishListRetrieve
+func NewApiWishListRetrieveRequest(server string, id int) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/wish_list/%s/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -7125,8 +12789,23 @@ type ClientWithResponsesInterface interface {
 	// ApiArcListWithResponse request
 	ApiArcListWithResponse(ctx context.Context, params *ApiArcListParams, reqEditors ...RequestEditorFn) (*ApiArcListResponse, error)
 
+	// ApiArcCreateWithBodyWithResponse request with any body
+	ApiArcCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiArcCreateResponse, error)
+
+	ApiArcCreateWithFormdataBodyWithResponse(ctx context.Context, body ApiArcCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiArcCreateResponse, error)
+
 	// ApiArcRetrieveWithResponse request
 	ApiArcRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*ApiArcRetrieveResponse, error)
+
+	// ApiArcPartialUpdateWithBodyWithResponse request with any body
+	ApiArcPartialUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiArcPartialUpdateResponse, error)
+
+	ApiArcPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiArcPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiArcPartialUpdateResponse, error)
+
+	// ApiArcUpdateWithBodyWithResponse request with any body
+	ApiArcUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiArcUpdateResponse, error)
+
+	ApiArcUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiArcUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiArcUpdateResponse, error)
 
 	// ApiArcIssueListListWithResponse request
 	ApiArcIssueListListWithResponse(ctx context.Context, id int, params *ApiArcIssueListListParams, reqEditors ...RequestEditorFn) (*ApiArcIssueListListResponse, error)
@@ -7134,8 +12813,23 @@ type ClientWithResponsesInterface interface {
 	// ApiCharacterListWithResponse request
 	ApiCharacterListWithResponse(ctx context.Context, params *ApiCharacterListParams, reqEditors ...RequestEditorFn) (*ApiCharacterListResponse, error)
 
+	// ApiCharacterCreateWithBodyWithResponse request with any body
+	ApiCharacterCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiCharacterCreateResponse, error)
+
+	ApiCharacterCreateWithFormdataBodyWithResponse(ctx context.Context, body ApiCharacterCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiCharacterCreateResponse, error)
+
 	// ApiCharacterRetrieveWithResponse request
 	ApiCharacterRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*ApiCharacterRetrieveResponse, error)
+
+	// ApiCharacterPartialUpdateWithBodyWithResponse request with any body
+	ApiCharacterPartialUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiCharacterPartialUpdateResponse, error)
+
+	ApiCharacterPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiCharacterPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiCharacterPartialUpdateResponse, error)
+
+	// ApiCharacterUpdateWithBodyWithResponse request with any body
+	ApiCharacterUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiCharacterUpdateResponse, error)
+
+	ApiCharacterUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiCharacterUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiCharacterUpdateResponse, error)
 
 	// ApiCharacterIssueListListWithResponse request
 	ApiCharacterIssueListListWithResponse(ctx context.Context, id int, params *ApiCharacterIssueListListParams, reqEditors ...RequestEditorFn) (*ApiCharacterIssueListListResponse, error)
@@ -7162,32 +12856,137 @@ type ClientWithResponsesInterface interface {
 	// ApiCollectionRetrieveWithResponse request
 	ApiCollectionRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*ApiCollectionRetrieveResponse, error)
 
+	// ApiCollectionPartialUpdateWithBodyWithResponse request with any body
+	ApiCollectionPartialUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiCollectionPartialUpdateResponse, error)
+
+	ApiCollectionPartialUpdateWithResponse(ctx context.Context, id int, body ApiCollectionPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ApiCollectionPartialUpdateResponse, error)
+
+	ApiCollectionPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiCollectionPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiCollectionPartialUpdateResponse, error)
+
+	// ApiCollectionUpdateWithBodyWithResponse request with any body
+	ApiCollectionUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiCollectionUpdateResponse, error)
+
+	ApiCollectionUpdateWithResponse(ctx context.Context, id int, body ApiCollectionUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ApiCollectionUpdateResponse, error)
+
+	ApiCollectionUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiCollectionUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiCollectionUpdateResponse, error)
+
 	// ApiCreatorListWithResponse request
 	ApiCreatorListWithResponse(ctx context.Context, params *ApiCreatorListParams, reqEditors ...RequestEditorFn) (*ApiCreatorListResponse, error)
+
+	// ApiCreatorCreateWithBodyWithResponse request with any body
+	ApiCreatorCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiCreatorCreateResponse, error)
+
+	ApiCreatorCreateWithFormdataBodyWithResponse(ctx context.Context, body ApiCreatorCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiCreatorCreateResponse, error)
 
 	// ApiCreatorRetrieveWithResponse request
 	ApiCreatorRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*ApiCreatorRetrieveResponse, error)
 
+	// ApiCreatorPartialUpdateWithBodyWithResponse request with any body
+	ApiCreatorPartialUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiCreatorPartialUpdateResponse, error)
+
+	ApiCreatorPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiCreatorPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiCreatorPartialUpdateResponse, error)
+
+	// ApiCreatorUpdateWithBodyWithResponse request with any body
+	ApiCreatorUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiCreatorUpdateResponse, error)
+
+	ApiCreatorUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiCreatorUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiCreatorUpdateResponse, error)
+
+	// ApiCreditCreateWithBodyWithResponse request with any body
+	ApiCreditCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiCreditCreateResponse, error)
+
+	ApiCreditCreateWithResponse(ctx context.Context, body ApiCreditCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ApiCreditCreateResponse, error)
+
+	ApiCreditCreateWithFormdataBodyWithResponse(ctx context.Context, body ApiCreditCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiCreditCreateResponse, error)
+
 	// ApiImprintListWithResponse request
 	ApiImprintListWithResponse(ctx context.Context, params *ApiImprintListParams, reqEditors ...RequestEditorFn) (*ApiImprintListResponse, error)
+
+	// ApiImprintCreateWithBodyWithResponse request with any body
+	ApiImprintCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiImprintCreateResponse, error)
+
+	ApiImprintCreateWithFormdataBodyWithResponse(ctx context.Context, body ApiImprintCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiImprintCreateResponse, error)
 
 	// ApiImprintRetrieveWithResponse request
 	ApiImprintRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*ApiImprintRetrieveResponse, error)
 
+	// ApiImprintPartialUpdateWithBodyWithResponse request with any body
+	ApiImprintPartialUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiImprintPartialUpdateResponse, error)
+
+	ApiImprintPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiImprintPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiImprintPartialUpdateResponse, error)
+
+	// ApiImprintUpdateWithBodyWithResponse request with any body
+	ApiImprintUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiImprintUpdateResponse, error)
+
+	ApiImprintUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiImprintUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiImprintUpdateResponse, error)
+
 	// ApiIssueListWithResponse request
 	ApiIssueListWithResponse(ctx context.Context, params *ApiIssueListParams, reqEditors ...RequestEditorFn) (*ApiIssueListResponse, error)
+
+	// ApiIssueCreateWithBodyWithResponse request with any body
+	ApiIssueCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiIssueCreateResponse, error)
+
+	ApiIssueCreateWithResponse(ctx context.Context, body ApiIssueCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ApiIssueCreateResponse, error)
+
+	ApiIssueCreateWithFormdataBodyWithResponse(ctx context.Context, body ApiIssueCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiIssueCreateResponse, error)
 
 	// ApiIssueRetrieveWithResponse request
 	ApiIssueRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*ApiIssueRetrieveResponse, error)
 
+	// ApiIssuePartialUpdateWithBodyWithResponse request with any body
+	ApiIssuePartialUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiIssuePartialUpdateResponse, error)
+
+	ApiIssuePartialUpdateWithResponse(ctx context.Context, id int, body ApiIssuePartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ApiIssuePartialUpdateResponse, error)
+
+	ApiIssuePartialUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiIssuePartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiIssuePartialUpdateResponse, error)
+
+	// ApiIssueUpdateWithBodyWithResponse request with any body
+	ApiIssueUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiIssueUpdateResponse, error)
+
+	ApiIssueUpdateWithResponse(ctx context.Context, id int, body ApiIssueUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ApiIssueUpdateResponse, error)
+
+	ApiIssueUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiIssueUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiIssueUpdateResponse, error)
+
 	// ApiPublisherListWithResponse request
 	ApiPublisherListWithResponse(ctx context.Context, params *ApiPublisherListParams, reqEditors ...RequestEditorFn) (*ApiPublisherListResponse, error)
+
+	// ApiPublisherCreateWithBodyWithResponse request with any body
+	ApiPublisherCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiPublisherCreateResponse, error)
+
+	ApiPublisherCreateWithFormdataBodyWithResponse(ctx context.Context, body ApiPublisherCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiPublisherCreateResponse, error)
 
 	// ApiPublisherRetrieveWithResponse request
 	ApiPublisherRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*ApiPublisherRetrieveResponse, error)
 
+	// ApiPublisherPartialUpdateWithBodyWithResponse request with any body
+	ApiPublisherPartialUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiPublisherPartialUpdateResponse, error)
+
+	ApiPublisherPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiPublisherPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiPublisherPartialUpdateResponse, error)
+
+	// ApiPublisherUpdateWithBodyWithResponse request with any body
+	ApiPublisherUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiPublisherUpdateResponse, error)
+
+	ApiPublisherUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiPublisherUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiPublisherUpdateResponse, error)
+
 	// ApiPublisherSeriesListListWithResponse request
 	ApiPublisherSeriesListListWithResponse(ctx context.Context, id int, params *ApiPublisherSeriesListListParams, reqEditors ...RequestEditorFn) (*ApiPublisherSeriesListListResponse, error)
+
+	// ApiPullListListWithResponse request
+	ApiPullListListWithResponse(ctx context.Context, params *ApiPullListListParams, reqEditors ...RequestEditorFn) (*ApiPullListListResponse, error)
+
+	// ApiPullListIssuesListWithResponse request
+	ApiPullListIssuesListWithResponse(ctx context.Context, params *ApiPullListIssuesListParams, reqEditors ...RequestEditorFn) (*ApiPullListIssuesListResponse, error)
+
+	// ApiPullListSeriesListWithResponse request
+	ApiPullListSeriesListWithResponse(ctx context.Context, params *ApiPullListSeriesListParams, reqEditors ...RequestEditorFn) (*ApiPullListSeriesListResponse, error)
+
+	// ApiPullListSeriesAddCreateWithResponse request
+	ApiPullListSeriesAddCreateWithResponse(ctx context.Context, params *ApiPullListSeriesAddCreateParams, reqEditors ...RequestEditorFn) (*ApiPullListSeriesAddCreateResponse, error)
+
+	// ApiPullListSeriesRemoveDestroyWithResponse request
+	ApiPullListSeriesRemoveDestroyWithResponse(ctx context.Context, seriesPk int, reqEditors ...RequestEditorFn) (*ApiPullListSeriesRemoveDestroyResponse, error)
+
+	// ApiPullListRetrieveWithResponse request
+	ApiPullListRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*ApiPullListRetrieveResponse, error)
 
 	// ApiReadingListListWithResponse request
 	ApiReadingListListWithResponse(ctx context.Context, params *ApiReadingListListParams, reqEditors ...RequestEditorFn) (*ApiReadingListListResponse, error)
@@ -7207,8 +13006,29 @@ type ClientWithResponsesInterface interface {
 	// ApiSeriesListWithResponse request
 	ApiSeriesListWithResponse(ctx context.Context, params *ApiSeriesListParams, reqEditors ...RequestEditorFn) (*ApiSeriesListResponse, error)
 
+	// ApiSeriesCreateWithBodyWithResponse request with any body
+	ApiSeriesCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiSeriesCreateResponse, error)
+
+	ApiSeriesCreateWithResponse(ctx context.Context, body ApiSeriesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ApiSeriesCreateResponse, error)
+
+	ApiSeriesCreateWithFormdataBodyWithResponse(ctx context.Context, body ApiSeriesCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiSeriesCreateResponse, error)
+
 	// ApiSeriesRetrieveWithResponse request
 	ApiSeriesRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*ApiSeriesRetrieveResponse, error)
+
+	// ApiSeriesPartialUpdateWithBodyWithResponse request with any body
+	ApiSeriesPartialUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiSeriesPartialUpdateResponse, error)
+
+	ApiSeriesPartialUpdateWithResponse(ctx context.Context, id int, body ApiSeriesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ApiSeriesPartialUpdateResponse, error)
+
+	ApiSeriesPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiSeriesPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiSeriesPartialUpdateResponse, error)
+
+	// ApiSeriesUpdateWithBodyWithResponse request with any body
+	ApiSeriesUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiSeriesUpdateResponse, error)
+
+	ApiSeriesUpdateWithResponse(ctx context.Context, id int, body ApiSeriesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ApiSeriesUpdateResponse, error)
+
+	ApiSeriesUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiSeriesUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiSeriesUpdateResponse, error)
 
 	// ApiSeriesIssueListListWithResponse request
 	ApiSeriesIssueListListWithResponse(ctx context.Context, id int, params *ApiSeriesIssueListListParams, reqEditors ...RequestEditorFn) (*ApiSeriesIssueListListResponse, error)
@@ -7219,8 +13039,23 @@ type ClientWithResponsesInterface interface {
 	// ApiTeamListWithResponse request
 	ApiTeamListWithResponse(ctx context.Context, params *ApiTeamListParams, reqEditors ...RequestEditorFn) (*ApiTeamListResponse, error)
 
+	// ApiTeamCreateWithBodyWithResponse request with any body
+	ApiTeamCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiTeamCreateResponse, error)
+
+	ApiTeamCreateWithFormdataBodyWithResponse(ctx context.Context, body ApiTeamCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiTeamCreateResponse, error)
+
 	// ApiTeamRetrieveWithResponse request
 	ApiTeamRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*ApiTeamRetrieveResponse, error)
+
+	// ApiTeamPartialUpdateWithBodyWithResponse request with any body
+	ApiTeamPartialUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiTeamPartialUpdateResponse, error)
+
+	ApiTeamPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiTeamPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiTeamPartialUpdateResponse, error)
+
+	// ApiTeamUpdateWithBodyWithResponse request with any body
+	ApiTeamUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiTeamUpdateResponse, error)
+
+	ApiTeamUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiTeamUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiTeamUpdateResponse, error)
 
 	// ApiTeamIssueListListWithResponse request
 	ApiTeamIssueListListWithResponse(ctx context.Context, id int, params *ApiTeamIssueListListParams, reqEditors ...RequestEditorFn) (*ApiTeamIssueListListResponse, error)
@@ -7228,8 +13063,70 @@ type ClientWithResponsesInterface interface {
 	// ApiUniverseListWithResponse request
 	ApiUniverseListWithResponse(ctx context.Context, params *ApiUniverseListParams, reqEditors ...RequestEditorFn) (*ApiUniverseListResponse, error)
 
+	// ApiUniverseCreateWithBodyWithResponse request with any body
+	ApiUniverseCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiUniverseCreateResponse, error)
+
+	ApiUniverseCreateWithFormdataBodyWithResponse(ctx context.Context, body ApiUniverseCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiUniverseCreateResponse, error)
+
 	// ApiUniverseRetrieveWithResponse request
 	ApiUniverseRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*ApiUniverseRetrieveResponse, error)
+
+	// ApiUniversePartialUpdateWithBodyWithResponse request with any body
+	ApiUniversePartialUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiUniversePartialUpdateResponse, error)
+
+	ApiUniversePartialUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiUniversePartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiUniversePartialUpdateResponse, error)
+
+	// ApiUniverseUpdateWithBodyWithResponse request with any body
+	ApiUniverseUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiUniverseUpdateResponse, error)
+
+	ApiUniverseUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiUniverseUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiUniverseUpdateResponse, error)
+
+	// ApiVariantCreateWithBodyWithResponse request with any body
+	ApiVariantCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiVariantCreateResponse, error)
+
+	ApiVariantCreateWithResponse(ctx context.Context, body ApiVariantCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ApiVariantCreateResponse, error)
+
+	ApiVariantCreateWithFormdataBodyWithResponse(ctx context.Context, body ApiVariantCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiVariantCreateResponse, error)
+
+	// ApiVariantPartialUpdateWithBodyWithResponse request with any body
+	ApiVariantPartialUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiVariantPartialUpdateResponse, error)
+
+	ApiVariantPartialUpdateWithResponse(ctx context.Context, id int, body ApiVariantPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ApiVariantPartialUpdateResponse, error)
+
+	ApiVariantPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiVariantPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiVariantPartialUpdateResponse, error)
+
+	// ApiVariantUpdateWithBodyWithResponse request with any body
+	ApiVariantUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiVariantUpdateResponse, error)
+
+	ApiVariantUpdateWithResponse(ctx context.Context, id int, body ApiVariantUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ApiVariantUpdateResponse, error)
+
+	ApiVariantUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiVariantUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiVariantUpdateResponse, error)
+
+	// ApiWishListListWithResponse request
+	ApiWishListListWithResponse(ctx context.Context, params *ApiWishListListParams, reqEditors ...RequestEditorFn) (*ApiWishListListResponse, error)
+
+	// ApiWishListItemsListWithResponse request
+	ApiWishListItemsListWithResponse(ctx context.Context, params *ApiWishListItemsListParams, reqEditors ...RequestEditorFn) (*ApiWishListItemsListResponse, error)
+
+	// ApiWishListItemsAddCreateWithBodyWithResponse request with any body
+	ApiWishListItemsAddCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiWishListItemsAddCreateResponse, error)
+
+	ApiWishListItemsAddCreateWithResponse(ctx context.Context, body ApiWishListItemsAddCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ApiWishListItemsAddCreateResponse, error)
+
+	ApiWishListItemsAddCreateWithFormdataBodyWithResponse(ctx context.Context, body ApiWishListItemsAddCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiWishListItemsAddCreateResponse, error)
+
+	// ApiWishListItemsAcquireCreateWithBodyWithResponse request with any body
+	ApiWishListItemsAcquireCreateWithBodyWithResponse(ctx context.Context, itemPk int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiWishListItemsAcquireCreateResponse, error)
+
+	ApiWishListItemsAcquireCreateWithResponse(ctx context.Context, itemPk int, body ApiWishListItemsAcquireCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ApiWishListItemsAcquireCreateResponse, error)
+
+	ApiWishListItemsAcquireCreateWithFormdataBodyWithResponse(ctx context.Context, itemPk int, body ApiWishListItemsAcquireCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiWishListItemsAcquireCreateResponse, error)
+
+	// ApiWishListItemsRemoveDestroyWithResponse request
+	ApiWishListItemsRemoveDestroyWithResponse(ctx context.Context, itemPk int, reqEditors ...RequestEditorFn) (*ApiWishListItemsRemoveDestroyResponse, error)
+
+	// ApiWishListRetrieveWithResponse request
+	ApiWishListRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*ApiWishListRetrieveResponse, error)
 }
 
 type ApiArcListResponse struct {
@@ -7254,6 +13151,28 @@ func (r ApiArcListResponse) StatusCode() int {
 	return 0
 }
 
+type ApiArcCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *Arc
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiArcCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiArcCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type ApiArcRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -7270,6 +13189,50 @@ func (r ApiArcRetrieveResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r ApiArcRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ApiArcPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Arc
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiArcPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiArcPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ApiArcUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Arc
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiArcUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiArcUpdateResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -7320,6 +13283,28 @@ func (r ApiCharacterListResponse) StatusCode() int {
 	return 0
 }
 
+type ApiCharacterCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *Character
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiCharacterCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiCharacterCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type ApiCharacterRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -7336,6 +13321,50 @@ func (r ApiCharacterRetrieveResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r ApiCharacterRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ApiCharacterPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Character
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiCharacterPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiCharacterPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ApiCharacterUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Character
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiCharacterUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiCharacterUpdateResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -7509,6 +13538,50 @@ func (r ApiCollectionRetrieveResponse) StatusCode() int {
 	return 0
 }
 
+type ApiCollectionPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CollectionRatingUpdate
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiCollectionPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiCollectionPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ApiCollectionUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CollectionRatingUpdate
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiCollectionUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiCollectionUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type ApiCreatorListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -7525,6 +13598,28 @@ func (r ApiCreatorListResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r ApiCreatorListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ApiCreatorCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *Creator
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiCreatorCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiCreatorCreateResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -7553,6 +13648,72 @@ func (r ApiCreatorRetrieveResponse) StatusCode() int {
 	return 0
 }
 
+type ApiCreatorPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Creator
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiCreatorPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiCreatorPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ApiCreatorUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Creator
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiCreatorUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiCreatorUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ApiCreditCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *Credit
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiCreditCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiCreditCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type ApiImprintListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -7569,6 +13730,28 @@ func (r ApiImprintListResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r ApiImprintListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ApiImprintCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *Imprint
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiImprintCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiImprintCreateResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -7597,6 +13780,50 @@ func (r ApiImprintRetrieveResponse) StatusCode() int {
 	return 0
 }
 
+type ApiImprintPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Imprint
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiImprintPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiImprintPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ApiImprintUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Imprint
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiImprintUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiImprintUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type ApiIssueListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -7613,6 +13840,28 @@ func (r ApiIssueListResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r ApiIssueListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ApiIssueCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *Issue
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiIssueCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiIssueCreateResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -7641,6 +13890,50 @@ func (r ApiIssueRetrieveResponse) StatusCode() int {
 	return 0
 }
 
+type ApiIssuePartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Issue
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiIssuePartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiIssuePartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ApiIssueUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Issue
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiIssueUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiIssueUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type ApiPublisherListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -7657,6 +13950,28 @@ func (r ApiPublisherListResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r ApiPublisherListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ApiPublisherCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *Publisher
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiPublisherCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiPublisherCreateResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -7685,6 +14000,50 @@ func (r ApiPublisherRetrieveResponse) StatusCode() int {
 	return 0
 }
 
+type ApiPublisherPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Publisher
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiPublisherPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiPublisherPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ApiPublisherUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Publisher
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiPublisherUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiPublisherUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type ApiPublisherSeriesListListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -7701,6 +14060,138 @@ func (r ApiPublisherSeriesListListResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r ApiPublisherSeriesListListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ApiPullListListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *PaginatedPullListReadList
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiPullListListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiPullListListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ApiPullListIssuesListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *PaginatedPullListIssueList
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiPullListIssuesListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiPullListIssuesListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ApiPullListSeriesListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *PaginatedPullListSeriesList
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiPullListSeriesListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiPullListSeriesListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ApiPullListSeriesAddCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *PullListSeries
+	JSON201      *PullListSeries
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiPullListSeriesAddCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiPullListSeriesAddCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ApiPullListSeriesRemoveDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiPullListSeriesRemoveDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiPullListSeriesRemoveDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ApiPullListRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *PullListRead
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiPullListRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiPullListRetrieveResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -7841,6 +14332,28 @@ func (r ApiSeriesListResponse) StatusCode() int {
 	return 0
 }
 
+type ApiSeriesCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *Series
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiSeriesCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiSeriesCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type ApiSeriesRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -7857,6 +14370,50 @@ func (r ApiSeriesRetrieveResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r ApiSeriesRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ApiSeriesPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Series
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiSeriesPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiSeriesPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ApiSeriesUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Series
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiSeriesUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiSeriesUpdateResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -7929,6 +14486,28 @@ func (r ApiTeamListResponse) StatusCode() int {
 	return 0
 }
 
+type ApiTeamCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *Team
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiTeamCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiTeamCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type ApiTeamRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -7945,6 +14524,50 @@ func (r ApiTeamRetrieveResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r ApiTeamRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ApiTeamPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Team
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiTeamPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiTeamPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ApiTeamUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Team
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiTeamUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiTeamUpdateResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -7995,6 +14618,28 @@ func (r ApiUniverseListResponse) StatusCode() int {
 	return 0
 }
 
+type ApiUniverseCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *Universe
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiUniverseCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiUniverseCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type ApiUniverseRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -8017,6 +14662,247 @@ func (r ApiUniverseRetrieveResponse) StatusCode() int {
 	return 0
 }
 
+type ApiUniversePartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Universe
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiUniversePartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiUniversePartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ApiUniverseUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Universe
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiUniverseUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiUniverseUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ApiVariantCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *Variant
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiVariantCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiVariantCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ApiVariantPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Variant
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiVariantPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiVariantPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ApiVariantUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Variant
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiVariantUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiVariantUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ApiWishListListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *PaginatedWishListList
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiWishListListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiWishListListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ApiWishListItemsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *PaginatedWishListItemListList
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiWishListItemsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiWishListItemsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ApiWishListItemsAddCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *WishListItemRead
+	JSON201      *WishListItemRead
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiWishListItemsAddCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiWishListItemsAddCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ApiWishListItemsAcquireCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiWishListItemsAcquireCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiWishListItemsAcquireCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ApiWishListItemsRemoveDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiWishListItemsRemoveDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiWishListItemsRemoveDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ApiWishListRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *WishList
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiWishListRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiWishListRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 // ApiArcListWithResponse request returning *ApiArcListResponse
 func (c *ClientWithResponses) ApiArcListWithResponse(ctx context.Context, params *ApiArcListParams, reqEditors ...RequestEditorFn) (*ApiArcListResponse, error) {
 	rsp, err := c.ApiArcList(ctx, params, reqEditors...)
@@ -8026,6 +14912,23 @@ func (c *ClientWithResponses) ApiArcListWithResponse(ctx context.Context, params
 	return ParseApiArcListResponse(rsp)
 }
 
+// ApiArcCreateWithBodyWithResponse request with arbitrary body returning *ApiArcCreateResponse
+func (c *ClientWithResponses) ApiArcCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiArcCreateResponse, error) {
+	rsp, err := c.ApiArcCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiArcCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiArcCreateWithFormdataBodyWithResponse(ctx context.Context, body ApiArcCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiArcCreateResponse, error) {
+	rsp, err := c.ApiArcCreateWithFormdataBody(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiArcCreateResponse(rsp)
+}
+
 // ApiArcRetrieveWithResponse request returning *ApiArcRetrieveResponse
 func (c *ClientWithResponses) ApiArcRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*ApiArcRetrieveResponse, error) {
 	rsp, err := c.ApiArcRetrieve(ctx, id, reqEditors...)
@@ -8033,6 +14936,40 @@ func (c *ClientWithResponses) ApiArcRetrieveWithResponse(ctx context.Context, id
 		return nil, err
 	}
 	return ParseApiArcRetrieveResponse(rsp)
+}
+
+// ApiArcPartialUpdateWithBodyWithResponse request with arbitrary body returning *ApiArcPartialUpdateResponse
+func (c *ClientWithResponses) ApiArcPartialUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiArcPartialUpdateResponse, error) {
+	rsp, err := c.ApiArcPartialUpdateWithBody(ctx, id, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiArcPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiArcPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiArcPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiArcPartialUpdateResponse, error) {
+	rsp, err := c.ApiArcPartialUpdateWithFormdataBody(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiArcPartialUpdateResponse(rsp)
+}
+
+// ApiArcUpdateWithBodyWithResponse request with arbitrary body returning *ApiArcUpdateResponse
+func (c *ClientWithResponses) ApiArcUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiArcUpdateResponse, error) {
+	rsp, err := c.ApiArcUpdateWithBody(ctx, id, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiArcUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiArcUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiArcUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiArcUpdateResponse, error) {
+	rsp, err := c.ApiArcUpdateWithFormdataBody(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiArcUpdateResponse(rsp)
 }
 
 // ApiArcIssueListListWithResponse request returning *ApiArcIssueListListResponse
@@ -8053,6 +14990,23 @@ func (c *ClientWithResponses) ApiCharacterListWithResponse(ctx context.Context, 
 	return ParseApiCharacterListResponse(rsp)
 }
 
+// ApiCharacterCreateWithBodyWithResponse request with arbitrary body returning *ApiCharacterCreateResponse
+func (c *ClientWithResponses) ApiCharacterCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiCharacterCreateResponse, error) {
+	rsp, err := c.ApiCharacterCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiCharacterCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiCharacterCreateWithFormdataBodyWithResponse(ctx context.Context, body ApiCharacterCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiCharacterCreateResponse, error) {
+	rsp, err := c.ApiCharacterCreateWithFormdataBody(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiCharacterCreateResponse(rsp)
+}
+
 // ApiCharacterRetrieveWithResponse request returning *ApiCharacterRetrieveResponse
 func (c *ClientWithResponses) ApiCharacterRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*ApiCharacterRetrieveResponse, error) {
 	rsp, err := c.ApiCharacterRetrieve(ctx, id, reqEditors...)
@@ -8060,6 +15014,40 @@ func (c *ClientWithResponses) ApiCharacterRetrieveWithResponse(ctx context.Conte
 		return nil, err
 	}
 	return ParseApiCharacterRetrieveResponse(rsp)
+}
+
+// ApiCharacterPartialUpdateWithBodyWithResponse request with arbitrary body returning *ApiCharacterPartialUpdateResponse
+func (c *ClientWithResponses) ApiCharacterPartialUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiCharacterPartialUpdateResponse, error) {
+	rsp, err := c.ApiCharacterPartialUpdateWithBody(ctx, id, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiCharacterPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiCharacterPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiCharacterPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiCharacterPartialUpdateResponse, error) {
+	rsp, err := c.ApiCharacterPartialUpdateWithFormdataBody(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiCharacterPartialUpdateResponse(rsp)
+}
+
+// ApiCharacterUpdateWithBodyWithResponse request with arbitrary body returning *ApiCharacterUpdateResponse
+func (c *ClientWithResponses) ApiCharacterUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiCharacterUpdateResponse, error) {
+	rsp, err := c.ApiCharacterUpdateWithBody(ctx, id, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiCharacterUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiCharacterUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiCharacterUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiCharacterUpdateResponse, error) {
+	rsp, err := c.ApiCharacterUpdateWithFormdataBody(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiCharacterUpdateResponse(rsp)
 }
 
 // ApiCharacterIssueListListWithResponse request returning *ApiCharacterIssueListListResponse
@@ -8141,6 +15129,56 @@ func (c *ClientWithResponses) ApiCollectionRetrieveWithResponse(ctx context.Cont
 	return ParseApiCollectionRetrieveResponse(rsp)
 }
 
+// ApiCollectionPartialUpdateWithBodyWithResponse request with arbitrary body returning *ApiCollectionPartialUpdateResponse
+func (c *ClientWithResponses) ApiCollectionPartialUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiCollectionPartialUpdateResponse, error) {
+	rsp, err := c.ApiCollectionPartialUpdateWithBody(ctx, id, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiCollectionPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiCollectionPartialUpdateWithResponse(ctx context.Context, id int, body ApiCollectionPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ApiCollectionPartialUpdateResponse, error) {
+	rsp, err := c.ApiCollectionPartialUpdate(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiCollectionPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiCollectionPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiCollectionPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiCollectionPartialUpdateResponse, error) {
+	rsp, err := c.ApiCollectionPartialUpdateWithFormdataBody(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiCollectionPartialUpdateResponse(rsp)
+}
+
+// ApiCollectionUpdateWithBodyWithResponse request with arbitrary body returning *ApiCollectionUpdateResponse
+func (c *ClientWithResponses) ApiCollectionUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiCollectionUpdateResponse, error) {
+	rsp, err := c.ApiCollectionUpdateWithBody(ctx, id, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiCollectionUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiCollectionUpdateWithResponse(ctx context.Context, id int, body ApiCollectionUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ApiCollectionUpdateResponse, error) {
+	rsp, err := c.ApiCollectionUpdate(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiCollectionUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiCollectionUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiCollectionUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiCollectionUpdateResponse, error) {
+	rsp, err := c.ApiCollectionUpdateWithFormdataBody(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiCollectionUpdateResponse(rsp)
+}
+
 // ApiCreatorListWithResponse request returning *ApiCreatorListResponse
 func (c *ClientWithResponses) ApiCreatorListWithResponse(ctx context.Context, params *ApiCreatorListParams, reqEditors ...RequestEditorFn) (*ApiCreatorListResponse, error) {
 	rsp, err := c.ApiCreatorList(ctx, params, reqEditors...)
@@ -8148,6 +15186,23 @@ func (c *ClientWithResponses) ApiCreatorListWithResponse(ctx context.Context, pa
 		return nil, err
 	}
 	return ParseApiCreatorListResponse(rsp)
+}
+
+// ApiCreatorCreateWithBodyWithResponse request with arbitrary body returning *ApiCreatorCreateResponse
+func (c *ClientWithResponses) ApiCreatorCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiCreatorCreateResponse, error) {
+	rsp, err := c.ApiCreatorCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiCreatorCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiCreatorCreateWithFormdataBodyWithResponse(ctx context.Context, body ApiCreatorCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiCreatorCreateResponse, error) {
+	rsp, err := c.ApiCreatorCreateWithFormdataBody(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiCreatorCreateResponse(rsp)
 }
 
 // ApiCreatorRetrieveWithResponse request returning *ApiCreatorRetrieveResponse
@@ -8159,6 +15214,65 @@ func (c *ClientWithResponses) ApiCreatorRetrieveWithResponse(ctx context.Context
 	return ParseApiCreatorRetrieveResponse(rsp)
 }
 
+// ApiCreatorPartialUpdateWithBodyWithResponse request with arbitrary body returning *ApiCreatorPartialUpdateResponse
+func (c *ClientWithResponses) ApiCreatorPartialUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiCreatorPartialUpdateResponse, error) {
+	rsp, err := c.ApiCreatorPartialUpdateWithBody(ctx, id, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiCreatorPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiCreatorPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiCreatorPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiCreatorPartialUpdateResponse, error) {
+	rsp, err := c.ApiCreatorPartialUpdateWithFormdataBody(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiCreatorPartialUpdateResponse(rsp)
+}
+
+// ApiCreatorUpdateWithBodyWithResponse request with arbitrary body returning *ApiCreatorUpdateResponse
+func (c *ClientWithResponses) ApiCreatorUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiCreatorUpdateResponse, error) {
+	rsp, err := c.ApiCreatorUpdateWithBody(ctx, id, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiCreatorUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiCreatorUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiCreatorUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiCreatorUpdateResponse, error) {
+	rsp, err := c.ApiCreatorUpdateWithFormdataBody(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiCreatorUpdateResponse(rsp)
+}
+
+// ApiCreditCreateWithBodyWithResponse request with arbitrary body returning *ApiCreditCreateResponse
+func (c *ClientWithResponses) ApiCreditCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiCreditCreateResponse, error) {
+	rsp, err := c.ApiCreditCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiCreditCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiCreditCreateWithResponse(ctx context.Context, body ApiCreditCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ApiCreditCreateResponse, error) {
+	rsp, err := c.ApiCreditCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiCreditCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiCreditCreateWithFormdataBodyWithResponse(ctx context.Context, body ApiCreditCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiCreditCreateResponse, error) {
+	rsp, err := c.ApiCreditCreateWithFormdataBody(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiCreditCreateResponse(rsp)
+}
+
 // ApiImprintListWithResponse request returning *ApiImprintListResponse
 func (c *ClientWithResponses) ApiImprintListWithResponse(ctx context.Context, params *ApiImprintListParams, reqEditors ...RequestEditorFn) (*ApiImprintListResponse, error) {
 	rsp, err := c.ApiImprintList(ctx, params, reqEditors...)
@@ -8166,6 +15280,23 @@ func (c *ClientWithResponses) ApiImprintListWithResponse(ctx context.Context, pa
 		return nil, err
 	}
 	return ParseApiImprintListResponse(rsp)
+}
+
+// ApiImprintCreateWithBodyWithResponse request with arbitrary body returning *ApiImprintCreateResponse
+func (c *ClientWithResponses) ApiImprintCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiImprintCreateResponse, error) {
+	rsp, err := c.ApiImprintCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiImprintCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiImprintCreateWithFormdataBodyWithResponse(ctx context.Context, body ApiImprintCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiImprintCreateResponse, error) {
+	rsp, err := c.ApiImprintCreateWithFormdataBody(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiImprintCreateResponse(rsp)
 }
 
 // ApiImprintRetrieveWithResponse request returning *ApiImprintRetrieveResponse
@@ -8177,6 +15308,40 @@ func (c *ClientWithResponses) ApiImprintRetrieveWithResponse(ctx context.Context
 	return ParseApiImprintRetrieveResponse(rsp)
 }
 
+// ApiImprintPartialUpdateWithBodyWithResponse request with arbitrary body returning *ApiImprintPartialUpdateResponse
+func (c *ClientWithResponses) ApiImprintPartialUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiImprintPartialUpdateResponse, error) {
+	rsp, err := c.ApiImprintPartialUpdateWithBody(ctx, id, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiImprintPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiImprintPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiImprintPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiImprintPartialUpdateResponse, error) {
+	rsp, err := c.ApiImprintPartialUpdateWithFormdataBody(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiImprintPartialUpdateResponse(rsp)
+}
+
+// ApiImprintUpdateWithBodyWithResponse request with arbitrary body returning *ApiImprintUpdateResponse
+func (c *ClientWithResponses) ApiImprintUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiImprintUpdateResponse, error) {
+	rsp, err := c.ApiImprintUpdateWithBody(ctx, id, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiImprintUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiImprintUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiImprintUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiImprintUpdateResponse, error) {
+	rsp, err := c.ApiImprintUpdateWithFormdataBody(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiImprintUpdateResponse(rsp)
+}
+
 // ApiIssueListWithResponse request returning *ApiIssueListResponse
 func (c *ClientWithResponses) ApiIssueListWithResponse(ctx context.Context, params *ApiIssueListParams, reqEditors ...RequestEditorFn) (*ApiIssueListResponse, error) {
 	rsp, err := c.ApiIssueList(ctx, params, reqEditors...)
@@ -8184,6 +15349,31 @@ func (c *ClientWithResponses) ApiIssueListWithResponse(ctx context.Context, para
 		return nil, err
 	}
 	return ParseApiIssueListResponse(rsp)
+}
+
+// ApiIssueCreateWithBodyWithResponse request with arbitrary body returning *ApiIssueCreateResponse
+func (c *ClientWithResponses) ApiIssueCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiIssueCreateResponse, error) {
+	rsp, err := c.ApiIssueCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiIssueCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiIssueCreateWithResponse(ctx context.Context, body ApiIssueCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ApiIssueCreateResponse, error) {
+	rsp, err := c.ApiIssueCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiIssueCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiIssueCreateWithFormdataBodyWithResponse(ctx context.Context, body ApiIssueCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiIssueCreateResponse, error) {
+	rsp, err := c.ApiIssueCreateWithFormdataBody(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiIssueCreateResponse(rsp)
 }
 
 // ApiIssueRetrieveWithResponse request returning *ApiIssueRetrieveResponse
@@ -8195,6 +15385,56 @@ func (c *ClientWithResponses) ApiIssueRetrieveWithResponse(ctx context.Context, 
 	return ParseApiIssueRetrieveResponse(rsp)
 }
 
+// ApiIssuePartialUpdateWithBodyWithResponse request with arbitrary body returning *ApiIssuePartialUpdateResponse
+func (c *ClientWithResponses) ApiIssuePartialUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiIssuePartialUpdateResponse, error) {
+	rsp, err := c.ApiIssuePartialUpdateWithBody(ctx, id, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiIssuePartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiIssuePartialUpdateWithResponse(ctx context.Context, id int, body ApiIssuePartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ApiIssuePartialUpdateResponse, error) {
+	rsp, err := c.ApiIssuePartialUpdate(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiIssuePartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiIssuePartialUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiIssuePartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiIssuePartialUpdateResponse, error) {
+	rsp, err := c.ApiIssuePartialUpdateWithFormdataBody(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiIssuePartialUpdateResponse(rsp)
+}
+
+// ApiIssueUpdateWithBodyWithResponse request with arbitrary body returning *ApiIssueUpdateResponse
+func (c *ClientWithResponses) ApiIssueUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiIssueUpdateResponse, error) {
+	rsp, err := c.ApiIssueUpdateWithBody(ctx, id, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiIssueUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiIssueUpdateWithResponse(ctx context.Context, id int, body ApiIssueUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ApiIssueUpdateResponse, error) {
+	rsp, err := c.ApiIssueUpdate(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiIssueUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiIssueUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiIssueUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiIssueUpdateResponse, error) {
+	rsp, err := c.ApiIssueUpdateWithFormdataBody(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiIssueUpdateResponse(rsp)
+}
+
 // ApiPublisherListWithResponse request returning *ApiPublisherListResponse
 func (c *ClientWithResponses) ApiPublisherListWithResponse(ctx context.Context, params *ApiPublisherListParams, reqEditors ...RequestEditorFn) (*ApiPublisherListResponse, error) {
 	rsp, err := c.ApiPublisherList(ctx, params, reqEditors...)
@@ -8202,6 +15442,23 @@ func (c *ClientWithResponses) ApiPublisherListWithResponse(ctx context.Context, 
 		return nil, err
 	}
 	return ParseApiPublisherListResponse(rsp)
+}
+
+// ApiPublisherCreateWithBodyWithResponse request with arbitrary body returning *ApiPublisherCreateResponse
+func (c *ClientWithResponses) ApiPublisherCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiPublisherCreateResponse, error) {
+	rsp, err := c.ApiPublisherCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiPublisherCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiPublisherCreateWithFormdataBodyWithResponse(ctx context.Context, body ApiPublisherCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiPublisherCreateResponse, error) {
+	rsp, err := c.ApiPublisherCreateWithFormdataBody(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiPublisherCreateResponse(rsp)
 }
 
 // ApiPublisherRetrieveWithResponse request returning *ApiPublisherRetrieveResponse
@@ -8213,6 +15470,40 @@ func (c *ClientWithResponses) ApiPublisherRetrieveWithResponse(ctx context.Conte
 	return ParseApiPublisherRetrieveResponse(rsp)
 }
 
+// ApiPublisherPartialUpdateWithBodyWithResponse request with arbitrary body returning *ApiPublisherPartialUpdateResponse
+func (c *ClientWithResponses) ApiPublisherPartialUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiPublisherPartialUpdateResponse, error) {
+	rsp, err := c.ApiPublisherPartialUpdateWithBody(ctx, id, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiPublisherPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiPublisherPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiPublisherPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiPublisherPartialUpdateResponse, error) {
+	rsp, err := c.ApiPublisherPartialUpdateWithFormdataBody(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiPublisherPartialUpdateResponse(rsp)
+}
+
+// ApiPublisherUpdateWithBodyWithResponse request with arbitrary body returning *ApiPublisherUpdateResponse
+func (c *ClientWithResponses) ApiPublisherUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiPublisherUpdateResponse, error) {
+	rsp, err := c.ApiPublisherUpdateWithBody(ctx, id, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiPublisherUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiPublisherUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiPublisherUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiPublisherUpdateResponse, error) {
+	rsp, err := c.ApiPublisherUpdateWithFormdataBody(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiPublisherUpdateResponse(rsp)
+}
+
 // ApiPublisherSeriesListListWithResponse request returning *ApiPublisherSeriesListListResponse
 func (c *ClientWithResponses) ApiPublisherSeriesListListWithResponse(ctx context.Context, id int, params *ApiPublisherSeriesListListParams, reqEditors ...RequestEditorFn) (*ApiPublisherSeriesListListResponse, error) {
 	rsp, err := c.ApiPublisherSeriesListList(ctx, id, params, reqEditors...)
@@ -8220,6 +15511,60 @@ func (c *ClientWithResponses) ApiPublisherSeriesListListWithResponse(ctx context
 		return nil, err
 	}
 	return ParseApiPublisherSeriesListListResponse(rsp)
+}
+
+// ApiPullListListWithResponse request returning *ApiPullListListResponse
+func (c *ClientWithResponses) ApiPullListListWithResponse(ctx context.Context, params *ApiPullListListParams, reqEditors ...RequestEditorFn) (*ApiPullListListResponse, error) {
+	rsp, err := c.ApiPullListList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiPullListListResponse(rsp)
+}
+
+// ApiPullListIssuesListWithResponse request returning *ApiPullListIssuesListResponse
+func (c *ClientWithResponses) ApiPullListIssuesListWithResponse(ctx context.Context, params *ApiPullListIssuesListParams, reqEditors ...RequestEditorFn) (*ApiPullListIssuesListResponse, error) {
+	rsp, err := c.ApiPullListIssuesList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiPullListIssuesListResponse(rsp)
+}
+
+// ApiPullListSeriesListWithResponse request returning *ApiPullListSeriesListResponse
+func (c *ClientWithResponses) ApiPullListSeriesListWithResponse(ctx context.Context, params *ApiPullListSeriesListParams, reqEditors ...RequestEditorFn) (*ApiPullListSeriesListResponse, error) {
+	rsp, err := c.ApiPullListSeriesList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiPullListSeriesListResponse(rsp)
+}
+
+// ApiPullListSeriesAddCreateWithResponse request returning *ApiPullListSeriesAddCreateResponse
+func (c *ClientWithResponses) ApiPullListSeriesAddCreateWithResponse(ctx context.Context, params *ApiPullListSeriesAddCreateParams, reqEditors ...RequestEditorFn) (*ApiPullListSeriesAddCreateResponse, error) {
+	rsp, err := c.ApiPullListSeriesAddCreate(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiPullListSeriesAddCreateResponse(rsp)
+}
+
+// ApiPullListSeriesRemoveDestroyWithResponse request returning *ApiPullListSeriesRemoveDestroyResponse
+func (c *ClientWithResponses) ApiPullListSeriesRemoveDestroyWithResponse(ctx context.Context, seriesPk int, reqEditors ...RequestEditorFn) (*ApiPullListSeriesRemoveDestroyResponse, error) {
+	rsp, err := c.ApiPullListSeriesRemoveDestroy(ctx, seriesPk, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiPullListSeriesRemoveDestroyResponse(rsp)
+}
+
+// ApiPullListRetrieveWithResponse request returning *ApiPullListRetrieveResponse
+func (c *ClientWithResponses) ApiPullListRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*ApiPullListRetrieveResponse, error) {
+	rsp, err := c.ApiPullListRetrieve(ctx, id, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiPullListRetrieveResponse(rsp)
 }
 
 // ApiReadingListListWithResponse request returning *ApiReadingListListResponse
@@ -8276,6 +15621,31 @@ func (c *ClientWithResponses) ApiSeriesListWithResponse(ctx context.Context, par
 	return ParseApiSeriesListResponse(rsp)
 }
 
+// ApiSeriesCreateWithBodyWithResponse request with arbitrary body returning *ApiSeriesCreateResponse
+func (c *ClientWithResponses) ApiSeriesCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiSeriesCreateResponse, error) {
+	rsp, err := c.ApiSeriesCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiSeriesCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiSeriesCreateWithResponse(ctx context.Context, body ApiSeriesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ApiSeriesCreateResponse, error) {
+	rsp, err := c.ApiSeriesCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiSeriesCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiSeriesCreateWithFormdataBodyWithResponse(ctx context.Context, body ApiSeriesCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiSeriesCreateResponse, error) {
+	rsp, err := c.ApiSeriesCreateWithFormdataBody(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiSeriesCreateResponse(rsp)
+}
+
 // ApiSeriesRetrieveWithResponse request returning *ApiSeriesRetrieveResponse
 func (c *ClientWithResponses) ApiSeriesRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*ApiSeriesRetrieveResponse, error) {
 	rsp, err := c.ApiSeriesRetrieve(ctx, id, reqEditors...)
@@ -8283,6 +15653,56 @@ func (c *ClientWithResponses) ApiSeriesRetrieveWithResponse(ctx context.Context,
 		return nil, err
 	}
 	return ParseApiSeriesRetrieveResponse(rsp)
+}
+
+// ApiSeriesPartialUpdateWithBodyWithResponse request with arbitrary body returning *ApiSeriesPartialUpdateResponse
+func (c *ClientWithResponses) ApiSeriesPartialUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiSeriesPartialUpdateResponse, error) {
+	rsp, err := c.ApiSeriesPartialUpdateWithBody(ctx, id, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiSeriesPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiSeriesPartialUpdateWithResponse(ctx context.Context, id int, body ApiSeriesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ApiSeriesPartialUpdateResponse, error) {
+	rsp, err := c.ApiSeriesPartialUpdate(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiSeriesPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiSeriesPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiSeriesPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiSeriesPartialUpdateResponse, error) {
+	rsp, err := c.ApiSeriesPartialUpdateWithFormdataBody(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiSeriesPartialUpdateResponse(rsp)
+}
+
+// ApiSeriesUpdateWithBodyWithResponse request with arbitrary body returning *ApiSeriesUpdateResponse
+func (c *ClientWithResponses) ApiSeriesUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiSeriesUpdateResponse, error) {
+	rsp, err := c.ApiSeriesUpdateWithBody(ctx, id, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiSeriesUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiSeriesUpdateWithResponse(ctx context.Context, id int, body ApiSeriesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ApiSeriesUpdateResponse, error) {
+	rsp, err := c.ApiSeriesUpdate(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiSeriesUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiSeriesUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiSeriesUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiSeriesUpdateResponse, error) {
+	rsp, err := c.ApiSeriesUpdateWithFormdataBody(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiSeriesUpdateResponse(rsp)
 }
 
 // ApiSeriesIssueListListWithResponse request returning *ApiSeriesIssueListListResponse
@@ -8312,6 +15732,23 @@ func (c *ClientWithResponses) ApiTeamListWithResponse(ctx context.Context, param
 	return ParseApiTeamListResponse(rsp)
 }
 
+// ApiTeamCreateWithBodyWithResponse request with arbitrary body returning *ApiTeamCreateResponse
+func (c *ClientWithResponses) ApiTeamCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiTeamCreateResponse, error) {
+	rsp, err := c.ApiTeamCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiTeamCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiTeamCreateWithFormdataBodyWithResponse(ctx context.Context, body ApiTeamCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiTeamCreateResponse, error) {
+	rsp, err := c.ApiTeamCreateWithFormdataBody(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiTeamCreateResponse(rsp)
+}
+
 // ApiTeamRetrieveWithResponse request returning *ApiTeamRetrieveResponse
 func (c *ClientWithResponses) ApiTeamRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*ApiTeamRetrieveResponse, error) {
 	rsp, err := c.ApiTeamRetrieve(ctx, id, reqEditors...)
@@ -8319,6 +15756,40 @@ func (c *ClientWithResponses) ApiTeamRetrieveWithResponse(ctx context.Context, i
 		return nil, err
 	}
 	return ParseApiTeamRetrieveResponse(rsp)
+}
+
+// ApiTeamPartialUpdateWithBodyWithResponse request with arbitrary body returning *ApiTeamPartialUpdateResponse
+func (c *ClientWithResponses) ApiTeamPartialUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiTeamPartialUpdateResponse, error) {
+	rsp, err := c.ApiTeamPartialUpdateWithBody(ctx, id, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiTeamPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiTeamPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiTeamPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiTeamPartialUpdateResponse, error) {
+	rsp, err := c.ApiTeamPartialUpdateWithFormdataBody(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiTeamPartialUpdateResponse(rsp)
+}
+
+// ApiTeamUpdateWithBodyWithResponse request with arbitrary body returning *ApiTeamUpdateResponse
+func (c *ClientWithResponses) ApiTeamUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiTeamUpdateResponse, error) {
+	rsp, err := c.ApiTeamUpdateWithBody(ctx, id, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiTeamUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiTeamUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiTeamUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiTeamUpdateResponse, error) {
+	rsp, err := c.ApiTeamUpdateWithFormdataBody(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiTeamUpdateResponse(rsp)
 }
 
 // ApiTeamIssueListListWithResponse request returning *ApiTeamIssueListListResponse
@@ -8339,6 +15810,23 @@ func (c *ClientWithResponses) ApiUniverseListWithResponse(ctx context.Context, p
 	return ParseApiUniverseListResponse(rsp)
 }
 
+// ApiUniverseCreateWithBodyWithResponse request with arbitrary body returning *ApiUniverseCreateResponse
+func (c *ClientWithResponses) ApiUniverseCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiUniverseCreateResponse, error) {
+	rsp, err := c.ApiUniverseCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiUniverseCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiUniverseCreateWithFormdataBodyWithResponse(ctx context.Context, body ApiUniverseCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiUniverseCreateResponse, error) {
+	rsp, err := c.ApiUniverseCreateWithFormdataBody(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiUniverseCreateResponse(rsp)
+}
+
 // ApiUniverseRetrieveWithResponse request returning *ApiUniverseRetrieveResponse
 func (c *ClientWithResponses) ApiUniverseRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*ApiUniverseRetrieveResponse, error) {
 	rsp, err := c.ApiUniverseRetrieve(ctx, id, reqEditors...)
@@ -8346,6 +15834,201 @@ func (c *ClientWithResponses) ApiUniverseRetrieveWithResponse(ctx context.Contex
 		return nil, err
 	}
 	return ParseApiUniverseRetrieveResponse(rsp)
+}
+
+// ApiUniversePartialUpdateWithBodyWithResponse request with arbitrary body returning *ApiUniversePartialUpdateResponse
+func (c *ClientWithResponses) ApiUniversePartialUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiUniversePartialUpdateResponse, error) {
+	rsp, err := c.ApiUniversePartialUpdateWithBody(ctx, id, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiUniversePartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiUniversePartialUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiUniversePartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiUniversePartialUpdateResponse, error) {
+	rsp, err := c.ApiUniversePartialUpdateWithFormdataBody(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiUniversePartialUpdateResponse(rsp)
+}
+
+// ApiUniverseUpdateWithBodyWithResponse request with arbitrary body returning *ApiUniverseUpdateResponse
+func (c *ClientWithResponses) ApiUniverseUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiUniverseUpdateResponse, error) {
+	rsp, err := c.ApiUniverseUpdateWithBody(ctx, id, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiUniverseUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiUniverseUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiUniverseUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiUniverseUpdateResponse, error) {
+	rsp, err := c.ApiUniverseUpdateWithFormdataBody(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiUniverseUpdateResponse(rsp)
+}
+
+// ApiVariantCreateWithBodyWithResponse request with arbitrary body returning *ApiVariantCreateResponse
+func (c *ClientWithResponses) ApiVariantCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiVariantCreateResponse, error) {
+	rsp, err := c.ApiVariantCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiVariantCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiVariantCreateWithResponse(ctx context.Context, body ApiVariantCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ApiVariantCreateResponse, error) {
+	rsp, err := c.ApiVariantCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiVariantCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiVariantCreateWithFormdataBodyWithResponse(ctx context.Context, body ApiVariantCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiVariantCreateResponse, error) {
+	rsp, err := c.ApiVariantCreateWithFormdataBody(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiVariantCreateResponse(rsp)
+}
+
+// ApiVariantPartialUpdateWithBodyWithResponse request with arbitrary body returning *ApiVariantPartialUpdateResponse
+func (c *ClientWithResponses) ApiVariantPartialUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiVariantPartialUpdateResponse, error) {
+	rsp, err := c.ApiVariantPartialUpdateWithBody(ctx, id, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiVariantPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiVariantPartialUpdateWithResponse(ctx context.Context, id int, body ApiVariantPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ApiVariantPartialUpdateResponse, error) {
+	rsp, err := c.ApiVariantPartialUpdate(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiVariantPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiVariantPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiVariantPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiVariantPartialUpdateResponse, error) {
+	rsp, err := c.ApiVariantPartialUpdateWithFormdataBody(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiVariantPartialUpdateResponse(rsp)
+}
+
+// ApiVariantUpdateWithBodyWithResponse request with arbitrary body returning *ApiVariantUpdateResponse
+func (c *ClientWithResponses) ApiVariantUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiVariantUpdateResponse, error) {
+	rsp, err := c.ApiVariantUpdateWithBody(ctx, id, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiVariantUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiVariantUpdateWithResponse(ctx context.Context, id int, body ApiVariantUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ApiVariantUpdateResponse, error) {
+	rsp, err := c.ApiVariantUpdate(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiVariantUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiVariantUpdateWithFormdataBodyWithResponse(ctx context.Context, id int, body ApiVariantUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiVariantUpdateResponse, error) {
+	rsp, err := c.ApiVariantUpdateWithFormdataBody(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiVariantUpdateResponse(rsp)
+}
+
+// ApiWishListListWithResponse request returning *ApiWishListListResponse
+func (c *ClientWithResponses) ApiWishListListWithResponse(ctx context.Context, params *ApiWishListListParams, reqEditors ...RequestEditorFn) (*ApiWishListListResponse, error) {
+	rsp, err := c.ApiWishListList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiWishListListResponse(rsp)
+}
+
+// ApiWishListItemsListWithResponse request returning *ApiWishListItemsListResponse
+func (c *ClientWithResponses) ApiWishListItemsListWithResponse(ctx context.Context, params *ApiWishListItemsListParams, reqEditors ...RequestEditorFn) (*ApiWishListItemsListResponse, error) {
+	rsp, err := c.ApiWishListItemsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiWishListItemsListResponse(rsp)
+}
+
+// ApiWishListItemsAddCreateWithBodyWithResponse request with arbitrary body returning *ApiWishListItemsAddCreateResponse
+func (c *ClientWithResponses) ApiWishListItemsAddCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiWishListItemsAddCreateResponse, error) {
+	rsp, err := c.ApiWishListItemsAddCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiWishListItemsAddCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiWishListItemsAddCreateWithResponse(ctx context.Context, body ApiWishListItemsAddCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ApiWishListItemsAddCreateResponse, error) {
+	rsp, err := c.ApiWishListItemsAddCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiWishListItemsAddCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiWishListItemsAddCreateWithFormdataBodyWithResponse(ctx context.Context, body ApiWishListItemsAddCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiWishListItemsAddCreateResponse, error) {
+	rsp, err := c.ApiWishListItemsAddCreateWithFormdataBody(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiWishListItemsAddCreateResponse(rsp)
+}
+
+// ApiWishListItemsAcquireCreateWithBodyWithResponse request with arbitrary body returning *ApiWishListItemsAcquireCreateResponse
+func (c *ClientWithResponses) ApiWishListItemsAcquireCreateWithBodyWithResponse(ctx context.Context, itemPk int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiWishListItemsAcquireCreateResponse, error) {
+	rsp, err := c.ApiWishListItemsAcquireCreateWithBody(ctx, itemPk, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiWishListItemsAcquireCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiWishListItemsAcquireCreateWithResponse(ctx context.Context, itemPk int, body ApiWishListItemsAcquireCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ApiWishListItemsAcquireCreateResponse, error) {
+	rsp, err := c.ApiWishListItemsAcquireCreate(ctx, itemPk, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiWishListItemsAcquireCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiWishListItemsAcquireCreateWithFormdataBodyWithResponse(ctx context.Context, itemPk int, body ApiWishListItemsAcquireCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ApiWishListItemsAcquireCreateResponse, error) {
+	rsp, err := c.ApiWishListItemsAcquireCreateWithFormdataBody(ctx, itemPk, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiWishListItemsAcquireCreateResponse(rsp)
+}
+
+// ApiWishListItemsRemoveDestroyWithResponse request returning *ApiWishListItemsRemoveDestroyResponse
+func (c *ClientWithResponses) ApiWishListItemsRemoveDestroyWithResponse(ctx context.Context, itemPk int, reqEditors ...RequestEditorFn) (*ApiWishListItemsRemoveDestroyResponse, error) {
+	rsp, err := c.ApiWishListItemsRemoveDestroy(ctx, itemPk, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiWishListItemsRemoveDestroyResponse(rsp)
+}
+
+// ApiWishListRetrieveWithResponse request returning *ApiWishListRetrieveResponse
+func (c *ClientWithResponses) ApiWishListRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*ApiWishListRetrieveResponse, error) {
+	rsp, err := c.ApiWishListRetrieve(ctx, id, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiWishListRetrieveResponse(rsp)
 }
 
 // ParseApiArcListResponse parses an HTTP response from a ApiArcListWithResponse call
@@ -8374,6 +16057,32 @@ func ParseApiArcListResponse(rsp *http.Response) (*ApiArcListResponse, error) {
 	return response, nil
 }
 
+// ParseApiArcCreateResponse parses an HTTP response from a ApiArcCreateWithResponse call
+func ParseApiArcCreateResponse(rsp *http.Response) (*ApiArcCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiArcCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest Arc
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseApiArcRetrieveResponse parses an HTTP response from a ApiArcRetrieveWithResponse call
 func ParseApiArcRetrieveResponse(rsp *http.Response) (*ApiArcRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -8383,6 +16092,58 @@ func ParseApiArcRetrieveResponse(rsp *http.Response) (*ApiArcRetrieveResponse, e
 	}
 
 	response := &ApiArcRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Arc
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseApiArcPartialUpdateResponse parses an HTTP response from a ApiArcPartialUpdateWithResponse call
+func ParseApiArcPartialUpdateResponse(rsp *http.Response) (*ApiArcPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiArcPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Arc
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseApiArcUpdateResponse parses an HTTP response from a ApiArcUpdateWithResponse call
+func ParseApiArcUpdateResponse(rsp *http.Response) (*ApiArcUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiArcUpdateResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -8452,6 +16213,32 @@ func ParseApiCharacterListResponse(rsp *http.Response) (*ApiCharacterListRespons
 	return response, nil
 }
 
+// ParseApiCharacterCreateResponse parses an HTTP response from a ApiCharacterCreateWithResponse call
+func ParseApiCharacterCreateResponse(rsp *http.Response) (*ApiCharacterCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiCharacterCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest Character
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseApiCharacterRetrieveResponse parses an HTTP response from a ApiCharacterRetrieveWithResponse call
 func ParseApiCharacterRetrieveResponse(rsp *http.Response) (*ApiCharacterRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -8468,6 +16255,58 @@ func ParseApiCharacterRetrieveResponse(rsp *http.Response) (*ApiCharacterRetriev
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest CharacterRead
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseApiCharacterPartialUpdateResponse parses an HTTP response from a ApiCharacterPartialUpdateWithResponse call
+func ParseApiCharacterPartialUpdateResponse(rsp *http.Response) (*ApiCharacterPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiCharacterPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Character
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseApiCharacterUpdateResponse parses an HTTP response from a ApiCharacterUpdateWithResponse call
+func ParseApiCharacterUpdateResponse(rsp *http.Response) (*ApiCharacterUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiCharacterUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Character
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -8691,6 +16530,58 @@ func ParseApiCollectionRetrieveResponse(rsp *http.Response) (*ApiCollectionRetri
 	return response, nil
 }
 
+// ParseApiCollectionPartialUpdateResponse parses an HTTP response from a ApiCollectionPartialUpdateWithResponse call
+func ParseApiCollectionPartialUpdateResponse(rsp *http.Response) (*ApiCollectionPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiCollectionPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CollectionRatingUpdate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseApiCollectionUpdateResponse parses an HTTP response from a ApiCollectionUpdateWithResponse call
+func ParseApiCollectionUpdateResponse(rsp *http.Response) (*ApiCollectionUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiCollectionUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CollectionRatingUpdate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseApiCreatorListResponse parses an HTTP response from a ApiCreatorListWithResponse call
 func ParseApiCreatorListResponse(rsp *http.Response) (*ApiCreatorListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -8711,6 +16602,32 @@ func ParseApiCreatorListResponse(rsp *http.Response) (*ApiCreatorListResponse, e
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseApiCreatorCreateResponse parses an HTTP response from a ApiCreatorCreateWithResponse call
+func ParseApiCreatorCreateResponse(rsp *http.Response) (*ApiCreatorCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiCreatorCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest Creator
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
 
 	}
 
@@ -8743,6 +16660,84 @@ func ParseApiCreatorRetrieveResponse(rsp *http.Response) (*ApiCreatorRetrieveRes
 	return response, nil
 }
 
+// ParseApiCreatorPartialUpdateResponse parses an HTTP response from a ApiCreatorPartialUpdateWithResponse call
+func ParseApiCreatorPartialUpdateResponse(rsp *http.Response) (*ApiCreatorPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiCreatorPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Creator
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseApiCreatorUpdateResponse parses an HTTP response from a ApiCreatorUpdateWithResponse call
+func ParseApiCreatorUpdateResponse(rsp *http.Response) (*ApiCreatorUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiCreatorUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Creator
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseApiCreditCreateResponse parses an HTTP response from a ApiCreditCreateWithResponse call
+func ParseApiCreditCreateResponse(rsp *http.Response) (*ApiCreditCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiCreditCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest Credit
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseApiImprintListResponse parses an HTTP response from a ApiImprintListWithResponse call
 func ParseApiImprintListResponse(rsp *http.Response) (*ApiImprintListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -8769,6 +16764,32 @@ func ParseApiImprintListResponse(rsp *http.Response) (*ApiImprintListResponse, e
 	return response, nil
 }
 
+// ParseApiImprintCreateResponse parses an HTTP response from a ApiImprintCreateWithResponse call
+func ParseApiImprintCreateResponse(rsp *http.Response) (*ApiImprintCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiImprintCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest Imprint
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseApiImprintRetrieveResponse parses an HTTP response from a ApiImprintRetrieveWithResponse call
 func ParseApiImprintRetrieveResponse(rsp *http.Response) (*ApiImprintRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -8785,6 +16806,58 @@ func ParseApiImprintRetrieveResponse(rsp *http.Response) (*ApiImprintRetrieveRes
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest ImprintRead
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseApiImprintPartialUpdateResponse parses an HTTP response from a ApiImprintPartialUpdateWithResponse call
+func ParseApiImprintPartialUpdateResponse(rsp *http.Response) (*ApiImprintPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiImprintPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Imprint
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseApiImprintUpdateResponse parses an HTTP response from a ApiImprintUpdateWithResponse call
+func ParseApiImprintUpdateResponse(rsp *http.Response) (*ApiImprintUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiImprintUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Imprint
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -8821,6 +16894,32 @@ func ParseApiIssueListResponse(rsp *http.Response) (*ApiIssueListResponse, error
 	return response, nil
 }
 
+// ParseApiIssueCreateResponse parses an HTTP response from a ApiIssueCreateWithResponse call
+func ParseApiIssueCreateResponse(rsp *http.Response) (*ApiIssueCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiIssueCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest Issue
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseApiIssueRetrieveResponse parses an HTTP response from a ApiIssueRetrieveWithResponse call
 func ParseApiIssueRetrieveResponse(rsp *http.Response) (*ApiIssueRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -8837,6 +16936,58 @@ func ParseApiIssueRetrieveResponse(rsp *http.Response) (*ApiIssueRetrieveRespons
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest IssueRead
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseApiIssuePartialUpdateResponse parses an HTTP response from a ApiIssuePartialUpdateWithResponse call
+func ParseApiIssuePartialUpdateResponse(rsp *http.Response) (*ApiIssuePartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiIssuePartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Issue
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseApiIssueUpdateResponse parses an HTTP response from a ApiIssueUpdateWithResponse call
+func ParseApiIssueUpdateResponse(rsp *http.Response) (*ApiIssueUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiIssueUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Issue
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -8873,6 +17024,32 @@ func ParseApiPublisherListResponse(rsp *http.Response) (*ApiPublisherListRespons
 	return response, nil
 }
 
+// ParseApiPublisherCreateResponse parses an HTTP response from a ApiPublisherCreateWithResponse call
+func ParseApiPublisherCreateResponse(rsp *http.Response) (*ApiPublisherCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiPublisherCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest Publisher
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseApiPublisherRetrieveResponse parses an HTTP response from a ApiPublisherRetrieveWithResponse call
 func ParseApiPublisherRetrieveResponse(rsp *http.Response) (*ApiPublisherRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -8882,6 +17059,58 @@ func ParseApiPublisherRetrieveResponse(rsp *http.Response) (*ApiPublisherRetriev
 	}
 
 	response := &ApiPublisherRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Publisher
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseApiPublisherPartialUpdateResponse parses an HTTP response from a ApiPublisherPartialUpdateWithResponse call
+func ParseApiPublisherPartialUpdateResponse(rsp *http.Response) (*ApiPublisherPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiPublisherPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Publisher
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseApiPublisherUpdateResponse parses an HTTP response from a ApiPublisherUpdateWithResponse call
+func ParseApiPublisherUpdateResponse(rsp *http.Response) (*ApiPublisherUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiPublisherUpdateResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -8915,6 +17144,159 @@ func ParseApiPublisherSeriesListListResponse(rsp *http.Response) (*ApiPublisherS
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest PaginatedSeriesListList
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseApiPullListListResponse parses an HTTP response from a ApiPullListListWithResponse call
+func ParseApiPullListListResponse(rsp *http.Response) (*ApiPullListListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiPullListListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest PaginatedPullListReadList
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseApiPullListIssuesListResponse parses an HTTP response from a ApiPullListIssuesListWithResponse call
+func ParseApiPullListIssuesListResponse(rsp *http.Response) (*ApiPullListIssuesListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiPullListIssuesListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest PaginatedPullListIssueList
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseApiPullListSeriesListResponse parses an HTTP response from a ApiPullListSeriesListWithResponse call
+func ParseApiPullListSeriesListResponse(rsp *http.Response) (*ApiPullListSeriesListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiPullListSeriesListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest PaginatedPullListSeriesList
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseApiPullListSeriesAddCreateResponse parses an HTTP response from a ApiPullListSeriesAddCreateWithResponse call
+func ParseApiPullListSeriesAddCreateResponse(rsp *http.Response) (*ApiPullListSeriesAddCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiPullListSeriesAddCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest PullListSeries
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest PullListSeries
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseApiPullListSeriesRemoveDestroyResponse parses an HTTP response from a ApiPullListSeriesRemoveDestroyWithResponse call
+func ParseApiPullListSeriesRemoveDestroyResponse(rsp *http.Response) (*ApiPullListSeriesRemoveDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiPullListSeriesRemoveDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseApiPullListRetrieveResponse parses an HTTP response from a ApiPullListRetrieveWithResponse call
+func ParseApiPullListRetrieveResponse(rsp *http.Response) (*ApiPullListRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiPullListRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest PullListRead
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -9098,6 +17480,32 @@ func ParseApiSeriesListResponse(rsp *http.Response) (*ApiSeriesListResponse, err
 	return response, nil
 }
 
+// ParseApiSeriesCreateResponse parses an HTTP response from a ApiSeriesCreateWithResponse call
+func ParseApiSeriesCreateResponse(rsp *http.Response) (*ApiSeriesCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiSeriesCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest Series
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseApiSeriesRetrieveResponse parses an HTTP response from a ApiSeriesRetrieveWithResponse call
 func ParseApiSeriesRetrieveResponse(rsp *http.Response) (*ApiSeriesRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -9114,6 +17522,58 @@ func ParseApiSeriesRetrieveResponse(rsp *http.Response) (*ApiSeriesRetrieveRespo
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest SeriesRead
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseApiSeriesPartialUpdateResponse parses an HTTP response from a ApiSeriesPartialUpdateWithResponse call
+func ParseApiSeriesPartialUpdateResponse(rsp *http.Response) (*ApiSeriesPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiSeriesPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Series
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseApiSeriesUpdateResponse parses an HTTP response from a ApiSeriesUpdateWithResponse call
+func ParseApiSeriesUpdateResponse(rsp *http.Response) (*ApiSeriesUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiSeriesUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Series
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -9202,6 +17662,32 @@ func ParseApiTeamListResponse(rsp *http.Response) (*ApiTeamListResponse, error) 
 	return response, nil
 }
 
+// ParseApiTeamCreateResponse parses an HTTP response from a ApiTeamCreateWithResponse call
+func ParseApiTeamCreateResponse(rsp *http.Response) (*ApiTeamCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiTeamCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest Team
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseApiTeamRetrieveResponse parses an HTTP response from a ApiTeamRetrieveWithResponse call
 func ParseApiTeamRetrieveResponse(rsp *http.Response) (*ApiTeamRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -9218,6 +17704,58 @@ func ParseApiTeamRetrieveResponse(rsp *http.Response) (*ApiTeamRetrieveResponse,
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest TeamRead
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseApiTeamPartialUpdateResponse parses an HTTP response from a ApiTeamPartialUpdateWithResponse call
+func ParseApiTeamPartialUpdateResponse(rsp *http.Response) (*ApiTeamPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiTeamPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Team
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseApiTeamUpdateResponse parses an HTTP response from a ApiTeamUpdateWithResponse call
+func ParseApiTeamUpdateResponse(rsp *http.Response) (*ApiTeamUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiTeamUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Team
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -9280,6 +17818,32 @@ func ParseApiUniverseListResponse(rsp *http.Response) (*ApiUniverseListResponse,
 	return response, nil
 }
 
+// ParseApiUniverseCreateResponse parses an HTTP response from a ApiUniverseCreateWithResponse call
+func ParseApiUniverseCreateResponse(rsp *http.Response) (*ApiUniverseCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiUniverseCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest Universe
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseApiUniverseRetrieveResponse parses an HTTP response from a ApiUniverseRetrieveWithResponse call
 func ParseApiUniverseRetrieveResponse(rsp *http.Response) (*ApiUniverseRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -9296,6 +17860,279 @@ func ParseApiUniverseRetrieveResponse(rsp *http.Response) (*ApiUniverseRetrieveR
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest UniverseRead
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseApiUniversePartialUpdateResponse parses an HTTP response from a ApiUniversePartialUpdateWithResponse call
+func ParseApiUniversePartialUpdateResponse(rsp *http.Response) (*ApiUniversePartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiUniversePartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Universe
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseApiUniverseUpdateResponse parses an HTTP response from a ApiUniverseUpdateWithResponse call
+func ParseApiUniverseUpdateResponse(rsp *http.Response) (*ApiUniverseUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiUniverseUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Universe
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseApiVariantCreateResponse parses an HTTP response from a ApiVariantCreateWithResponse call
+func ParseApiVariantCreateResponse(rsp *http.Response) (*ApiVariantCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiVariantCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest Variant
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseApiVariantPartialUpdateResponse parses an HTTP response from a ApiVariantPartialUpdateWithResponse call
+func ParseApiVariantPartialUpdateResponse(rsp *http.Response) (*ApiVariantPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiVariantPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Variant
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseApiVariantUpdateResponse parses an HTTP response from a ApiVariantUpdateWithResponse call
+func ParseApiVariantUpdateResponse(rsp *http.Response) (*ApiVariantUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiVariantUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Variant
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseApiWishListListResponse parses an HTTP response from a ApiWishListListWithResponse call
+func ParseApiWishListListResponse(rsp *http.Response) (*ApiWishListListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiWishListListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest PaginatedWishListList
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseApiWishListItemsListResponse parses an HTTP response from a ApiWishListItemsListWithResponse call
+func ParseApiWishListItemsListResponse(rsp *http.Response) (*ApiWishListItemsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiWishListItemsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest PaginatedWishListItemListList
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseApiWishListItemsAddCreateResponse parses an HTTP response from a ApiWishListItemsAddCreateWithResponse call
+func ParseApiWishListItemsAddCreateResponse(rsp *http.Response) (*ApiWishListItemsAddCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiWishListItemsAddCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest WishListItemRead
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest WishListItemRead
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseApiWishListItemsAcquireCreateResponse parses an HTTP response from a ApiWishListItemsAcquireCreateWithResponse call
+func ParseApiWishListItemsAcquireCreateResponse(rsp *http.Response) (*ApiWishListItemsAcquireCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiWishListItemsAcquireCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseApiWishListItemsRemoveDestroyResponse parses an HTTP response from a ApiWishListItemsRemoveDestroyWithResponse call
+func ParseApiWishListItemsRemoveDestroyResponse(rsp *http.Response) (*ApiWishListItemsRemoveDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiWishListItemsRemoveDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseApiWishListRetrieveResponse parses an HTTP response from a ApiWishListRetrieveWithResponse call
+func ParseApiWishListRetrieveResponse(rsp *http.Response) (*ApiWishListRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiWishListRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest WishList
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}

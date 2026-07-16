@@ -5,7 +5,7 @@ info:
   description: API to retrieve comic book data
   contact:
     name: API Support
-    email: bpepple@metron.cloud
+    email: admin@metron.cloud
   license:
     name: Creative Commons License
     url: https://creativecommons.org/licenses/by-sa/4.0/
@@ -58,6 +58,35 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedArcListList'
           description: ''
+    post:
+      operationId: api_arc_create
+      description: |-
+        list:
+        Returns a list of all the story arcs.
+
+        retrieve:
+        Returns the information of an individual story arc.
+      tags:
+        - api
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Arc'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Arc'
+        required: true
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Arc'
+          description: ''
   /api/arc/{id}/:
     get:
       operationId: api_arc_retrieve
@@ -86,10 +115,86 @@ paths:
               schema:
                 $ref: '#/components/schemas/Arc'
           description: ''
+    put:
+      operationId: api_arc_update
+      description: |-
+        list:
+        Returns a list of all the story arcs.
+
+        retrieve:
+        Returns the information of an individual story arc.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this arc.
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Arc'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Arc'
+        required: true
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Arc'
+          description: ''
+    patch:
+      operationId: api_arc_partial_update
+      description: |-
+        list:
+        Returns a list of all the story arcs.
+
+        retrieve:
+        Returns the information of an individual story arc.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this arc.
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedArc'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedArc'
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Arc'
+          description: ''
   /api/arc/{id}/issue_list/:
     get:
       operationId: api_arc_issue_list_list
-      description: Returns a list of issues for this object.
+      description: |-
+        list:
+        Returns a list of all the story arcs.
+
+        retrieve:
+        Returns the information of an individual story arc.
       parameters:
         - in: path
           name: id
@@ -163,6 +268,35 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedCharacterListList'
           description: ''
+    post:
+      operationId: api_character_create
+      description: |-
+        list:
+        Return a list of all the characters.
+
+        retrieve:
+        Returns the information of an individual character.
+      tags:
+        - api
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Character'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Character'
+        required: true
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Character'
+          description: ''
   /api/character/{id}/:
     get:
       operationId: api_character_retrieve
@@ -191,10 +325,86 @@ paths:
               schema:
                 $ref: '#/components/schemas/CharacterRead'
           description: ''
+    put:
+      operationId: api_character_update
+      description: |-
+        list:
+        Return a list of all the characters.
+
+        retrieve:
+        Returns the information of an individual character.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this character.
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Character'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Character'
+        required: true
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Character'
+          description: ''
+    patch:
+      operationId: api_character_partial_update
+      description: |-
+        list:
+        Return a list of all the characters.
+
+        retrieve:
+        Returns the information of an individual character.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this character.
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedCharacter'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedCharacter'
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Character'
+          description: ''
   /api/character/{id}/issue_list/:
     get:
       operationId: api_character_issue_list_list
-      description: Returns a list of issues for this object.
+      description: |-
+        list:
+        Return a list of all the characters.
+
+        retrieve:
+        Returns the information of an individual character.
       parameters:
         - in: path
           name: id
@@ -230,6 +440,16 @@ paths:
 
         retrieve:
         Returns details of a specific collection item (must belong to authenticated user).
+        Requires authentication.
+
+        partial_update:
+        Update the rating of a specific collection item (must belong to authenticated user).
+        Read-tracking fields (is_read/date_read) are not editable here; use scrobble instead.
+        Requires authentication.
+
+        update:
+        Update the rating of a specific collection item (must belong to authenticated user).
+        Read-tracking fields (is_read/date_read) are not editable here; use scrobble instead.
         Requires authentication.
       parameters:
         - in: query
@@ -424,6 +644,16 @@ paths:
         retrieve:
         Returns details of a specific collection item (must belong to authenticated user).
         Requires authentication.
+
+        partial_update:
+        Update the rating of a specific collection item (must belong to authenticated user).
+        Read-tracking fields (is_read/date_read) are not editable here; use scrobble instead.
+        Requires authentication.
+
+        update:
+        Update the rating of a specific collection item (must belong to authenticated user).
+        Read-tracking fields (is_read/date_read) are not editable here; use scrobble instead.
+        Requires authentication.
       parameters:
         - in: path
           name: id
@@ -442,6 +672,106 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CollectionRead'
+          description: ''
+    put:
+      operationId: api_collection_update
+      description: |-
+        list:
+        Returns authenticated user's collection items.
+        Requires authentication.
+
+        retrieve:
+        Returns details of a specific collection item (must belong to authenticated user).
+        Requires authentication.
+
+        partial_update:
+        Update the rating of a specific collection item (must belong to authenticated user).
+        Read-tracking fields (is_read/date_read) are not editable here; use scrobble instead.
+        Requires authentication.
+
+        update:
+        Update the rating of a specific collection item (must belong to authenticated user).
+        Read-tracking fields (is_read/date_read) are not editable here; use scrobble instead.
+        Requires authentication.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this Collection Item.
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CollectionRatingUpdate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CollectionRatingUpdate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CollectionRatingUpdate'
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionRatingUpdate'
+          description: ''
+    patch:
+      operationId: api_collection_partial_update
+      description: |-
+        list:
+        Returns authenticated user's collection items.
+        Requires authentication.
+
+        retrieve:
+        Returns details of a specific collection item (must belong to authenticated user).
+        Requires authentication.
+
+        partial_update:
+        Update the rating of a specific collection item (must belong to authenticated user).
+        Read-tracking fields (is_read/date_read) are not editable here; use scrobble instead.
+        Requires authentication.
+
+        update:
+        Update the rating of a specific collection item (must belong to authenticated user).
+        Read-tracking fields (is_read/date_read) are not editable here; use scrobble instead.
+        Requires authentication.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this Collection Item.
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedCollectionRatingUpdate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedCollectionRatingUpdate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedCollectionRatingUpdate'
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionRatingUpdate'
           description: ''
   /api/collection/missing_issues/{series_id}/:
     get:
@@ -626,6 +956,35 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedCreatorListList'
           description: ''
+    post:
+      operationId: api_creator_create
+      description: |-
+        list:
+        Return a list of all the creators.
+
+        retrieve:
+        Returns the information of an individual creator.
+      tags:
+        - api
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Creator'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Creator'
+        required: true
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Creator'
+          description: ''
   /api/creator/{id}/:
     get:
       operationId: api_creator_retrieve
@@ -653,6 +1012,110 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Creator'
+          description: ''
+    put:
+      operationId: api_creator_update
+      description: |-
+        list:
+        Return a list of all the creators.
+
+        retrieve:
+        Returns the information of an individual creator.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this creator.
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Creator'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Creator'
+        required: true
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Creator'
+          description: ''
+    patch:
+      operationId: api_creator_partial_update
+      description: |-
+        list:
+        Return a list of all the creators.
+
+        retrieve:
+        Returns the information of an individual creator.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this creator.
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedCreator'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedCreator'
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Creator'
+          description: ''
+  /api/credit/:
+    post:
+      operationId: api_credit_create
+      description: |-
+        create:
+        Add a new Credit.
+
+        update:
+        Update a Credit's data.
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Credit'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Credit'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Credit'
+        required: true
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Credit'
           description: ''
   /api/imprint/:
     get:
@@ -708,6 +1171,41 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedImprintListList'
           description: ''
+    post:
+      operationId: api_imprint_create
+      description: |-
+        list:
+        Returns a list of all imprints.
+
+        retrieve:
+        Returns the information of an individual imprint.
+
+        create:
+        Add a new imprint.
+
+        update:
+        Update an imprint's information.
+      tags:
+        - api
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Imprint'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Imprint'
+        required: true
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Imprint'
+          description: ''
   /api/imprint/{id}/:
     get:
       operationId: api_imprint_retrieve
@@ -742,6 +1240,89 @@ paths:
               schema:
                 $ref: '#/components/schemas/ImprintRead'
           description: ''
+    put:
+      operationId: api_imprint_update
+      description: |-
+        list:
+        Returns a list of all imprints.
+
+        retrieve:
+        Returns the information of an individual imprint.
+
+        create:
+        Add a new imprint.
+
+        update:
+        Update an imprint's information.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this imprint.
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Imprint'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Imprint'
+        required: true
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Imprint'
+          description: ''
+    patch:
+      operationId: api_imprint_partial_update
+      description: |-
+        list:
+        Returns a list of all imprints.
+
+        retrieve:
+        Returns the information of an individual imprint.
+
+        create:
+        Add a new imprint.
+
+        update:
+        Update an imprint's information.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this imprint.
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedImprint'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedImprint'
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Imprint'
+          description: ''
   /api/issue/:
     get:
       operationId: api_issue_list
@@ -761,6 +1342,11 @@ paths:
             type: string
           description: Alternate Number
         - in: query
+          name: character_id
+          schema:
+            type: integer
+          description: Character Metron ID
+        - in: query
           name: cover_hash
           schema:
             type: string
@@ -775,6 +1361,11 @@ paths:
           schema:
             type: number
           description: Cover Year
+        - in: query
+          name: creator_id
+          schema:
+            type: integer
+          description: Creator Metron ID
         - in: query
           name: cv_id
           schema:
@@ -851,6 +1442,15 @@ paths:
             type: string
           description: Rating
         - in: query
+          name: role_id
+          schema:
+            type: array
+            items:
+              type: integer
+          description: Multiple values may be separated by commas.
+          explode: false
+          style: form
+        - in: query
           name: series_id
           schema:
             type: integer
@@ -891,6 +1491,16 @@ paths:
             type: string
             format: date
         - in: query
+          name: team_id
+          schema:
+            type: integer
+          description: Team Metron ID
+        - in: query
+          name: universe_id
+          schema:
+            type: integer
+          description: Universe Metron ID
+        - in: query
           name: upc
           schema:
             type: string
@@ -906,6 +1516,41 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PaginatedIssueListList'
+          description: ''
+    post:
+      operationId: api_issue_create
+      description: |-
+        list:
+        Return a list of all the issues.
+
+        retrieve:
+        Returns the information of an individual issue.
+
+        Note: cover_hash is a Perceptual hashing created with
+        ImageHash. https://github.com/JohannesBuchner/imagehash
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Issue'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Issue'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Issue'
+        required: true
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Issue'
           description: ''
   /api/issue/{id}/:
     get:
@@ -937,6 +1582,89 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/IssueRead'
+          description: ''
+    put:
+      operationId: api_issue_update
+      description: |-
+        list:
+        Return a list of all the issues.
+
+        retrieve:
+        Returns the information of an individual issue.
+
+        Note: cover_hash is a Perceptual hashing created with
+        ImageHash. https://github.com/JohannesBuchner/imagehash
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this issue.
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Issue'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Issue'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Issue'
+        required: true
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Issue'
+          description: ''
+    patch:
+      operationId: api_issue_partial_update
+      description: |-
+        list:
+        Return a list of all the issues.
+
+        retrieve:
+        Returns the information of an individual issue.
+
+        Note: cover_hash is a Perceptual hashing created with
+        ImageHash. https://github.com/JohannesBuchner/imagehash
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this issue.
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedIssue'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedIssue'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedIssue'
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Issue'
           description: ''
   /api/publisher/:
     get:
@@ -992,6 +1720,41 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedPublisherListList'
           description: ''
+    post:
+      operationId: api_publisher_create
+      description: |-
+        list:
+        Returns a list of all publishers.
+
+        retrieve:
+        Returns the information of an individual publisher.
+
+        create:
+        Add a new publisher.
+
+        update:
+        Update a publisher's information.
+      tags:
+        - api
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Publisher'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Publisher'
+        required: true
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Publisher'
+          description: ''
   /api/publisher/{id}/:
     get:
       operationId: api_publisher_retrieve
@@ -1016,6 +1779,89 @@ paths:
           required: true
       tags:
         - api
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Publisher'
+          description: ''
+    put:
+      operationId: api_publisher_update
+      description: |-
+        list:
+        Returns a list of all publishers.
+
+        retrieve:
+        Returns the information of an individual publisher.
+
+        create:
+        Add a new publisher.
+
+        update:
+        Update a publisher's information.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this publisher.
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Publisher'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Publisher'
+        required: true
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Publisher'
+          description: ''
+    patch:
+      operationId: api_publisher_partial_update
+      description: |-
+        list:
+        Returns a list of all publishers.
+
+        retrieve:
+        Returns the information of an individual publisher.
+
+        create:
+        Add a new publisher.
+
+        update:
+        Update a publisher's information.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this publisher.
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedPublisher'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedPublisher'
       security:
         - basicAuth: []
         - cookieAuth: []
@@ -1054,6 +1900,157 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PaginatedSeriesListList'
+          description: ''
+  /api/pull_list/:
+    get:
+      operationId: api_pull_list_list
+      parameters:
+        - name: page
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          schema:
+            type: integer
+      tags:
+        - api
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedPullListReadList'
+          description: ''
+  /api/pull_list/{id}/:
+    get:
+      operationId: api_pull_list_retrieve
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this Pull List.
+          required: true
+      tags:
+        - api
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PullListRead'
+          description: ''
+  /api/pull_list/issues/:
+    get:
+      operationId: api_pull_list_issues_list
+      description: |-
+        Return issues for series on the authenticated user's pull list.
+
+        Optionally filter by store date using store_date_after and store_date_before.
+      parameters:
+        - name: page
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          schema:
+            type: integer
+        - in: query
+          name: store_date_after
+          schema:
+            type: string
+          description: Return issues with a store date on or after this date (YYYY-MM-DD).
+        - in: query
+          name: store_date_before
+          schema:
+            type: string
+          description: Return issues with a store date on or before this date (YYYY-MM-DD).
+      tags:
+        - api
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedPullListIssueList'
+          description: ''
+  /api/pull_list/series/:
+    get:
+      operationId: api_pull_list_series_list
+      description: Returns the authenticated user's pull list series.
+      parameters:
+        - name: page
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          schema:
+            type: integer
+      tags:
+        - api
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedPullListSeriesList'
+          description: ''
+  /api/pull_list/series/{series_pk}/remove/:
+    delete:
+      operationId: api_pull_list_series_remove_destroy
+      description: Remove a series from the authenticated user's pull list.
+      parameters:
+        - in: path
+          name: series_pk
+          schema:
+            type: integer
+          required: true
+      tags:
+        - api
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+        '404':
+          description: No response body
+  /api/pull_list/series/add/:
+    post:
+      operationId: api_pull_list_series_add_create
+      description: Add a series to the authenticated user's pull list.
+      parameters:
+        - in: query
+          name: series_id
+          schema:
+            type: integer
+          required: true
+      tags:
+        - api
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PullListSeries'
+          description: ''
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PullListSeries'
           description: ''
   /api/reading_list/:
     get:
@@ -1103,6 +2100,26 @@ paths:
           schema:
             type: boolean
         - in: query
+          name: list_type
+          schema:
+            type: string
+            enum:
+              - CHARACTERS
+              - CREATOR
+              - EVENT
+              - MASTER
+              - STORY
+              - TEAMS
+          description: |-
+            The type of reading list
+            
+            * `CREATOR` - Creator
+            * `EVENT` - Event
+            * `STORY` - Story
+            * `CHARACTERS` - Characters
+            * `TEAMS` - Teams
+            * `MASTER` - Master
+        - in: query
           name: modified_gt
           schema:
             type: string
@@ -1118,6 +2135,11 @@ paths:
           description: A page number within the paginated result set.
           schema:
             type: integer
+        - in: query
+          name: publisher
+          schema:
+            type: string
+          description: Publisher
         - in: query
           name: user
           schema:
@@ -1296,6 +2318,7 @@ paths:
               - hi
               - hr
               - hsb
+              - ht
               - hu
               - hy
               - ia
@@ -1397,6 +2420,16 @@ paths:
         Update a Series information.
       parameters:
         - in: query
+          name: character_id
+          schema:
+            type: integer
+          description: Character Metron ID
+        - in: query
+          name: creator_id
+          schema:
+            type: integer
+          description: Creator Metron ID
+        - in: query
           name: cv_id
           schema:
             type: integer
@@ -1406,6 +2439,11 @@ paths:
           schema:
             type: integer
           description: Grand Comics Database ID
+        - in: query
+          name: imprint_id
+          schema:
+            type: integer
+          description: Imprint Metron ID
         - in: query
           name: imprint_name
           schema:
@@ -1443,6 +2481,15 @@ paths:
           schema:
             type: string
         - in: query
+          name: role_id
+          schema:
+            type: array
+            items:
+              type: integer
+          description: Multiple values may be separated by commas.
+          explode: false
+          style: form
+        - in: query
           name: series_type
           schema:
             type: string
@@ -1454,6 +2501,16 @@ paths:
           name: status
           schema:
             type: integer
+        - in: query
+          name: team_id
+          schema:
+            type: integer
+          description: Team Metron ID
+        - in: query
+          name: universe_id
+          schema:
+            type: integer
+          description: Universe Metron ID
         - in: query
           name: volume
           schema:
@@ -1477,6 +2534,44 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PaginatedSeriesListList'
+          description: ''
+    post:
+      operationId: api_series_create
+      description: |-
+        list:
+        Returns a list of all the comic series.
+
+        retrieve:
+        Returns the information of an individual comic series.
+
+        create:
+        Add a new Series.
+
+        update:
+        Update a Series information.
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Series'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Series'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Series'
+        required: true
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Series'
           description: ''
   /api/series/{id}/:
     get:
@@ -1512,10 +2607,110 @@ paths:
               schema:
                 $ref: '#/components/schemas/SeriesRead'
           description: ''
+    put:
+      operationId: api_series_update
+      description: |-
+        list:
+        Returns a list of all the comic series.
+
+        retrieve:
+        Returns the information of an individual comic series.
+
+        create:
+        Add a new Series.
+
+        update:
+        Update a Series information.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this series.
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Series'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Series'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Series'
+        required: true
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Series'
+          description: ''
+    patch:
+      operationId: api_series_partial_update
+      description: |-
+        list:
+        Returns a list of all the comic series.
+
+        retrieve:
+        Returns the information of an individual comic series.
+
+        create:
+        Add a new Series.
+
+        update:
+        Update a Series information.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this series.
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedSeries'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedSeries'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedSeries'
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Series'
+          description: ''
   /api/series/{id}/issue_list/:
     get:
       operationId: api_series_issue_list_list
-      description: Returns a list of issues for this object.
+      description: |-
+        list:
+        Returns a list of all the comic series.
+
+        retrieve:
+        Returns the information of an individual comic series.
+
+        create:
+        Add a new Series.
+
+        update:
+        Update a Series information.
       parameters:
         - in: path
           name: id
@@ -1624,6 +2819,35 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedTeamListList'
           description: ''
+    post:
+      operationId: api_team_create
+      description: |-
+        list:
+        Return a list of all the teams.
+
+        retrieve:
+        Returns the information of an individual team.
+      tags:
+        - api
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Team'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Team'
+        required: true
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+          description: ''
   /api/team/{id}/:
     get:
       operationId: api_team_retrieve
@@ -1652,10 +2876,86 @@ paths:
               schema:
                 $ref: '#/components/schemas/TeamRead'
           description: ''
+    put:
+      operationId: api_team_update
+      description: |-
+        list:
+        Return a list of all the teams.
+
+        retrieve:
+        Returns the information of an individual team.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this team.
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Team'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Team'
+        required: true
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+          description: ''
+    patch:
+      operationId: api_team_partial_update
+      description: |-
+        list:
+        Return a list of all the teams.
+
+        retrieve:
+        Returns the information of an individual team.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this team.
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedTeam'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedTeam'
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+          description: ''
   /api/team/{id}/issue_list/:
     get:
       operationId: api_team_issue_list_list
-      description: Returns a list of issues for this object.
+      description: |-
+        list:
+        Return a list of all the teams.
+
+        retrieve:
+        Returns the information of an individual team.
       parameters:
         - in: path
           name: id
@@ -1723,6 +3023,35 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedUniverseListList'
           description: ''
+    post:
+      operationId: api_universe_create
+      description: |-
+        list:
+        Return a list of all the universes.
+
+        retrieve:
+        Returns the information of an individual universe.
+      tags:
+        - api
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Universe'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Universe'
+        required: true
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Universe'
+          description: ''
   /api/universe/{id}/:
     get:
       operationId: api_universe_retrieve
@@ -1751,8 +3080,362 @@ paths:
               schema:
                 $ref: '#/components/schemas/UniverseRead'
           description: ''
+    put:
+      operationId: api_universe_update
+      description: |-
+        list:
+        Return a list of all the universes.
+
+        retrieve:
+        Returns the information of an individual universe.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this universe.
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Universe'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Universe'
+        required: true
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Universe'
+          description: ''
+    patch:
+      operationId: api_universe_partial_update
+      description: |-
+        list:
+        Return a list of all the universes.
+
+        retrieve:
+        Returns the information of an individual universe.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this universe.
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedUniverse'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedUniverse'
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Universe'
+          description: ''
+  /api/variant/:
+    post:
+      operationId: api_variant_create
+      description: |-
+        create:
+        Add a new Variant Cover.
+
+        update:
+        Update a Variant Cover's information.
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Variant'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Variant'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Variant'
+        required: true
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Variant'
+          description: ''
+  /api/variant/{id}/:
+    put:
+      operationId: api_variant_update
+      description: |-
+        create:
+        Add a new Variant Cover.
+
+        update:
+        Update a Variant Cover's information.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this variant.
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Variant'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Variant'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Variant'
+        required: true
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Variant'
+          description: ''
+    patch:
+      operationId: api_variant_partial_update
+      description: |-
+        create:
+        Add a new Variant Cover.
+
+        update:
+        Update a Variant Cover's information.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this variant.
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedVariant'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedVariant'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedVariant'
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Variant'
+          description: ''
+  /api/wish_list/:
+    get:
+      operationId: api_wish_list_list
+      parameters:
+        - name: page
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          schema:
+            type: integer
+      tags:
+        - api
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedWishListList'
+          description: ''
+  /api/wish_list/{id}/:
+    get:
+      operationId: api_wish_list_retrieve
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this Wish List.
+          required: true
+      tags:
+        - api
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WishList'
+          description: ''
+  /api/wish_list/items/:
+    get:
+      operationId: api_wish_list_items_list
+      description: Returns paginated wish list items for the authenticated user.
+      parameters:
+        - name: page
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          schema:
+            type: integer
+      tags:
+        - api
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedWishListItemListList'
+          description: ''
+  /api/wish_list/items/{item_pk}/acquire/:
+    post:
+      operationId: api_wish_list_items_acquire_create
+      description: Mark a wish list item as acquired and create a collection item.
+      parameters:
+        - in: path
+          name: item_pk
+          schema:
+            type: integer
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AcquireWishListItem'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AcquireWishListItem'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AcquireWishListItem'
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/wish_list/items/{item_pk}/remove/:
+    delete:
+      operationId: api_wish_list_items_remove_destroy
+      description: Remove an item from the authenticated user's wish list.
+      parameters:
+        - in: path
+          name: item_pk
+          schema:
+            type: integer
+          required: true
+      tags:
+        - api
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+        '404':
+          description: No response body
+  /api/wish_list/items/add/:
+    post:
+      operationId: api_wish_list_items_add_create
+      description: Add an issue to the authenticated user's wish list.
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WishListAddItem'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/WishListAddItem'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/WishListAddItem'
+        required: true
+      security:
+        - basicAuth: []
+        - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WishListItemRead'
+          description: ''
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WishListItemRead'
+          description: ''
 components:
   schemas:
+    AcquireWishListItem:
+      type: object
+      properties:
+        purchase_date:
+          type: string
+          format: date
+          nullable: true
+        purchase_price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,5}(?:\.\d{0,2})?$
+          nullable: true
+        purchase_price_currency:
+          allOf:
+            - $ref: '#/components/schemas/CurrencyEnum'
+          default: USD
+        purchase_store:
+          type: string
+          default: ''
+        notes:
+          type: string
+          default: ''
     Arc:
       type: object
       properties:
@@ -1768,6 +3451,7 @@ components:
         image:
           type: string
           format: uri
+          nullable: true
         cv_id:
           type: integer
           maximum: 2147483647
@@ -1866,6 +3550,62 @@ components:
     BlankEnum:
       enum:
         - ''
+    Character:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        alias:
+          type: array
+          items:
+            type: string
+            maxLength: 100
+        desc:
+          type: string
+          title: Description
+        image:
+          type: string
+          format: uri
+          nullable: true
+        creators:
+          type: array
+          items:
+            type: integer
+        teams:
+          type: array
+          items:
+            type: integer
+        universes:
+          type: array
+          items:
+            type: integer
+        cv_id:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+          title: Comic Vine ID
+        gcd_id:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        resource_url:
+          type: string
+          readOnly: true
+        modified:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+        - id
+        - modified
+        - name
+        - resource_url
     CharacterList:
       type: object
       properties:
@@ -1903,6 +3643,7 @@ components:
         image:
           type: string
           format: uri
+          nullable: true
         creators:
           type: array
           items:
@@ -2034,7 +3775,7 @@ components:
           minimum: -100
           exclusiveMinimum: true
           oneOf:
-            - $ref: '#/components/schemas/GradeEnum'
+            - $ref: '#/components/schemas/DesiredGradeEnum'
             - $ref: '#/components/schemas/NullEnum'
         grading_company:
           type: string
@@ -2083,6 +3824,39 @@ components:
         - read_count
         - read_dates
         - user
+    CollectionRatingUpdate:
+      type: object
+      description: |-
+        Update serializer for collection items - rating only.
+
+        Read-tracking (is_read/date_read) is handled exclusively through the
+        scrobble action, so this serializer intentionally excludes those fields.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        rating:
+          nullable: true
+          description: |-
+            Star rating (1-5) for this issue
+
+            * `1` - 1
+            * `2` - 2
+            * `3` - 3
+            * `4` - 4
+            * `5` - 5
+          minimum: 0
+          maximum: 32767
+          oneOf:
+            - $ref: '#/components/schemas/RatingEnum'
+            - $ref: '#/components/schemas/NullEnum'
+        modified:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+        - id
+        - modified
     CollectionRead:
       type: object
       description: Read serializer for collection items - full detail view.
@@ -2141,7 +3915,7 @@ components:
           minimum: -100
           exclusiveMinimum: true
           oneOf:
-            - $ref: '#/components/schemas/GradeEnum'
+            - $ref: '#/components/schemas/DesiredGradeEnum'
             - $ref: '#/components/schemas/NullEnum'
         grading_company:
           type: string
@@ -2747,6 +4521,7 @@ components:
         image:
           type: string
           format: uri
+          nullable: true
         alias:
           type: array
           items:
@@ -2792,6 +4567,30 @@ components:
         - id
         - modified
         - name
+    Credit:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        modified:
+          type: string
+          format: date-time
+          readOnly: true
+        issue:
+          type: integer
+        creator:
+          type: integer
+        role:
+          type: array
+          items:
+            type: integer
+      required:
+        - creator
+        - id
+        - issue
+        - modified
+        - role
     CreditRead:
       type: object
       properties:
@@ -2809,19 +4608,15 @@ components:
         - creator
         - id
         - role
-    Genre:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        name:
-          type: string
-          maxLength: 25
-      required:
-        - id
-        - name
-    GradeEnum:
+    CurrencyEnum:
+      enum:
+        - USD
+        - GBP
+      type: string
+      description: |-
+        * `USD` - USD
+        * `GBP` - GBP
+    DesiredGradeEnum:
       enum:
         - 10.0
         - 9.9
@@ -2875,6 +4670,67 @@ components:
         * `1.5` - 1.5 (FR/GD - Fair/Good)
         * `1.0` - 1.0 (FR - Fair)
         * `0.5` - 0.5 (PR - Poor)
+    Genre:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 25
+      required:
+        - id
+        - name
+    Imprint:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        founded:
+          type: integer
+          maximum: 32767
+          minimum: 0
+          nullable: true
+          title: Year Founded
+        desc:
+          type: string
+          title: Description
+        image:
+          type: string
+          format: uri
+          nullable: true
+          title: Logo
+        cv_id:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+          title: Comic Vine ID
+        gcd_id:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        publisher:
+          type: integer
+        resource_url:
+          type: string
+          readOnly: true
+        modified:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+        - id
+        - modified
+        - name
+        - publisher
+        - resource_url
     ImprintList:
       type: object
       properties:
@@ -2943,6 +4799,138 @@ components:
         - name
         - publisher
         - resource_url
+    Issue:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        series:
+          type: integer
+        number:
+          type: string
+          maxLength: 25
+        alt_number:
+          type: string
+          title: Alternative Number
+          maxLength: 25
+        title:
+          type: string
+          title: Collection Title
+          maxLength: 255
+        name:
+          type: array
+          items:
+            type: string
+            title: Story Title
+            maxLength: 150
+        cover_date:
+          type: string
+          format: date
+        store_date:
+          type: string
+          format: date
+          nullable: true
+          title: In Store Date
+        foc_date:
+          type: string
+          format: date
+          nullable: true
+          title: Final Order Cutoff Date
+        price:
+          oneOf:
+            - type: string
+              format: decimal
+              pattern: ^\d+\.\d{2}$
+              example: '3.99'
+              description: Decimal string — defaults to USD (e.g. '3.99').
+            - type: object
+              properties:
+                amount:
+                  type: number
+                  example: 3.99
+                currency:
+                  type: string
+                  enum:
+                    - USD
+                    - GBP
+                  example: GBP
+              required:
+                - amount
+                - currency
+              description: Object format for non-USD prices (e.g. GBP for UK publishers).
+          description: 'Cover price. For reads, returns the amount as a decimal string;
+            see price_currency for the currency. For writes, pass a plain decimal
+            string (defaults to USD) or {"amount": 3.99, "currency": "GBP"} for UK
+            publishers. Supported currencies: USD, GBP.'
+          nullable: true
+        rating:
+          type: integer
+        sku:
+          type: string
+          title: Distributor SKU
+          maxLength: 12
+        isbn:
+          type: string
+          maxLength: 13
+        upc:
+          type: string
+          title: UPC Code
+          maxLength: 20
+        page:
+          type: integer
+          maximum: 32767
+          minimum: 0
+          nullable: true
+          title: Page Count
+        desc:
+          type: string
+          title: Description
+        image:
+          type: string
+          format: uri
+          nullable: true
+          title: Cover
+        arcs:
+          type: array
+          items:
+            type: integer
+        characters:
+          type: array
+          items:
+            type: integer
+        teams:
+          type: array
+          items:
+            type: integer
+        universes:
+          type: array
+          items:
+            type: integer
+        reprints:
+          type: array
+          items:
+            type: integer
+        cv_id:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+          title: Comic Vine ID
+        gcd_id:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        resource_url:
+          type: string
+          readOnly: true
+      required:
+        - cover_date
+        - id
+        - number
+        - resource_url
+        - series
     IssueList:
       type: object
       properties:
@@ -2969,6 +4957,7 @@ components:
         image:
           type: string
           format: uri
+          nullable: true
           title: Cover
         cover_hash:
           type: string
@@ -2987,6 +4976,9 @@ components:
     IssueListSeries:
       type: object
       properties:
+        id:
+          type: integer
+          readOnly: true
         name:
           type: string
           maxLength: 255
@@ -3000,6 +4992,7 @@ components:
           maximum: 32767
           minimum: 0
       required:
+        - id
         - name
         - volume
         - year_began
@@ -3052,12 +5045,31 @@ components:
           nullable: true
           title: Final Order Cutoff Date
         price:
-          type: string
-          format: decimal
-          pattern: ^\d+\.\d{2}$
-          example: '3.99'
-          description: Price amount as decimal string (e.g., '3.99'). Currency information
-            available in price_currency field.
+          oneOf:
+            - type: string
+              format: decimal
+              pattern: ^\d+\.\d{2}$
+              example: '3.99'
+              description: Decimal string — defaults to USD (e.g. '3.99').
+            - type: object
+              properties:
+                amount:
+                  type: number
+                  example: 3.99
+                currency:
+                  type: string
+                  enum:
+                    - USD
+                    - GBP
+                  example: GBP
+              required:
+                - amount
+                - currency
+              description: Object format for non-USD prices (e.g. GBP for UK publishers).
+          description: 'Cover price. For reads, returns the amount as a decimal string;
+            see price_currency for the currency. For writes, pass a plain decimal
+            string (defaults to USD) or {"amount": 3.99, "currency": "GBP"} for UK
+            publishers. Supported currencies: USD, GBP.'
           nullable: true
           readOnly: true
         price_currency:
@@ -3091,6 +5103,7 @@ components:
         image:
           type: string
           format: uri
+          nullable: true
           title: Cover
         cover_hash:
           type: string
@@ -3498,6 +5511,75 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PublisherList'
+    PaginatedPullListIssueList:
+      type: object
+      required:
+        - count
+        - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/PullListIssue'
+    PaginatedPullListReadList:
+      type: object
+      required:
+        - count
+        - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/PullListRead'
+    PaginatedPullListSeriesList:
+      type: object
+      required:
+        - count
+        - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/PullListSeries'
     PaginatedReadingListItemList:
       type: object
       required:
@@ -3659,6 +5741,617 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/UniverseList'
+    PaginatedWishListItemListList:
+      type: object
+      required:
+        - count
+        - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/WishListItemList'
+    PaginatedWishListList:
+      type: object
+      required:
+        - count
+        - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/WishList'
+    PatchedArc:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        desc:
+          type: string
+          title: Description
+        image:
+          type: string
+          format: uri
+          nullable: true
+        cv_id:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+          title: Comic Vine ID
+        gcd_id:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        resource_url:
+          type: string
+          readOnly: true
+        modified:
+          type: string
+          format: date-time
+          readOnly: true
+    PatchedCharacter:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        alias:
+          type: array
+          items:
+            type: string
+            maxLength: 100
+        desc:
+          type: string
+          title: Description
+        image:
+          type: string
+          format: uri
+          nullable: true
+        creators:
+          type: array
+          items:
+            type: integer
+        teams:
+          type: array
+          items:
+            type: integer
+        universes:
+          type: array
+          items:
+            type: integer
+        cv_id:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+          title: Comic Vine ID
+        gcd_id:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        resource_url:
+          type: string
+          readOnly: true
+        modified:
+          type: string
+          format: date-time
+          readOnly: true
+    PatchedCollectionRatingUpdate:
+      type: object
+      description: |-
+        Update serializer for collection items - rating only.
+
+        Read-tracking (is_read/date_read) is handled exclusively through the
+        scrobble action, so this serializer intentionally excludes those fields.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        rating:
+          nullable: true
+          description: |-
+            Star rating (1-5) for this issue
+
+            * `1` - 1
+            * `2` - 2
+            * `3` - 3
+            * `4` - 4
+            * `5` - 5
+          minimum: 0
+          maximum: 32767
+          oneOf:
+            - $ref: '#/components/schemas/RatingEnum'
+            - $ref: '#/components/schemas/NullEnum'
+        modified:
+          type: string
+          format: date-time
+          readOnly: true
+    PatchedCreator:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        birth:
+          type: string
+          format: date
+          nullable: true
+          title: Date of Birth
+        death:
+          type: string
+          format: date
+          nullable: true
+          title: Date of Death
+        desc:
+          type: string
+          title: Description
+        image:
+          type: string
+          format: uri
+          nullable: true
+        alias:
+          type: array
+          items:
+            type: string
+            maxLength: 100
+        cv_id:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+          title: Comic Vine ID
+        gcd_id:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        resource_url:
+          type: string
+          readOnly: true
+        modified:
+          type: string
+          format: date-time
+          readOnly: true
+    PatchedImprint:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        founded:
+          type: integer
+          maximum: 32767
+          minimum: 0
+          nullable: true
+          title: Year Founded
+        desc:
+          type: string
+          title: Description
+        image:
+          type: string
+          format: uri
+          nullable: true
+          title: Logo
+        cv_id:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+          title: Comic Vine ID
+        gcd_id:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        publisher:
+          type: integer
+        resource_url:
+          type: string
+          readOnly: true
+        modified:
+          type: string
+          format: date-time
+          readOnly: true
+    PatchedIssue:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        series:
+          type: integer
+        number:
+          type: string
+          maxLength: 25
+        alt_number:
+          type: string
+          title: Alternative Number
+          maxLength: 25
+        title:
+          type: string
+          title: Collection Title
+          maxLength: 255
+        name:
+          type: array
+          items:
+            type: string
+            title: Story Title
+            maxLength: 150
+        cover_date:
+          type: string
+          format: date
+        store_date:
+          type: string
+          format: date
+          nullable: true
+          title: In Store Date
+        foc_date:
+          type: string
+          format: date
+          nullable: true
+          title: Final Order Cutoff Date
+        price:
+          oneOf:
+            - type: string
+              format: decimal
+              pattern: ^\d+\.\d{2}$
+              example: '3.99'
+              description: Decimal string — defaults to USD (e.g. '3.99').
+            - type: object
+              properties:
+                amount:
+                  type: number
+                  example: 3.99
+                currency:
+                  type: string
+                  enum:
+                    - USD
+                    - GBP
+                  example: GBP
+              required:
+                - amount
+                - currency
+              description: Object format for non-USD prices (e.g. GBP for UK publishers).
+          description: 'Cover price. For reads, returns the amount as a decimal string;
+            see price_currency for the currency. For writes, pass a plain decimal
+            string (defaults to USD) or {"amount": 3.99, "currency": "GBP"} for UK
+            publishers. Supported currencies: USD, GBP.'
+          nullable: true
+        rating:
+          type: integer
+        sku:
+          type: string
+          title: Distributor SKU
+          maxLength: 12
+        isbn:
+          type: string
+          maxLength: 13
+        upc:
+          type: string
+          title: UPC Code
+          maxLength: 20
+        page:
+          type: integer
+          maximum: 32767
+          minimum: 0
+          nullable: true
+          title: Page Count
+        desc:
+          type: string
+          title: Description
+        image:
+          type: string
+          format: uri
+          nullable: true
+          title: Cover
+        arcs:
+          type: array
+          items:
+            type: integer
+        characters:
+          type: array
+          items:
+            type: integer
+        teams:
+          type: array
+          items:
+            type: integer
+        universes:
+          type: array
+          items:
+            type: integer
+        reprints:
+          type: array
+          items:
+            type: integer
+        cv_id:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+          title: Comic Vine ID
+        gcd_id:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        resource_url:
+          type: string
+          readOnly: true
+    PatchedPublisher:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        founded:
+          type: integer
+          maximum: 32767
+          minimum: 0
+          nullable: true
+          title: Year Founded
+        country:
+          $ref: '#/components/schemas/CountryEnum'
+        desc:
+          type: string
+          title: Description
+        image:
+          type: string
+          format: uri
+          nullable: true
+          title: Logo
+        cv_id:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+          title: Comic Vine ID
+        gcd_id:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        resource_url:
+          type: string
+          readOnly: true
+        modified:
+          type: string
+          format: date-time
+          readOnly: true
+    PatchedSeries:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        sort_name:
+          type: string
+          maxLength: 255
+        volume:
+          type: integer
+          maximum: 32767
+          minimum: 0
+          title: Volume Number
+        series_type:
+          type: integer
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+        publisher:
+          type: integer
+        imprint:
+          type: integer
+          nullable: true
+        year_began:
+          type: integer
+          maximum: 32767
+          minimum: 0
+        year_end:
+          type: integer
+          maximum: 32767
+          minimum: 0
+          nullable: true
+          title: Year Ended
+        desc:
+          type: string
+          title: Description
+        issue_count:
+          type: integer
+          readOnly: true
+        genres:
+          type: array
+          items:
+            type: integer
+        associated:
+          type: array
+          items:
+            type: integer
+        cv_id:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+          title: Comic Vine ID
+        gcd_id:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        resource_url:
+          type: string
+          readOnly: true
+        modified:
+          type: string
+          format: date-time
+          readOnly: true
+    PatchedTeam:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        desc:
+          type: string
+          title: Description
+        image:
+          type: string
+          format: uri
+          nullable: true
+        creators:
+          type: array
+          items:
+            type: integer
+        universes:
+          type: array
+          items:
+            type: integer
+        cv_id:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+          title: Comic Vine ID
+        gcd_id:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        resource_url:
+          type: string
+          readOnly: true
+        modified:
+          type: string
+          format: date-time
+          readOnly: true
+    PatchedUniverse:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        publisher:
+          type: integer
+        name:
+          type: string
+          maxLength: 255
+        designation:
+          type: string
+          maxLength: 255
+        desc:
+          type: string
+          title: Description
+        gcd_id:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        image:
+          type: string
+          format: uri
+          nullable: true
+        resource_url:
+          type: string
+          readOnly: true
+        modified:
+          type: string
+          format: date-time
+          readOnly: true
+    PatchedVariant:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        image:
+          type: string
+          format: uri
+          title: Variant Cover
+        name:
+          type: string
+          maxLength: 255
+        price_currency:
+          type: string
+          readOnly: true
+          nullable: true
+        price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,2})?$
+          nullable: true
+        sku:
+          type: string
+          title: Distributor SKU
+          maxLength: 12
+        upc:
+          type: string
+          title: UPC Code
+          maxLength: 20
+        issue:
+          type: integer
+    PriorityEnum:
+      enum:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+      type: integer
+      description: |-
+        * `1` - 1
+        * `2` - 2
+        * `3` - 3
+        * `4` - 4
+        * `5` - 5
     Publisher:
       type: object
       properties:
@@ -3682,6 +6375,7 @@ components:
         image:
           type: string
           format: uri
+          nullable: true
           title: Logo
         cv_id:
           type: integer
@@ -3723,6 +6417,83 @@ components:
         - id
         - modified
         - name
+    PullListIssue:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        series:
+          allOf:
+            - $ref: '#/components/schemas/IssueListSeries'
+          readOnly: true
+        number:
+          type: string
+          maxLength: 25
+        issue:
+          type: string
+        cover_date:
+          type: string
+          format: date
+        store_date:
+          type: string
+          format: date
+          nullable: true
+          title: In Store Date
+        image:
+          type: string
+          format: uri
+          nullable: true
+          title: Cover
+        modified:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+        - cover_date
+        - id
+        - issue
+        - modified
+        - number
+        - series
+    PullListRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        series_count:
+          type: integer
+          readOnly: true
+        series_url:
+          type: string
+          readOnly: true
+        modified:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+        - id
+        - modified
+        - series_count
+        - series_url
+    PullListSeries:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        series:
+          allOf:
+            - $ref: '#/components/schemas/SeriesList'
+          readOnly: true
+        added_on:
+          type: string
+          format: date-time
+      required:
+        - added_on
+        - id
+        - series
     Rating:
       type: object
       properties:
@@ -3849,6 +6620,9 @@ components:
           allOf:
             - $ref: '#/components/schemas/User'
           readOnly: true
+        list_type:
+          type: string
+          readOnly: true
         is_private:
           type: boolean
           description: Whether this list is private (only visible to the owner)
@@ -3879,8 +6653,10 @@ components:
           format: date-time
           readOnly: true
       required:
+        - attribution_source
         - average_rating
         - id
+        - list_type
         - modified
         - name
         - rating_count
@@ -3906,6 +6682,14 @@ components:
         desc:
           type: string
           title: Description
+        image:
+          type: string
+          format: uri
+          nullable: true
+          readOnly: true
+        list_type:
+          type: string
+          readOnly: true
         is_private:
           type: boolean
           description: Whether this list is private (only visible to the owner)
@@ -3913,10 +6697,13 @@ components:
           type: string
           readOnly: true
         attribution_url:
-          type: string
-          format: uri
           description: URL of the specific page where this reading list was obtained
-          maxLength: 200
+          oneOf:
+            - type: string
+              format: uri
+              maxLength: 200
+            - type: string
+              maxLength: 0
         average_rating:
           type: number
           format: double
@@ -3939,7 +6726,9 @@ components:
         - attribution_source
         - average_rating
         - id
+        - image
         - items_url
+        - list_type
         - modified
         - name
         - rating_count
@@ -4032,6 +6821,86 @@ components:
         - id
         - issue
         - modified
+    Series:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        sort_name:
+          type: string
+          maxLength: 255
+        volume:
+          type: integer
+          maximum: 32767
+          minimum: 0
+          title: Volume Number
+        series_type:
+          type: integer
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+        publisher:
+          type: integer
+        imprint:
+          type: integer
+          nullable: true
+        year_began:
+          type: integer
+          maximum: 32767
+          minimum: 0
+        year_end:
+          type: integer
+          maximum: 32767
+          minimum: 0
+          nullable: true
+          title: Year Ended
+        desc:
+          type: string
+          title: Description
+        issue_count:
+          type: integer
+          readOnly: true
+        genres:
+          type: array
+          items:
+            type: integer
+        associated:
+          type: array
+          items:
+            type: integer
+        cv_id:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+          title: Comic Vine ID
+        gcd_id:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        resource_url:
+          type: string
+          readOnly: true
+        modified:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+        - id
+        - issue_count
+        - modified
+        - name
+        - publisher
+        - resource_url
+        - series_type
+        - sort_name
+        - status
+        - volume
+        - year_began
     SeriesList:
       type: object
       properties:
@@ -4044,6 +6913,12 @@ components:
           type: integer
           maximum: 32767
           minimum: 0
+        year_end:
+          type: integer
+          maximum: 32767
+          minimum: 0
+          nullable: true
+          title: Year Ended
         volume:
           type: integer
           maximum: 32767
@@ -4166,6 +7041,65 @@ components:
       required:
         - id
         - name
+    StatusEnum:
+      enum:
+        - 1
+        - 2
+        - 3
+        - 4
+      type: integer
+      description: |-
+        * `1` - Cancelled
+        * `2` - Completed
+        * `3` - Hiatus
+        * `4` - Ongoing
+    Team:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        desc:
+          type: string
+          title: Description
+        image:
+          type: string
+          format: uri
+          nullable: true
+        creators:
+          type: array
+          items:
+            type: integer
+        universes:
+          type: array
+          items:
+            type: integer
+        cv_id:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+          title: Comic Vine ID
+        gcd_id:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        resource_url:
+          type: string
+          readOnly: true
+        modified:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+        - id
+        - modified
+        - name
+        - resource_url
     TeamList:
       type: object
       properties:
@@ -4198,6 +7132,7 @@ components:
         image:
           type: string
           format: uri
+          nullable: true
         creators:
           type: array
           items:
@@ -4233,6 +7168,46 @@ components:
         - name
         - resource_url
         - universes
+    Universe:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        publisher:
+          type: integer
+        name:
+          type: string
+          maxLength: 255
+        designation:
+          type: string
+          maxLength: 255
+        desc:
+          type: string
+          title: Description
+        gcd_id:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        image:
+          type: string
+          format: uri
+          nullable: true
+        resource_url:
+          type: string
+          readOnly: true
+        modified:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+        - designation
+        - id
+        - modified
+        - name
+        - publisher
+        - resource_url
     UniverseList:
       type: object
       properties:
@@ -4277,6 +7252,7 @@ components:
         image:
           type: string
           format: uri
+          nullable: true
         resource_url:
           type: string
           readOnly: true
@@ -4306,6 +7282,43 @@ components:
       required:
         - id
         - username
+    Variant:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        image:
+          type: string
+          format: uri
+          title: Variant Cover
+        name:
+          type: string
+          maxLength: 255
+        price_currency:
+          type: string
+          readOnly: true
+          nullable: true
+        price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,2})?$
+          nullable: true
+        sku:
+          type: string
+          title: Distributor SKU
+          maxLength: 12
+        upc:
+          type: string
+          title: UPC Code
+          maxLength: 20
+        issue:
+          type: integer
+      required:
+        - id
+        - image
+        - issue
+        - price_currency
     VariantsIssue:
       type: object
       properties:
@@ -4313,12 +7326,31 @@ components:
           type: string
           maxLength: 255
         price:
-          type: string
-          format: decimal
-          pattern: ^\d+\.\d{2}$
-          example: '3.99'
-          description: Price amount as decimal string (e.g., '3.99'). Currency information
-            available in price_currency field.
+          oneOf:
+            - type: string
+              format: decimal
+              pattern: ^\d+\.\d{2}$
+              example: '3.99'
+              description: Decimal string — defaults to USD (e.g. '3.99').
+            - type: object
+              properties:
+                amount:
+                  type: number
+                  example: 3.99
+                currency:
+                  type: string
+                  enum:
+                    - USD
+                    - GBP
+                  example: GBP
+              required:
+                - amount
+                - currency
+              description: Object format for non-USD prices (e.g. GBP for UK publishers).
+          description: 'Cover price. For reads, returns the amount as a decimal string;
+            see price_currency for the currency. For writes, pass a plain decimal
+            string (defaults to USD) or {"amount": 3.99, "currency": "GBP"} for UK
+            publishers. Supported currencies: USD, GBP.'
           nullable: true
           readOnly: true
         sku:
@@ -4336,6 +7368,145 @@ components:
       required:
         - image
         - price
+    WishList:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        item_count:
+          type: integer
+          readOnly: true
+        items_url:
+          type: string
+          readOnly: true
+        modified:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+        - id
+        - item_count
+        - items_url
+        - modified
+    WishListAddItem:
+      type: object
+      properties:
+        issue_id:
+          type: integer
+        priority:
+          type: integer
+          maximum: 5
+          minimum: 1
+          default: 3
+        desired_grade:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,2}(?:\.\d{0,1})?$
+          nullable: true
+        max_price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,5}(?:\.\d{0,2})?$
+          nullable: true
+        max_price_currency:
+          allOf:
+            - $ref: '#/components/schemas/CurrencyEnum'
+          default: USD
+        notes:
+          type: string
+          default: ''
+      required:
+        - issue_id
+    WishListItemList:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        issue:
+          allOf:
+            - $ref: '#/components/schemas/CollectionIssue'
+          readOnly: true
+        status:
+          type: string
+          readOnly: true
+        priority:
+          allOf:
+            - $ref: '#/components/schemas/PriorityEnum'
+          minimum: 0
+          maximum: 32767
+        desired_grade:
+          nullable: true
+          maximum: 100
+          exclusiveMaximum: true
+          minimum: -100
+          exclusiveMinimum: true
+          oneOf:
+            - $ref: '#/components/schemas/DesiredGradeEnum'
+            - $ref: '#/components/schemas/NullEnum'
+        modified:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+        - id
+        - issue
+        - modified
+        - status
+    WishListItemRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        issue:
+          allOf:
+            - $ref: '#/components/schemas/CollectionIssue'
+          readOnly: true
+        status:
+          type: string
+          readOnly: true
+        priority:
+          allOf:
+            - $ref: '#/components/schemas/PriorityEnum'
+          minimum: 0
+          maximum: 32767
+        desired_grade:
+          nullable: true
+          maximum: 100
+          exclusiveMaximum: true
+          minimum: -100
+          exclusiveMinimum: true
+          oneOf:
+            - $ref: '#/components/schemas/DesiredGradeEnum'
+            - $ref: '#/components/schemas/NullEnum'
+        max_price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,5}(?:\.\d{0,2})?$
+          nullable: true
+          title: Maximum Price
+        max_price_currency:
+          type: string
+          nullable: true
+          readOnly: true
+        notes:
+          type: string
+        added_on:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+        - added_on
+        - id
+        - issue
+        - max_price_currency
+        - modified
+        - status
   securitySchemes:
     basicAuth:
       type: http

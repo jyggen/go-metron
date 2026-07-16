@@ -65,8 +65,8 @@ func characterMapper(in internal.CharacterRead) (*Character, error) {
 	var imageURL *url.URL
 	var err error
 
-	if in.Image != nil {
-		imageURL, err = url.Parse(*in.Image)
+	if image := nullableToPtr(in.Image); image != nil {
+		imageURL, err = url.Parse(*image)
 		if err != nil {
 			return nil, err
 		}

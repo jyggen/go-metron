@@ -16,7 +16,7 @@ output-options:
           {{$typeName := .TypeName}}
           {{range .Schema.Properties}}
             func (t *{{$typeName}}) Set{{.GoFieldName}}(v {{.Schema.TypeDecl}}) {
-              t.{{.GoFieldName}} = &v
+              {{if .HasOptionalPointer}}t.{{.GoFieldName}} = &v{{else}}t.{{.GoFieldName}} = v{{end}}
             }
           {{end}}
         {{end}}
