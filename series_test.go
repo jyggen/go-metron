@@ -84,7 +84,7 @@ func TestSeriesByID(t *testing.T) {
 				ComicVineID:           asReference(9723),
 				GrandComicsDatabaseID: asReference(10549),
 				ResourceURL:           parseURL(t, "https://metron.cloud/series/fables-2002/"),
-				Modified:              parseTime(t, "2025-01-19T11:26:32.677535-05:00"),
+				Modified:              parseTime(t, "2026-05-29T18:38:10.592560-04:00"),
 			},
 		},
 	})

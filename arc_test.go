@@ -55,7 +55,7 @@ func TestArcsCached(t *testing.T) {
 		{expectedURL: "https://metron.cloud/api/arc/?page=2", responseBodyFixture: "fixtures/arc_list_2.json"},
 	}
 
-	c, err := metron.NewClient("username", "password",
+	c, err := metron.NewClient("foobar",
 		metron.WithCaching(),
 		metron.WithStoragePath(t.TempDir()),
 		metron.WithClient(&http.Client{

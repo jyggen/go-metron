@@ -42,15 +42,10 @@ func TestCharacterByID(t *testing.T) {
 					{
 						ID:       42,
 						Name:     "Injustice League",
-						Modified: parseTime(t, "2025-02-19T01:52:04.564245-05:00"),
+						Modified: parseTime(t, "2026-04-10T09:48:04.386086-04:00"),
 					},
 				},
 				Universes: []metron.UniverseList{
-					{
-						ID:       157,
-						Name:     "Absolute Universe",
-						Modified: parseTime(t, "2025-04-16T09:21:47.838281-04:00"),
-					},
 					{
 						ID:       87,
 						Name:     "Batman '66",
@@ -60,6 +55,11 @@ func TestCharacterByID(t *testing.T) {
 						ID:       23,
 						Name:     "Bombshells",
 						Modified: parseTime(t, "2024-01-25T09:26:16.040978-05:00"),
+					},
+					{
+						ID:       4,
+						Name:     "Dark Multiverse: Batman Who Laughs",
+						Modified: parseTime(t, "2024-01-25T10:00:22.865462-05:00"),
 					},
 					{
 						ID:       8,
@@ -81,10 +81,20 @@ func TestCharacterByID(t *testing.T) {
 						Name:     "Injustice",
 						Modified: parseTime(t, "2024-01-26T12:19:31.696959-05:00"),
 					},
+					{
+						ID:       20,
+						Name:     "New Frontier",
+						Modified: parseTime(t, "2025-11-09T21:09:14.716552-05:00"),
+					},
+					{
+						ID:       171,
+						Name:     "Prime Earth",
+						Modified: parseTime(t, "2025-10-26T22:25:13.152897-04:00"),
+					},
 				},
 				ComicVineID: asReference(1702),
 				ResourceURL: parseURL(t, "https://metron.cloud/character/joker/"),
-				Modified:    parseTime(t, "2025-02-18T15:23:40.393641-05:00"),
+				Modified:    parseTime(t, "2026-07-13T13:47:16.465101-04:00"),
 			},
 		},
 		{

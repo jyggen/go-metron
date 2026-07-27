@@ -2,6 +2,7 @@
   "id": 793,
   "name": "Fables",
   "sort_name": "Fables",
+  "alt_names": [],
   "volume": 1,
   "series_type": {
     "id": 13,
@@ -30,5 +31,5 @@
   "cv_id": 9723,
   "gcd_id": 10549,
   "resource_url": "https://metron.cloud/series/fables-2002/",
-  "modified": "2025-01-19T11:26:32.677535-05:00"
+  "modified": "2026-05-29T18:38:10.592560-04:00"
 }

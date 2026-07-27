@@ -127,7 +127,7 @@ func testByID[T any](
 }
 
 func newTestClient(t *testing.T, mocks []requestMock) *metron.Client {
-	c, err := metron.NewClient("username", "password", metron.WithClient(&http.Client{
+	c, err := metron.NewClient("foobar", metron.WithClient(&http.Client{
 		Transport: roundTripFunc(func(req *http.Request) *http.Response {
 			m := mocks[0]
 			mocks = append(mocks[:0], mocks[1:]...)
@@ -138,10 +138,7 @@ func newTestClient(t *testing.T, mocks []requestMock) *metron.Client {
 				require.Equal(t, m.expectedMethod, req.Method)
 			}
 
-			username, password, _ := req.BasicAuth()
-
-			require.Equal(t, "username", username)
-			require.Equal(t, "password", password)
+			require.Equal(t, "Bearer foobar", req.Header.Get("Authorization"))
 
 			if m.validateBody != nil {
 				bodyBytes, err := io.ReadAll(req.Body)

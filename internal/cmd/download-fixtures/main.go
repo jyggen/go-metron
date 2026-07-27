@@ -15,8 +15,7 @@ import (
 )
 
 func main() {
-	username := flag.String("username", "", "username")
-	password := flag.String("password", "", "password")
+	apiToken := flag.String("api-token", "", "api-token")
 
 	flag.Parse()
 	c := &http.Client{Timeout: time.Second * 10}
@@ -42,15 +41,15 @@ func main() {
 		{"https://metron.cloud/api/team/930/", "team_930.json"},
 		{"https://metron.cloud/api/universe/24/", "universe_24.json"},
 	} {
-		if err := makeFixture(c, *username, *password, v.URL, v.FileName); err != nil {
+		if err := makeFixture(c, *apiToken, v.URL, v.FileName); err != nil {
 			log.Println(err)
 		}
 		time.Sleep(2 * time.Second)
 	}
 }
 
-func makeFixture(c *http.Client, username, password, url, fileName string) error {
-	res, err := request(c, username, password, url)
+func makeFixture(c *http.Client, apiToken, url, fileName string) error {
+	res, err := request(c, apiToken, url)
 	if err != nil {
 		return err
 	}
@@ -75,13 +74,13 @@ func makeFixture(c *http.Client, username, password, url, fileName string) error
 	return os.WriteFile(filepath.Join("fixtures/", fileName), prettyJSON.Bytes(), 0o600)
 }
 
-func request(c *http.Client, username, password, url string) (*http.Response, error) {
+func request(c *http.Client, apiToken, url string) (*http.Response, error) {
 	req, err := http.NewRequestWithContext(context.Background(), http.MethodGet, url, nil)
 	if err != nil {
 		return nil, err
 	}
 
-	req.SetBasicAuth(username, password)
+	req.Header.Set("Authorization", "Bearer "+apiToken)
 
 	return c.Do(req)
 }

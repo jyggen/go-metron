@@ -46,8 +46,8 @@ type Client struct {
 // Option configures a Client.
 type Option func(*Client)
 
-// NewClient returns a Metron client authenticated with the given username and password.
-func NewClient(username, password string, options ...Option) (*Client, error) {
+// NewClient returns a Metron client authenticated with the given API token.
+func NewClient(apiToken string, options ...Option) (*Client, error) {
 	storagePath, err := os.UserCacheDir()
 	if err != nil {
 		storagePath = os.TempDir()
@@ -77,7 +77,7 @@ func NewClient(username, password string, options ...Option) (*Client, error) {
 
 	c.httpClient = httpkit.NewFromClient(
 		c.httpClient,
-		httpkit.WithBasicAuth(username, password),
+		httpkit.WithBearerToken(apiToken),
 		httpkit.WithUserAgent(c.userAgent),
 		httpkit.WithMiddleware(newBackOffMiddleware()),
 		httpkit.WithMiddleware(newRateLimitMiddleware()),
