@@ -3,16 +3,12 @@ package metron
 import (
 	"context"
 	"encoding/json"
-	"errors"
 	"fmt"
 	"net/http"
 	"net/url"
 	"strconv"
+	"sync"
 	"time"
-
-	"github.com/AliRizaAynaci/gorl"
-	"github.com/AliRizaAynaci/gorl/core"
-	"github.com/cenkalti/backoff/v5"
 )
 
 const (
@@ -58,43 +54,26 @@ func (u *URL) UnmarshalJSON(b []byte) error {
 }
 
 type Client struct {
-	baseURL          *url.URL
-	cacheDir         string
-	client           *http.Client
-	enableCaching    bool
-	limiterBurst     core.Limiter
-	limiterSustained core.Limiter
-	password         string
-	username         string
+	baseURL       *url.URL
+	cacheDir      string
+	client        *http.Client
+	enableCaching bool
+	rateLimit     rateLimitState
+	password      string
+	username      string
 }
 
 type Option func(*Client)
 
 func NewClient(options ...Option) *Client {
-	burst, _ := gorl.New(core.Config{
-		Strategy: core.SlidingWindow,
-		KeyBy:    core.KeyByAPIKey,
-		Limit:    20,
-		Window:   1 * time.Minute,
-	})
-
-	sustained, _ := gorl.New(core.Config{
-		Strategy: core.SlidingWindow,
-		KeyBy:    core.KeyByAPIKey,
-		Limit:    5000,
-		Window:   24 * time.Hour,
-	})
-
 	b, _ := url.Parse(baseURL)
 	c := &Client{
-		baseURL:          b,
-		cacheDir:         "",
-		client:           &http.Client{},
-		enableCaching:    false,
-		limiterBurst:     burst,
-		limiterSustained: sustained,
-		password:         "",
-		username:         "",
+		baseURL:       b,
+		cacheDir:      "",
+		client:        &http.Client{},
+		enableCaching: false,
+		password:      "",
+		username:      "",
 	}
 
 	for _, option := range options {
@@ -174,29 +153,79 @@ func paginate[T listTypes](ctx context.Context, c *Client, path string, filters 
 	}
 }
 
-func limitWithRetry(ctx context.Context, limiter core.Limiter, username string) error {
-	_, err := backoff.Retry(ctx, func() (bool, error) {
-		allowed, innerErr := limiter.Allow(username)
+// rateLimitWindow tracks the most recently observed state of a single
+// rate-limit window (e.g. burst or sustained), as reported by the API.
+type rateLimitWindow struct {
+	known     bool
+	remaining int
+	reset     time.Time
+}
 
-		if innerErr != nil {
-			return false, innerErr
-		}
+// update parses the "<prefix>Remaining" and "<prefix>Reset" headers and, if
+// both are present and well-formed, records the window's state.
+func (w *rateLimitWindow) update(header http.Header, prefix string) {
+	remaining, err := strconv.Atoi(header.Get(prefix + "Remaining"))
+	if err != nil {
+		return
+	}
 
-		if !allowed {
-			return false, errors.New("rate limit exceeded")
-		}
+	resetUnix, err := strconv.ParseInt(header.Get(prefix+"Reset"), 10, 64)
+	if err != nil {
+		return
+	}
 
-		return true, nil
-	}, backoff.WithBackOff(backoff.NewExponentialBackOff()))
+	w.known = true
+	w.remaining = remaining
+	w.reset = time.Unix(resetUnix, 0)
+}
 
-	return err
+// wait returns how long to wait before the window allows another request.
+func (w *rateLimitWindow) wait() time.Duration {
+	if !w.known || w.remaining > 0 {
+		return 0
+	}
+
+	return time.Until(w.reset)
+}
+
+// rateLimitState tracks the burst and sustained rate-limit windows reported
+// by the metron.cloud API via its X-RateLimit-* response headers, as
+// described at https://github.com/Metron-Project/metron/blob/master/api/RATELIMIT.md.
+type rateLimitState struct {
+	mu        sync.Mutex
+	burst     rateLimitWindow
+	sustained rateLimitWindow
+}
+
+// update records the rate-limit state reported by a response.
+func (s *rateLimitState) update(header http.Header) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
+	s.burst.update(header, "X-RateLimit-Burst-")
+	s.sustained.update(header, "X-RateLimit-Sustained-")
+}
+
+// wait returns how long to wait before the next request is allowed to proceed.
+func (s *rateLimitState) wait() time.Duration {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
+	return max(s.burst.wait(), s.sustained.wait())
 }
 
 func limit(ctx context.Context, c *Client) error {
-	return errors.Join(
-		limitWithRetry(ctx, c.limiterBurst, c.username),
-		limitWithRetry(ctx, c.limiterSustained, c.username),
-	)
+	wait := c.rateLimit.wait()
+	if wait <= 0 {
+		return nil
+	}
+
+	select {
+	case <-ctx.Done():
+		return ctx.Err()
+	case <-time.After(wait):
+		return nil
+	}
 }
 
 func do[T any](ctx context.Context, c *Client, req *http.Request) (T, error) {
@@ -211,6 +240,8 @@ func do[T any](ctx context.Context, c *Client, req *http.Request) (T, error) {
 	if err != nil {
 		return v, err
 	}
+
+	c.rateLimit.update(res.Header)
 
 	if res.StatusCode == http.StatusTooManyRequests {
 		if err = res.Body.Close(); err != nil {
