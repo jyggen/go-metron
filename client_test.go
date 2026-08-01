@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"strconv"
 	"testing"
 	"time"
 
@@ -145,6 +146,51 @@ func newTestClient(t *testing.T, mocks []requestMock) *metron.Client {
 			}
 		}),
 	}), metron.WithAuthentication("username", "password"))
+}
+
+func TestRateLimitWaitsForHeaderReset(t *testing.T) {
+	t.Parallel()
+
+	// The reset header only has second-level precision, so the window must be
+	// large enough that truncating it down to the nearest second still leaves
+	// a reliably measurable wait.
+	const window = 3 * time.Second
+
+	reset := time.Now().Add(window)
+	var callTimes []time.Time
+
+	c := metron.NewClient(metron.WithClient(&http.Client{
+		Transport: roundTripFunc(func(req *http.Request) *http.Response {
+			callTimes = append(callTimes, time.Now())
+
+			f, err := fs.Open(fmt.Sprintf("fixtures/series_%s.json", req.URL.Path[len("/api/series/"):len(req.URL.Path)-1]))
+			require.NoError(t, err)
+
+			h := make(http.Header)
+			h.Set("X-RateLimit-Burst-Remaining", "0")
+			h.Set("X-RateLimit-Burst-Reset", strconv.FormatInt(reset.Unix(), 10))
+			h.Set("X-RateLimit-Sustained-Remaining", "100")
+			h.Set("X-RateLimit-Sustained-Reset", strconv.FormatInt(time.Now().Add(24*time.Hour).Unix(), 10))
+
+			return &http.Response{
+				StatusCode: http.StatusOK,
+				Body:       f,
+				Header:     h,
+			}
+		}),
+	}), metron.WithAuthentication("username", "password"))
+
+	_, err := c.SeriesByID(context.Background(), 793)
+	require.NoError(t, err)
+
+	_, err = c.SeriesByID(context.Background(), 3371)
+	require.NoError(t, err)
+
+	require.Len(t, callTimes, 2)
+
+	elapsed := callTimes[1].Sub(callTimes[0])
+	require.GreaterOrEqual(t, elapsed, window-1200*time.Millisecond)
+	require.LessOrEqual(t, elapsed, window+500*time.Millisecond)
 }
 
 func parseDate(t *testing.T, dateString string) civil.Date {
