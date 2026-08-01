@@ -17,13 +17,14 @@ type Issue struct {
 	Publisher Reference
 	Imprint   *Reference
 	Series    struct {
-		ID        int
-		Name      string
-		SortName  string
-		Volume    int
-		YearBegan int
-		Type      Reference
-		Genres    []Reference
+		ID               int
+		Name             string
+		AlternativeNames []string
+		SortName         string
+		Volume           int
+		YearBegan        int
+		Type             Reference
+		Genres           []Reference
 	}
 	Number               string
 	AlternativeNumber    string
@@ -33,6 +34,7 @@ type Issue struct {
 	StoreDate            *civil.Date
 	FinalOrderCutoffDate *civil.Date
 	Price                *string
+	PriceCurrency        string
 	Rating               Reference
 	SKU                  *string
 	ISBN                 *string
@@ -41,6 +43,8 @@ type Issue struct {
 	Description          *string
 	ImageURL             *url.URL
 	CoverHash            *string
+	AverageRating        *float64
+	RatingCount          int
 	Arcs                 []ArcList
 	Credits              []struct {
 		ID    int
@@ -197,6 +201,14 @@ func issueMapper(in internal.IssueRead) (*Issue, error) {
 		return nil, fmt.Errorf("issue: nil Rating.Id")
 	}
 
+	if in.PriceCurrency == nil {
+		return nil, fmt.Errorf("issue: nil PriceCurrency")
+	}
+
+	if in.RatingCount == nil {
+		return nil, fmt.Errorf("issue: nil RatingCount")
+	}
+
 	var imageURL *url.URL
 	var err error
 
@@ -223,6 +235,12 @@ func issueMapper(in internal.IssueRead) (*Issue, error) {
 			ID:   *in.Imprint.Id,
 			Name: in.Imprint.Name,
 		}
+	}
+
+	var seriesAltNames []string
+
+	if in.Series.AltNames != nil {
+		seriesAltNames = *in.Series.AltNames
 	}
 
 	var genres []Reference
@@ -455,19 +473,21 @@ func issueMapper(in internal.IssueRead) (*Issue, error) {
 		},
 		Imprint: imprint,
 		Series: struct {
-			ID        int
-			Name      string
-			SortName  string
-			Volume    int
-			YearBegan int
-			Type      Reference
-			Genres    []Reference
+			ID               int
+			Name             string
+			AlternativeNames []string
+			SortName         string
+			Volume           int
+			YearBegan        int
+			Type             Reference
+			Genres           []Reference
 		}{
-			ID:        *in.Series.Id,
-			Name:      in.Series.Name,
-			SortName:  in.Series.SortName,
-			Volume:    in.Series.Volume,
-			YearBegan: in.Series.YearBegan,
+			ID:               *in.Series.Id,
+			Name:             in.Series.Name,
+			AlternativeNames: seriesAltNames,
+			SortName:         in.Series.SortName,
+			Volume:           in.Series.Volume,
+			YearBegan:        in.Series.YearBegan,
 			Type: Reference{
 				ID:   *in.Series.SeriesType.Id,
 				Name: in.Series.SeriesType.Name,
@@ -482,6 +502,7 @@ func issueMapper(in internal.IssueRead) (*Issue, error) {
 		StoreDate:            maybeStoreDate,
 		FinalOrderCutoffDate: maybeFinalOrderCutoffDate,
 		Price:                price,
+		PriceCurrency:        *in.PriceCurrency,
 		Rating: Reference{
 			ID:   *in.Rating.Id,
 			Name: in.Rating.Name,
@@ -493,6 +514,8 @@ func issueMapper(in internal.IssueRead) (*Issue, error) {
 		Description:           in.Desc,
 		ImageURL:              imageURL,
 		CoverHash:             in.CoverHash,
+		AverageRating:         in.AverageRating,
+		RatingCount:           *in.RatingCount,
 		Arcs:                  arcs,
 		Credits:               credits,
 		Characters:            characters,

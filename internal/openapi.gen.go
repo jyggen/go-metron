@@ -22,8 +22,9 @@ import (
 )
 
 const (
-	BasicAuthScopes  = "basicAuth.Scopes"
-	CookieAuthScopes = "cookieAuth.Scopes"
+	BasicAuthScopes    = "basicAuth.Scopes"
+	CookieAuthScopes   = "cookieAuth.Scopes"
+	KnoxApiTokenScopes = "knoxApiToken.Scopes"
 )
 
 // Defines values for AttributionSourceEnum.
@@ -1339,24 +1340,25 @@ type IssueListSeries struct {
 
 // IssueRead defines model for IssueRead.
 type IssueRead struct {
-	AltNumber  *string                               `json:"alt_number,omitempty"`
-	Arcs       *[]ArcList                            `json:"arcs,omitempty"`
-	Characters *[]CharacterList                      `json:"characters,omitempty"`
-	CoverDate  openapi_types.Date                    `json:"cover_date"`
-	CoverHash  *string                               `json:"cover_hash,omitempty"`
-	Credits    *[]CreditRead                         `json:"credits,omitempty"`
-	CvId       nullable.Nullable[int]                `json:"cv_id,omitempty"`
-	Desc       *string                               `json:"desc,omitempty"`
-	FocDate    nullable.Nullable[openapi_types.Date] `json:"foc_date,omitempty"`
-	GcdId      nullable.Nullable[int]                `json:"gcd_id,omitempty"`
-	Id         *int                                  `json:"id,omitempty"`
-	Image      nullable.Nullable[string]             `json:"image,omitempty"`
-	Imprint    *BasicImprint                         `json:"imprint,omitempty"`
-	Isbn       *string                               `json:"isbn,omitempty"`
-	Modified   *time.Time                            `json:"modified,omitempty"`
-	Name       *[]string                             `json:"name,omitempty"`
-	Number     string                                `json:"number"`
-	Page       nullable.Nullable[int]                `json:"page,omitempty"`
+	AltNumber     *string                               `json:"alt_number,omitempty"`
+	Arcs          *[]ArcList                            `json:"arcs,omitempty"`
+	AverageRating *float64                              `json:"average_rating,omitempty"`
+	Characters    *[]CharacterList                      `json:"characters,omitempty"`
+	CoverDate     openapi_types.Date                    `json:"cover_date"`
+	CoverHash     *string                               `json:"cover_hash,omitempty"`
+	Credits       *[]CreditRead                         `json:"credits,omitempty"`
+	CvId          nullable.Nullable[int]                `json:"cv_id,omitempty"`
+	Desc          *string                               `json:"desc,omitempty"`
+	FocDate       nullable.Nullable[openapi_types.Date] `json:"foc_date,omitempty"`
+	GcdId         nullable.Nullable[int]                `json:"gcd_id,omitempty"`
+	Id            *int                                  `json:"id,omitempty"`
+	Image         nullable.Nullable[string]             `json:"image,omitempty"`
+	Imprint       *BasicImprint                         `json:"imprint,omitempty"`
+	Isbn          *string                               `json:"isbn,omitempty"`
+	Modified      *time.Time                            `json:"modified,omitempty"`
+	Name          *[]string                             `json:"name,omitempty"`
+	Number        string                                `json:"number"`
+	Page          nullable.Nullable[int]                `json:"page,omitempty"`
 
 	// Price Cover price. For reads, returns the amount as a decimal string; see price_currency for the currency. For writes, pass a plain decimal string (defaults to USD) or {"amount": 3.99, "currency": "GBP"} for UK publishers. Supported currencies: USD, GBP.
 	Price nullable.Nullable[IssueRead_Price] `json:"price,omitempty"`
@@ -1365,6 +1367,7 @@ type IssueRead struct {
 	PriceCurrency *string                               `json:"price_currency,omitempty"`
 	Publisher     *BasicPublisher                       `json:"publisher,omitempty"`
 	Rating        *Rating                               `json:"rating,omitempty"`
+	RatingCount   *int                                  `json:"rating_count,omitempty"`
 	Reprints      *[]Reprint                            `json:"reprints,omitempty"`
 	ResourceUrl   *string                               `json:"resource_url,omitempty"`
 	Series        *IssueSeries                          `json:"series,omitempty"`
@@ -1396,6 +1399,7 @@ type IssueRead_Price struct {
 
 // IssueSeries defines model for IssueSeries.
 type IssueSeries struct {
+	AltNames   *[]string   `json:"alt_names,omitempty"`
 	Genres     *[]Genre    `json:"genres,omitempty"`
 	Id         *int        `json:"id,omitempty"`
 	Name       string      `json:"name"`
@@ -2168,6 +2172,7 @@ type PatchedPublisher struct {
 
 // PatchedSeries defines model for PatchedSeries.
 type PatchedSeries struct {
+	AltNames    *[]string              `json:"alt_names,omitempty"`
 	Associated  *[]int                 `json:"associated,omitempty"`
 	CvId        nullable.Nullable[int] `json:"cv_id,omitempty"`
 	Desc        *string                `json:"desc,omitempty"`
@@ -2620,6 +2625,12 @@ type ReadingListList_AttributionSource struct {
 	union json.RawMessage
 }
 
+// ReadingListNav Minimal representation of a reading list used for previous/next links.
+type ReadingListNav struct {
+	Id   *int   `json:"id,omitempty"`
+	Name string `json:"name"`
+}
+
 // ReadingListRead defines model for ReadingListRead.
 type ReadingListRead struct {
 	AttributionSource *string `json:"attribution_source,omitempty"`
@@ -2635,14 +2646,20 @@ type ReadingListRead struct {
 	IsPrivate *bool `json:"is_private,omitempty"`
 
 	// ItemsUrl Get the URL to the paginated items endpoint.
-	ItemsUrl    *string    `json:"items_url,omitempty"`
-	ListType    *string    `json:"list_type,omitempty"`
-	Modified    *time.Time `json:"modified,omitempty"`
-	Name        string     `json:"name"`
-	RatingCount *int       `json:"rating_count,omitempty"`
-	ResourceUrl *string    `json:"resource_url,omitempty"`
-	Slug        string     `json:"slug"`
-	User        *User      `json:"user,omitempty"`
+	ItemsUrl    *string         `json:"items_url,omitempty"`
+	ListType    *string         `json:"list_type,omitempty"`
+	Modified    *time.Time      `json:"modified,omitempty"`
+	Name        string          `json:"name"`
+	Next        *ReadingListNav `json:"next,omitempty"`
+	Previous    *ReadingListNav `json:"previous,omitempty"`
+	RatingCount *int            `json:"rating_count,omitempty"`
+	ResourceUrl *string         `json:"resource_url,omitempty"`
+	Slug        string          `json:"slug"`
+	User        *User           `json:"user,omitempty"`
+}
+
+func (t ReadingListRead) GetNext() *ReadingListNav {
+	return t.Next
 }
 
 // ReadingListReadAttributionUrl0 defines model for .
@@ -2711,6 +2728,7 @@ type ScrobbleResponse_Rating struct {
 
 // Series defines model for Series.
 type Series struct {
+	AltNames    *[]string              `json:"alt_names,omitempty"`
 	Associated  *[]int                 `json:"associated,omitempty"`
 	CvId        nullable.Nullable[int] `json:"cv_id,omitempty"`
 	Desc        *string                `json:"desc,omitempty"`
@@ -2749,6 +2767,7 @@ type SeriesList struct {
 
 // SeriesRead defines model for SeriesRead.
 type SeriesRead struct {
+	AltNames    *[]string              `json:"alt_names,omitempty"`
 	Associated  *[]AssociatedSeries    `json:"associated,omitempty"`
 	CvId        nullable.Nullable[int] `json:"cv_id,omitempty"`
 	Desc        *string                `json:"desc,omitempty"`
@@ -3347,11 +3366,17 @@ type ApiIssueListParams struct {
 	// RoleId Multiple values may be separated by commas.
 	RoleId *[]int `form:"role_id,omitempty" json:"role_id,omitempty"`
 
+	// SeriesAltNames Series Alternative Name
+	SeriesAltNames *string `form:"series_alt_names,omitempty" json:"series_alt_names,omitempty"`
+
 	// SeriesId Series Metron ID
 	SeriesId *int `form:"series_id,omitempty" json:"series_id,omitempty"`
 
 	// SeriesName Series Name
 	SeriesName *string `form:"series_name,omitempty" json:"series_name,omitempty"`
+
+	// SeriesQ Quick search across series name and alternative names
+	SeriesQ *string `form:"series_q,omitempty" json:"series_q,omitempty"`
 
 	// SeriesVolume Series Volume Number
 	SeriesVolume *int `form:"series_volume,omitempty" json:"series_volume,omitempty"`
@@ -3373,6 +3398,9 @@ type ApiIssueListParams struct {
 
 	// Upc UPC Code
 	Upc *string `form:"upc,omitempty" json:"upc,omitempty"`
+
+	// UpcStartsWith UPC Code starts with (e.g. the 12-digit UPC-A read by a mobile scanner that strips the 5-digit EAN supplemental)
+	UpcStartsWith *string `form:"upc_starts_with,omitempty" json:"upc_starts_with,omitempty"`
 }
 
 func (t *ApiIssueListParams) SetAltNumber(v string) {
@@ -3463,12 +3491,20 @@ func (t *ApiIssueListParams) SetRoleId(v []int) {
 	t.RoleId = &v
 }
 
+func (t *ApiIssueListParams) SetSeriesAltNames(v string) {
+	t.SeriesAltNames = &v
+}
+
 func (t *ApiIssueListParams) SetSeriesId(v int) {
 	t.SeriesId = &v
 }
 
 func (t *ApiIssueListParams) SetSeriesName(v string) {
 	t.SeriesName = &v
+}
+
+func (t *ApiIssueListParams) SetSeriesQ(v string) {
+	t.SeriesQ = &v
 }
 
 func (t *ApiIssueListParams) SetSeriesVolume(v int) {
@@ -3505,6 +3541,10 @@ func (t *ApiIssueListParams) SetUniverseId(v int) {
 
 func (t *ApiIssueListParams) SetUpc(v string) {
 	t.Upc = &v
+}
+
+func (t *ApiIssueListParams) SetUpcStartsWith(v string) {
+	t.UpcStartsWith = &v
 }
 
 // ApiPublisherListParams defines parameters for ApiPublisherList.
@@ -3747,6 +3787,8 @@ type ApiSchemaRetrieveParamsLang string
 
 // ApiSeriesListParams defines parameters for ApiSeriesList.
 type ApiSeriesListParams struct {
+	AltNames *string `form:"alt_names,omitempty" json:"alt_names,omitempty"`
+
 	// CharacterId Character Metron ID
 	CharacterId *int `form:"character_id,omitempty" json:"character_id,omitempty"`
 
@@ -3774,6 +3816,9 @@ type ApiSeriesListParams struct {
 	PublisherId   *int    `form:"publisher_id,omitempty" json:"publisher_id,omitempty"`
 	PublisherName *string `form:"publisher_name,omitempty" json:"publisher_name,omitempty"`
 
+	// Q Quick search across name and alternative names
+	Q *string `form:"q,omitempty" json:"q,omitempty"`
+
 	// RoleId Multiple values may be separated by commas.
 	RoleId       *[]int  `form:"role_id,omitempty" json:"role_id,omitempty"`
 	SeriesType   *string `form:"series_type,omitempty" json:"series_type,omitempty"`
@@ -3788,6 +3833,10 @@ type ApiSeriesListParams struct {
 	Volume     *int `form:"volume,omitempty" json:"volume,omitempty"`
 	YearBegan  *int `form:"year_began,omitempty" json:"year_began,omitempty"`
 	YearEnd    *int `form:"year_end,omitempty" json:"year_end,omitempty"`
+}
+
+func (t *ApiSeriesListParams) SetAltNames(v string) {
+	t.AltNames = &v
 }
 
 func (t *ApiSeriesListParams) SetCharacterId(v int) {
@@ -3840,6 +3889,10 @@ func (t *ApiSeriesListParams) SetPublisherId(v int) {
 
 func (t *ApiSeriesListParams) SetPublisherName(v string) {
 	t.PublisherName = &v
+}
+
+func (t *ApiSeriesListParams) SetQ(v string) {
+	t.Q = &v
 }
 
 func (t *ApiSeriesListParams) SetRoleId(v []int) {
@@ -9530,6 +9583,22 @@ func NewApiIssueListRequest(server string, params *ApiIssueListParams) (*http.Re
 
 		}
 
+		if params.SeriesAltNames != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "series_alt_names", runtime.ParamLocationQuery, *params.SeriesAltNames); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.SeriesId != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "series_id", runtime.ParamLocationQuery, *params.SeriesId); err != nil {
@@ -9549,6 +9618,22 @@ func NewApiIssueListRequest(server string, params *ApiIssueListParams) (*http.Re
 		if params.SeriesName != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "series_name", runtime.ParamLocationQuery, *params.SeriesName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.SeriesQ != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "series_q", runtime.ParamLocationQuery, *params.SeriesQ); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -9693,6 +9778,22 @@ func NewApiIssueListRequest(server string, params *ApiIssueListParams) (*http.Re
 		if params.Upc != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "upc", runtime.ParamLocationQuery, *params.Upc); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UpcStartsWith != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "upc_starts_with", runtime.ParamLocationQuery, *params.UpcStartsWith); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -10998,6 +11099,22 @@ func NewApiSeriesListRequest(server string, params *ApiSeriesListParams) (*http.
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.AltNames != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "alt_names", runtime.ParamLocationQuery, *params.AltNames); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.CharacterId != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "character_id", runtime.ParamLocationQuery, *params.CharacterId); err != nil {
@@ -11193,6 +11310,22 @@ func NewApiSeriesListRequest(server string, params *ApiSeriesListParams) (*http.
 		if params.PublisherName != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "publisher_name", runtime.ParamLocationQuery, *params.PublisherName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Q != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "q", runtime.ParamLocationQuery, *params.Q); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err

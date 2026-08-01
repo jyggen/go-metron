@@ -51,6 +51,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -80,6 +81,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '201':
           content:
@@ -108,6 +110,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -144,6 +147,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -179,6 +183,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -213,6 +218,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -261,6 +267,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -290,6 +297,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '201':
           content:
@@ -318,6 +326,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -354,6 +363,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -389,6 +399,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -423,6 +434,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -626,6 +638,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -666,6 +679,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -716,6 +730,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -766,6 +781,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -795,6 +811,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -818,6 +835,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -847,6 +865,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '201':
           content:
@@ -881,6 +900,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -949,6 +969,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -978,6 +999,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '201':
           content:
@@ -1006,6 +1028,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -1042,6 +1065,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -1077,6 +1101,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -1110,6 +1135,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '201':
           content:
@@ -1164,6 +1190,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -1199,6 +1226,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '201':
           content:
@@ -1233,6 +1261,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -1275,6 +1304,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -1316,6 +1346,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -1451,6 +1482,11 @@ paths:
           explode: false
           style: form
         - in: query
+          name: series_alt_names
+          schema:
+            type: string
+          description: Series Alternative Name
+        - in: query
           name: series_id
           schema:
             type: integer
@@ -1460,6 +1496,11 @@ paths:
           schema:
             type: string
           description: Series Name
+        - in: query
+          name: series_q
+          schema:
+            type: string
+          description: Quick search across series name and alternative names
         - in: query
           name: series_volume
           schema:
@@ -1505,11 +1546,18 @@ paths:
           schema:
             type: string
           description: UPC Code
+        - in: query
+          name: upc_starts_with
+          schema:
+            type: string
+          description: UPC Code starts with (e.g. the 12-digit UPC-A read by a mobile
+            scanner that strips the 5-digit EAN supplemental)
       tags:
         - api
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -1545,6 +1593,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '201':
           content:
@@ -1576,6 +1625,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -1618,6 +1668,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -1659,6 +1710,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -1713,6 +1765,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -1748,6 +1801,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '201':
           content:
@@ -1782,6 +1836,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -1824,6 +1879,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -1865,6 +1921,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -1894,6 +1951,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -1916,6 +1974,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -1938,6 +1997,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -1974,6 +2034,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -1997,6 +2058,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -2019,6 +2081,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '204':
           description: No response body
@@ -2039,6 +2102,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '201':
           content:
@@ -2153,6 +2217,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -2185,6 +2250,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -2214,6 +2280,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -2249,6 +2316,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -2382,6 +2450,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
         - {}
       responses:
         '200':
@@ -2419,6 +2488,10 @@ paths:
         update:
         Update a Series information.
       parameters:
+        - in: query
+          name: alt_names
+          schema:
+            type: string
         - in: query
           name: character_id
           schema:
@@ -2481,6 +2554,11 @@ paths:
           schema:
             type: string
         - in: query
+          name: q
+          schema:
+            type: string
+          description: Quick search across name and alternative names
+        - in: query
           name: role_id
           schema:
             type: array
@@ -2528,6 +2606,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -2566,6 +2645,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '201':
           content:
@@ -2600,6 +2680,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -2645,6 +2726,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -2689,6 +2771,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -2729,6 +2812,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -2764,6 +2848,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -2812,6 +2897,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -2841,6 +2927,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '201':
           content:
@@ -2869,6 +2956,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -2905,6 +2993,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -2940,6 +3029,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -2974,6 +3064,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -3016,6 +3107,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -3045,6 +3137,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '201':
           content:
@@ -3073,6 +3166,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -3109,6 +3203,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -3144,6 +3239,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -3177,6 +3273,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '201':
           content:
@@ -3217,6 +3314,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -3255,6 +3353,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -3277,6 +3376,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -3299,6 +3399,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -3322,6 +3423,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           content:
@@ -3355,6 +3457,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '200':
           description: No response body
@@ -3373,6 +3476,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '204':
           description: No response body
@@ -3399,6 +3503,7 @@ paths:
       security:
         - basicAuth: []
         - cookieAuth: []
+        - knoxApiToken: []
       responses:
         '201':
           content:
@@ -5108,6 +5213,17 @@ components:
         cover_hash:
           type: string
           maxLength: 16
+        average_rating:
+          type: number
+          format: double
+          maximum: 10
+          minimum: -10
+          exclusiveMaximum: true
+          exclusiveMinimum: true
+          readOnly: true
+        rating_count:
+          type: integer
+          readOnly: true
         arcs:
           type: array
           items:
@@ -5163,6 +5279,7 @@ components:
           readOnly: true
       required:
         - arcs
+        - average_rating
         - characters
         - cover_date
         - credits
@@ -5174,6 +5291,7 @@ components:
         - price_currency
         - publisher
         - rating
+        - rating_count
         - reprints
         - resource_url
         - series
@@ -5189,6 +5307,12 @@ components:
         name:
           type: string
           maxLength: 255
+        alt_names:
+          type: array
+          items:
+            type: string
+            maxLength: 255
+          title: Alternative Names
         sort_name:
           type: string
           maxLength: 255
@@ -6175,6 +6299,12 @@ components:
         sort_name:
           type: string
           maxLength: 255
+        alt_names:
+          type: array
+          items:
+            type: string
+            maxLength: 255
+          title: Alternative Names
         volume:
           type: integer
           maximum: 32767
@@ -6662,6 +6792,20 @@ components:
         - rating_count
         - slug
         - user
+    ReadingListNav:
+      type: object
+      description: Minimal representation of a reading list used for previous/next
+        links.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+      required:
+        - id
+        - name
     ReadingListRead:
       type: object
       properties:
@@ -6704,6 +6848,14 @@ components:
               maxLength: 200
             - type: string
               maxLength: 0
+        previous:
+          allOf:
+            - $ref: '#/components/schemas/ReadingListNav'
+          readOnly: true
+        next:
+          allOf:
+            - $ref: '#/components/schemas/ReadingListNav'
+          readOnly: true
         average_rating:
           type: number
           format: double
@@ -6731,6 +6883,8 @@ components:
         - list_type
         - modified
         - name
+        - next
+        - previous
         - rating_count
         - resource_url
         - slug
@@ -6833,6 +6987,12 @@ components:
         sort_name:
           type: string
           maxLength: 255
+        alt_names:
+          type: array
+          items:
+            type: string
+            maxLength: 255
+          title: Alternative Names
         volume:
           type: integer
           maximum: 32767
@@ -6950,6 +7110,12 @@ components:
         sort_name:
           type: string
           maxLength: 255
+        alt_names:
+          type: array
+          items:
+            type: string
+            maxLength: 255
+          title: Alternative Names
         volume:
           type: integer
           maximum: 32767
@@ -7515,3 +7681,6 @@ components:
       type: apiKey
       in: cookie
       name: sessionid
+    knoxApiToken:
+      type: http
+      scheme: bearer

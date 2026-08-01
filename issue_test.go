@@ -20,19 +20,21 @@ func TestIssueByID(t *testing.T) {
 				},
 				Imprint: nil,
 				Series: struct {
-					ID        int
-					Name      string
-					SortName  string
-					Volume    int
-					YearBegan int
-					Type      metron.Reference
-					Genres    []metron.Reference
+					ID               int
+					Name             string
+					AlternativeNames []string
+					SortName         string
+					Volume           int
+					YearBegan        int
+					Type             metron.Reference
+					Genres           []metron.Reference
 				}{
-					ID:        7133,
-					Name:      "Batman",
-					SortName:  "Batman",
-					Volume:    1,
-					YearBegan: 2012,
+					ID:               7133,
+					Name:             "Batman",
+					AlternativeNames: []string{},
+					SortName:         "Batman",
+					Volume:           1,
+					YearBegan:        2012,
 					Type: metron.Reference{
 						ID:   8,
 						Name: "Hardcover",
@@ -68,6 +70,7 @@ func TestIssueByID(t *testing.T) {
 				StoreDate:            asReference(parseDate(t, "2012-05-09")),
 				FinalOrderCutoffDate: nil,
 				Price:                asReference("24.99"),
+				PriceCurrency:        "USD",
 				Rating: metron.Reference{
 					ID:   1,
 					Name: "Unknown",
@@ -85,8 +88,10 @@ func TestIssueByID(t *testing.T) {
 						"https://static.metron.cloud/media/issue/2024/02/27/e49a51e397ac4489a81785ad8098d296.jpg",
 					),
 				),
-				CoverHash: asReference("841068ef7e313dec"),
-				Arcs:      []metron.ArcList{},
+				CoverHash:     asReference("841068ef7e313dec"),
+				AverageRating: nil,
+				RatingCount:   0,
+				Arcs:          []metron.ArcList{},
 				Credits: []struct {
 					ID    int
 					Name  string
@@ -472,19 +477,21 @@ func TestIssueByID(t *testing.T) {
 					Name: "DC Black Label",
 				},
 				Series: struct {
-					ID        int
-					Name      string
-					SortName  string
-					Volume    int
-					YearBegan int
-					Type      metron.Reference
-					Genres    []metron.Reference
+					ID               int
+					Name             string
+					AlternativeNames []string
+					SortName         string
+					Volume           int
+					YearBegan        int
+					Type             metron.Reference
+					Genres           []metron.Reference
 				}{
-					ID:        279,
-					Name:      "Batman: Last Knight on Earth",
-					SortName:  "Batman Last Knight on Earth",
-					Volume:    1,
-					YearBegan: 2019,
+					ID:               279,
+					Name:             "Batman: Last Knight on Earth",
+					AlternativeNames: []string{},
+					SortName:         "Batman Last Knight on Earth",
+					Volume:           1,
+					YearBegan:        2019,
 					Type: metron.Reference{
 						ID:   11,
 						Name: "Limited Series",
@@ -501,9 +508,10 @@ func TestIssueByID(t *testing.T) {
 				Name: []string{
 					"Book One",
 				},
-				CoverDate: parseDate(t, "2019-07-01"),
-				StoreDate: asReference(parseDate(t, "2019-05-29")),
-				Price:     asReference("5.99"),
+				CoverDate:     parseDate(t, "2019-07-01"),
+				StoreDate:     asReference(parseDate(t, "2019-05-29")),
+				Price:         asReference("5.99"),
+				PriceCurrency: "USD",
 				Rating: metron.Reference{
 					ID:   5,
 					Name: "Mature",
@@ -518,8 +526,10 @@ func TestIssueByID(t *testing.T) {
 				ImageURL: asReference(
 					parseURL(t, "https://static.metron.cloud/media/issue/2019/05/27/batman-last-knight-1.jpg"),
 				),
-				CoverHash: asReference("ede81312b2337ac5"),
-				Arcs:      []metron.ArcList{},
+				CoverHash:     asReference("ede81312b2337ac5"),
+				AverageRating: nil,
+				RatingCount:   0,
+				Arcs:          []metron.ArcList{},
 				Credits: []struct {
 					ID    int
 					Name  string

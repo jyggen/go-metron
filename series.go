@@ -14,6 +14,7 @@ import (
 type Series struct {
 	ID                    int
 	Name                  string
+	AlternativeNames      []string
 	SortName              string
 	Volume                int
 	Type                  Reference
@@ -124,6 +125,12 @@ func seriesMapper(in internal.SeriesRead) (*Series, error) {
 		}
 	}
 
+	var altNames []string
+
+	if in.AltNames != nil {
+		altNames = *in.AltNames
+	}
+
 	var genres []Reference
 
 	if in.Genres != nil {
@@ -159,10 +166,11 @@ func seriesMapper(in internal.SeriesRead) (*Series, error) {
 	}
 
 	return &Series{
-		ID:       *in.Id,
-		Name:     in.Name,
-		SortName: in.SortName,
-		Volume:   in.Volume,
+		ID:               *in.Id,
+		Name:             in.Name,
+		AlternativeNames: altNames,
+		SortName:         in.SortName,
+		Volume:           in.Volume,
 		Type: Reference{
 			ID:   *in.SeriesType.Id,
 			Name: in.SeriesType.Name,

@@ -12,10 +12,11 @@ func TestSeriesByID(t *testing.T) {
 		{
 			id: 3371,
 			expected: &metron.Series{
-				ID:       3371,
-				Name:     "Batman 2022 Annual",
-				SortName: "Batman 2022 Annual",
-				Volume:   1,
+				ID:               3371,
+				Name:             "Batman 2022 Annual",
+				AlternativeNames: []string{},
+				SortName:         "Batman 2022 Annual",
+				Volume:           1,
 				Type: metron.Reference{
 					ID:   6,
 					Name: "Annual",
@@ -51,10 +52,11 @@ func TestSeriesByID(t *testing.T) {
 		{
 			id: 793,
 			expected: &metron.Series{
-				ID:       793,
-				Name:     "Fables",
-				SortName: "Fables",
-				Volume:   1,
+				ID:               793,
+				Name:             "Fables",
+				AlternativeNames: []string{},
+				SortName:         "Fables",
+				Volume:           1,
 				Type: metron.Reference{
 					ID:   13,
 					Name: "Single Issue",
