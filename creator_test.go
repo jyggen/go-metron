@@ -8,10 +8,10 @@ import (
 
 func TestCreatorByID(t *testing.T) {
 	t.Parallel()
-	testByID(t, "creator", (*metron.Client).CreatorByID, []testCase[metron.Creator]{
+	testByID(t, "creator", (*metron.Client).CreatorByID, []testCase[*metron.Creator]{
 		{
 			id: 5958,
-			expected: metron.Creator{
+			expected: &metron.Creator{
 				ID:    5958,
 				Name:  "Frank Godwin",
 				Birth: asReference(parseDate(t, "1889-10-20")),
@@ -32,7 +32,7 @@ func TestCreatorByID(t *testing.T) {
 		},
 		{
 			id: 11237,
-			expected: metron.Creator{
+			expected: &metron.Creator{
 				ID:          11237,
 				Name:        "A. C. Farley",
 				Birth:       nil,
@@ -50,10 +50,10 @@ func TestCreatorByID(t *testing.T) {
 
 func TestCreators(t *testing.T) {
 	t.Parallel()
-	testList(t, "creator", (*metron.Client).Creators, []testCase[metron.CreatorList]{
+	testList(t, "creator", (*metron.Client).Creators, []testCase[*metron.CreatorList]{
 		{
 			id: 5466,
-			expected: metron.CreatorList{
+			expected: &metron.CreatorList{
 				ID:       5466,
 				Name:     "A D'Amico",
 				Modified: parseTime(t, "2024-02-25T15:53:40.615428-05:00"),
@@ -61,7 +61,7 @@ func TestCreators(t *testing.T) {
 		},
 		{
 			id: 7174,
-			expected: metron.CreatorList{
+			expected: &metron.CreatorList{
 				ID:       7174,
 				Name:     "A Larger World Studios",
 				Modified: parseTime(t, "2023-02-21T11:29:18.690700-05:00"),
@@ -69,7 +69,7 @@ func TestCreators(t *testing.T) {
 		},
 		{
 			id: 5848,
-			expected: metron.CreatorList{
+			expected: &metron.CreatorList{
 				ID:       5848,
 				Name:     "A. A. Rubin",
 				Modified: parseTime(t, "2021-12-29T10:10:02.832069-05:00"),
@@ -77,7 +77,7 @@ func TestCreators(t *testing.T) {
 		},
 		{
 			id: 11237,
-			expected: metron.CreatorList{
+			expected: &metron.CreatorList{
 				ID:       11237,
 				Name:     "A. C. Farley",
 				Modified: parseTime(t, "2024-05-18T11:25:36.333655-04:00"),

@@ -3,35 +3,113 @@ package metron
 import (
 	"context"
 	"fmt"
+	"iter"
+	"net/url"
 	"time"
+
+	"github.com/jyggen/go-metron/internal"
 )
 
+// Universe is a fictional universe.
 type Universe struct {
-	ID                    int       `json:"id"`
-	Publisher             Reference `json:"publisher"`
-	Name                  string    `json:"name"`
-	Designation           *string   `json:"designation"`
-	Description           *string   `json:"desc"`
-	GrandComicsDatabaseID *int      `json:"gcd_id"`
-	ImageURL              *URL      `json:"image"`
-	ResourceURL           URL       `json:"resource_url"`
-	Modified              time.Time `json:"modified"`
+	ID                    int
+	Publisher             Reference
+	Name                  string
+	Designation           string
+	Description           *string
+	GrandComicsDatabaseID *int
+	ImageURL              *url.URL
+	ResourceURL           url.URL
+	Modified              time.Time
 }
 
-func (u Universe) modified() time.Time {
-	return u.Modified
-}
-
+// UniverseList is a universe as it appears in list responses.
 type UniverseList struct {
-	ID       int       `json:"id"`
-	Name     string    `json:"name"`
-	Modified time.Time `json:"modified"`
+	ID       int
+	Name     string
+	Modified time.Time
 }
 
-func (c *Client) UniverseByID(ctx context.Context, id int) (Universe, error) {
-	return request[Universe](ctx, c, fmt.Sprintf("universe/%d/", id))
+// UniverseByID returns a universe by its ID.
+func (c *Client) UniverseByID(ctx context.Context, id int) (*Universe, error) {
+	return byID(ctx, c, fmt.Sprintf("universe/%d", id), c.client.ApiUniverseRetrieve, universeMapper, id)
 }
 
-func (c *Client) Universes(ctx context.Context, filters ...Filter) func(func(UniverseList, error) bool) {
-	return paginate[UniverseList](ctx, c, "universe/", filters...)
+// Universes returns an iterator over all universes.
+func (c *Client) Universes(ctx context.Context, filters ...Filter) iter.Seq2[*UniverseList, error] {
+	params := &internal.ApiUniverseListParams{}
+
+	for _, f := range filters {
+		f(params)
+	}
+
+	return paginate[internal.PaginatedUniverseListList](ctx, c, "universe", c.client.ApiUniverseList, universeListMapper, params)
+}
+
+func universeMapper(in internal.UniverseRead) (*Universe, error) {
+	if in.Id == nil {
+		return nil, fmt.Errorf("universe: nil Id")
+	}
+
+	if in.Modified == nil {
+		return nil, fmt.Errorf("universe: nil Modified")
+	}
+
+	if in.ResourceUrl == nil {
+		return nil, fmt.Errorf("universe: nil ResourceUrl")
+	}
+
+	if in.Publisher == nil {
+		return nil, fmt.Errorf("universe: nil Publisher")
+	}
+
+	if in.Publisher.Id == nil {
+		return nil, fmt.Errorf("universe: nil Publisher.Id")
+	}
+
+	var imageURL *url.URL
+	var err error
+
+	if image := nullableToPtr(in.Image); image != nil {
+		imageURL, err = url.Parse(*image)
+		if err != nil {
+			return nil, err
+		}
+	}
+
+	resourceURL, err := url.Parse(*in.ResourceUrl)
+	if err != nil {
+		return nil, err
+	}
+
+	return &Universe{
+		ID: *in.Id,
+		Publisher: Reference{
+			ID:   *in.Publisher.Id,
+			Name: in.Publisher.Name,
+		},
+		Name:                  in.Name,
+		Designation:           in.Designation,
+		Description:           in.Desc,
+		GrandComicsDatabaseID: nullableToPtr(in.GcdId),
+		ImageURL:              imageURL,
+		ResourceURL:           *resourceURL,
+		Modified:              *in.Modified,
+	}, nil
+}
+
+func universeListMapper(in internal.UniverseList) (*UniverseList, error) {
+	if in.Id == nil {
+		return nil, fmt.Errorf("universe: nil Id")
+	}
+
+	if in.Modified == nil {
+		return nil, fmt.Errorf("universe: nil Modified")
+	}
+
+	return &UniverseList{
+		ID:       *in.Id,
+		Name:     in.Name,
+		Modified: *in.Modified,
+	}, nil
 }

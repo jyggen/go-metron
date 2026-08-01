@@ -8,10 +8,10 @@ import (
 
 func TestTeamByID(t *testing.T) {
 	t.Parallel()
-	testByID(t, "team", (*metron.Client).TeamByID, []testCase[metron.Team]{
+	testByID(t, "team", (*metron.Client).TeamByID, []testCase[*metron.Team]{
 		{
 			id: 180,
-			expected: metron.Team{
+			expected: &metron.Team{
 				ID:          180,
 				Name:        "A-Force",
 				Description: asReference("Marvel's first all-female team of Avengers."),
@@ -25,7 +25,7 @@ func TestTeamByID(t *testing.T) {
 		},
 		{
 			id: 930,
-			expected: metron.Team{
+			expected: &metron.Team{
 				ID:          930,
 				Name:        "Infinites",
 				Description: asReference(""),
@@ -53,10 +53,10 @@ func TestTeamByID(t *testing.T) {
 
 func TestTeams(t *testing.T) {
 	t.Parallel()
-	testList(t, "team", (*metron.Client).Teams, []testCase[metron.TeamList]{
+	testList(t, "team", (*metron.Client).Teams, []testCase[*metron.TeamList]{
 		{
 			id: 1089,
-			expected: metron.TeamList{
+			expected: &metron.TeamList{
 				ID:       1089,
 				Name:     "501st Legion",
 				Modified: parseTime(t, "2023-04-04T10:12:13.619621-04:00"),
@@ -64,7 +64,7 @@ func TestTeams(t *testing.T) {
 		},
 		{
 			id: 1498,
-			expected: metron.TeamList{
+			expected: &metron.TeamList{
 				ID:       1498,
 				Name:     "5th Dimensional Imps",
 				Modified: parseTime(t, "2024-03-16T09:28:28.725699-04:00"),
@@ -72,7 +72,7 @@ func TestTeams(t *testing.T) {
 		},
 		{
 			id: 180,
-			expected: metron.TeamList{
+			expected: &metron.TeamList{
 				ID:       180,
 				Name:     "A-Force",
 				Modified: parseTime(t, "2019-07-27T16:52:41.547904-04:00"),
@@ -80,7 +80,7 @@ func TestTeams(t *testing.T) {
 		},
 		{
 			id: 523,
-			expected: metron.TeamList{
+			expected: &metron.TeamList{
 				ID:       523,
 				Name:     "A-Next",
 				Modified: parseTime(t, "2021-11-17T16:14:53.029611-05:00"),

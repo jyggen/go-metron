@@ -3,54 +3,216 @@ package metron
 import (
 	"context"
 	"fmt"
+	"iter"
+	"net/url"
 	"time"
+
+	"github.com/jyggen/go-metron/internal"
 )
 
+// Series is a comic book series.
 type Series struct {
-	ID          int         `json:"id"`
-	Name        string      `json:"name"`
-	SortName    string      `json:"sort_name"`
-	Volume      int         `json:"volume"`
-	Type        Reference   `json:"series_type"`
-	Status      string      `json:"status"`
-	Publisher   Reference   `json:"publisher"`
-	Imprint     *Reference  `json:"imprint"`
-	YearBegan   int         `json:"year_began"`
-	YearEnded   *int        `json:"year_end"`
-	Description *string     `json:"desc"`
-	IssueCount  int         `json:"issue_count"`
-	Genres      []Reference `json:"genres"`
-	Associated  []struct {
-		ID   int    `json:"id"`
-		Name string `json:"series"`
-	} `json:"associated"`
-	ComicVineID           *int      `json:"cv_id"`
-	GrandComicsDatabaseID *int      `json:"gcd_id"`
-	ResourceURL           URL       `json:"resource_url"`
-	Modified              time.Time `json:"modified"`
+	ID                    int
+	Name                  string
+	AlternativeNames      []string
+	SortName              string
+	Volume                int
+	Type                  Reference
+	Status                string
+	Publisher             Reference
+	Imprint               *Reference
+	YearBegan             int
+	YearEnded             *int
+	Description           *string
+	IssueCount            int
+	Genres                []Reference
+	Associated            []Reference
+	ComicVineID           *int
+	GrandComicsDatabaseID *int
+	ResourceURL           url.URL
+	Modified              time.Time
 }
 
-func (s Series) modified() time.Time {
-	return s.Modified
-}
-
+// SeriesList is a series as it appears in list responses.
 type SeriesList struct {
-	ID         int       `json:"id"`
-	Name       string    `json:"series"`
-	YearBegan  int       `json:"year_began"`
-	Volume     int       `json:"volume"`
-	IssueCount int       `json:"issue_count"`
-	Modified   time.Time `json:"modified"`
+	ID         int
+	Name       string
+	YearBegan  int
+	Volume     int
+	IssueCount int
+	Modified   time.Time
 }
 
-func (c *Client) SeriesByPublisherID(ctx context.Context, id int) func(func(SeriesList, error) bool) {
-	return paginate[SeriesList](ctx, c, fmt.Sprintf("publisher/%d/series_list/", id))
+// SeriesByID returns a series by its ID.
+func (c *Client) SeriesByID(ctx context.Context, id int) (*Series, error) {
+	return byID(ctx, c, fmt.Sprintf("series/%d", id), c.client.ApiSeriesRetrieve, seriesMapper, id)
 }
 
-func (c *Client) SeriesByID(ctx context.Context, id int) (Series, error) {
-	return request[Series](ctx, c, fmt.Sprintf("series/%d/", id))
+// Series returns an iterator over all series.
+func (c *Client) Series(ctx context.Context, filters ...Filter) iter.Seq2[*SeriesList, error] {
+	params := &internal.ApiSeriesListParams{}
+
+	for _, f := range filters {
+		f(params)
+	}
+
+	return paginate[internal.PaginatedSeriesListList](ctx, c, "series", c.client.ApiSeriesList, seriesListMapper, params)
 }
 
-func (c *Client) Series(ctx context.Context, filters ...Filter) func(func(SeriesList, error) bool) {
-	return paginate[SeriesList](ctx, c, "series/", filters...)
+// SeriesByPublisherID returns an iterator over all series for a publisher.
+func (c *Client) SeriesByPublisherID(ctx context.Context, id int, filters ...Filter) iter.Seq2[*SeriesList, error] {
+	params := &internal.ApiPublisherSeriesListListParams{}
+
+	for _, f := range filters {
+		f(params)
+	}
+
+	return idPaginate[internal.PaginatedSeriesListList](ctx, c, "publisher/series", c.client.ApiPublisherSeriesListList, seriesListMapper, id, params)
+}
+
+func seriesMapper(in internal.SeriesRead) (*Series, error) {
+	if in.Id == nil {
+		return nil, fmt.Errorf("series: nil Id")
+	}
+
+	if in.Modified == nil {
+		return nil, fmt.Errorf("series: nil Modified")
+	}
+
+	if in.ResourceUrl == nil {
+		return nil, fmt.Errorf("series: nil ResourceUrl")
+	}
+
+	if in.Status == nil {
+		return nil, fmt.Errorf("series: nil Status")
+	}
+
+	if in.Publisher == nil {
+		return nil, fmt.Errorf("series: nil Publisher")
+	}
+
+	if in.Publisher.Id == nil {
+		return nil, fmt.Errorf("series: nil Publisher.Id")
+	}
+
+	if in.SeriesType == nil {
+		return nil, fmt.Errorf("series: nil SeriesType")
+	}
+
+	if in.SeriesType.Id == nil {
+		return nil, fmt.Errorf("series: nil SeriesType.Id")
+	}
+
+	if in.IssueCount == nil {
+		return nil, fmt.Errorf("series: nil IssueCount")
+	}
+
+	resourceURL, err := url.Parse(*in.ResourceUrl)
+	if err != nil {
+		return nil, err
+	}
+
+	var imprint *Reference
+
+	if in.Imprint != nil {
+		if in.Imprint.Id == nil {
+			return nil, fmt.Errorf("series: nil Imprint.Id")
+		}
+
+		imprint = &Reference{
+			ID:   *in.Imprint.Id,
+			Name: in.Imprint.Name,
+		}
+	}
+
+	var altNames []string
+
+	if in.AltNames != nil {
+		altNames = *in.AltNames
+	}
+
+	var genres []Reference
+
+	if in.Genres != nil {
+		genres = make([]Reference, 0, len(*in.Genres))
+
+		for _, g := range *in.Genres {
+			if g.Id == nil {
+				return nil, fmt.Errorf("series: nil Genres[].Id")
+			}
+
+			genres = append(genres, Reference{
+				ID:   *g.Id,
+				Name: g.Name,
+			})
+		}
+	}
+
+	var associated []Reference
+
+	if in.Associated != nil {
+		associated = make([]Reference, 0, len(*in.Associated))
+
+		for _, a := range *in.Associated {
+			if a.Id == nil {
+				return nil, fmt.Errorf("series: nil Associated[].Id")
+			}
+
+			associated = append(associated, Reference{
+				ID:   *a.Id,
+				Name: a.Series,
+			})
+		}
+	}
+
+	return &Series{
+		ID:               *in.Id,
+		Name:             in.Name,
+		AlternativeNames: altNames,
+		SortName:         in.SortName,
+		Volume:           in.Volume,
+		Type: Reference{
+			ID:   *in.SeriesType.Id,
+			Name: in.SeriesType.Name,
+		},
+		Status: *in.Status,
+		Publisher: Reference{
+			ID:   *in.Publisher.Id,
+			Name: in.Publisher.Name,
+		},
+		Imprint:               imprint,
+		YearBegan:             in.YearBegan,
+		YearEnded:             nullableToPtr(in.YearEnd),
+		Description:           in.Desc,
+		IssueCount:            *in.IssueCount,
+		Genres:                genres,
+		Associated:            associated,
+		ComicVineID:           nullableToPtr(in.CvId),
+		GrandComicsDatabaseID: nullableToPtr(in.GcdId),
+		ResourceURL:           *resourceURL,
+		Modified:              *in.Modified,
+	}, nil
+}
+
+func seriesListMapper(in internal.SeriesList) (*SeriesList, error) {
+	if in.Id == nil {
+		return nil, fmt.Errorf("series: nil Id")
+	}
+
+	if in.Modified == nil {
+		return nil, fmt.Errorf("series: nil Modified")
+	}
+
+	if in.IssueCount == nil {
+		return nil, fmt.Errorf("series: nil IssueCount")
+	}
+
+	return &SeriesList{
+		ID:         *in.Id,
+		Name:       in.Series,
+		YearBegan:  in.YearBegan,
+		Volume:     in.Volume,
+		IssueCount: *in.IssueCount,
+		Modified:   *in.Modified,
+	}, nil
 }

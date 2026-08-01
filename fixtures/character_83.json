@@ -27,15 +27,10 @@
     {
       "id": 42,
       "name": "Injustice League",
-      "modified": "2025-02-19T01:52:04.564245-05:00"
+      "modified": "2026-04-10T09:48:04.386086-04:00"
     }
   ],
   "universes": [
-    {
-      "id": 157,
-      "name": "Absolute Universe",
-      "modified": "2025-04-16T09:21:47.838281-04:00"
-    },
     {
       "id": 87,
       "name": "Batman '66",
@@ -45,6 +40,11 @@
       "id": 23,
       "name": "Bombshells",
       "modified": "2024-01-25T09:26:16.040978-05:00"
+    },
+    {
+      "id": 4,
+      "name": "Dark Multiverse: Batman Who Laughs",
+      "modified": "2024-01-25T10:00:22.865462-05:00"
     },
     {
       "id": 8,
@@ -65,10 +65,20 @@
       "id": 51,
       "name": "Injustice",
       "modified": "2024-01-26T12:19:31.696959-05:00"
+    },
+    {
+      "id": 20,
+      "name": "New Frontier",
+      "modified": "2025-11-09T21:09:14.716552-05:00"
+    },
+    {
+      "id": 171,
+      "name": "Prime Earth",
+      "modified": "2025-10-26T22:25:13.152897-04:00"
     }
   ],
   "cv_id": 1702,
   "gcd_id": null,
   "resource_url": "https://metron.cloud/character/joker/",
-  "modified": "2025-02-18T15:23:40.393641-05:00"
+  "modified": "2026-07-13T13:47:16.465101-04:00"
 }

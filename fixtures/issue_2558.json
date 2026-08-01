@@ -11,6 +11,7 @@
   "series": {
     "id": 279,
     "name": "Batman: Last Knight on Earth",
+    "alt_names": [],
     "sort_name": "Batman Last Knight on Earth",
     "volume": 1,
     "year_began": 2019,
@@ -35,6 +36,7 @@
   "store_date": "2019-05-29",
   "foc_date": null,
   "price": "5.99",
+  "price_currency": "USD",
   "rating": {
     "id": 5,
     "name": "Mature"
@@ -46,6 +48,8 @@
   "desc": "Bruce Wayne wakes up in Arkham Asylum. Young. Sane.\r\nAnd...he was never Batman.\r\n\r\n So begins this sprawling tale of the Dark Knight as he embarks on a quest through a devastated DC landscape featuring a massive cast of familiar faces from the DC Universe. As he tries to piece together the mystery of his past, he must unravel the cause of this terrible future and track down the unspeakable force that destroyed the world as he knew it…",
   "image": "https://static.metron.cloud/media/issue/2019/05/27/batman-last-knight-1.jpg",
   "cover_hash": "ede81312b2337ac5",
+  "average_rating": null,
+  "rating_count": 0,
   "arcs": [],
   "credits": [
     {
@@ -141,37 +145,37 @@
     {
       "id": 261,
       "name": "Alfred Pennyworth",
-      "modified": "2025-05-10T11:41:36.028997-04:00"
+      "modified": "2026-06-22T10:15:05.369600-04:00"
     },
     {
       "id": 12,
       "name": "Batman",
-      "modified": "2025-05-10T11:32:34.186924-04:00"
+      "modified": "2026-07-24T07:07:30.078052-04:00"
     },
     {
       "id": 297,
       "name": "Huntress (Bertinelli)",
-      "modified": "2025-02-18T15:46:25.289114-05:00"
+      "modified": "2026-07-08T09:49:44.287660-04:00"
     },
     {
       "id": 83,
       "name": "Joker",
-      "modified": "2025-02-18T15:23:40.393641-05:00"
+      "modified": "2026-07-13T13:47:16.465101-04:00"
     },
     {
       "id": 22,
       "name": "Poison Ivy",
-      "modified": "2025-02-18T15:27:40.557163-05:00"
+      "modified": "2026-06-24T11:38:36.039298-04:00"
     },
     {
       "id": 103,
       "name": "Supergirl (Kara Zor-El)",
-      "modified": "2025-02-18T15:41:12.282439-05:00"
+      "modified": "2026-07-22T22:10:59.507480-04:00"
     },
     {
       "id": 14,
       "name": "Wonder Woman",
-      "modified": "2025-02-18T15:41:16.582787-05:00"
+      "modified": "2026-07-24T13:19:58.179187-04:00"
     }
   ],
   "teams": [],
@@ -180,6 +184,7 @@
   "variants": [
     {
       "name": "Variant Cover",
+      "price": null,
       "sku": "",
       "upc": "",
       "image": "https://static.metron.cloud/media/variants/2019/05/27/batman-last-knight-1a.jpg"

@@ -8,10 +8,10 @@ import (
 
 func TestImprintByID(t *testing.T) {
 	t.Parallel()
-	testByID(t, "imprint", (*metron.Client).ImprintByID, []testCase[metron.Imprint]{
+	testByID(t, "imprint", (*metron.Client).ImprintByID, []testCase[*metron.Imprint]{
 		{
 			id: 0,
-			expected: metron.Imprint{
+			expected: &metron.Imprint{
 				ID:          0,
 				Name:        "Foobar",
 				Founded:     nil,
@@ -25,7 +25,7 @@ func TestImprintByID(t *testing.T) {
 		},
 		{
 			id: 1,
-			expected: metron.Imprint{
+			expected: &metron.Imprint{
 				ID:      1,
 				Name:    "Vertigo Comics",
 				Founded: asReference(1993),
@@ -46,10 +46,10 @@ func TestImprintByID(t *testing.T) {
 
 func TestImprints(t *testing.T) {
 	t.Parallel()
-	testList(t, "imprint", (*metron.Client).Imprints, []testCase[metron.ImprintList]{
+	testList(t, "imprint", (*metron.Client).Imprints, []testCase[*metron.ImprintList]{
 		{
 			id: 14,
-			expected: metron.ImprintList{
+			expected: &metron.ImprintList{
 				ID:       14,
 				Name:     "Amalgam Comics",
 				Modified: parseTime(t, "2024-08-18T10:09:51.151912-04:00"),
@@ -57,7 +57,7 @@ func TestImprints(t *testing.T) {
 		},
 		{
 			id: 4,
-			expected: metron.ImprintList{
+			expected: &metron.ImprintList{
 				ID:       4,
 				Name:     "Archie Horror",
 				Modified: parseTime(t, "2024-08-12T15:07:30.049388-04:00"),
@@ -65,7 +65,7 @@ func TestImprints(t *testing.T) {
 		},
 		{
 			id: 13,
-			expected: metron.ImprintList{
+			expected: &metron.ImprintList{
 				ID:       13,
 				Name:     "Boom! Box",
 				Modified: parseTime(t, "2024-08-13T15:43:21.628316-04:00"),
@@ -73,7 +73,7 @@ func TestImprints(t *testing.T) {
 		},
 		{
 			id: 2,
-			expected: metron.ImprintList{
+			expected: &metron.ImprintList{
 				ID:       2,
 				Name:     "DC Black Label",
 				Modified: parseTime(t, "2024-08-12T12:14:36.732542-04:00"),

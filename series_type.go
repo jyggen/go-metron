@@ -1,12 +1,37 @@
 package metron
 
-import "context"
+import (
+	"context"
+	"fmt"
+	"iter"
 
+	"github.com/jyggen/go-metron/internal"
+)
+
+// SeriesTypeList is a series type as it appears in list responses.
 type SeriesTypeList struct {
-	ID   int    `json:"id"`
-	Name string `json:"name"`
+	ID   int
+	Name string
 }
 
-func (c *Client) SeriesTypes(ctx context.Context, filters ...Filter) func(func(SeriesTypeList, error) bool) {
-	return paginate[SeriesTypeList](ctx, c, "series_type/", filters...)
+// SeriesTypes returns an iterator over all series types.
+func (c *Client) SeriesTypes(ctx context.Context, filters ...Filter) iter.Seq2[*SeriesTypeList, error] {
+	params := &internal.ApiSeriesTypeListParams{}
+
+	for _, f := range filters {
+		f(params)
+	}
+
+	return paginate[internal.PaginatedSeriesTypeList](ctx, c, "series_type", c.client.ApiSeriesTypeList, seriesTypeMapper, params)
+}
+
+func seriesTypeMapper(in internal.SeriesType) (*SeriesTypeList, error) {
+	if in.Id == nil {
+		return nil, fmt.Errorf("series_type: nil Id")
+	}
+
+	return &SeriesTypeList{
+		ID:   *in.Id,
+		Name: in.Name,
+	}, nil
 }

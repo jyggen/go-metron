@@ -1,6 +1,7 @@
 package metron_test
 
 import (
+	"net/url"
 	"testing"
 
 	"github.com/jyggen/go-metron"
@@ -8,10 +9,10 @@ import (
 
 func TestIssueByID(t *testing.T) {
 	t.Parallel()
-	testByID(t, "issue", (*metron.Client).IssueByID, []testCase[metron.Issue]{
+	testByID(t, "issue", (*metron.Client).IssueByID, []testCase[*metron.Issue]{
 		{
 			id: 112901,
-			expected: metron.Issue{
+			expected: &metron.Issue{
 				ID: 112901,
 				Publisher: metron.Reference{
 					ID:   2,
@@ -19,19 +20,21 @@ func TestIssueByID(t *testing.T) {
 				},
 				Imprint: nil,
 				Series: struct {
-					ID        int                `json:"id"`
-					Name      string             `json:"name"`
-					SortName  string             `json:"sort_name"`
-					Volume    int                `json:"volume"`
-					YearBegan int                `json:"year_began"`
-					Type      metron.Reference   `json:"series_type"`
-					Genres    []metron.Reference `json:"genres"`
+					ID               int
+					Name             string
+					AlternativeNames []string
+					SortName         string
+					Volume           int
+					YearBegan        int
+					Type             metron.Reference
+					Genres           []metron.Reference
 				}{
-					ID:        7133,
-					Name:      "Batman",
-					SortName:  "Batman",
-					Volume:    1,
-					YearBegan: 2012,
+					ID:               7133,
+					Name:             "Batman",
+					AlternativeNames: []string{},
+					SortName:         "Batman",
+					Volume:           1,
+					YearBegan:        2012,
 					Type: metron.Reference{
 						ID:   8,
 						Name: "Hardcover",
@@ -66,7 +69,8 @@ func TestIssueByID(t *testing.T) {
 				CoverDate:            parseDate(t, "2012-07-01"),
 				StoreDate:            asReference(parseDate(t, "2012-05-09")),
 				FinalOrderCutoffDate: nil,
-				Price:                "24.99",
+				Price:                asReference("24.99"),
+				PriceCurrency:        "USD",
 				Rating: metron.Reference{
 					ID:   1,
 					Name: "Unknown",
@@ -84,12 +88,14 @@ func TestIssueByID(t *testing.T) {
 						"https://static.metron.cloud/media/issue/2024/02/27/e49a51e397ac4489a81785ad8098d296.jpg",
 					),
 				),
-				CoverHash: asReference("841068ef7e313dec"),
-				Arcs:      []metron.ArcList{},
+				CoverHash:     asReference("841068ef7e313dec"),
+				AverageRating: nil,
+				RatingCount:   0,
+				Arcs:          []metron.ArcList{},
 				Credits: []struct {
-					ID    int                `json:"id"`
-					Name  string             `json:"creator"`
-					Roles []metron.Reference `json:"role"`
+					ID    int
+					Name  string
+					Roles []metron.Reference
 				}{
 					{
 						ID:   1379,
@@ -276,92 +282,92 @@ func TestIssueByID(t *testing.T) {
 					{
 						ID:       261,
 						Name:     "Alfred Pennyworth",
-						Modified: parseTime(t, "2025-05-10T11:41:36.028997-04:00"),
+						Modified: parseTime(t, "2026-06-22T10:15:05.369600-04:00"),
 					},
 					{
 						ID:       275,
 						Name:     "Barbara Gordon",
-						Modified: parseTime(t, "2025-02-18T15:21:57.440821-05:00"),
+						Modified: parseTime(t, "2026-07-06T08:45:39.835738-04:00"),
 					},
 					{
 						ID:       12,
 						Name:     "Batman",
-						Modified: parseTime(t, "2025-05-10T11:32:34.186924-04:00"),
+						Modified: parseTime(t, "2026-07-24T07:07:30.078052-04:00"),
 					},
 					{
 						ID:       2351,
 						Name:     "Bluebird",
-						Modified: parseTime(t, "2025-05-10T11:43:21.126838-04:00"),
+						Modified: parseTime(t, "2025-11-09T11:31:37.118434-05:00"),
 					},
 					{
 						ID:       77,
 						Name:     "Catwoman",
-						Modified: parseTime(t, "2025-02-18T15:22:10.535267-05:00"),
+						Modified: parseTime(t, "2026-07-13T13:47:03.315325-04:00"),
 					},
 					{
 						ID:       1120,
 						Name:     "Clayface (Karlo)",
-						Modified: parseTime(t, "2025-02-18T15:27:24.466997-05:00"),
+						Modified: parseTime(t, "2026-06-14T16:58:12.246869-04:00"),
 					},
 					{
 						ID:       394,
 						Name:     "Damian Wayne",
-						Modified: parseTime(t, "2025-02-18T15:28:22.696013-05:00"),
+						Modified: parseTime(t, "2026-07-01T09:05:55.765243-04:00"),
 					},
 					{
 						ID:       293,
 						Name:     "Dick Grayson",
-						Modified: parseTime(t, "2025-02-18T15:28:26.982215-05:00"),
+						Modified: parseTime(t, "2026-07-08T09:49:44.287660-04:00"),
 					},
 					{
 						ID:       16,
 						Name:     "Harley Quinn",
-						Modified: parseTime(t, "2025-02-18T15:22:26.752300-05:00"),
+						Modified: parseTime(t, "2026-07-20T08:27:40.341889-04:00"),
 					},
 					{
 						ID:       1048,
 						Name:     "Harvey Bullock",
-						Modified: parseTime(t, "2025-02-18T15:22:32.371011-05:00"),
+						Modified: parseTime(t, "2026-07-01T09:05:55.765243-04:00"),
 					},
 					{
 						ID:       82,
 						Name:     "James Gordon",
-						Modified: parseTime(t, "2025-02-18T15:22:43.443874-05:00"),
+						Modified: parseTime(t, "2026-07-22T10:53:56.922612-04:00"),
 					},
 					{
 						ID:       1204,
 						Name:     "James Gordon Jr.",
-						Modified: parseTime(t, "2025-02-18T15:26:16.097968-05:00"),
+						Modified: parseTime(t, "2026-03-13T13:25:33.554299-04:00"),
 					},
 					{
 						ID:       1126,
 						Name:     "Jeremiah Arkham",
-						Modified: parseTime(t, "2025-02-18T22:11:56.059808-05:00"),
+						Modified: parseTime(t, "2025-11-09T12:30:42.840247-05:00"),
 					},
 					{
 						ID:       83,
 						Name:     "Joker",
-						Modified: parseTime(t, "2025-02-18T15:23:40.393641-05:00"),
+						Modified: parseTime(t, "2026-07-13T13:47:16.465101-04:00"),
 					},
 					{
 						ID:       763,
 						Name:     "Killer Croc",
-						Modified: parseTime(t, "2025-02-18T15:26:43.639475-05:00"),
+						Modified: parseTime(t, "2026-06-22T09:16:05.969582-04:00"),
 					},
 					{
 						ID:       2234,
 						Name:     "Leslie Thompkins",
-						Modified: parseTime(t, "2025-02-18T15:26:55.636901-05:00"),
+						Modified: parseTime(t, "2026-03-13T13:25:33.554299-04:00"),
 					},
 					{
 						ID:       2856,
 						Name:     "Lincoln March",
-						Modified: parseTime(t, "2025-02-18T15:24:18.890445-05:00"),
+						Modified: parseTime(t, "2025-11-09T10:54:18.059163-05:00"),
 					},
 					{
 						ID:       274,
 						Name:     "Mr. Freeze",
-						Modified: parseTime(t, "2025-02-18T15:27:29.919010-05:00"),
+						Modified: parseTime(t, "2026-06-22T09:17:05.769693-04:00"),
 					},
 					{
 						ID:       347,
@@ -371,27 +377,27 @@ func TestIssueByID(t *testing.T) {
 					{
 						ID:       348,
 						Name:     "Riddler",
-						Modified: parseTime(t, "2025-02-18T15:23:00.534192-05:00"),
+						Modified: parseTime(t, "2026-06-22T09:16:05.969582-04:00"),
 					},
 					{
 						ID:       280,
-						Name:     "Scarecrow",
-						Modified: parseTime(t, "2025-02-18T15:23:04.327602-05:00"),
+						Name:     "Scarecrow (DC)",
+						Modified: parseTime(t, "2026-06-24T11:36:13.664980-04:00"),
 					},
 					{
 						ID:       765,
 						Name:     "Tim Drake",
-						Modified: parseTime(t, "2025-02-18T15:23:13.140852-05:00"),
+						Modified: parseTime(t, "2026-07-16T17:15:45.159767-04:00"),
 					},
 					{
 						ID:       355,
 						Name:     "Two-Face",
-						Modified: parseTime(t, "2025-02-18T15:46:12.108514-05:00"),
+						Modified: parseTime(t, "2026-06-22T16:24:03.068817-04:00"),
 					},
 					{
 						ID:       2057,
 						Name:     "Vicki Vale",
-						Modified: parseTime(t, "2025-02-18T15:24:02.317133-05:00"),
+						Modified: parseTime(t, "2026-04-12T14:46:47.267498-04:00"),
 					},
 					{
 						ID:       1136,
@@ -408,13 +414,13 @@ func TestIssueByID(t *testing.T) {
 					{
 						ID:       88,
 						Name:     "The Talons",
-						Modified: parseTime(t, "2019-06-23T15:13:24.036247-04:00"),
+						Modified: parseTime(t, "2025-11-09T10:47:58.678221-05:00"),
 					},
 				},
 				Universes: []metron.UniverseList{},
 				Reprints: []struct {
-					ID    int    `json:"id"`
-					Issue string `json:"issue"`
+					ID    int
+					Issue string
 				}{
 					{
 						ID:    6798,
@@ -446,10 +452,11 @@ func TestIssueByID(t *testing.T) {
 					},
 				},
 				Variants: []struct {
-					Name     *string    `json:"name"`
-					SKU      *string    `json:"sku"`
-					UPC      *string    `json:"upc"`
-					ImageURL metron.URL `json:"image"`
+					Name     *string
+					SKU      *string
+					UPC      *string
+					Price    *string
+					ImageURL url.URL
 				}{},
 				ComicVineID:           nil,
 				GrandComicsDatabaseID: asReference(1035895),
@@ -459,7 +466,7 @@ func TestIssueByID(t *testing.T) {
 		},
 		{
 			id: 2558,
-			expected: metron.Issue{
+			expected: &metron.Issue{
 				ID: 2558,
 				Publisher: metron.Reference{
 					ID:   2,
@@ -470,19 +477,21 @@ func TestIssueByID(t *testing.T) {
 					Name: "DC Black Label",
 				},
 				Series: struct {
-					ID        int                `json:"id"`
-					Name      string             `json:"name"`
-					SortName  string             `json:"sort_name"`
-					Volume    int                `json:"volume"`
-					YearBegan int                `json:"year_began"`
-					Type      metron.Reference   `json:"series_type"`
-					Genres    []metron.Reference `json:"genres"`
+					ID               int
+					Name             string
+					AlternativeNames []string
+					SortName         string
+					Volume           int
+					YearBegan        int
+					Type             metron.Reference
+					Genres           []metron.Reference
 				}{
-					ID:        279,
-					Name:      "Batman: Last Knight on Earth",
-					SortName:  "Batman Last Knight on Earth",
-					Volume:    1,
-					YearBegan: 2019,
+					ID:               279,
+					Name:             "Batman: Last Knight on Earth",
+					AlternativeNames: []string{},
+					SortName:         "Batman Last Knight on Earth",
+					Volume:           1,
+					YearBegan:        2019,
 					Type: metron.Reference{
 						ID:   11,
 						Name: "Limited Series",
@@ -499,9 +508,10 @@ func TestIssueByID(t *testing.T) {
 				Name: []string{
 					"Book One",
 				},
-				CoverDate: parseDate(t, "2019-07-01"),
-				StoreDate: asReference(parseDate(t, "2019-05-29")),
-				Price:     "5.99",
+				CoverDate:     parseDate(t, "2019-07-01"),
+				StoreDate:     asReference(parseDate(t, "2019-05-29")),
+				Price:         asReference("5.99"),
+				PriceCurrency: "USD",
 				Rating: metron.Reference{
 					ID:   5,
 					Name: "Mature",
@@ -516,12 +526,14 @@ func TestIssueByID(t *testing.T) {
 				ImageURL: asReference(
 					parseURL(t, "https://static.metron.cloud/media/issue/2019/05/27/batman-last-knight-1.jpg"),
 				),
-				CoverHash: asReference("ede81312b2337ac5"),
-				Arcs:      []metron.ArcList{},
+				CoverHash:     asReference("ede81312b2337ac5"),
+				AverageRating: nil,
+				RatingCount:   0,
+				Arcs:          []metron.ArcList{},
 				Credits: []struct {
-					ID    int                `json:"id"`
-					Name  string             `json:"creator"`
-					Roles []metron.Reference `json:"role"`
+					ID    int
+					Name  string
+					Roles []metron.Reference
 				}{
 					{
 						ID:   303,
@@ -617,56 +629,58 @@ func TestIssueByID(t *testing.T) {
 					{
 						ID:       261,
 						Name:     "Alfred Pennyworth",
-						Modified: parseTime(t, "2025-05-10T11:41:36.028997-04:00"),
+						Modified: parseTime(t, "2026-06-22T10:15:05.369600-04:00"),
 					},
 
 					{
 						ID:       12,
 						Name:     "Batman",
-						Modified: parseTime(t, "2025-05-10T11:32:34.186924-04:00"),
+						Modified: parseTime(t, "2026-07-24T07:07:30.078052-04:00"),
 					},
 					{
 						ID:       297,
 						Name:     "Huntress (Bertinelli)",
-						Modified: parseTime(t, "2025-02-18T15:46:25.289114-05:00"),
+						Modified: parseTime(t, "2026-07-08T09:49:44.287660-04:00"),
 					},
 					{
 						ID:       83,
 						Name:     "Joker",
-						Modified: parseTime(t, "2025-02-18T15:23:40.393641-05:00"),
+						Modified: parseTime(t, "2026-07-13T13:47:16.465101-04:00"),
 					},
 					{
 						ID:       22,
 						Name:     "Poison Ivy",
-						Modified: parseTime(t, "2025-02-18T15:27:40.557163-05:00"),
+						Modified: parseTime(t, "2026-06-24T11:38:36.039298-04:00"),
 					},
 					{
 						ID:       103,
 						Name:     "Supergirl (Kara Zor-El)",
-						Modified: parseTime(t, "2025-02-18T15:41:12.282439-05:00"),
+						Modified: parseTime(t, "2026-07-22T22:10:59.507480-04:00"),
 					},
 					{
 						ID:       14,
 						Name:     "Wonder Woman",
-						Modified: parseTime(t, "2025-02-18T15:41:16.582787-05:00"),
+						Modified: parseTime(t, "2026-07-24T13:19:58.179187-04:00"),
 					},
 				},
 				Teams:     []metron.TeamList{},
 				Universes: []metron.UniverseList{},
 				Reprints: []struct {
-					ID    int    `json:"id"`
-					Issue string `json:"issue"`
+					ID    int
+					Issue string
 				}{},
 				Variants: []struct {
-					Name     *string    `json:"name"`
-					SKU      *string    `json:"sku"`
-					UPC      *string    `json:"upc"`
-					ImageURL metron.URL `json:"image"`
+					Name     *string
+					SKU      *string
+					UPC      *string
+					Price    *string
+					ImageURL url.URL
 				}{
 					{
-						Name: asReference("Variant Cover"),
-						SKU:  asReference(""),
-						UPC:  asReference(""),
+						Name:  asReference("Variant Cover"),
+						SKU:   asReference(""),
+						UPC:   asReference(""),
+						Price: nil,
 						ImageURL: parseURL(
 							t,
 							"https://static.metron.cloud/media/variants/2019/05/27/batman-last-knight-1a.jpg",
@@ -707,16 +721,16 @@ func TestIssues(t *testing.T) {
 	testList(t, "issue", (*metron.Client).Issues, issueListTestCases(t))
 }
 
-func issueListTestCases(t *testing.T) []testCase[metron.IssueList] {
-	return []testCase[metron.IssueList]{
+func issueListTestCases(t *testing.T) []testCase[*metron.IssueList] {
+	return []testCase[*metron.IssueList]{
 		{
 			id: 89088,
-			expected: metron.IssueList{
+			expected: &metron.IssueList{
 				ID: 89088,
 				Series: struct {
-					Name      string `json:"name"`
-					Volume    int    `json:"volume"`
-					YearBegan int    `json:"year_began"`
+					Name      string
+					Volume    int
+					YearBegan int
 				}{
 					Name:      "'68",
 					Volume:    1,
@@ -738,12 +752,12 @@ func issueListTestCases(t *testing.T) []testCase[metron.IssueList] {
 		},
 		{
 			id: 89089,
-			expected: metron.IssueList{
+			expected: &metron.IssueList{
 				ID: 89089,
 				Series: struct {
-					Name      string `json:"name"`
-					Volume    int    `json:"volume"`
-					YearBegan int    `json:"year_began"`
+					Name      string
+					Volume    int
+					YearBegan int
 				}{
 					Name:      "'68",
 					Volume:    2,
@@ -765,12 +779,12 @@ func issueListTestCases(t *testing.T) []testCase[metron.IssueList] {
 		},
 		{
 			id: 89090,
-			expected: metron.IssueList{
+			expected: &metron.IssueList{
 				ID: 89090,
 				Series: struct {
-					Name      string `json:"name"`
-					Volume    int    `json:"volume"`
-					YearBegan int    `json:"year_began"`
+					Name      string
+					Volume    int
+					YearBegan int
 				}{
 					Name:      "'68",
 					Volume:    2,
@@ -792,12 +806,12 @@ func issueListTestCases(t *testing.T) []testCase[metron.IssueList] {
 		},
 		{
 			id: 89091,
-			expected: metron.IssueList{
+			expected: &metron.IssueList{
 				ID: 89091,
 				Series: struct {
-					Name      string `json:"name"`
-					Volume    int    `json:"volume"`
-					YearBegan int    `json:"year_began"`
+					Name      string
+					Volume    int
+					YearBegan int
 				}{
 					Name:      "'68",
 					Volume:    2,
