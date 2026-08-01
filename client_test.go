@@ -8,6 +8,7 @@ import (
 	"iter"
 	"net/http"
 	"net/url"
+	"strings"
 	"testing"
 	"time"
 
@@ -28,6 +29,9 @@ func (f roundTripFunc) RoundTrip(req *http.Request) (*http.Response, error) {
 type requestMock struct {
 	expectedURL         string
 	expectedMethod      string
+	responseStatus      int
+	responseHeader      http.Header
+	responseBody        string
 	responseBodyFixture string
 	validateBody        func(t *testing.T, body []byte)
 }
@@ -146,13 +150,31 @@ func newTestClient(t *testing.T, mocks []requestMock) *metron.Client {
 				m.validateBody(t, bodyBytes)
 			}
 
-			f, err := fs.Open(m.responseBodyFixture)
-			require.NoError(t, err)
+			var body io.ReadCloser
+
+			if m.responseBodyFixture != "" {
+				f, err := fs.Open(m.responseBodyFixture)
+				require.NoError(t, err)
+
+				body = f
+			} else {
+				body = io.NopCloser(strings.NewReader(m.responseBody))
+			}
+
+			status := m.responseStatus
+			if status == 0 {
+				status = http.StatusOK
+			}
+
+			header := m.responseHeader
+			if header == nil {
+				header = make(http.Header)
+			}
 
 			return &http.Response{
-				StatusCode: http.StatusOK,
-				Body:       f,
-				Header:     make(http.Header),
+				StatusCode: status,
+				Body:       body,
+				Header:     header,
 			}
 		}),
 	}))

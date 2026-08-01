@@ -11,7 +11,6 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
-	"strconv"
 	"sync"
 	"time"
 
@@ -132,12 +131,11 @@ func newBackOffMiddleware() httpkit.Middleware {
 			}
 
 			if res.StatusCode == http.StatusTooManyRequests {
-				waitTime, err := strconv.Atoi(res.Header.Get("Retry-After"))
-				if err == nil {
-					d := time.Duration(waitTime) * time.Second
+				now := time.Now()
 
+				if d, ok := parseRetryAfter(res.Header.Get("Retry-After"), now); ok {
 					m.Lock()
-					if t := time.Now().Add(d); t.After(backOff) {
+					if t := now.Add(d); t.After(backOff) {
 						backOff = t
 					}
 					m.Unlock()
@@ -275,7 +273,9 @@ func doCall(ctx context.Context, f func(ctx context.Context, fn ...internal.Requ
 	}
 
 	if res.StatusCode != http.StatusOK && res.StatusCode != http.StatusCreated {
-		return nil, ttl, errors.Join(fmt.Errorf("unexpected status code: %d", res.StatusCode), res.Body.Close())
+		body, readErr := io.ReadAll(io.LimitReader(res.Body, maxErrorBodyBytes))
+
+		return nil, ttl, errors.Join(&APIError{StatusCode: res.StatusCode, Body: body}, readErr, res.Body.Close())
 	}
 
 	return res.Body, ttl, nil
