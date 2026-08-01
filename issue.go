@@ -11,60 +11,79 @@ import (
 	"github.com/jyggen/go-metron/internal"
 )
 
+// IssueSeries is the series an issue belongs to, as embedded in an issue.
+type IssueSeries struct {
+	ID               int
+	Name             string
+	AlternativeNames []string
+	SortName         string
+	Volume           int
+	YearBegan        int
+	Type             Reference
+	Genres           []Reference
+}
+
+// IssueCredit is a creator credited on an issue, together with their roles.
+type IssueCredit struct {
+	ID    int
+	Name  string
+	Roles []Reference
+}
+
+// IssueReprint is an issue reprinted by another issue.
+type IssueReprint struct {
+	ID    int
+	Issue string
+}
+
+// IssueVariant is an alternative cover for an issue.
+type IssueVariant struct {
+	Name     *string
+	SKU      *string
+	UPC      *string
+	Price    *string
+	ImageURL url.URL
+}
+
+// IssueListSeries is the series an issue belongs to, as embedded in list responses.
+type IssueListSeries struct {
+	Name      string
+	Volume    int
+	YearBegan int
+}
+
 // Issue is a comic book issue.
 type Issue struct {
-	ID        int
-	Publisher Reference
-	Imprint   *Reference
-	Series    struct {
-		ID               int
-		Name             string
-		AlternativeNames []string
-		SortName         string
-		Volume           int
-		YearBegan        int
-		Type             Reference
-		Genres           []Reference
-	}
-	Number               string
-	AlternativeNumber    string
-	Title                *string
-	Name                 []string
-	CoverDate            civil.Date
-	StoreDate            *civil.Date
-	FinalOrderCutoffDate *civil.Date
-	Price                *string
-	PriceCurrency        string
-	Rating               Reference
-	SKU                  *string
-	ISBN                 *string
-	UPC                  *string
-	PageCount            *int
-	Description          *string
-	ImageURL             *url.URL
-	CoverHash            *string
-	AverageRating        *float64
-	RatingCount          int
-	Arcs                 []ArcList
-	Credits              []struct {
-		ID    int
-		Name  string
-		Roles []Reference
-	}
-	Characters []CharacterList
-	Teams      []TeamList
-	Universes  []UniverseList
-	Reprints   []struct {
-		ID    int
-		Issue string
-	}
-	Variants []struct {
-		Name     *string
-		SKU      *string
-		UPC      *string
-		Price    *string
-		ImageURL url.URL
-	}
+	ID                    int
+	Publisher             Reference
+	Imprint               *Reference
+	Series                IssueSeries
+	Number                string
+	AlternativeNumber     string
+	Title                 *string
+	Name                  []string
+	CoverDate             civil.Date
+	StoreDate             *civil.Date
+	FinalOrderCutoffDate  *civil.Date
+	Price                 *string
+	PriceCurrency         string
+	Rating                Reference
+	SKU                   *string
+	ISBN                  *string
+	UPC                   *string
+	PageCount             *int
+	Description           *string
+	ImageURL              *url.URL
+	CoverHash             *string
+	AverageRating         *float64
+	RatingCount           int
+	Arcs                  []ArcList
+	Credits               []IssueCredit
+	Characters            []CharacterList
+	Teams                 []TeamList
+	Universes             []UniverseList
+	Reprints              []IssueReprint
+	Variants              []IssueVariant
 	ComicVineID           *int
 	GrandComicsDatabaseID *int
 	ResourceURL           url.URL
@@ -73,12 +92,8 @@ type Issue struct {
 
 // IssueList is an issue as it appears in list responses.
 type IssueList struct {
-	ID     int
-	Series struct {
-		Name      string
-		Volume    int
-		YearBegan int
-	}
+	ID        int
+	Series    IssueListSeries
 	Name      string
 	Number    string
 	CoverDate civil.Date
@@ -290,18 +305,10 @@ func issueMapper(in internal.IssueRead) (*Issue, error) {
 		}
 	}
 
-	var credits []struct {
-		ID    int
-		Name  string
-		Roles []Reference
-	}
+	var credits []IssueCredit
 
 	if in.Credits != nil {
-		credits = make([]struct {
-			ID    int
-			Name  string
-			Roles []Reference
-		}, 0, len(*in.Credits))
+		credits = make([]IssueCredit, 0, len(*in.Credits))
 
 		for _, credit := range *in.Credits {
 			if credit.Id == nil {
@@ -325,11 +332,7 @@ func issueMapper(in internal.IssueRead) (*Issue, error) {
 				})
 			}
 
-			credits = append(credits, struct {
-				ID    int
-				Name  string
-				Roles []Reference
-			}{
+			credits = append(credits, IssueCredit{
 				ID:    *credit.Id,
 				Name:  *credit.Creator,
 				Roles: roles,
@@ -379,48 +382,27 @@ func issueMapper(in internal.IssueRead) (*Issue, error) {
 		}
 	}
 
-	var reprints []struct {
-		ID    int
-		Issue string
-	}
+	var reprints []IssueReprint
 
 	if in.Reprints != nil {
-		reprints = make([]struct {
-			ID    int
-			Issue string
-		}, 0, len(*in.Reprints))
+		reprints = make([]IssueReprint, 0, len(*in.Reprints))
 
 		for _, reprint := range *in.Reprints {
 			if reprint.Id == nil {
 				return nil, fmt.Errorf("issue: nil Reprints[].Id")
 			}
 
-			reprints = append(reprints, struct {
-				ID    int
-				Issue string
-			}{
+			reprints = append(reprints, IssueReprint{
 				ID:    *reprint.Id,
 				Issue: reprint.Issue,
 			})
 		}
 	}
 
-	var variants []struct {
-		Name     *string
-		SKU      *string
-		UPC      *string
-		Price    *string
-		ImageURL url.URL
-	}
+	var variants []IssueVariant
 
 	if in.Variants != nil {
-		variants = make([]struct {
-			Name     *string
-			SKU      *string
-			UPC      *string
-			Price    *string
-			ImageURL url.URL
-		}, 0, len(*in.Variants))
+		variants = make([]IssueVariant, 0, len(*in.Variants))
 
 		for _, variant := range *in.Variants {
 			maybeVariantImageURL, innerErr := url.Parse(variant.Image)
@@ -439,13 +421,7 @@ func issueMapper(in internal.IssueRead) (*Issue, error) {
 				variantPrice = &s
 			}
 
-			variants = append(variants, struct {
-				Name     *string
-				SKU      *string
-				UPC      *string
-				Price    *string
-				ImageURL url.URL
-			}{
+			variants = append(variants, IssueVariant{
 				Name:     variant.Name,
 				SKU:      variant.Sku,
 				UPC:      variant.Upc,
@@ -472,16 +448,7 @@ func issueMapper(in internal.IssueRead) (*Issue, error) {
 			Name: in.Publisher.Name,
 		},
 		Imprint: imprint,
-		Series: struct {
-			ID               int
-			Name             string
-			AlternativeNames []string
-			SortName         string
-			Volume           int
-			YearBegan        int
-			Type             Reference
-			Genres           []Reference
-		}{
+		Series: IssueSeries{
 			ID:               *in.Series.Id,
 			Name:             in.Series.Name,
 			AlternativeNames: seriesAltNames,
@@ -564,11 +531,7 @@ func issueListMapper(in internal.IssueList) (*IssueList, error) {
 
 	return &IssueList{
 		ID: *in.Id,
-		Series: struct {
-			Name      string
-			Volume    int
-			YearBegan int
-		}{
+		Series: IssueListSeries{
 			Name:      in.Series.Name,
 			Volume:    in.Series.Volume,
 			YearBegan: in.Series.YearBegan,

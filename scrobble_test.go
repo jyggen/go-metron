@@ -51,11 +51,7 @@ func TestScrobble(t *testing.T) {
 					Number:    "1",
 					CoverDate: parseDate(t, "2023-06-15"),
 					StoreDate: asReference(parseDate(t, "2023-06-13")),
-					Series: struct {
-						Name      string
-						Volume    int
-						YearBegan int
-					}{
+					Series: metron.ScrobbleIssueSeries{
 						Name:      "Amazing Spider-Man",
 						Volume:    6,
 						YearBegan: 2022,
@@ -95,11 +91,7 @@ func TestScrobble(t *testing.T) {
 					Number:    "1",
 					CoverDate: parseDate(t, "2023-06-15"),
 					StoreDate: asReference(parseDate(t, "2023-06-13")),
-					Series: struct {
-						Name      string
-						Volume    int
-						YearBegan int
-					}{
+					Series: metron.ScrobbleIssueSeries{
 						Name:      "Amazing Spider-Man",
 						Volume:    6,
 						YearBegan: 2022,

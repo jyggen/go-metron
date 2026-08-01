@@ -1,7 +1,6 @@
 package metron_test
 
 import (
-	"net/url"
 	"testing"
 
 	"github.com/jyggen/go-metron"
@@ -19,16 +18,7 @@ func TestIssueByID(t *testing.T) {
 					Name: "DC Comics",
 				},
 				Imprint: nil,
-				Series: struct {
-					ID               int
-					Name             string
-					AlternativeNames []string
-					SortName         string
-					Volume           int
-					YearBegan        int
-					Type             metron.Reference
-					Genres           []metron.Reference
-				}{
+				Series: metron.IssueSeries{
 					ID:               7133,
 					Name:             "Batman",
 					AlternativeNames: []string{},
@@ -92,11 +82,7 @@ func TestIssueByID(t *testing.T) {
 				AverageRating: nil,
 				RatingCount:   0,
 				Arcs:          []metron.ArcList{},
-				Credits: []struct {
-					ID    int
-					Name  string
-					Roles []metron.Reference
-				}{
+				Credits: []metron.IssueCredit{
 					{
 						ID:   1379,
 						Name: "Bob Harras",
@@ -418,10 +404,7 @@ func TestIssueByID(t *testing.T) {
 					},
 				},
 				Universes: []metron.UniverseList{},
-				Reprints: []struct {
-					ID    int
-					Issue string
-				}{
+				Reprints: []metron.IssueReprint{
 					{
 						ID:    6798,
 						Issue: "Batman (2011) #1",
@@ -451,13 +434,7 @@ func TestIssueByID(t *testing.T) {
 						Issue: "Batman (2011) #7",
 					},
 				},
-				Variants: []struct {
-					Name     *string
-					SKU      *string
-					UPC      *string
-					Price    *string
-					ImageURL url.URL
-				}{},
+				Variants:              []metron.IssueVariant{},
 				ComicVineID:           nil,
 				GrandComicsDatabaseID: asReference(1035895),
 				ResourceURL:           parseURL(t, "https://metron.cloud/issue/batman-2012-1/"),
@@ -476,16 +453,7 @@ func TestIssueByID(t *testing.T) {
 					ID:   2,
 					Name: "DC Black Label",
 				},
-				Series: struct {
-					ID               int
-					Name             string
-					AlternativeNames []string
-					SortName         string
-					Volume           int
-					YearBegan        int
-					Type             metron.Reference
-					Genres           []metron.Reference
-				}{
+				Series: metron.IssueSeries{
 					ID:               279,
 					Name:             "Batman: Last Knight on Earth",
 					AlternativeNames: []string{},
@@ -530,11 +498,7 @@ func TestIssueByID(t *testing.T) {
 				AverageRating: nil,
 				RatingCount:   0,
 				Arcs:          []metron.ArcList{},
-				Credits: []struct {
-					ID    int
-					Name  string
-					Roles []metron.Reference
-				}{
+				Credits: []metron.IssueCredit{
 					{
 						ID:   303,
 						Name: "Amedeo Turturro",
@@ -665,17 +629,8 @@ func TestIssueByID(t *testing.T) {
 				},
 				Teams:     []metron.TeamList{},
 				Universes: []metron.UniverseList{},
-				Reprints: []struct {
-					ID    int
-					Issue string
-				}{},
-				Variants: []struct {
-					Name     *string
-					SKU      *string
-					UPC      *string
-					Price    *string
-					ImageURL url.URL
-				}{
+				Reprints:  []metron.IssueReprint{},
+				Variants: []metron.IssueVariant{
 					{
 						Name:  asReference("Variant Cover"),
 						SKU:   asReference(""),
@@ -727,11 +682,7 @@ func issueListTestCases(t *testing.T) []testCase[*metron.IssueList] {
 			id: 89088,
 			expected: &metron.IssueList{
 				ID: 89088,
-				Series: struct {
-					Name      string
-					Volume    int
-					YearBegan int
-				}{
+				Series: metron.IssueListSeries{
 					Name:      "'68",
 					Volume:    1,
 					YearBegan: 2006,
@@ -754,11 +705,7 @@ func issueListTestCases(t *testing.T) []testCase[*metron.IssueList] {
 			id: 89089,
 			expected: &metron.IssueList{
 				ID: 89089,
-				Series: struct {
-					Name      string
-					Volume    int
-					YearBegan int
-				}{
+				Series: metron.IssueListSeries{
 					Name:      "'68",
 					Volume:    2,
 					YearBegan: 2011,
@@ -781,11 +728,7 @@ func issueListTestCases(t *testing.T) []testCase[*metron.IssueList] {
 			id: 89090,
 			expected: &metron.IssueList{
 				ID: 89090,
-				Series: struct {
-					Name      string
-					Volume    int
-					YearBegan int
-				}{
+				Series: metron.IssueListSeries{
 					Name:      "'68",
 					Volume:    2,
 					YearBegan: 2011,
@@ -808,11 +751,7 @@ func issueListTestCases(t *testing.T) []testCase[*metron.IssueList] {
 			id: 89091,
 			expected: &metron.IssueList{
 				ID: 89091,
-				Series: struct {
-					Name      string
-					Volume    int
-					YearBegan int
-				}{
+				Series: metron.IssueListSeries{
 					Name:      "'68",
 					Volume:    2,
 					YearBegan: 2011,

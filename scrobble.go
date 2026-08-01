@@ -13,18 +13,22 @@ import (
 	"github.com/oapi-codegen/nullable"
 )
 
+// ScrobbleIssueSeries is the series an issue belongs to, as embedded in a
+// scrobble response.
+type ScrobbleIssueSeries struct {
+	Name      string
+	Volume    int
+	YearBegan int
+}
+
 // ScrobbleIssue is the issue summary returned in a scrobble response.
 type ScrobbleIssue struct {
 	ID        int
 	Number    string
 	CoverDate civil.Date
 	StoreDate *civil.Date
-	Series    struct {
-		Name      string
-		Volume    int
-		YearBegan int
-	}
-	Modified time.Time
+	Series    ScrobbleIssueSeries
+	Modified  time.Time
 }
 
 // ScrobbleResult is the result of marking an issue as read.
@@ -158,11 +162,7 @@ func collectionIssueMapper(in internal.CollectionIssue) (*ScrobbleIssue, error) 
 		Number:    in.Number,
 		CoverDate: coverDate,
 		StoreDate: maybeStoreDate,
-		Series: struct {
-			Name      string
-			Volume    int
-			YearBegan int
-		}{
+		Series: ScrobbleIssueSeries{
 			Name:      in.Series.Name,
 			Volume:    in.Series.Volume,
 			YearBegan: in.Series.YearBegan,
