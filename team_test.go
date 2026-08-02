@@ -14,8 +14,8 @@ func TestTeamByID(t *testing.T) {
 			expected: &metron.Team{
 				ID:          180,
 				Name:        "A-Force",
-				Description: ptr("Marvel's first all-female team of Avengers."),
-				ImageURL:    ptr(parseURL(t, "https://static.metron.cloud/media/team/2019/07/27/aforce.jpg")),
+				Description: new("Marvel's first all-female team of Avengers."),
+				ImageURL:    new(parseURL(t, "https://static.metron.cloud/media/team/2019/07/27/aforce.jpg")),
 				Creators:    []metron.CreatorList{},
 				Universes:   []metron.UniverseList{},
 				ComicVineID: nil,
@@ -28,8 +28,8 @@ func TestTeamByID(t *testing.T) {
 			expected: &metron.Team{
 				ID:          930,
 				Name:        "Infinites",
-				Description: ptr(""),
-				ImageURL: ptr(
+				Description: new(""),
+				ImageURL: new(
 					parseURL(
 						t,
 						"https://static.metron.cloud/media/team/2023/03/06/14bda442d94345548e47683884914484.jpg",
@@ -43,7 +43,7 @@ func TestTeamByID(t *testing.T) {
 						Modified: parseTime(t, "2024-04-17T10:31:52.624470-04:00"),
 					},
 				},
-				ComicVineID: ptr(41013),
+				ComicVineID: new(41013),
 				ResourceURL: parseURL(t, "https://metron.cloud/team/infinites/"),
 				Modified:    parseTime(t, "2025-02-19T01:42:38.767067-05:00"),
 			},

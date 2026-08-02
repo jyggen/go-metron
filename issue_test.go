@@ -46,7 +46,7 @@ func TestIssueByID(t *testing.T) {
 				},
 				Number:            "1",
 				AlternativeNumber: "",
-				Title:             ptr("The Court of Owls"),
+				Title:             new("The Court of Owls"),
 				Name: []string{
 					"Knife Trick",
 					"Trust Fall",
@@ -57,28 +57,28 @@ func TestIssueByID(t *testing.T) {
 					"The Talons Strike!",
 				},
 				CoverDate:            parseDate(t, "2012-07-01"),
-				StoreDate:            ptr(parseDate(t, "2012-05-09")),
+				StoreDate:            new(parseDate(t, "2012-05-09")),
 				FinalOrderCutoffDate: nil,
-				Price:                ptr("24.99"),
+				Price:                new("24.99"),
 				PriceCurrency:        "USD",
 				Rating: metron.Reference{
 					ID:   1,
 					Name: "Unknown",
 				},
-				SKU:       ptr("JAN120300"),
-				ISBN:      ptr(""),
-				UPC:       ptr(""),
-				PageCount: ptr(176),
-				Description: ptr(
+				SKU:       new("JAN120300"),
+				ISBN:      new(""),
+				UPC:       new(""),
+				PageCount: new(176),
+				Description: new(
 					"Beware the Court of Owls, that watches all the time, ruling Gotham from a shadowed perch, behind granite and lime, they watch you at your hearth, they watch you in your bed. Speak not a whispered word of them, or they'll send the Talon for your head.\r\n\r\nBatman had heard the tales of Gotham City's Court of Owls. Meeting in the shadows and using the nocturnal bird of prey as their calling card, the members of this powerful cabal are the true rulers of Gotham.\r\n\r\nBut the Dark Knight dismissed the stories as rumors and old wives' tales. Gotham was his city.\r\n\r\nUntil now.\r\n\r\nA brutal assassin is sinking his razor-sharp talons into the city's best and brightest, as well as its most dangerous and deadly. If the dark legends are true, his masters are more powerful predators than the Batman could ever imagine—and their nests are everywhere...\r\n\r\nThe superstar team of writer SCOTT SNYDER (AMERICAN VAMPIRE, BATMAN: THE BLACK MIRROR) and GREG CAPULLO (SPAWN) proudly present BATMAN: THE COURT OF OWLS (collecting BATMAN #1-7)—a soaring saga of mystery and terror that became one of the year's best-selling comics.",
 				),
-				ImageURL: ptr(
+				ImageURL: new(
 					parseURL(
 						t,
 						"https://static.metron.cloud/media/issue/2024/02/27/e49a51e397ac4489a81785ad8098d296.jpg",
 					),
 				),
-				CoverHash:     ptr("841068ef7e313dec"),
+				CoverHash:     new("841068ef7e313dec"),
 				AverageRating: nil,
 				RatingCount:   0,
 				Arcs:          []metron.ArcList{},
@@ -436,7 +436,7 @@ func TestIssueByID(t *testing.T) {
 				},
 				Variants:              []metron.IssueVariant{},
 				ComicVineID:           nil,
-				GrandComicsDatabaseID: ptr(1035895),
+				GrandComicsDatabaseID: new(1035895),
 				ResourceURL:           parseURL(t, "https://metron.cloud/issue/batman-2012-1/"),
 				Modified:              parseTime(t, "2025-01-07T08:09:42.476138-05:00"),
 			},
@@ -472,29 +472,29 @@ func TestIssueByID(t *testing.T) {
 					},
 				},
 				Number: "1",
-				Title:  ptr(""),
+				Title:  new(""),
 				Name: []string{
 					"Book One",
 				},
 				CoverDate:     parseDate(t, "2019-07-01"),
-				StoreDate:     ptr(parseDate(t, "2019-05-29")),
-				Price:         ptr("5.99"),
+				StoreDate:     new(parseDate(t, "2019-05-29")),
+				Price:         new("5.99"),
 				PriceCurrency: "USD",
 				Rating: metron.Reference{
 					ID:   5,
 					Name: "Mature",
 				},
-				SKU:       ptr(""),
-				ISBN:      ptr(""),
-				UPC:       ptr("76194135390600111"),
-				PageCount: ptr(60),
-				Description: ptr(
+				SKU:       new(""),
+				ISBN:      new(""),
+				UPC:       new("76194135390600111"),
+				PageCount: new(60),
+				Description: new(
 					"Bruce Wayne wakes up in Arkham Asylum. Young. Sane.\r\nAnd...he was never Batman.\r\n\r\n So begins this sprawling tale of the Dark Knight as he embarks on a quest through a devastated DC landscape featuring a massive cast of familiar faces from the DC Universe. As he tries to piece together the mystery of his past, he must unravel the cause of this terrible future and track down the unspeakable force that destroyed the world as he knew it…",
 				),
-				ImageURL: ptr(
+				ImageURL: new(
 					parseURL(t, "https://static.metron.cloud/media/issue/2019/05/27/batman-last-knight-1.jpg"),
 				),
-				CoverHash:     ptr("ede81312b2337ac5"),
+				CoverHash:     new("ede81312b2337ac5"),
 				AverageRating: nil,
 				RatingCount:   0,
 				Arcs:          []metron.ArcList{},
@@ -632,9 +632,9 @@ func TestIssueByID(t *testing.T) {
 				Reprints:  []metron.IssueReprint{},
 				Variants: []metron.IssueVariant{
 					{
-						Name:  ptr("Variant Cover"),
-						SKU:   ptr(""),
-						UPC:   ptr(""),
+						Name:  new("Variant Cover"),
+						SKU:   new(""),
+						UPC:   new(""),
 						Price: nil,
 						ImageURL: parseURL(
 							t,
@@ -642,8 +642,8 @@ func TestIssueByID(t *testing.T) {
 						),
 					},
 				},
-				ComicVineID:           ptr(710046),
-				GrandComicsDatabaseID: ptr(1970616),
+				ComicVineID:           new(710046),
+				GrandComicsDatabaseID: new(1970616),
 				ResourceURL:           parseURL(t, "https://metron.cloud/issue/batman-last-knight-earth-2019-1/"),
 				Modified:              parseTime(t, "2024-12-21T14:45:34.863850-05:00"),
 			},
@@ -691,13 +691,13 @@ func issueListTestCases(t *testing.T) []testCase[*metron.IssueList] {
 				Name:      "'68 (2006) #1",
 				CoverDate: parseDate(t, "2006-12-01"),
 				StoreDate: nil,
-				ImageURL: ptr(
+				ImageURL: new(
 					parseURL(
 						t,
 						"https://static.metron.cloud/media/issue/2023/12/02/395d1af45859497183f0b868485831aa.jpg",
 					),
 				),
-				CoverHash: ptr("de9a207b768189f4"),
+				CoverHash: new("de9a207b768189f4"),
 				Modified:  parseTime(t, "2023-12-02T10:08:26.125751-05:00"),
 			},
 		},
@@ -713,14 +713,14 @@ func issueListTestCases(t *testing.T) []testCase[*metron.IssueList] {
 				Number:    "1",
 				Name:      "'68 (2011) #1",
 				CoverDate: parseDate(t, "2011-04-01"),
-				StoreDate: ptr(parseDate(t, "2011-04-27")),
-				ImageURL: ptr(
+				StoreDate: new(parseDate(t, "2011-04-27")),
+				ImageURL: new(
 					parseURL(
 						t,
 						"https://static.metron.cloud/media/issue/2023/12/02/b8a86c0422e749968f74c2fe2605ea4a.jpg",
 					),
 				),
-				CoverHash: ptr("ccd6331a22959d3b"),
+				CoverHash: new("ccd6331a22959d3b"),
 				Modified:  parseTime(t, "2023-12-02T10:10:55.924868-05:00"),
 			},
 		},
@@ -736,14 +736,14 @@ func issueListTestCases(t *testing.T) []testCase[*metron.IssueList] {
 				Number:    "2",
 				Name:      "'68 (2011) #2",
 				CoverDate: parseDate(t, "2011-05-01"),
-				StoreDate: ptr(parseDate(t, "2011-05-25")),
-				ImageURL: ptr(
+				StoreDate: new(parseDate(t, "2011-05-25")),
+				ImageURL: new(
 					parseURL(
 						t,
 						"https://static.metron.cloud/media/issue/2023/12/02/ceddeae0aac84df7a509d66003c8007c.jpg",
 					),
 				),
-				CoverHash: ptr("c0471e7273cf1ccc"),
+				CoverHash: new("c0471e7273cf1ccc"),
 				Modified:  parseTime(t, "2023-12-02T10:11:19.577639-05:00"),
 			},
 		},
@@ -759,14 +759,14 @@ func issueListTestCases(t *testing.T) []testCase[*metron.IssueList] {
 				Number:    "3",
 				Name:      "'68 (2011) #3",
 				CoverDate: parseDate(t, "2011-08-01"),
-				StoreDate: ptr(parseDate(t, "2011-08-03")),
-				ImageURL: ptr(
+				StoreDate: new(parseDate(t, "2011-08-03")),
+				ImageURL: new(
 					parseURL(
 						t,
 						"https://static.metron.cloud/media/issue/2023/12/02/fb0072f3b7094758a3488f4cc8b6e551.jpg",
 					),
 				),
-				CoverHash: ptr("cc97960b5be6a684"),
+				CoverHash: new("cc97960b5be6a684"),
 				Modified:  parseTime(t, "2023-12-02T10:11:24.329496-05:00"),
 			},
 		},

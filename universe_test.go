@@ -19,8 +19,8 @@ func TestUniverseByID(t *testing.T) {
 				},
 				Name:        "ABC",
 				Designation: "Earth 25",
-				Description: ptr("Home to the characters from Alan Moore's America's Best Comics imprint."),
-				ImageURL: ptr(
+				Description: new("Home to the characters from Alan Moore's America's Best Comics imprint."),
+				ImageURL: new(
 					parseURL(t, "https://static.metron.cloud/media/universe/2024/01/25/earth-abc.webp"),
 				),
 				ResourceURL: parseURL(t, "https://metron.cloud/universe/abc/"),

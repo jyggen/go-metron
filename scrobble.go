@@ -119,8 +119,7 @@ func scrobbleMapper(in internal.ScrobbleResponse) (*ScrobbleResult, error) {
 
 	if ratingVal, rErr := in.Rating.Get(); rErr == nil {
 		if enumVal, eErr := ratingVal.AsRatingEnum(); eErr == nil {
-			r := int(enumVal)
-			rating = &r
+			rating = new(int(enumVal))
 		}
 	}
 
@@ -153,8 +152,7 @@ func collectionIssueMapper(in internal.CollectionIssue) (*ScrobbleIssue, error) 
 	var maybeStoreDate *civil.Date
 
 	if d, err := in.StoreDate.Get(); err == nil {
-		storeDate := civil.DateOf(d.Time)
-		maybeStoreDate = &storeDate
+		maybeStoreDate = new(civil.DateOf(d.Time))
 	}
 
 	return &ScrobbleIssue{

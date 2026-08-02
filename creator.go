@@ -81,13 +81,11 @@ func creatorMapper(in internal.Creator) (*Creator, error) {
 	var death *civil.Date
 
 	if d, err := in.Birth.Get(); err == nil {
-		noRefBirth := civil.DateOf(d.Time)
-		birth = &noRefBirth
+		birth = new(civil.DateOf(d.Time))
 	}
 
 	if d, err := in.Death.Get(); err == nil {
-		noRefDeath := civil.DateOf(d.Time)
-		death = &noRefDeath
+		death = new(civil.DateOf(d.Time))
 	}
 
 	return &Creator{

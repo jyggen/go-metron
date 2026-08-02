@@ -280,15 +280,13 @@ func issueMapper(in internal.IssueRead) (*Issue, error) {
 	var maybeFinalOrderCutoffDate *civil.Date
 
 	if d, err := in.FocDate.Get(); err == nil {
-		finalOrderCutoffDate := civil.DateOf(d.Time)
-		maybeFinalOrderCutoffDate = &finalOrderCutoffDate
+		maybeFinalOrderCutoffDate = new(civil.DateOf(d.Time))
 	}
 
 	var maybeStoreDate *civil.Date
 
 	if d, err := in.StoreDate.Get(); err == nil {
-		storeDate := civil.DateOf(d.Time)
-		maybeStoreDate = &storeDate
+		maybeStoreDate = new(civil.DateOf(d.Time))
 	}
 
 	var arcs []ArcList
@@ -515,8 +513,7 @@ func issueListMapper(in internal.IssueList) (*IssueList, error) {
 	var maybeStoreDate *civil.Date
 
 	if d, err := in.StoreDate.Get(); err == nil {
-		storeDate := civil.DateOf(d.Time)
-		maybeStoreDate = &storeDate
+		maybeStoreDate = new(civil.DateOf(d.Time))
 	}
 
 	var imageURL *url.URL

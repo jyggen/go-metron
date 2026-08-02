@@ -97,8 +97,7 @@ func parseRateLimitWindow(header http.Header, remainingHeader, resetHeader strin
 	}
 
 	if v, err := strconv.ParseInt(resetStr, 10, 64); err == nil {
-		t := time.Unix(v, 0)
-		w.reset = &t
+		w.reset = new(time.Unix(v, 0))
 	}
 
 	return w, true

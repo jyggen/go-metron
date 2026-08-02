@@ -206,7 +206,3 @@ func parseURL(t *testing.T, urlString string) url.URL {
 
 	return *v
 }
-
-func ptr[T any](v T) *T {
-	return &v
-}
