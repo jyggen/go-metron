@@ -14,11 +14,11 @@ func TestCharacterByID(t *testing.T) {
 			expected: &metron.Character{
 				ID:    83,
 				Name:  "Joker",
-				Alias: asReference([]string{"Red Hood"}),
-				Description: asReference(
+				Alias: ptr([]string{"Red Hood"}),
+				Description: ptr(
 					"The Joker is a fictional super-villain created by Bill Finger, Bob Kane, and Jerry Robinson who first appeared in the debut issue of the comic book Batman (April 25, 1940), published by DC Comics. Credit for the Joker's creation is disputed; Kane and Robinson claimed responsibility for the Joker's design, while acknowledging Finger's writing contribution. Although the Joker was planned to be killed off during his initial appearance, he was spared by editorial intervention, allowing the character to endure as the archenemy of the superhero Batman.\r\n\r\nIn his comic book appearances, the Joker is portrayed as a criminal mastermind. Introduced as a psychopath with a warped, sadistic sense of humor, the character became a goofy prankster in the late 1950's in response to regulation by the Comics Code Authority, before returning to his darker roots during the early 1970's. As Batman's nemesis, the Joker has been part of the superhero's defining stories, including the murder of Jason Todd—the second Robin and Batman's ward—and the paralysis of one of Batman's allies, Barbara Gordon. The Joker has had various possible origin stories during his decades of appearances. The most common story involves him falling into a tank of chemical waste which bleaches his skin white and turns his hair green and lips bright red; the resulting disfigurement drives him insane. The antithesis of Batman in personality and appearance, the Joker is considered by critics to be his perfect adversary.\r\n\r\nThe Joker possesses no superhuman abilities, instead using his expertise in chemical engineering to develop poisonous or lethal concoctions, and thematic weaponry, including razor-tipped playing cards, deadly joy buzzers, and acid-spraying lapel flowers. The Joker sometimes works with other Gotham City super-villains such as the Penguin and Two-Face, and groups like the Injustice Gang and Injustice League, but these relationships often collapse due to the Joker's desire for unbridled chaos. The 1990's introduced a romantic interest for the Joker in his former psychiatrist, Harley Quinn, who becomes his villainous sidekick. Although his primary obsession is Batman, the Joker has also fought other heroes including Superman and Wonder Woman.",
 				),
-				ImageURL: asReference(
+				ImageURL: ptr(
 					parseURL(t, "https://static.metron.cloud/media/character/2018/11/13/joker.jpg"),
 				),
 				Creators: []metron.CreatorList{
@@ -92,7 +92,7 @@ func TestCharacterByID(t *testing.T) {
 						Modified: parseTime(t, "2025-10-26T22:25:13.152897-04:00"),
 					},
 				},
-				ComicVineID: asReference(1702),
+				ComicVineID: ptr(1702),
 				ResourceURL: parseURL(t, "https://metron.cloud/character/joker/"),
 				Modified:    parseTime(t, "2026-07-13T13:47:16.465101-04:00"),
 			},
@@ -102,13 +102,13 @@ func TestCharacterByID(t *testing.T) {
 			expected: &metron.Character{
 				ID:          26153,
 				Name:        "176-301",
-				Alias:       asReference([]string{}),
-				Description: asReference(""),
+				Alias:       ptr([]string{}),
+				Description: ptr(""),
 				ImageURL:    nil,
 				Creators:    []metron.CreatorList{},
 				Teams:       []metron.TeamList{},
 				Universes:   []metron.UniverseList{},
-				ComicVineID: asReference(31838),
+				ComicVineID: ptr(31838),
 				ResourceURL: parseURL(t, "https://metron.cloud/character/176-301/"),
 				Modified:    parseTime(t, "2024-02-24T13:07:30.187788-05:00"),
 			},

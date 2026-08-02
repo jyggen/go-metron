@@ -31,58 +31,73 @@ type Reference struct {
 	Name string `json:"name"`
 }
 
-// Client is a Metron API client.
+// Client is a Metron API client. It holds only the state used to serve
+// requests; everything supplied via Option is consumed during construction.
 type Client struct {
-	cache         *filecache.FileCache
-	client        internal.ClientInterface
-	enableCaching bool
-	httpClient    *http.Client
-	maxRetries    uint
-	storagePath   string
-	userAgent     string
+	cache      *filecache.FileCache
+	client     internal.ClientInterface
+	maxRetries uint
+}
+
+// clientOptions is the mutable configuration an Option acts on. It exists so
+// options can be applied in any order before NewClient derives a Client from
+// the final values.
+type clientOptions struct {
+	caching     bool
+	httpClient  *http.Client
+	maxRetries  uint
+	storagePath string
+	userAgent   string
 }
 
 // Option configures a Client.
-type Option func(*Client)
+type Option func(*clientOptions)
 
-// NewClient returns a Metron client authenticated with the given API token.
-func NewClient(apiToken string, options ...Option) (*Client, error) {
+func defaultOptions() clientOptions {
 	storagePath, err := os.UserCacheDir()
 	if err != nil {
 		storagePath = os.TempDir()
 	}
 
-	c := &Client{
-		enableCaching: false,
-		httpClient:    &http.Client{},
-		storagePath:   filepath.Join(storagePath, "go-metron"),
-		userAgent:     defaultUserAgent,
+	return clientOptions{
+		httpClient:  &http.Client{},
+		storagePath: filepath.Join(storagePath, "go-metron"),
+		userAgent:   defaultUserAgent,
 	}
+}
+
+// NewClient returns a Metron client authenticated with the given API token.
+func NewClient(apiToken string, options ...Option) (*Client, error) {
+	o := defaultOptions()
 
 	for _, option := range options {
-		option(c)
+		option(&o)
 	}
 
-	if err = os.MkdirAll(c.storagePath, 0o700); err != nil {
+	if err := os.MkdirAll(o.storagePath, 0o700); err != nil {
 		return nil, err
 	}
 
-	if c.enableCaching {
-		c.cache, err = filecache.New(filecache.WithBasePath(c.storagePath), filecache.WithCompression())
+	c := &Client{maxRetries: o.maxRetries}
+
+	if o.caching {
+		cache, err := filecache.New(filecache.WithBasePath(o.storagePath), filecache.WithCompression())
 		if err != nil {
 			return nil, err
 		}
+
+		c.cache = cache
 	}
 
-	c.httpClient = httpkit.NewFromClient(
-		c.httpClient,
+	httpClient := httpkit.NewFromClient(
+		o.httpClient,
 		httpkit.WithBearerToken(apiToken),
-		httpkit.WithUserAgent(c.userAgent),
+		httpkit.WithUserAgent(o.userAgent),
 		httpkit.WithMiddleware(newBackOffMiddleware()),
 		httpkit.WithMiddleware(newRateLimitMiddleware()),
 	)
 
-	internalClient, err := internal.NewClient(baseURL, internal.WithHTTPClient(c.httpClient))
+	internalClient, err := internal.NewClient(baseURL, internal.WithHTTPClient(httpClient))
 	if err != nil {
 		return nil, err
 	}
@@ -151,35 +166,36 @@ func newBackOffMiddleware() httpkit.Middleware {
 
 // WithCaching enables on-disk response caching.
 func WithCaching() Option {
-	return func(c *Client) {
-		c.enableCaching = true
+	return func(o *clientOptions) {
+		o.caching = true
 	}
 }
 
 // WithClient sets the underlying HTTP client.
 func WithClient(client *http.Client) Option {
-	return func(c *Client) {
-		c.httpClient = client
+	return func(o *clientOptions) {
+		o.httpClient = client
 	}
 }
 
 // WithRetry sets the maximum number of retries for rate-limited requests.
 func WithRetry(maxRetries uint) Option {
-	return func(c *Client) {
-		c.maxRetries = maxRetries
+	return func(o *clientOptions) {
+		o.maxRetries = maxRetries
 	}
 }
 
 // WithStoragePath sets the directory used for cache and rate limiter state.
 func WithStoragePath(storagePath string) Option {
-	return func(c *Client) {
-		c.storagePath = storagePath
+	return func(o *clientOptions) {
+		o.storagePath = storagePath
 	}
 }
 
+// WithUserAgent prefixes the given string onto the default user agent.
 func WithUserAgent(userAgent string) Option {
-	return func(c *Client) {
-		c.userAgent = fmt.Sprintf("%s %s", userAgent, defaultUserAgent)
+	return func(o *clientOptions) {
+		o.userAgent = fmt.Sprintf("%s %s", userAgent, defaultUserAgent)
 	}
 }
 

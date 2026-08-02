@@ -134,7 +134,7 @@ func newTestClient(t *testing.T, mocks []requestMock) *metron.Client {
 	c, err := metron.NewClient("foobar", metron.WithClient(&http.Client{
 		Transport: roundTripFunc(func(req *http.Request) *http.Response {
 			m := mocks[0]
-			mocks = append(mocks[:0], mocks[1:]...)
+			mocks = mocks[1:]
 
 			require.Equal(t, m.expectedURL, req.URL.String())
 
@@ -207,6 +207,6 @@ func parseURL(t *testing.T, urlString string) url.URL {
 	return *v
 }
 
-func asReference[T any](v T) *T {
+func ptr[T any](v T) *T {
 	return &v
 }

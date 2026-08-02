@@ -1,3 +1,4 @@
+// Command download-fixtures regenerates the test fixtures from the live API.
 package main
 
 import (

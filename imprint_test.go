@@ -15,10 +15,10 @@ func TestImprintByID(t *testing.T) {
 				ID:          0,
 				Name:        "Foobar",
 				Founded:     nil,
-				Description: asReference(""),
+				Description: ptr(""),
 				ImageURL:    nil,
 				Publisher:   metron.Reference{ID: 0, Name: "Foobar"},
-				ComicVineID: asReference(0),
+				ComicVineID: ptr(0),
 				ResourceURL: parseURL(t, "https://example.com/"),
 				Modified:    parseTime(t, "1970-01-01T00:00:00.000000Z"),
 			},
@@ -28,11 +28,11 @@ func TestImprintByID(t *testing.T) {
 			expected: &metron.Imprint{
 				ID:      1,
 				Name:    "Vertigo Comics",
-				Founded: asReference(1993),
-				Description: asReference(
+				Founded: ptr(1993),
+				Description: ptr(
 					"Vertigo Comics (also known as DC Vertigo) is an imprint of the American comic book publisher DC Comics. It was created in 1993 to publish stories with more graphic or adult content that could not fit within the restrictions of the Comics Code Authority, thus allowing more creative freedom than DC's main imprint. These comics were free to contain explicit violence, substance and drug abuse, sexuality, nudity, profanity, and other controversial subjects, similar to the content of R-rated films.\r\n\r\nAlthough its initial publications were primarily in the horror and fantasy genres, it has also published works dealing with crime, social commentary, speculative fiction, biography, and other genres. Originally publishing a mix of company- and creator-owned work, its current focus is on the latter. It pioneered in North America an increasingly common publishing model, in which monthly series are periodically comprised into collected editions which are kept in print for bookstore sale.\r\n\r\nVertigo series have won the comics industry's Eisner Award, including the \"best continuing series\" of various years (The Sandman, Preacher, 100 Bullets, Y: The Last Man and Fables). Several of its publications have been adapted to film (such as Constantine, A History of Violence, Stardust, and V for Vendetta) and episodic television (such as Constantine, iZombie, Lucifer, and Preacher).",
 				),
-				ImageURL: asReference(
+				ImageURL: ptr(
 					parseURL(t, "https://static.metron.cloud/media/imprint/2024/08/12/vertigo.jpg"),
 				),
 				Publisher:   metron.Reference{ID: 2, Name: "DC Comics"},

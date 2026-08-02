@@ -14,15 +14,15 @@ func TestCreatorByID(t *testing.T) {
 			expected: &metron.Creator{
 				ID:    5958,
 				Name:  "Frank Godwin",
-				Birth: asReference(parseDate(t, "1889-10-20")),
-				Death: asReference(parseDate(t, "1959-08-05")),
-				Description: asReference(
+				Birth: ptr(parseDate(t, "1889-10-20")),
+				Death: ptr(parseDate(t, "1959-08-05")),
+				Description: ptr(
 					"An American illustrator and comic strip artist, notable for his strip Connie and his book illustrations for Treasure Island, Kidnapped, Robinson Crusoe, Robin Hood and King Arthur. He also was a prolific editorial and advertising illustrator.",
 				),
-				ImageURL: asReference(
+				ImageURL: ptr(
 					parseURL(t, "https://static.metron.cloud/media/creator/2022/03/06/f-godwin.jpg"),
 				),
-				Alias: asReference([]string{
+				Alias: ptr([]string{
 					"Francis Godwin",
 				}),
 				ComicVineID: nil,
@@ -37,10 +37,10 @@ func TestCreatorByID(t *testing.T) {
 				Name:        "A. C. Farley",
 				Birth:       nil,
 				Death:       nil,
-				Description: asReference(""),
+				Description: ptr(""),
 				ImageURL:    nil,
-				Alias:       asReference([]string{}),
-				ComicVineID: asReference(49964),
+				Alias:       ptr([]string{}),
+				ComicVineID: ptr(49964),
 				ResourceURL: parseURL(t, "https://metron.cloud/creator/a-c-farley/"),
 				Modified:    parseTime(t, "2024-05-18T11:25:36.333655-04:00"),
 			},

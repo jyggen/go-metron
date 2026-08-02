@@ -29,7 +29,7 @@ func TestSeriesByID(t *testing.T) {
 				Imprint:     nil,
 				YearBegan:   2022,
 				YearEnded:   nil,
-				Description: asReference(""),
+				Description: ptr(""),
 				IssueCount:  1,
 				Genres: []metron.Reference{
 					{
@@ -43,8 +43,8 @@ func TestSeriesByID(t *testing.T) {
 						Name: "Batman (2016)",
 					},
 				},
-				ComicVineID:           asReference(143255),
-				GrandComicsDatabaseID: asReference(185580),
+				ComicVineID:           ptr(143255),
+				GrandComicsDatabaseID: ptr(185580),
 				ResourceURL:           parseURL(t, "https://metron.cloud/series/batman-2022-annual-2022/"),
 				Modified:              parseTime(t, "2024-12-21T13:48:18.897702-05:00"),
 			},
@@ -71,8 +71,8 @@ func TestSeriesByID(t *testing.T) {
 					Name: "Vertigo Comics",
 				},
 				YearBegan: 2002,
-				YearEnded: asReference(2015),
-				Description: asReference(
+				YearEnded: ptr(2015),
+				Description: ptr(
 					"When the Adversary conquered the lands of legends, the inhabitants were forced into exile. They form a secret society, a hidden enclave in modern-day New York. Bill Willingham's award-winning \"fractured-fairy-tale\" series explores the world of these beloved fables...one that exists within our own.",
 				),
 				IssueCount: 149,
@@ -83,8 +83,8 @@ func TestSeriesByID(t *testing.T) {
 						Name: "Fables (2022)",
 					},
 				},
-				ComicVineID:           asReference(9723),
-				GrandComicsDatabaseID: asReference(10549),
+				ComicVineID:           ptr(9723),
+				GrandComicsDatabaseID: ptr(10549),
 				ResourceURL:           parseURL(t, "https://metron.cloud/series/fables-2002/"),
 				Modified:              parseTime(t, "2026-05-29T18:38:10.592560-04:00"),
 			},
