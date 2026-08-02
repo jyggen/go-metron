@@ -25,7 +25,15 @@ const (
 	defaultUserAgent = "go-metron/0.1.5"
 )
 
-// Reference identifies a related resource by ID and display name.
+// Reference identifies a related resource by ID and display name. It is used
+// for every kind of relation the API returns — publishers, roles, genres,
+// ratings and so on — so the meaning of a Reference depends on the field
+// holding it.
+//
+// ID is the resource's ID within its own collection and is the only stable
+// identifier: pass it to the matching ByID method to resolve the full record.
+// Name is the upstream display name, which may be edited or reformatted at any
+// time, and is not unique. Do not key off Name.
 type Reference struct {
 	ID   int    `json:"id"`
 	Name string `json:"name"`
@@ -36,7 +44,7 @@ type Reference struct {
 type Client struct {
 	cache      *filecache.FileCache
 	client     internal.ClientInterface
-	maxRetries uint
+	maxRetries int
 }
 
 // clientOptions is the mutable configuration an Option acts on. It exists so
@@ -45,7 +53,7 @@ type Client struct {
 type clientOptions struct {
 	caching     bool
 	httpClient  *http.Client
-	maxRetries  uint
+	maxRetries  int
 	storagePath string
 	userAgent   string
 }
@@ -179,9 +187,10 @@ func WithClient(client *http.Client) Option {
 }
 
 // WithRetry sets the maximum number of retries for rate-limited requests.
-func WithRetry(maxRetries uint) Option {
+// Negative values are clamped to zero.
+func WithRetry(maxRetries int) Option {
 	return func(o *clientOptions) {
-		o.maxRetries = maxRetries
+		o.maxRetries = max(0, maxRetries)
 	}
 }
 
@@ -232,7 +241,7 @@ func byID[In, Out any](ctx context.Context, c *Client, key string, f func(contex
 	return m(v)
 }
 
-func call(ctx context.Context, maxRetries uint, f func(ctx context.Context, fn ...internal.RequestEditorFn) (*http.Response, error)) func(header *filecache.Header) (io.ReadCloser, time.Time, error) {
+func call(ctx context.Context, maxRetries int, f func(ctx context.Context, fn ...internal.RequestEditorFn) (*http.Response, error)) func(header *filecache.Header) (io.ReadCloser, time.Time, error) {
 	return func(header *filecache.Header) (io.ReadCloser, time.Time, error) {
 		var body io.ReadCloser
 		var ttl time.Time

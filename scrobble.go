@@ -42,31 +42,49 @@ type ScrobbleResult struct {
 	Modified time.Time
 }
 
+// scrobbleOptions mirrors the optional fields of internal.ScrobbleRequest so
+// ScrobbleOption never names a type from the internal package. Scrobble
+// translates it into the request just before the call.
+type scrobbleOptions struct {
+	readDate *time.Time
+	rating   *int
+}
+
 // ScrobbleOption configures an optional parameter for a scrobble request.
-type ScrobbleOption func(*internal.ScrobbleRequest)
+type ScrobbleOption func(*scrobbleOptions)
 
 // WithReadDate sets the read date for a scrobble request.
 func WithReadDate(t time.Time) ScrobbleOption {
-	return func(r *internal.ScrobbleRequest) {
-		r.DateRead = nullable.NewNullableWithValue(t)
+	return func(o *scrobbleOptions) {
+		o.readDate = &t
 	}
 }
 
 // WithRating sets the rating (1-5) for a scrobble request.
 func WithRating(rating int) ScrobbleOption {
-	return func(r *internal.ScrobbleRequest) {
-		r.Rating = nullable.NewNullableWithValue(rating)
+	return func(o *scrobbleOptions) {
+		o.rating = &rating
 	}
 }
 
 // Scrobble marks an issue as read, optionally setting a read date and rating.
 func (c *Client) Scrobble(ctx context.Context, issueID int, opts ...ScrobbleOption) (*ScrobbleResult, error) {
+	var o scrobbleOptions
+
+	for _, opt := range opts {
+		opt(&o)
+	}
+
 	req := internal.ScrobbleRequest{
 		IssueId: issueID,
 	}
 
-	for _, opt := range opts {
-		opt(&req)
+	if o.readDate != nil {
+		req.DateRead = nullable.NewNullableWithValue(*o.readDate)
+	}
+
+	if o.rating != nil {
+		req.Rating = nullable.NewNullableWithValue(*o.rating)
 	}
 
 	body, _, err := call(ctx, c.maxRetries, func(ctx context.Context, fn ...internal.RequestEditorFn) (*http.Response, error) {
