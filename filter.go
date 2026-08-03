@@ -13,632 +13,264 @@ import (
 // to compile.
 type Filter func(v any) error
 
-// ByAlternativeNumber filters by alternative issue number.
-func ByAlternativeNumber(v string) Filter {
+// newFilter builds a Filter that applies to any params struct implementing I.
+// The interface is inferred from apply's parameter, so each By* function only
+// has to name its own interface once. name is carried explicitly rather than
+// derived at runtime so the FilterError reports the caller's name.
+func newFilter[I any](name string, apply func(I)) Filter {
 	return func(f any) error {
-		p, ok := f.(alternativenumberFilterable)
+		p, ok := f.(I)
 		if !ok {
-			return &FilterError{Filter: "ByAlternativeNumber"}
+			return &FilterError{Filter: name}
 		}
 
-		p.SetAltNumber(v)
+		apply(p)
 
 		return nil
 	}
+}
+
+// ByAlternativeNumber filters by alternative issue number.
+func ByAlternativeNumber(v string) Filter {
+	return newFilter("ByAlternativeNumber", func(p interface{ SetAltNumber(string) }) {
+		p.SetAltNumber(v)
+	})
 }
 
 // ByComicVineID filters by Comic Vine ID.
 func ByComicVineID(v int) Filter {
-	return func(f any) error {
-		p, ok := f.(comicVineIDFilterable)
-		if !ok {
-			return &FilterError{Filter: "ByComicVineID"}
-		}
-
+	return newFilter("ByComicVineID", func(p interface{ SetCvId(int) }) {
 		p.SetCvId(v)
-
-		return nil
-	}
+	})
 }
 
 // ByCoverHash filters by cover image hash.
 func ByCoverHash(v string) Filter {
-	return func(f any) error {
-		p, ok := f.(coverHashFilterable)
-		if !ok {
-			return &FilterError{Filter: "ByCoverHash"}
-		}
-
+	return newFilter("ByCoverHash", func(p interface{ SetCoverHash(string) }) {
 		p.SetCoverHash(v)
-
-		return nil
-	}
+	})
 }
 
 // ByCoverMonth filters by cover month (1-12).
 func ByCoverMonth(v int) Filter {
-	return func(f any) error {
-		p, ok := f.(coverMonthFilterable)
-		if !ok {
-			return &FilterError{Filter: "ByCoverMonth"}
-		}
-
+	return newFilter("ByCoverMonth", func(p interface{ SetCoverMonth(float32) }) {
 		p.SetCoverMonth(float32(v))
-
-		return nil
-	}
+	})
 }
 
 // ByCoverYear filters by cover year.
 func ByCoverYear(v int) Filter {
-	return func(f any) error {
-		p, ok := f.(coverYearFilterable)
-		if !ok {
-			return &FilterError{Filter: "ByCoverYear"}
-		}
-
+	return newFilter("ByCoverYear", func(p interface{ SetCoverYear(float32) }) {
 		p.SetCoverYear(float32(v))
-
-		return nil
-	}
+	})
 }
 
 // ByDesignation filters by universe designation.
 func ByDesignation(v string) Filter {
-	return func(f any) error {
-		p, ok := f.(designationFilterable)
-		if !ok {
-			return &FilterError{Filter: "ByDesignation"}
-		}
-
+	return newFilter("ByDesignation", func(p interface{ SetDesignation(string) }) {
 		p.SetDesignation(v)
-
-		return nil
-	}
+	})
 }
 
 // ByFinalOrderCutoffDate filters by final order cutoff date.
 func ByFinalOrderCutoffDate(v civil.Date) Filter {
-	return func(f any) error {
-		p, ok := f.(finalOrderCutoffDateFilterable)
-		if !ok {
-			return &FilterError{Filter: "ByFinalOrderCutoffDate"}
-		}
-
+	return newFilter("ByFinalOrderCutoffDate", func(p interface{ SetFocDate(openapi_types.Date) }) {
 		p.SetFocDate(openapi_types.Date{Time: v.In(time.UTC)})
-
-		return nil
-	}
+	})
 }
 
 // ByFinalOrderCutoffDateRangeAfter filters to results with FOC date after v.
 func ByFinalOrderCutoffDateRangeAfter(v civil.Date) Filter {
-	return func(f any) error {
-		p, ok := f.(finalOrderCutoffDateRangeAfterFilterable)
-		if !ok {
-			return &FilterError{Filter: "ByFinalOrderCutoffDateRangeAfter"}
-		}
-
+	return newFilter("ByFinalOrderCutoffDateRangeAfter", func(p interface{ SetFocDateRangeAfter(openapi_types.Date) }) {
 		p.SetFocDateRangeAfter(openapi_types.Date{Time: v.In(time.UTC)})
-
-		return nil
-	}
+	})
 }
 
 // ByFinalOrderCutoffDateRangeBefore filters to results with FOC date before v.
 func ByFinalOrderCutoffDateRangeBefore(v civil.Date) Filter {
-	return func(f any) error {
-		p, ok := f.(finalOrderCutoffDateRangeBeforeFilterable)
-		if !ok {
-			return &FilterError{Filter: "ByFinalOrderCutoffDateRangeBefore"}
-		}
-
+	return newFilter("ByFinalOrderCutoffDateRangeBefore", func(p interface{ SetFocDateRangeBefore(openapi_types.Date) }) {
 		p.SetFocDateRangeBefore(openapi_types.Date{Time: v.In(time.UTC)})
-
-		return nil
-	}
+	})
 }
 
 // ByGrandComicsDatabaseID filters by Grand Comics Database ID.
 func ByGrandComicsDatabaseID(v int) Filter {
-	return func(f any) error {
-		p, ok := f.(grandComicsDatabaseIDFilterable)
-		if !ok {
-			return &FilterError{Filter: "ByGrandComicsDatabaseID"}
-		}
-
+	return newFilter("ByGrandComicsDatabaseID", func(p interface{ SetGcdId(int) }) {
 		p.SetGcdId(v)
-
-		return nil
-	}
+	})
 }
 
 // ByImprintID filters by imprint ID.
 func ByImprintID(v int) Filter {
-	return func(f any) error {
-		p, ok := f.(imprintIDFilterable)
-		if !ok {
-			return &FilterError{Filter: "ByImprintID"}
-		}
-
+	return newFilter("ByImprintID", func(p interface{ SetImprintId(int) }) {
 		p.SetImprintId(v)
-
-		return nil
-	}
+	})
 }
 
 // ByImprintName filters by imprint name.
 func ByImprintName(v string) Filter {
-	return func(f any) error {
-		p, ok := f.(imprintnameFilterable)
-		if !ok {
-			return &FilterError{Filter: "ByImprintName"}
-		}
-
+	return newFilter("ByImprintName", func(p interface{ SetImprintName(string) }) {
 		p.SetImprintName(v)
-
-		return nil
-	}
+	})
 }
 
 // ByMissingComicVineID filters to results that are missing a Comic Vine ID.
 func ByMissingComicVineID() Filter {
-	return func(f any) error {
-		p, ok := f.(missingComicVineIDFilterable)
-		if !ok {
-			return &FilterError{Filter: "ByMissingComicVineID"}
-		}
-
+	return newFilter("ByMissingComicVineID", func(p interface{ SetMissingCvId(bool) }) {
 		p.SetMissingCvId(true)
-
-		return nil
-	}
+	})
 }
 
 // ByMissingGrandComicsDatabaseID filters to results that are missing a Grand Comics Database ID.
 func ByMissingGrandComicsDatabaseID() Filter {
-	return func(f any) error {
-		p, ok := f.(missingGrandComicsDatabaseIDFilterable)
-		if !ok {
-			return &FilterError{Filter: "ByMissingGrandComicsDatabaseID"}
-		}
-
+	return newFilter("ByMissingGrandComicsDatabaseID", func(p interface{ SetMissingGcdId(bool) }) {
 		p.SetMissingGcdId(true)
-
-		return nil
-	}
+	})
 }
 
 // ByModifiedGreaterThan filters to results modified after v.
 func ByModifiedGreaterThan(v time.Time) Filter {
-	return func(f any) error {
-		p, ok := f.(modifiedGreaterThanFilterable)
-		if !ok {
-			return &FilterError{Filter: "ByModifiedGreaterThan"}
-		}
-
+	return newFilter("ByModifiedGreaterThan", func(p interface{ SetModifiedGt(time.Time) }) {
 		p.SetModifiedGt(v)
-
-		return nil
-	}
+	})
 }
 
 // ByName filters by name.
 func ByName(v string) Filter {
-	return func(f any) error {
-		p, ok := f.(nameFilterable)
-		if !ok {
-			return &FilterError{Filter: "ByName"}
-		}
-
+	return newFilter("ByName", func(p interface{ SetName(string) }) {
 		p.SetName(v)
-
-		return nil
-	}
+	})
 }
 
 // ByNumber filters by issue number.
 func ByNumber(v string) Filter {
-	return func(f any) error {
-		p, ok := f.(numberFilterable)
-		if !ok {
-			return &FilterError{Filter: "ByNumber"}
-		}
-
+	return newFilter("ByNumber", func(p interface{ SetNumber(string) }) {
 		p.SetNumber(v)
-
-		return nil
-	}
+	})
 }
 
 // ByPublisherID filters by publisher ID.
 func ByPublisherID(v int) Filter {
-	return func(f any) error {
-		p, ok := f.(publisherIDFilterable)
-		if !ok {
-			return &FilterError{Filter: "ByPublisherID"}
-		}
-
+	return newFilter("ByPublisherID", func(p interface{ SetPublisherId(int) }) {
 		p.SetPublisherId(v)
-
-		return nil
-	}
+	})
 }
 
 // ByPublisherName filters by publisher name.
 func ByPublisherName(v string) Filter {
-	return func(f any) error {
-		p, ok := f.(publishernameFilterable)
-		if !ok {
-			return &FilterError{Filter: "ByPublisherName"}
-		}
-
+	return newFilter("ByPublisherName", func(p interface{ SetPublisherName(string) }) {
 		p.SetPublisherName(v)
-
-		return nil
-	}
+	})
 }
 
 // ByRating filters by content rating.
 func ByRating(v string) Filter {
-	return func(f any) error {
-		p, ok := f.(ratingFilterable)
-		if !ok {
-			return &FilterError{Filter: "ByRating"}
-		}
-
+	return newFilter("ByRating", func(p interface{ SetRating(string) }) {
 		p.SetRating(v)
-
-		return nil
-	}
+	})
 }
 
 // BySeriesID filters by series ID.
 func BySeriesID(v int) Filter {
-	return func(f any) error {
-		p, ok := f.(seriesIDFilterable)
-		if !ok {
-			return &FilterError{Filter: "BySeriesID"}
-		}
-
+	return newFilter("BySeriesID", func(p interface{ SetSeriesId(int) }) {
 		p.SetSeriesId(v)
-
-		return nil
-	}
+	})
 }
 
 // BySeriesName filters by series name.
 func BySeriesName(v string) Filter {
-	return func(f any) error {
-		p, ok := f.(seriesnameFilterable)
-		if !ok {
-			return &FilterError{Filter: "BySeriesName"}
-		}
-
+	return newFilter("BySeriesName", func(p interface{ SetSeriesName(string) }) {
 		p.SetSeriesName(v)
-
-		return nil
-	}
+	})
 }
 
 // BySeriesType filters by series type name.
 func BySeriesType(v string) Filter {
-	return func(f any) error {
-		p, ok := f.(seriesTypeFilterable)
-		if !ok {
-			return &FilterError{Filter: "BySeriesType"}
-		}
-
+	return newFilter("BySeriesType", func(p interface{ SetSeriesType(string) }) {
 		p.SetSeriesType(v)
-
-		return nil
-	}
+	})
 }
 
 // BySeriesTypeID filters by series type ID.
 func BySeriesTypeID(v int) Filter {
-	return func(f any) error {
-		p, ok := f.(seriesTypeIDFilterable)
-		if !ok {
-			return &FilterError{Filter: "BySeriesTypeID"}
-		}
-
+	return newFilter("BySeriesTypeID", func(p interface{ SetSeriesTypeId(int) }) {
 		p.SetSeriesTypeId(v)
-
-		return nil
-	}
+	})
 }
 
 // BySeriesVolume filters by series volume number.
 func BySeriesVolume(v int) Filter {
-	return func(f any) error {
-		p, ok := f.(seriesvolumeFilterable)
-		if !ok {
-			return &FilterError{Filter: "BySeriesVolume"}
-		}
-
+	return newFilter("BySeriesVolume", func(p interface{ SetSeriesVolume(int) }) {
 		p.SetSeriesVolume(v)
-
-		return nil
-	}
+	})
 }
 
 // BySeriesYearBegan filters by the year a series began.
 func BySeriesYearBegan(v int) Filter {
-	return func(f any) error {
-		p, ok := f.(seriesYearBeganFilterable)
-		if !ok {
-			return &FilterError{Filter: "BySeriesYearBegan"}
-		}
-
+	return newFilter("BySeriesYearBegan", func(p interface{ SetSeriesYearBegan(int) }) {
 		p.SetSeriesYearBegan(v)
-
-		return nil
-	}
+	})
 }
 
 // ByStatus filters by series status.
 func ByStatus(v int) Filter {
-	return func(f any) error {
-		p, ok := f.(statusFilterable)
-		if !ok {
-			return &FilterError{Filter: "ByStatus"}
-		}
-
+	return newFilter("ByStatus", func(p interface{ SetStatus(int) }) {
 		p.SetStatus(v)
-
-		return nil
-	}
+	})
 }
 
 // ByStockKeepingUnit filters by SKU.
 func ByStockKeepingUnit(v string) Filter {
-	return func(f any) error {
-		p, ok := f.(stockKeepingUnitFilterable)
-		if !ok {
-			return &FilterError{Filter: "ByStockKeepingUnit"}
-		}
-
+	return newFilter("ByStockKeepingUnit", func(p interface{ SetSku(string) }) {
 		p.SetSku(v)
-
-		return nil
-	}
+	})
 }
 
 // ByStoreDate filters by in-store date.
 func ByStoreDate(v civil.Date) Filter {
-	return func(f any) error {
-		p, ok := f.(storeDateFilterable)
-		if !ok {
-			return &FilterError{Filter: "ByStoreDate"}
-		}
-
+	return newFilter("ByStoreDate", func(p interface{ SetStoreDate(openapi_types.Date) }) {
 		p.SetStoreDate(openapi_types.Date{Time: v.In(time.UTC)})
-
-		return nil
-	}
+	})
 }
 
 // ByStoreDateRangeAfter filters to results with store date after v.
 func ByStoreDateRangeAfter(v civil.Date) Filter {
-	return func(f any) error {
-		p, ok := f.(storeDateRangeAfterFilterable)
-		if !ok {
-			return &FilterError{Filter: "ByStoreDateRangeAfter"}
-		}
-
+	return newFilter("ByStoreDateRangeAfter", func(p interface{ SetStoreDateRangeAfter(openapi_types.Date) }) {
 		p.SetStoreDateRangeAfter(openapi_types.Date{Time: v.In(time.UTC)})
-
-		return nil
-	}
+	})
 }
 
 // ByStoreDateRangeBefore filters to results with store date before v.
 func ByStoreDateRangeBefore(v civil.Date) Filter {
-	return func(f any) error {
-		p, ok := f.(storeDateRangeBeforeFilterable)
-		if !ok {
-			return &FilterError{Filter: "ByStoreDateRangeBefore"}
-		}
-
+	return newFilter("ByStoreDateRangeBefore", func(p interface{ SetStoreDateRangeBefore(openapi_types.Date) }) {
 		p.SetStoreDateRangeBefore(openapi_types.Date{Time: v.In(time.UTC)})
-
-		return nil
-	}
+	})
 }
 
 // ByUniversalProductCode filters by UPC.
 func ByUniversalProductCode(v string) Filter {
-	return func(f any) error {
-		p, ok := f.(universalProductCodeFilterable)
-		if !ok {
-			return &FilterError{Filter: "ByUniversalProductCode"}
-		}
-
+	return newFilter("ByUniversalProductCode", func(p interface{ SetUpc(string) }) {
 		p.SetUpc(v)
-
-		return nil
-	}
+	})
 }
 
 // ByVolume filters by volume number.
 func ByVolume(v int) Filter {
-	return func(f any) error {
-		p, ok := f.(volumeFilterable)
-		if !ok {
-			return &FilterError{Filter: "ByVolume"}
-		}
-
+	return newFilter("ByVolume", func(p interface{ SetVolume(int) }) {
 		p.SetVolume(v)
-
-		return nil
-	}
+	})
 }
 
 // ByYearBegan filters by the year a series began.
 func ByYearBegan(v int) Filter {
-	return func(f any) error {
-		p, ok := f.(yearBeganFilterable)
-		if !ok {
-			return &FilterError{Filter: "ByYearBegan"}
-		}
-
+	return newFilter("ByYearBegan", func(p interface{ SetYearBegan(int) }) {
 		p.SetYearBegan(v)
-
-		return nil
-	}
+	})
 }
 
 // ByYearEnd filters by the year a series ended.
 func ByYearEnd(v int) Filter {
-	return func(f any) error {
-		p, ok := f.(yearEndFilterable)
-		if !ok {
-			return &FilterError{Filter: "ByYearEnd"}
-		}
-
+	return newFilter("ByYearEnd", func(p interface{ SetYearEnd(int) }) {
 		p.SetYearEnd(v)
-
-		return nil
-	}
-}
-
-type alternativenumberFilterable interface {
-	SetAltNumber(string)
-}
-
-type comicVineIDFilterable interface {
-	SetCvId(int)
-}
-
-type coverHashFilterable interface {
-	SetCoverHash(string)
-}
-
-type coverMonthFilterable interface {
-	SetCoverMonth(float32)
-}
-
-type coverYearFilterable interface {
-	SetCoverYear(float32)
-}
-
-type designationFilterable interface {
-	SetDesignation(string)
-}
-
-type finalOrderCutoffDateFilterable interface {
-	SetFocDate(openapi_types.Date)
-}
-
-type finalOrderCutoffDateRangeAfterFilterable interface {
-	SetFocDateRangeAfter(openapi_types.Date)
-}
-
-type finalOrderCutoffDateRangeBeforeFilterable interface {
-	SetFocDateRangeBefore(openapi_types.Date)
-}
-
-type grandComicsDatabaseIDFilterable interface {
-	SetGcdId(int)
-}
-
-type imprintIDFilterable interface {
-	SetImprintId(int)
-}
-
-type imprintnameFilterable interface {
-	SetImprintName(string)
-}
-
-type missingComicVineIDFilterable interface {
-	SetMissingCvId(bool)
-}
-
-type missingGrandComicsDatabaseIDFilterable interface {
-	SetMissingGcdId(bool)
-}
-
-type modifiedGreaterThanFilterable interface {
-	SetModifiedGt(time.Time)
-}
-
-type nameFilterable interface {
-	SetName(string)
-}
-
-type numberFilterable interface {
-	SetNumber(string)
-}
-
-type publisherIDFilterable interface {
-	SetPublisherId(int)
-}
-
-type publishernameFilterable interface {
-	SetPublisherName(string)
-}
-
-type ratingFilterable interface {
-	SetRating(string)
-}
-
-type seriesIDFilterable interface {
-	SetSeriesId(int)
-}
-
-type seriesnameFilterable interface {
-	SetSeriesName(string)
-}
-
-type seriesTypeFilterable interface {
-	SetSeriesType(string)
-}
-
-type seriesTypeIDFilterable interface {
-	SetSeriesTypeId(int)
-}
-
-type seriesvolumeFilterable interface {
-	SetSeriesVolume(int)
-}
-
-type seriesYearBeganFilterable interface {
-	SetSeriesYearBegan(int)
-}
-
-type statusFilterable interface {
-	SetStatus(int)
-}
-
-type stockKeepingUnitFilterable interface {
-	SetSku(string)
-}
-
-type storeDateFilterable interface {
-	SetStoreDate(openapi_types.Date)
-}
-
-type storeDateRangeAfterFilterable interface {
-	SetStoreDateRangeAfter(openapi_types.Date)
-}
-
-type storeDateRangeBeforeFilterable interface {
-	SetStoreDateRangeBefore(openapi_types.Date)
-}
-
-type universalProductCodeFilterable interface {
-	SetUpc(string)
-}
-
-type volumeFilterable interface {
-	SetVolume(int)
-}
-
-type yearBeganFilterable interface {
-	SetYearBegan(int)
-}
-
-type yearEndFilterable interface {
-	SetYearEnd(int)
+	})
 }
