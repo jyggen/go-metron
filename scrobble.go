@@ -135,10 +135,16 @@ func scrobbleMapper(in internal.ScrobbleResponse) (*ScrobbleResult, error) {
 
 	var rating *int
 
+	// A null or absent rating is legitimate and leaves rating nil; Get reports
+	// both as an error, so that error is deliberately ignored. A rating that is
+	// present but not a number is malformed and must not be silently dropped.
 	if ratingVal, rErr := in.Rating.Get(); rErr == nil {
-		if enumVal, eErr := ratingVal.AsRatingEnum(); eErr == nil {
-			rating = new(int(enumVal))
+		enumVal, eErr := ratingVal.AsRatingEnum()
+		if eErr != nil {
+			return nil, fmt.Errorf("scrobble: rating: %w", eErr)
 		}
+
+		rating = new(int(enumVal))
 	}
 
 	return &ScrobbleResult{
