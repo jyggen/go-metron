@@ -25,31 +25,25 @@ const (
 	defaultUserAgent = "go-metron/0.1.5"
 )
 
-// Reference identifies a related resource by ID and display name. It is used
-// for every kind of relation the API returns — publishers, roles, genres,
-// ratings and so on — so the meaning of a Reference depends on the field
-// holding it.
+// Reference identifies a related resource by ID and display name.
 //
-// ID is the resource's ID within its own collection and is the only stable
-// identifier: pass it to the matching ByID method to resolve the full record.
-// Name is the upstream display name, which may be edited or reformatted at any
-// time, and is not unique. Do not key off Name.
+// ID is stable: pass it to the matching ByID method. Name is an upstream
+// display string that may change and is not unique, so never key off it.
 type Reference struct {
 	ID   int    `json:"id"`
 	Name string `json:"name"`
 }
 
-// Client is a Metron API client. It holds only the state used to serve
-// requests; everything supplied via Option is consumed during construction.
+// Client is a Metron API client. Options are consumed during construction, so
+// only request-serving state is retained.
 type Client struct {
 	cache      *filecache.FileCache
 	client     internal.ClientInterface
 	maxRetries int
 }
 
-// clientOptions is the mutable configuration an Option acts on. It exists so
-// options can be applied in any order before NewClient derives a Client from
-// the final values.
+// clientOptions is what an Option mutates, so options can be applied in any
+// order before NewClient derives the Client from them.
 type clientOptions struct {
 	caching     bool
 	httpClient  *http.Client
@@ -115,8 +109,7 @@ func NewClient(apiToken string, options ...Option) (*Client, error) {
 	return c, nil
 }
 
-// Close is a no-op kept for backward compatibility. Rate-limit state is now
-// tracked in memory from response headers rather than persisted to disk.
+// Close is a no-op kept for compatibility; rate-limit state is in memory only.
 func (c *Client) Close() error {
 	return nil
 }
@@ -208,8 +201,7 @@ func WithUserAgent(userAgent string) Option {
 	}
 }
 
-// applyFilters applies each filter to params, stopping at the first that does
-// not support the endpoint.
+// applyFilters applies each filter, stopping at the first unsupported one.
 func applyFilters(params any, filters []Filter) error {
 	for _, f := range filters {
 		if err := f(params); err != nil {
@@ -220,9 +212,8 @@ func applyFilters(params any, filters []Filter) error {
 	return nil
 }
 
-// errIter returns an iterator that yields err once. It lets a list method
-// report a filter failure through the sequence it already returns, rather than
-// changing every signature to return an error alongside the iterator.
+// errIter returns an iterator yielding err once, letting a list method report a
+// failure without changing its signature.
 func errIter[T any](err error) iter.Seq2[T, error] {
 	return func(yield func(T, error) bool) {
 		var zero T
@@ -299,15 +290,9 @@ func doCall(ctx context.Context, f func(ctx context.Context, fn ...internal.Requ
 		return nil
 	})
 
-	// The freshness heuristic needs Last-Modified to derive a TTL. Without it
-	// there is no basis for guessing one, so the entry is written already
-	// expired: the response is never served as fresh and every call goes back
-	// to the API.
-	//
-	// The stored copy is not wasted. If-Modified-Since is built from the cache
-	// entry's own FetchedAt rather than from Last-Modified, and go-filecache
-	// hands back the stored header even when the entry has expired, so the
-	// revalidation request still carries it and the API can answer 304.
+	// Without Last-Modified there is no basis for a TTL, so the entry is written
+	// already expired and never served as fresh. It still earns its keep: the
+	// stored FetchedAt drives If-Modified-Since, so the API can answer 304.
 	now := time.Now()
 	ttl := now
 
@@ -348,12 +333,9 @@ type paginatedResponse[T any] interface {
 	GetResults() []T
 }
 
-// cacheKey builds a cache key by serialising the request parameters. The key
-// is hashed by go-filecache before it reaches the filesystem, so it needs to be
-// stable rather than short or path-safe. A marshal failure is reported rather
-// than ignored: params carry time.Time fields, whose MarshalJSON rejects years
-// outside [0,9999], and swallowing that would collapse every affected request
-// onto one key.
+// cacheKey serialises params into a key; go-filecache hashes it, so it need only
+// be stable. The marshal error is propagated because time.Time params reject
+// years outside [0,9999], and dropping it would collapse them onto one key.
 func cacheKey(kind string, params any) (string, error) {
 	b, err := json.Marshal(params)
 	if err != nil {

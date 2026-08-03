@@ -7,12 +7,11 @@ import (
 	"time"
 )
 
-// maxErrorBodyBytes caps how much of an error response body is retained on an
-// APIError, so a large or malformed body can't be held in memory indefinitely.
+// maxErrorBodyBytes caps how much of an error body is retained on an APIError.
 const maxErrorBodyBytes = 4 << 10
 
-// APIError is returned when the Metron API responds with an unexpected status
-// code. Body holds the response body as returned by the API, truncated to 4KiB.
+// APIError is returned when the API responds with an unexpected status code.
+// Body is the response body, truncated to 4KiB.
 type APIError struct {
 	StatusCode int
 	Body       []byte
@@ -27,8 +26,7 @@ func (e *APIError) Error() string {
 	return fmt.Sprintf("metron: unexpected status code: %d: %s", e.StatusCode, e.Body)
 }
 
-// Is reports whether target is an APIError with the same status code, so
-// callers can match on status alone:
+// Is matches any APIError with the same status code:
 //
 //	errors.Is(err, &metron.APIError{StatusCode: http.StatusNotFound})
 func (e *APIError) Is(target error) bool {
@@ -38,8 +36,7 @@ func (e *APIError) Is(target error) bool {
 }
 
 // FilterError is returned when a Filter is passed to a list method whose
-// endpoint does not support it. Filters are dispatched at runtime, so this is
-// reported on the first iteration rather than at compile time.
+// endpoint does not support it. It surfaces on the first iteration.
 type FilterError struct {
 	// Filter is the name of the offending filter, e.g. "ByPublisherID".
 	Filter string
@@ -50,8 +47,7 @@ func (e *FilterError) Error() string {
 	return fmt.Sprintf("metron: %s does not apply to this endpoint", e.Filter)
 }
 
-// Is reports whether target is a FilterError for the same filter, so callers
-// can match a specific one:
+// Is matches any FilterError for the same filter:
 //
 //	errors.Is(err, &metron.FilterError{Filter: "ByPublisherID"})
 func (e *FilterError) Is(target error) bool {
@@ -60,10 +56,8 @@ func (e *FilterError) Is(target error) bool {
 	return ok && t.Filter == e.Filter
 }
 
-// parseRetryAfter parses a Retry-After header value. RFC 9110 allows both a
-// delta-seconds and an HTTP-date form, so both are accepted; the date form is
-// resolved against now. It reports false if the value is absent, malformed or
-// negative, leaving the caller to treat the response as a plain error.
+// parseRetryAfter parses either RFC 9110 form of Retry-After, resolving the date
+// form against now. Reports false if absent, malformed or negative.
 func parseRetryAfter(value string, now time.Time) (time.Duration, bool) {
 	if value == "" {
 		return 0, false

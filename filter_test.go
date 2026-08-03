@@ -8,9 +8,8 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// TestFilterUnsupported checks that a filter the endpoint does not support is
-// reported rather than silently dropped. ApiRoleListParams only accepts name
-// and modified_gt, so ByPublisherID cannot apply to Roles.
+// TestFilterUnsupported checks an inapplicable filter is reported, not dropped.
+// ApiRoleListParams takes only name and modified_gt, so ByPublisherID cannot.
 func TestFilterUnsupported(t *testing.T) {
 	t.Parallel()
 
@@ -40,8 +39,7 @@ func TestFilterUnsupported(t *testing.T) {
 	require.Equal(t, 1, iterations)
 }
 
-// TestFilterSupported checks the happy path still reaches the API with the
-// filter applied to the query string.
+// TestFilterSupported checks a filter reaches the query string.
 func TestFilterSupported(t *testing.T) {
 	t.Parallel()
 
@@ -61,8 +59,7 @@ func TestFilterSupported(t *testing.T) {
 	}
 }
 
-// TestFilterUnsupportedAmongSupported checks the first unsupported filter wins
-// even when valid ones are present.
+// TestFilterUnsupportedAmongSupported checks a bad filter wins over good ones.
 func TestFilterUnsupportedAmongSupported(t *testing.T) {
 	t.Parallel()
 

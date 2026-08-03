@@ -166,8 +166,7 @@ func TestRetryAfter(t *testing.T) {
 			var retryErr *httpkit.RetryAfterError
 
 			if !tc.expectRetry {
-				// Without a usable Retry-After there is nothing to wait on, so
-				// the response surfaces as a plain APIError instead.
+				// Nothing to wait on, so it surfaces as a plain APIError.
 				require.NotErrorAs(t, err, &retryErr)
 				require.ErrorIs(t, err, &metron.APIError{StatusCode: http.StatusTooManyRequests})
 

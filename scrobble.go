@@ -42,9 +42,8 @@ type ScrobbleResult struct {
 	Modified time.Time
 }
 
-// scrobbleOptions mirrors the optional fields of internal.ScrobbleRequest so
-// ScrobbleOption never names a type from the internal package. Scrobble
-// translates it into the request just before the call.
+// scrobbleOptions mirrors internal.ScrobbleRequest's optional fields so
+// ScrobbleOption never names an internal type.
 type scrobbleOptions struct {
 	readDate *time.Time
 	rating   *int
@@ -135,9 +134,8 @@ func scrobbleMapper(in internal.ScrobbleResponse) (*ScrobbleResult, error) {
 
 	var rating *int
 
-	// A null or absent rating is legitimate and leaves rating nil; Get reports
-	// both as an error, so that error is deliberately ignored. A rating that is
-	// present but not a number is malformed and must not be silently dropped.
+	// A null or absent rating is legitimate and Get reports both as an error, so
+	// that one is ignored. A present but non-numeric rating is malformed.
 	if ratingVal, rErr := in.Rating.Get(); rErr == nil {
 		enumVal, eErr := ratingVal.AsRatingEnum()
 		if eErr != nil {

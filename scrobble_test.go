@@ -128,8 +128,8 @@ func TestScrobble(t *testing.T) {
 	}
 }
 
-// scrobbleResponse renders a minimal scrobble response with the given raw JSON
-// as the rating, so each form of the RatingEnum|NullEnum union can be checked.
+// scrobbleResponse renders a minimal scrobble response with rating as raw JSON,
+// so each form of the RatingEnum|NullEnum union can be checked.
 func scrobbleResponse(rating string) string {
 	return `{"id":42,"created":true,"is_read":true,` +
 		`"modified":"2024-01-15T10:30:00.123456-05:00","issue":{"id":12345,"number":"1",` +
@@ -138,9 +138,8 @@ func scrobbleResponse(rating string) string {
 		`"rating":` + rating + `}`
 }
 
-// TestScrobbleRating pins down how each rating form round-trips. A null or
-// absent rating is legitimate and yields nil; a malformed one must error
-// rather than silently arriving as nil.
+// TestScrobbleRating pins how each rating form round-trips: null is legitimate
+// and yields nil, malformed must error rather than arriving as nil.
 func TestScrobbleRating(t *testing.T) {
 	t.Parallel()
 
@@ -155,8 +154,7 @@ func TestScrobbleRating(t *testing.T) {
 		{name: "string", rating: `"4"`, expectedError: "scrobble: rating:"},
 		{name: "object", rating: `{"value":4}`, expectedError: "scrobble: rating:"},
 		{name: "boolean", rating: `true`, expectedError: "scrobble: rating:"},
-		// Metron documents 1-5, but out-of-range numbers are passed through
-		// rather than rejected — the API is trusted on its own enum.
+		// Metron documents 1-5, but its own enum is trusted, not enforced.
 		{name: "below range", rating: `0`, expectedRating: new(0)},
 		{name: "above range", rating: `9`, expectedRating: new(9)},
 	}

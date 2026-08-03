@@ -16,20 +16,17 @@ const (
 	headerSustainedReset     = "X-RateLimit-Sustained-Reset"
 )
 
-// rateLimitWindow holds the most recently observed state of a single
-// rate-limit window (burst or sustained), as reported by Metron's
-// X-RateLimit-* response headers. Fields are nil until observed.
+// rateLimitWindow is the last observed state of one rate-limit window (burst or
+// sustained), from Metron's X-RateLimit-* headers. Fields are nil until first
+// observed.
 type rateLimitWindow struct {
 	remaining *int
 	reset     *time.Time
 }
 
-// newRateLimitMiddleware tracks Metron's rate-limit state reactively.
-// Metron's sustained (daily) limit varies per account tier and is only known
-// once observed from response headers, so instead of enforcing a fixed local
-// quota, this middleware trusts the most recently observed X-RateLimit-*
-// headers and pre-empts a request only once they show a window is already
-// exhausted.
+// newRateLimitMiddleware tracks rate-limit state reactively. The sustained
+// (daily) limit varies per account tier, so rather than enforce a local quota it
+// trusts the last observed headers and pre-empts only an exhausted window.
 func newRateLimitMiddleware() httpkit.Middleware {
 	var m sync.RWMutex
 
@@ -69,8 +66,8 @@ func newRateLimitMiddleware() httpkit.Middleware {
 	}
 }
 
-// rateLimitWait returns how long to wait before w allows another request, or
-// 0 if it already does (including when w hasn't been observed yet).
+// rateLimitWait returns how long until w allows another request, or 0 if it
+// already does or has not been observed.
 func rateLimitWait(w rateLimitWindow) time.Duration {
 	if w.remaining == nil || *w.remaining > 0 || w.reset == nil {
 		return 0
@@ -79,9 +76,8 @@ func rateLimitWait(w rateLimitWindow) time.Duration {
 	return max(0, time.Until(*w.reset))
 }
 
-// parseRateLimitWindow parses one rate-limit window's Remaining/Reset headers.
-// It reports false when neither header is present, so a response that
-// doesn't report this window leaves previously observed state intact.
+// parseRateLimitWindow parses one window's Remaining/Reset headers, reporting
+// false when neither is present so previously observed state survives.
 func parseRateLimitWindow(header http.Header, remainingHeader, resetHeader string) (rateLimitWindow, bool) {
 	remainingStr := header.Get(remainingHeader)
 	resetStr := header.Get(resetHeader)

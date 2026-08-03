@@ -8,15 +8,11 @@ import (
 )
 
 // Filter applies a query filter to a request parameter object. Filters are
-// dispatched at runtime: passing one to a list method whose endpoint does not
-// support it returns a FilterError on the first iteration rather than failing
-// to compile.
+// dispatched at runtime: an unsupported filter returns a FilterError.
 type Filter func(v any) error
 
-// newFilter builds a Filter that applies to any params struct implementing I.
-// The interface is inferred from apply's parameter, so each By* function only
-// has to name its own interface once. name is carried explicitly rather than
-// derived at runtime so the FilterError reports the caller's name.
+// newFilter builds a Filter for any params implementing I, inferred from apply.
+// name is explicit because runtime.Caller would not survive inlining.
 func newFilter[I any](name string, apply func(I)) Filter {
 	return func(f any) error {
 		p, ok := f.(I)

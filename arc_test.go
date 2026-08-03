@@ -102,10 +102,8 @@ func TestArcsCached(t *testing.T) {
 	require.Equal(t, firstResults, secondResults)
 }
 
-// TestArcsNotCachedWithoutLastModified covers a response that carries no
-// Last-Modified header. There is no basis for a freshness heuristic then, so
-// the response is deliberately not cached and every iteration goes back to the
-// API rather than being served from a guessed TTL.
+// TestArcsNotCachedWithoutLastModified covers a response with no Last-Modified.
+// There is no basis for a TTL, so it is deliberately not cached.
 func TestArcsNotCachedWithoutLastModified(t *testing.T) {
 	t.Parallel()
 
@@ -129,9 +127,8 @@ func TestArcsNotCachedWithoutLastModified(t *testing.T) {
 
 				require.Equal(t, m.expectedURL, req.URL.String())
 
-				// The second round revalidates: If-Modified-Since comes from
-				// the cache entry's FetchedAt, not from Last-Modified, so it
-				// is sent even though the API never returned one.
+				// If-Modified-Since comes from the entry's FetchedAt, so the
+				// second round still revalidates.
 				if idx < 2 {
 					require.Empty(t, req.Header.Get("If-Modified-Since"))
 				} else {
