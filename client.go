@@ -299,7 +299,17 @@ func doCall(ctx context.Context, f func(ctx context.Context, fn ...internal.Requ
 		return nil
 	})
 
-	ttl := time.Now()
+	// The freshness heuristic needs Last-Modified to derive a TTL. Without it
+	// there is no basis for guessing one, so the entry is written already
+	// expired: the response is never served as fresh and every call goes back
+	// to the API.
+	//
+	// The stored copy is not wasted. If-Modified-Since is built from the cache
+	// entry's own FetchedAt rather than from Last-Modified, and go-filecache
+	// hands back the stored header even when the entry has expired, so the
+	// revalidation request still carries it and the API can answer 304.
+	now := time.Now()
+	ttl := now
 
 	if err != nil {
 		return nil, ttl, err
@@ -313,7 +323,7 @@ func doCall(ctx context.Context, f func(ctx context.Context, fn ...internal.Requ
 			return nil, ttl, errors.Join(err, res.Body.Close())
 		}
 
-		ttl = ttl.Add(ttl.Sub(lastModified) / 10)
+		ttl = now.Add(now.Sub(lastModified) / 10)
 	}
 
 	if res.StatusCode == http.StatusNotModified {
@@ -338,9 +348,19 @@ type paginatedResponse[T any] interface {
 	GetResults() []T
 }
 
-func cacheKey(kind string, params any) string {
-	b, _ := json.Marshal(params)
-	return kind + "/" + string(b)
+// cacheKey builds a cache key by serialising the request parameters. The key
+// is hashed by go-filecache before it reaches the filesystem, so it needs to be
+// stable rather than short or path-safe. A marshal failure is reported rather
+// than ignored: params carry time.Time fields, whose MarshalJSON rejects years
+// outside [0,9999], and swallowing that would collapse every affected request
+// onto one key.
+func cacheKey(kind string, params any) (string, error) {
+	b, err := json.Marshal(params)
+	if err != nil {
+		return "", fmt.Errorf("metron: cache key: %w", err)
+	}
+
+	return kind + "/" + string(b), nil
 }
 
 func idPaginate[Response paginatedResponse[In], In, Out any, Params paginatable](ctx context.Context, c *Client, kind string, f func(context.Context, int, Params, ...internal.RequestEditorFn) (*http.Response, error), m func(In) (*Out, error), id int, params Params) iter.Seq2[*Out, error] {
@@ -358,7 +378,14 @@ func paginate[Response paginatedResponse[In], In, Out any, Params paginatable](c
 		for {
 			var res Response
 			params.SetPage(page)
-			body, err := c.fetch(ctx, cacheKey(kind, params), func(ctx context.Context, fn ...internal.RequestEditorFn) (*http.Response, error) {
+
+			key, err := cacheKey(kind, params)
+			if err != nil {
+				yield(nil, err)
+				return
+			}
+
+			body, err := c.fetch(ctx, key, func(ctx context.Context, fn ...internal.RequestEditorFn) (*http.Response, error) {
 				return f(ctx, params, fn...)
 			})
 			if err != nil {

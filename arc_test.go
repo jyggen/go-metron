@@ -102,6 +102,72 @@ func TestArcsCached(t *testing.T) {
 	require.Equal(t, firstResults, secondResults)
 }
 
+// TestArcsNotCachedWithoutLastModified covers a response that carries no
+// Last-Modified header. There is no basis for a freshness heuristic then, so
+// the response is deliberately not cached and every iteration goes back to the
+// API rather than being served from a guessed TTL.
+func TestArcsNotCachedWithoutLastModified(t *testing.T) {
+	t.Parallel()
+
+	var requestCount atomic.Int64
+
+	mocks := []requestMock{
+		{expectedURL: "https://metron.cloud/api/arc/?page=1", responseBodyFixture: "fixtures/arc_list_1.json"},
+		{expectedURL: "https://metron.cloud/api/arc/?page=2", responseBodyFixture: "fixtures/arc_list_2.json"},
+		{expectedURL: "https://metron.cloud/api/arc/?page=1", responseBodyFixture: "fixtures/arc_list_1.json"},
+		{expectedURL: "https://metron.cloud/api/arc/?page=2", responseBodyFixture: "fixtures/arc_list_2.json"},
+	}
+
+	c, err := metron.NewClient("foobar",
+		metron.WithCaching(),
+		metron.WithStoragePath(t.TempDir()),
+		metron.WithClient(&http.Client{
+			Transport: roundTripFunc(func(req *http.Request) *http.Response {
+				idx := int(requestCount.Add(1)) - 1
+				require.Less(t, idx, len(mocks), "unexpected extra HTTP request: %s", req.URL)
+				m := mocks[idx]
+
+				require.Equal(t, m.expectedURL, req.URL.String())
+
+				// The second round revalidates: If-Modified-Since comes from
+				// the cache entry's FetchedAt, not from Last-Modified, so it
+				// is sent even though the API never returned one.
+				if idx < 2 {
+					require.Empty(t, req.Header.Get("If-Modified-Since"))
+				} else {
+					require.NotEmpty(t, req.Header.Get("If-Modified-Since"))
+				}
+
+				f, openErr := fs.Open(m.responseBodyFixture)
+				require.NoError(t, openErr)
+
+				// Deliberately no Last-Modified.
+				return &http.Response{
+					StatusCode: http.StatusOK,
+					Body:       f,
+					Header:     make(http.Header),
+				}
+			}),
+		}),
+	)
+	require.NoError(t, err)
+
+	defer c.Close()
+
+	for _, iterErr := range c.Arcs(context.Background()) {
+		require.NoError(t, iterErr)
+	}
+
+	require.Equal(t, int64(2), requestCount.Load())
+
+	for _, iterErr := range c.Arcs(context.Background()) {
+		require.NoError(t, iterErr)
+	}
+
+	require.Equal(t, int64(4), requestCount.Load(),
+		"a response without Last-Modified must not be served from cache")
+}
+
 func TestArcs(t *testing.T) {
 	t.Parallel()
 	testList(t, "arc", (*metron.Client).Arcs, []testCase[*metron.ArcList]{
