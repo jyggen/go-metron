@@ -42,8 +42,8 @@ func (c *Client) CharacterByID(ctx context.Context, id int) (*Character, error) 
 func (c *Client) Characters(ctx context.Context, filters ...Filter) iter.Seq2[*CharacterList, error] {
 	params := &internal.ApiCharacterListParams{}
 
-	for _, f := range filters {
-		f(params)
+	if err := applyFilters(params, filters); err != nil {
+		return errIter[*CharacterList](err)
 	}
 
 	return paginate[internal.PaginatedCharacterListList](ctx, c, "character", c.client.ApiCharacterList, characterListMapper, params)

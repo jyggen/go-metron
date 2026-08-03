@@ -112,8 +112,8 @@ func (c *Client) IssueByID(ctx context.Context, id int) (*Issue, error) {
 func (c *Client) Issues(ctx context.Context, filters ...Filter) iter.Seq2[*IssueList, error] {
 	params := &internal.ApiIssueListParams{}
 
-	for _, f := range filters {
-		f(params)
+	if err := applyFilters(params, filters); err != nil {
+		return errIter[*IssueList](err)
 	}
 
 	return paginate[internal.PaginatedIssueListList](ctx, c, "issue", c.client.ApiIssueList, issueListMapper, params)
@@ -123,8 +123,8 @@ func (c *Client) Issues(ctx context.Context, filters ...Filter) iter.Seq2[*Issue
 func (c *Client) IssuesByArcID(ctx context.Context, id int, filters ...Filter) iter.Seq2[*IssueList, error] {
 	params := &internal.ApiArcIssueListListParams{}
 
-	for _, f := range filters {
-		f(params)
+	if err := applyFilters(params, filters); err != nil {
+		return errIter[*IssueList](err)
 	}
 
 	return idPaginate[internal.PaginatedIssueListList](ctx, c, "arc/issue", c.client.ApiArcIssueListList, issueListMapper, id, params)
@@ -134,8 +134,8 @@ func (c *Client) IssuesByArcID(ctx context.Context, id int, filters ...Filter) i
 func (c *Client) IssuesByCharacterID(ctx context.Context, id int, filters ...Filter) iter.Seq2[*IssueList, error] {
 	params := &internal.ApiCharacterIssueListListParams{}
 
-	for _, f := range filters {
-		f(params)
+	if err := applyFilters(params, filters); err != nil {
+		return errIter[*IssueList](err)
 	}
 
 	return idPaginate[internal.PaginatedIssueListList](ctx, c, "character/issue", c.client.ApiCharacterIssueListList, issueListMapper, id, params)
@@ -145,8 +145,8 @@ func (c *Client) IssuesByCharacterID(ctx context.Context, id int, filters ...Fil
 func (c *Client) IssuesBySeriesID(ctx context.Context, id int, filters ...Filter) iter.Seq2[*IssueList, error] {
 	params := &internal.ApiSeriesIssueListListParams{}
 
-	for _, f := range filters {
-		f(params)
+	if err := applyFilters(params, filters); err != nil {
+		return errIter[*IssueList](err)
 	}
 
 	return idPaginate[internal.PaginatedIssueListList](ctx, c, "series/issue", c.client.ApiSeriesIssueListList, issueListMapper, id, params)
@@ -156,8 +156,8 @@ func (c *Client) IssuesBySeriesID(ctx context.Context, id int, filters ...Filter
 func (c *Client) IssuesByTeamID(ctx context.Context, id int, filters ...Filter) iter.Seq2[*IssueList, error] {
 	params := &internal.ApiTeamIssueListListParams{}
 
-	for _, f := range filters {
-		f(params)
+	if err := applyFilters(params, filters); err != nil {
+		return errIter[*IssueList](err)
 	}
 
 	return idPaginate[internal.PaginatedIssueListList](ctx, c, "team/issue", c.client.ApiTeamIssueListList, issueListMapper, id, params)

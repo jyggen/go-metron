@@ -47,8 +47,8 @@ func (c *Client) ArcByID(ctx context.Context, id int) (*Arc, error) {
 func (c *Client) Arcs(ctx context.Context, filters ...Filter) iter.Seq2[*ArcList, error] {
 	params := &internal.ApiArcListParams{}
 
-	for _, f := range filters {
-		f(params)
+	if err := applyFilters(params, filters); err != nil {
+		return errIter[*ArcList](err)
 	}
 
 	return paginate[internal.PaginatedArcListList](ctx, c, "arc", c.client.ApiArcList, arcListMapper, params)

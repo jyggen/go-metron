@@ -40,8 +40,8 @@ func (c *Client) TeamByID(ctx context.Context, id int) (*Team, error) {
 func (c *Client) Teams(ctx context.Context, filters ...Filter) iter.Seq2[*TeamList, error] {
 	params := &internal.ApiTeamListParams{}
 
-	for _, f := range filters {
-		f(params)
+	if err := applyFilters(params, filters); err != nil {
+		return errIter[*TeamList](err)
 	}
 
 	return paginate[internal.PaginatedTeamListList](ctx, c, "team", c.client.ApiTeamList, teamListMapper, params)

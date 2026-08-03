@@ -37,6 +37,29 @@ func (e *APIError) Is(target error) bool {
 	return ok && t.StatusCode == e.StatusCode
 }
 
+// FilterError is returned when a Filter is passed to a list method whose
+// endpoint does not support it. Filters are dispatched at runtime, so this is
+// reported on the first iteration rather than at compile time.
+type FilterError struct {
+	// Filter is the name of the offending filter, e.g. "ByPublisherID".
+	Filter string
+}
+
+// Error implements the error interface.
+func (e *FilterError) Error() string {
+	return fmt.Sprintf("metron: %s does not apply to this endpoint", e.Filter)
+}
+
+// Is reports whether target is a FilterError for the same filter, so callers
+// can match a specific one:
+//
+//	errors.Is(err, &metron.FilterError{Filter: "ByPublisherID"})
+func (e *FilterError) Is(target error) bool {
+	t, ok := target.(*FilterError)
+
+	return ok && t.Filter == e.Filter
+}
+
 // parseRetryAfter parses a Retry-After header value. RFC 9110 allows both a
 // delta-seconds and an HTTP-date form, so both are accepted; the date form is
 // resolved against now. It reports false if the value is absent, malformed or

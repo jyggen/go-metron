@@ -39,8 +39,8 @@ func (c *Client) UniverseByID(ctx context.Context, id int) (*Universe, error) {
 func (c *Client) Universes(ctx context.Context, filters ...Filter) iter.Seq2[*UniverseList, error] {
 	params := &internal.ApiUniverseListParams{}
 
-	for _, f := range filters {
-		f(params)
+	if err := applyFilters(params, filters); err != nil {
+		return errIter[*UniverseList](err)
 	}
 
 	return paginate[internal.PaginatedUniverseListList](ctx, c, "universe", c.client.ApiUniverseList, universeListMapper, params)

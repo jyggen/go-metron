@@ -52,8 +52,8 @@ func (c *Client) SeriesByID(ctx context.Context, id int) (*Series, error) {
 func (c *Client) Series(ctx context.Context, filters ...Filter) iter.Seq2[*SeriesList, error] {
 	params := &internal.ApiSeriesListParams{}
 
-	for _, f := range filters {
-		f(params)
+	if err := applyFilters(params, filters); err != nil {
+		return errIter[*SeriesList](err)
 	}
 
 	return paginate[internal.PaginatedSeriesListList](ctx, c, "series", c.client.ApiSeriesList, seriesListMapper, params)
@@ -63,8 +63,8 @@ func (c *Client) Series(ctx context.Context, filters ...Filter) iter.Seq2[*Serie
 func (c *Client) SeriesByPublisherID(ctx context.Context, id int, filters ...Filter) iter.Seq2[*SeriesList, error] {
 	params := &internal.ApiPublisherSeriesListListParams{}
 
-	for _, f := range filters {
-		f(params)
+	if err := applyFilters(params, filters); err != nil {
+		return errIter[*SeriesList](err)
 	}
 
 	return idPaginate[internal.PaginatedSeriesListList](ctx, c, "publisher/series", c.client.ApiPublisherSeriesListList, seriesListMapper, id, params)

@@ -208,6 +208,29 @@ func WithUserAgent(userAgent string) Option {
 	}
 }
 
+// applyFilters applies each filter to params, stopping at the first that does
+// not support the endpoint.
+func applyFilters(params any, filters []Filter) error {
+	for _, f := range filters {
+		if err := f(params); err != nil {
+			return err
+		}
+	}
+
+	return nil
+}
+
+// errIter returns an iterator that yields err once. It lets a list method
+// report a filter failure through the sequence it already returns, rather than
+// changing every signature to return an error alongside the iterator.
+func errIter[T any](err error) iter.Seq2[T, error] {
+	return func(yield func(T, error) bool) {
+		var zero T
+
+		yield(zero, err)
+	}
+}
+
 type reqFn func(ctx context.Context, fn ...internal.RequestEditorFn) (*http.Response, error)
 
 func (c *Client) fetch(ctx context.Context, key string, req reqFn) (io.ReadCloser, error) {

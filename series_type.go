@@ -18,8 +18,8 @@ type SeriesTypeList struct {
 func (c *Client) SeriesTypes(ctx context.Context, filters ...Filter) iter.Seq2[*SeriesTypeList, error] {
 	params := &internal.ApiSeriesTypeListParams{}
 
-	for _, f := range filters {
-		f(params)
+	if err := applyFilters(params, filters); err != nil {
+		return errIter[*SeriesTypeList](err)
 	}
 
 	return paginate[internal.PaginatedSeriesTypeList](ctx, c, "series_type", c.client.ApiSeriesTypeList, seriesTypeMapper, params)

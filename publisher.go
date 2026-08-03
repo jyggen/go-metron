@@ -40,8 +40,8 @@ func (c *Client) PublisherByID(ctx context.Context, id int) (*Publisher, error) 
 func (c *Client) Publishers(ctx context.Context, filters ...Filter) iter.Seq2[*PublisherList, error] {
 	params := &internal.ApiPublisherListParams{}
 
-	for _, f := range filters {
-		f(params)
+	if err := applyFilters(params, filters); err != nil {
+		return errIter[*PublisherList](err)
 	}
 
 	return paginate[internal.PaginatedPublisherListList](ctx, c, "publisher", c.client.ApiPublisherList, publisherListMapper, params)

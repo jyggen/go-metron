@@ -18,8 +18,8 @@ type RoleList struct {
 func (c *Client) Roles(ctx context.Context, filters ...Filter) iter.Seq2[*RoleList, error] {
 	params := &internal.ApiRoleListParams{}
 
-	for _, f := range filters {
-		f(params)
+	if err := applyFilters(params, filters); err != nil {
+		return errIter[*RoleList](err)
 	}
 
 	return paginate[internal.PaginatedRoleList](ctx, c, "role", c.client.ApiRoleList, roleListMapper, params)

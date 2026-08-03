@@ -42,8 +42,8 @@ func (c *Client) CreatorByID(ctx context.Context, id int) (*Creator, error) {
 func (c *Client) Creators(ctx context.Context, filters ...Filter) iter.Seq2[*CreatorList, error] {
 	params := &internal.ApiCreatorListParams{}
 
-	for _, f := range filters {
-		f(params)
+	if err := applyFilters(params, filters); err != nil {
+		return errIter[*CreatorList](err)
 	}
 
 	return paginate[internal.PaginatedCreatorListList](ctx, c, "creator", c.client.ApiCreatorList, creatorListMapper, params)

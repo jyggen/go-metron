@@ -40,8 +40,8 @@ func (c *Client) ImprintByID(ctx context.Context, id int) (*Imprint, error) {
 func (c *Client) Imprints(ctx context.Context, filters ...Filter) iter.Seq2[*ImprintList, error] {
 	params := &internal.ApiImprintListParams{}
 
-	for _, f := range filters {
-		f(params)
+	if err := applyFilters(params, filters); err != nil {
+		return errIter[*ImprintList](err)
 	}
 
 	return paginate[internal.PaginatedImprintListList](ctx, c, "imprint", c.client.ApiImprintList, imprintListMapper, params)
