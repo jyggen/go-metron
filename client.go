@@ -218,10 +218,10 @@ type reqFn func(ctx context.Context, fn ...internal.RequestEditorFn) (*http.Resp
 
 func (c *Client) fetch(ctx context.Context, key string, req reqFn) (io.ReadCloser, error) {
 	if c.cache != nil {
-		return c.cache.Get(key, call(ctx, c.maxRetries, req))
+		return c.cache.Get(key, call(ctx, c.maxRetries, true, req))
 	}
 
-	body, _, err := call(ctx, c.maxRetries, req)(nil)
+	body, _, err := call(ctx, c.maxRetries, true, req)(nil)
 
 	return body, err
 }
@@ -247,7 +247,9 @@ func byID[In, Out any](ctx context.Context, c *Client, key string, f func(contex
 	return m(v)
 }
 
-func call(ctx context.Context, maxRetries int, f func(ctx context.Context, fn ...internal.RequestEditorFn) (*http.Response, error)) func(header *filecache.Header) (io.ReadCloser, time.Time, error) {
+// call runs f with up to maxRetries extra attempts. A RetryAfterError uses the
+// duration it carries; transient failures back off, and only when idempotent.
+func call(ctx context.Context, maxRetries int, idempotent bool, f func(ctx context.Context, fn ...internal.RequestEditorFn) (*http.Response, error)) func(header *filecache.Header) (io.ReadCloser, time.Time, error) {
 	return func(header *filecache.Header) (io.ReadCloser, time.Time, error) {
 		var body io.ReadCloser
 		var ttl time.Time
@@ -256,17 +258,28 @@ func call(ctx context.Context, maxRetries int, f func(ctx context.Context, fn ..
 		for attempt := range maxRetries + 1 {
 			body, ttl, err = doCall(ctx, f, header)
 
-			var retryErr *httpkit.RetryAfterError
-			if attempt < maxRetries && errors.As(err, &retryErr) {
-				select {
-				case <-ctx.Done():
-					return nil, time.Now(), ctx.Err()
-				case <-time.After(retryErr.RetryAfter()):
-					continue
-				}
+			if err == nil || attempt == maxRetries {
+				break
 			}
 
-			break
+			var wait time.Duration
+
+			var retryErr *httpkit.RetryAfterError
+
+			switch {
+			case errors.As(err, &retryErr):
+				wait = retryErr.RetryAfter()
+			case retryable(err, idempotent):
+				wait = backOff(attempt)
+			default:
+				return body, ttl, err
+			}
+
+			select {
+			case <-ctx.Done():
+				return nil, time.Now(), ctx.Err()
+			case <-time.After(wait):
+			}
 		}
 
 		return body, ttl, err

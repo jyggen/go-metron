@@ -86,7 +86,8 @@ func (c *Client) Scrobble(ctx context.Context, issueID int, opts ...ScrobbleOpti
 		req.Rating = nullable.NewNullableWithValue(*o.rating)
 	}
 
-	body, _, err := call(ctx, c.maxRetries, func(ctx context.Context, fn ...internal.RequestEditorFn) (*http.Response, error) {
+	// Not idempotent: a retried POST could scrobble the issue twice.
+	body, _, err := call(ctx, c.maxRetries, false, func(ctx context.Context, fn ...internal.RequestEditorFn) (*http.Response, error) {
 		return c.client.ApiCollectionScrobbleCreate(ctx, req, fn...)
 	})(nil)
 	if err != nil {
