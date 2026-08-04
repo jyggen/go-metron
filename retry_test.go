@@ -150,8 +150,9 @@ func TestRetrySucceedsOnSecondAttempt(t *testing.T) {
 	require.Equal(t, int64(2), count.Load())
 }
 
-// TestRetryNotAppliedToScrobble covers the non-idempotent path.
-func TestRetryNotAppliedToScrobble(t *testing.T) {
+// TestTransientRetryNotAppliedToWrites covers the non-idempotent path. Writes
+// still retry on rate limits, which TestRetryAfter covers.
+func TestTransientRetryNotAppliedToWrites(t *testing.T) {
 	t.Parallel()
 
 	c, count := retryClient(t, 3, []*http.Response{status(503)})

@@ -50,7 +50,10 @@ func main() {
 		log.Fatal(err)
 	}
 
-	fmt.Println(issue.Description)
+	// Optional fields are pointers.
+	if issue.Description != nil {
+		fmt.Println(*issue.Description)
+	}
 }
 ```
 
@@ -90,7 +93,9 @@ Responses go under your user cache directory and are revalidated with `If-Modifi
 
 ### Retries
 
-Rate-limited requests always retry, honouring `Retry-After`. `WithRetry` extends that to 502, 503, 504 and network failures, backing off with jitter. `Scrobble` is never retried, so an issue cannot be marked read twice.
+Nothing is retried unless you ask. `WithRetry(n)` allows up to n further attempts: a rate-limited request waits for `Retry-After`, while 502, 503, 504 and network failures back off with jitter.
+
+Writes are exempt from the latter, since a request that failed in transit may already have been applied. They are still retried when rate-limited, because a rejected request never reached the endpoint.
 
 ```go
 c, err := metron.NewClient(token, metron.WithRetry(3))

@@ -41,7 +41,10 @@ func Example() {
 		log.Fatal(err)
 	}
 
-	fmt.Println(issue.Description)
+	// Optional fields are pointers.
+	if issue.Description != nil {
+		fmt.Println(*issue.Description)
+	}
 }
 
 // ExampleWithClient tunes the underlying transport. The defaults are fine for
