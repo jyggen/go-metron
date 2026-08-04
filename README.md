@@ -1,26 +1,14 @@
 # go-metron
 
-`go-metron` is an API client enabling Go programs to interact with [Metron](https://metron.cloud/).
+A Go client for the [Metron](https://metron.cloud/) comic book database.
 
-## Features
+```
+go get github.com/jyggen/go-metron
+```
 
-### Caching
+Requires Go 1.26. Full reference on [pkg.go.dev](https://pkg.go.dev/github.com/jyggen/go-metron).
 
-`go-metron` can optionally use [heuristic caching](https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching#heuristic_caching). 
-
-### Filtering
-
-`go-metron` supports all filtering capabilities of Metron's API.
-
-### Pagination
-
-`go-metron` will automatically fetch the next page while iterating over results.
-
-### Rate Limiting
-
-`go-metron` respects [Metron's API guidelines](https://metron.cloud/pages/guidelines/api/) by reacting to the `X-RateLimit-*` response headers Metron returns with every request.
-
-## Example Usage
+## Usage
 
 ```go
 package main
@@ -28,6 +16,8 @@ package main
 import (
 	"context"
 	"fmt"
+	"log"
+	"os"
 	"time"
 
 	"cloud.google.com/go/civil"
@@ -35,36 +25,87 @@ import (
 )
 
 func main() {
-	c := metron.NewClient(
-		metron.WithAuthentication("username", "password"),
-		metron.WithCaching(""),
-		metron.WithTimeout(10 * time.Second),
-	)
+	c, err := metron.NewClient(os.Getenv("METRON_TOKEN"), metron.WithCaching())
+	if err != nil {
+		log.Fatal(err)
+	}
 
-	after, _ := civil.ParseDate("2021-06-07")
-	before, _ := civil.ParseDate("2021-06-13")
+	ctx := context.Background()
 
-	// Get all Marvel comics for the week of 2021-06-07
-	for i, err := range c.Issues(
-		context.Background(),
-		metron.FilterByStoreDateRangeAfter(after),
-		metron.FilterByStoreDateRangeBefore(before),
-		metron.FilterByPublisherName("marvel"),
+	// Every Marvel issue that reached stores in the week of 2021-06-07.
+	for issue, err := range c.Issues(ctx,
+		metron.ByStoreDateRangeAfter(civil.Date{Year: 2021, Month: time.June, Day: 7}),
+		metron.ByStoreDateRangeBefore(civil.Date{Year: 2021, Month: time.June, Day: 13}),
+		metron.ByPublisherName("marvel"),
 	) {
 		if err != nil {
-			panic(err)
+			log.Fatal(err)
 		}
 
-		fmt.Printf("%d %s\n", i.ID, i.Name)
+		fmt.Printf("%d %s\n", issue.ID, issue.Name)
 	}
 
-	// Retrieve the detail for an individual issue
-	asm68, err := c.IssueByID(context.Background(), 31660)
-
+	issue, err := c.IssueByID(ctx, 31660)
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 
-	fmt.Println(asm68.Description)
+	fmt.Println(issue.Description)
+}
+```
+
+### Pagination
+
+List methods return an iterator and fetch each page as you reach it. Stop early and the remaining pages are never requested. Detail methods return a single record.
+
+```go
+for issue, err := range c.Issues(ctx) {
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	if issue.Name == "Amazing Fantasy" {
+		break // no further pages are fetched
+	}
+}
+```
+
+### Filtering
+
+Filters are applied at runtime, not checked by the compiler. A filter the endpoint does not accept returns a `FilterError` on the first iteration instead of being ignored.
+
+```go
+for _, err := range c.Roles(ctx, metron.ByPublisherID(2)) {
+	fmt.Println(err) // metron: ByPublisherID does not apply to this endpoint
+}
+```
+
+### Caching
+
+```go
+c, err := metron.NewClient(token, metron.WithCaching())
+```
+
+Responses go under your user cache directory and are revalidated with `If-Modified-Since`. A response without a `Last-Modified` header is not cached, since there is nothing to derive a freshness window from.
+
+### Retries
+
+Rate-limited requests always retry, honouring `Retry-After`. `WithRetry` extends that to 502, 503, 504 and network failures, backing off with jitter. `Scrobble` is never retried, so an issue cannot be marked read twice.
+
+```go
+c, err := metron.NewClient(token, metron.WithRetry(3))
+```
+
+### Errors
+
+```go
+var apiErr *metron.APIError
+
+if errors.As(err, &apiErr) {
+	fmt.Println(apiErr.StatusCode, string(apiErr.Body))
+}
+
+if errors.Is(err, &metron.APIError{StatusCode: http.StatusNotFound}) {
+	// no such issue
 }
 ```
