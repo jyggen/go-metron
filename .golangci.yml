@@ -1,14 +1,8 @@
+---
 version: "2"
-formatters:
-  enable:
-    - gofmt
-    - gofumpt
-  settings:
-    gofumpt:
-      extra-rules: true
-issues:
-  max-issues-per-linter: 0
-  max-same-issues: 0
+output:
+  sort-order:
+    - file
 linters:
   default: none
   enable:
@@ -20,7 +14,9 @@ linters:
     - gocritic
     - govet
     - ineffassign
+    - modernize
     - nakedret
+    - nilnil
     - nolintlint
     - revive
     - staticcheck
@@ -40,6 +36,8 @@ linters:
     gocritic:
       disabled-checks:
         - ifElseChain
+    nilnil:
+      only-two: false
     revive:
       severity: error
       rules:
@@ -87,6 +85,15 @@ linters:
       - common-false-positives
       - legacy
       - std-error-handling
-output:
-  sort-order:
-    - file
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0
+formatters:
+  enable:
+    - gofmt
+    - gofumpt
+  settings:
+    gofumpt:
+      extra-rules: true
+  exclusions:
+    generated: lax
