@@ -20,10 +20,7 @@ import (
 	"github.com/oapi-codegen/nullable"
 )
 
-const (
-	baseURL          = "https://metron.cloud"
-	defaultUserAgent = "go-metron/0.1.5"
-)
+const baseURL = "https://metron.cloud"
 
 // Reference identifies a related resource by ID and display name.
 //
