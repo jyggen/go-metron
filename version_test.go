@@ -2,9 +2,7 @@ package metron_test
 
 import (
 	"context"
-	"fmt"
 	"net/http"
-	"runtime"
 	"testing"
 
 	"github.com/jyggen/go-metron"
@@ -16,8 +14,7 @@ import (
 func TestUserAgent(t *testing.T) {
 	t.Parallel()
 
-	// Built from runtime constants so the assertion holds on any platform.
-	self := fmt.Sprintf("go-metron/devel (%s; %s)", runtime.GOOS, runtime.GOARCH)
+	const self = "go-metron/devel"
 
 	testCases := []struct {
 		name     string

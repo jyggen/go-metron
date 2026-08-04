@@ -2,17 +2,17 @@ package metron
 
 import (
 	"fmt"
-	"runtime"
 	"runtime/debug"
+	"strings"
 )
 
 // modulePath locates this module's own entry in a consumer's build info.
 const modulePath = "github.com/jyggen/go-metron"
 
-// defaultUserAgent tracks the released version, so it needs no manual bump.
-var defaultUserAgent = fmt.Sprintf(
-	"go-metron/%s (%s; %s)", moduleVersion(), runtime.GOOS, runtime.GOARCH,
-)
+// defaultUserAgent tracks the released version, so it needs no manual bump. The
+// "v" is a Go module convention, not an HTTP one, and "devel" carries no prefix
+// to match.
+var defaultUserAgent = fmt.Sprintf("go-metron/%s", strings.TrimPrefix(moduleVersion(), "v"))
 
 // moduleVersion reports this module's version from the importing binary, or
 // "devel" when there is no released version to read: non-module builds,
