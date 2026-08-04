@@ -106,11 +106,6 @@ func NewClient(apiToken string, options ...Option) (*Client, error) {
 	return c, nil
 }
 
-// Close is a no-op kept for compatibility; rate-limit state is in memory only.
-func (c *Client) Close() error {
-	return nil
-}
-
 func newBackOffMiddleware() httpkit.Middleware {
 	var m sync.RWMutex
 

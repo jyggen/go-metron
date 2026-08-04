@@ -80,7 +80,6 @@ func TestArcsCached(t *testing.T) {
 		}),
 	)
 	require.NoError(t, err)
-	defer c.Close()
 
 	// First iteration — hits the network.
 	var firstResults []*metron.ArcList
@@ -148,8 +147,6 @@ func TestArcsNotCachedWithoutLastModified(t *testing.T) {
 		}),
 	)
 	require.NoError(t, err)
-
-	defer c.Close()
 
 	for _, iterErr := range c.Arcs(context.Background()) {
 		require.NoError(t, iterErr)
