@@ -10,8 +10,7 @@ import (
 const modulePath = "github.com/jyggen/go-metron"
 
 // defaultUserAgent tracks the released version, so it needs no manual bump. The
-// "v" is a Go module convention, not an HTTP one, and "devel" carries no prefix
-// to match.
+// "v" prefix is a Go module convention, not an HTTP one.
 var defaultUserAgent = fmt.Sprintf("go-metron/%s", strings.TrimPrefix(moduleVersion(), "v"))
 
 // moduleVersion reports this module's version from the importing binary, or
