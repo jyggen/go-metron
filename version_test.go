@@ -2,7 +2,9 @@ package metron_test
 
 import (
 	"context"
+	"fmt"
 	"net/http"
+	"runtime"
 	"testing"
 
 	"github.com/jyggen/go-metron"
@@ -14,6 +16,9 @@ import (
 func TestUserAgent(t *testing.T) {
 	t.Parallel()
 
+	// Built from runtime constants so the assertion holds on any platform.
+	self := fmt.Sprintf("go-metron/devel (%s; %s)", runtime.GOOS, runtime.GOARCH)
+
 	testCases := []struct {
 		name     string
 		options  []metron.Option
@@ -21,12 +26,12 @@ func TestUserAgent(t *testing.T) {
 	}{
 		{
 			name:     "default",
-			expected: "go-metron/devel",
+			expected: self,
 		},
 		{
 			name:     "with prefix",
 			options:  []metron.Option{metron.WithUserAgent("myapp/1.2.3")},
-			expected: "myapp/1.2.3 go-metron/devel",
+			expected: "myapp/1.2.3 " + self,
 		},
 	}
 
