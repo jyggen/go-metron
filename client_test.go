@@ -206,3 +206,81 @@ func parseURL(t *testing.T, urlString string) url.URL {
 
 	return *v
 }
+
+func TestWithBaseURL(t *testing.T) {
+	t.Parallel()
+
+	var got string
+
+	c, err := metron.NewClient("foobar",
+		metron.WithBaseURL("http://localhost:8080/metron"),
+		metron.WithClient(&http.Client{
+			Transport: roundTripFunc(func(req *http.Request) *http.Response {
+				got = req.URL.String()
+
+				f, openErr := fs.Open("fixtures/arc_659.json")
+				require.NoError(t, openErr)
+
+				return &http.Response{StatusCode: http.StatusOK, Body: f, Header: make(http.Header)}
+			}),
+		}),
+	)
+	require.NoError(t, err)
+
+	_, err = c.ArcByID(context.Background(), 659)
+	require.NoError(t, err)
+
+	require.Equal(t, "http://localhost:8080/metron/api/arc/659/", got)
+}
+
+func TestWithBaseURLInvalid(t *testing.T) {
+	t.Parallel()
+
+	testCases := []struct {
+		name          string
+		baseURL       string
+		expectedError string
+	}{
+		{
+			name:          "javascript scheme",
+			baseURL:       "javascript:alert(1)",
+			expectedError: "scheme must be http or https",
+		},
+		{
+			name:          "ftp scheme",
+			baseURL:       "ftp://metron.cloud",
+			expectedError: "scheme must be http or https",
+		},
+		{
+			name:          "relative path",
+			baseURL:       "/api",
+			expectedError: "scheme must be http or https",
+		},
+		{
+			name:          "no host",
+			baseURL:       "https://",
+			expectedError: "missing host",
+		},
+		{
+			name:          "empty",
+			baseURL:       "",
+			expectedError: "scheme must be http or https",
+		},
+		{
+			name:          "unparseable",
+			baseURL:       "https://metron.cloud/%zz",
+			expectedError: "invalid URL escape",
+		},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			t.Parallel()
+
+			c, err := metron.NewClient("foobar", metron.WithBaseURL(tc.baseURL))
+
+			require.Nil(t, c)
+			require.ErrorContains(t, err, tc.expectedError)
+		})
+	}
+}

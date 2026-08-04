@@ -1,4 +1,8 @@
 // Package metron is a Go client library for the Metron comic book database API.
+//
+// ImageURL and ResourceURL fields are parsed from upstream strings and are not
+// validated — url.Parse accepts any scheme. Check them before following or
+// rendering them.
 package metron
 
 import (
@@ -9,6 +13,7 @@ import (
 	"io"
 	"iter"
 	"net/http"
+	"net/url"
 	"os"
 	"path/filepath"
 	"sync"
@@ -20,7 +25,7 @@ import (
 	"github.com/oapi-codegen/nullable"
 )
 
-const baseURL = "https://metron.cloud"
+const defaultBaseURL = "https://metron.cloud"
 
 // Reference identifies a related resource by ID and display name.
 //
@@ -42,6 +47,7 @@ type Client struct {
 // clientOptions is what an Option mutates, so options can be applied in any
 // order before NewClient derives the Client from them.
 type clientOptions struct {
+	baseURL     string
 	caching     bool
 	httpClient  *http.Client
 	maxRetries  int
@@ -59,6 +65,7 @@ func defaultOptions() clientOptions {
 	}
 
 	return clientOptions{
+		baseURL:     defaultBaseURL,
 		httpClient:  &http.Client{},
 		storagePath: filepath.Join(storagePath, "go-metron"),
 		userAgent:   defaultUserAgent,
@@ -71,6 +78,10 @@ func NewClient(apiToken string, options ...Option) (*Client, error) {
 
 	for _, option := range options {
 		option(&o)
+	}
+
+	if err := validateBaseURL(o.baseURL); err != nil {
+		return nil, err
 	}
 
 	if err := os.MkdirAll(o.storagePath, 0o700); err != nil {
@@ -96,7 +107,7 @@ func NewClient(apiToken string, options ...Option) (*Client, error) {
 		httpkit.WithMiddleware(newRateLimitMiddleware()),
 	)
 
-	internalClient, err := internal.NewClient(baseURL, internal.WithHTTPClient(httpClient))
+	internalClient, err := internal.NewClient(o.baseURL, internal.WithHTTPClient(httpClient))
 	if err != nil {
 		return nil, err
 	}
@@ -154,6 +165,32 @@ func newBackOffMiddleware() httpkit.Middleware {
 
 			return res, nil
 		}
+	}
+}
+
+// validateBaseURL rejects anything that is not an absolute http or https URL.
+func validateBaseURL(rawURL string) error {
+	u, err := url.Parse(rawURL)
+	if err != nil {
+		return fmt.Errorf("metron: base URL: %w", err)
+	}
+
+	if u.Scheme != "http" && u.Scheme != "https" {
+		return fmt.Errorf("metron: base URL: scheme must be http or https, got %q", u.Scheme)
+	}
+
+	if u.Host == "" {
+		return fmt.Errorf("metron: base URL: missing host in %q", rawURL)
+	}
+
+	return nil
+}
+
+// WithBaseURL points the client at another Metron deployment: a local test
+// server, a proxy or a mirror. NewClient rejects a non-http(s) or hostless URL.
+func WithBaseURL(rawURL string) Option {
+	return func(o *clientOptions) {
+		o.baseURL = rawURL
 	}
 }
 

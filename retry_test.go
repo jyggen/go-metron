@@ -8,7 +8,9 @@ import (
 	"strings"
 	"sync/atomic"
 	"testing"
+	"time"
 
+	"codeberg.org/jyggen/go-httpkit"
 	"github.com/jyggen/go-metron"
 	"github.com/stretchr/testify/require"
 )
@@ -158,4 +160,96 @@ func TestRetryNotAppliedToScrobble(t *testing.T) {
 
 	require.ErrorIs(t, err, &metron.APIError{StatusCode: 503})
 	require.Equal(t, int64(1), count.Load())
+}
+
+func TestRetryAfter(t *testing.T) {
+	t.Parallel()
+
+	testCases := []struct {
+		name        string
+		retryAfter  func() string
+		expectRetry bool
+		minWait     time.Duration
+		maxWait     time.Duration
+	}{
+		{
+			name:        "delta seconds",
+			retryAfter:  func() string { return "30" },
+			expectRetry: true,
+			minWait:     30 * time.Second,
+			maxWait:     30 * time.Second,
+		},
+		{
+			name: "http date in the future",
+			retryAfter: func() string {
+				return time.Now().Add(2 * time.Second).UTC().Format(http.TimeFormat)
+			},
+			expectRetry: true,
+			minWait:     1,
+			maxWait:     2 * time.Second,
+		},
+		{
+			name: "http date in the past",
+			retryAfter: func() string {
+				return time.Now().Add(-time.Hour).UTC().Format(http.TimeFormat)
+			},
+			expectRetry: true,
+			minWait:     0,
+			maxWait:     0,
+		},
+		{
+			name:        "malformed",
+			retryAfter:  func() string { return "later please" },
+			expectRetry: false,
+		},
+		{
+			name:        "absent",
+			retryAfter:  func() string { return "" },
+			expectRetry: false,
+		},
+		{
+			name:        "negative",
+			retryAfter:  func() string { return "-5" },
+			expectRetry: false,
+		},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			t.Parallel()
+
+			header := make(http.Header)
+
+			if v := tc.retryAfter(); v != "" {
+				header.Set("Retry-After", v)
+			}
+
+			c := newTestClient(t, []requestMock{
+				{
+					expectedURL:    issueURL,
+					responseStatus: http.StatusTooManyRequests,
+					responseHeader: header,
+					responseBody:   `{"detail":"Request was throttled."}`,
+				},
+			})
+
+			_, err := c.IssueByID(context.Background(), 1)
+
+			require.Error(t, err)
+
+			var retryErr *httpkit.RetryAfterError
+
+			if !tc.expectRetry {
+				// Nothing to wait on, so it surfaces as a plain APIError.
+				require.NotErrorAs(t, err, &retryErr)
+				require.ErrorIs(t, err, &metron.APIError{StatusCode: http.StatusTooManyRequests})
+
+				return
+			}
+
+			require.ErrorAs(t, err, &retryErr)
+			require.GreaterOrEqual(t, retryErr.RetryAfter(), tc.minWait)
+			require.LessOrEqual(t, retryErr.RetryAfter(), tc.maxWait)
+		})
+	}
 }
