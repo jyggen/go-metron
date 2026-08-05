@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://www.schemastore.org/github-workflow.json
 name: release
 
 on:
@@ -5,30 +6,31 @@ on:
     tags:
       - "v*"
 
+permissions: {}
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
 
-permissions:
-  contents: write
-
 jobs:
   goreleaser:
+    name: goreleaser
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: write # goreleaser creates the GitHub release and uploads its artifacts
     steps:
       - name: Checkout
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
+          persist-credentials: false
       - name: Set up Go
-        uses: actions/setup-go@d35c59abb061a4a6fb18e82ac0862c26744d6ab5 # v5
+        uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
         with:
-          cache: true
-          cache-dependency-path: go.sum
+          cache: false
           go-version-file: go.mod
       - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@9c156ee8a17a598857849441385a2041ef570552 # v6
+        uses: goreleaser/goreleaser-action@f06c13b6b1a9625abc9e6e439d9c05a8f2190e94 # v7.2.3
         with:
           distribution: goreleaser
           version: "~> v2"
