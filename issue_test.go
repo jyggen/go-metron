@@ -817,3 +817,41 @@ func TestIssueOptionalFieldsAreGuarded(t *testing.T) {
 		})
 	}
 }
+
+// TestIssueListUnparseableImage pins the list mapper's image failure to
+// MapError, so a listing can keep skipping past it like any other bad record.
+func TestIssueListUnparseableImage(t *testing.T) {
+	t.Parallel()
+
+	body := `{"count":2,"next":null,"previous":null,"results":[
+		{"id":1,"series":{"id":9,"name":"S","volume":1,"year_began":2000},"number":"1","cover_date":"2022-09-01","image":"https://x/%zz","modified":"2024-12-23T16:17:29.333263-05:00"},
+		{"id":2,"series":{"id":9,"name":"S","volume":1,"year_began":2000},"number":"2","cover_date":"2022-09-01","modified":"2024-12-23T16:17:29.333263-05:00"}
+	]}`
+
+	c := newTestClient(t, []requestMock{
+		{expectedURL: "https://metron.cloud/api/issue/?page=1", responseBody: body},
+	})
+
+	var ids []int
+	var errs []error
+
+	for issue, err := range c.Issues(context.Background()) {
+		if err != nil {
+			errs = append(errs, err)
+
+			continue
+		}
+
+		ids = append(ids, issue.ID)
+	}
+
+	require.Equal(t, []int{2}, ids)
+	require.Len(t, errs, 1)
+	require.ErrorIs(t, errs[0], &metron.MapError{Kind: "issue", ID: 1, Field: "Image"})
+
+	var mapErr *metron.MapError
+
+	require.ErrorAs(t, errs[0], &mapErr)
+	require.ErrorContains(t, mapErr.Err, `invalid URL escape "%zz"`)
+	require.ErrorContains(t, errs[0], "metron: issue 1: Image: ")
+}

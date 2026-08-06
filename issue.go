@@ -534,7 +534,7 @@ func issueListMapper(in internal.IssueList) (*IssueList, error) {
 	if image := nullableToPtr(in.Image); image != nil {
 		imageURL, err = url.Parse(*image)
 		if err != nil {
-			return nil, err
+			return nil, &MapError{Kind: "issue", ID: id, Field: "Image", Err: err}
 		}
 	}
 
