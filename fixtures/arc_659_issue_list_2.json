@@ -4,34 +4,36 @@
   "previous": "https://metron.cloud/api/arc/659/issue_list/?page=1",
   "results": [
     {
-      "id": 89090,
+      "id": 43011,
       "series": {
-        "name": "'68",
-        "volume": 2,
-        "year_began": 2011
+        "id": 3094,
+        "name": "Spider-Man / Deadpool",
+        "volume": 1,
+        "year_began": 2016
       },
-      "number": "2",
-      "issue": "'68 (2011) #2",
-      "cover_date": "2011-05-01",
-      "store_date": "2011-05-25",
-      "image": "https://static.metron.cloud/media/issue/2023/12/02/ceddeae0aac84df7a509d66003c8007c.jpg",
-      "cover_hash": "c0471e7273cf1ccc",
-      "modified": "2023-12-02T10:11:19.577639-05:00"
+      "number": "15",
+      "issue": "Spider-Man / Deadpool (2016) #15",
+      "cover_date": "2017-05-01",
+      "store_date": "2017-03-08",
+      "image": "https://static.metron.cloud/media/issue/2022/01/16/spider-man-deadpool-15.jpg",
+      "cover_hash": "ec94bcb6416a4acb",
+      "modified": "2025-01-12T18:12:50.219180-05:00"
     },
     {
-      "id": 89091,
+      "id": 48265,
       "series": {
-        "name": "'68",
-        "volume": 2,
-        "year_began": 2011
+        "id": 3408,
+        "name": "Deadpool",
+        "volume": 6,
+        "year_began": 2015
       },
-      "number": "3",
-      "issue": "'68 (2011) #3",
-      "cover_date": "2011-08-01",
-      "store_date": "2011-08-03",
-      "image": "https://static.metron.cloud/media/issue/2023/12/02/fb0072f3b7094758a3488f4cc8b6e551.jpg",
-      "cover_hash": "cc97960b5be6a684",
-      "modified": "2023-12-02T10:11:24.329496-05:00"
+      "number": "29",
+      "issue": "Deadpool (2015) #29",
+      "cover_date": "2017-06-01",
+      "store_date": "2017-04-19",
+      "image": "https://static.metron.cloud/media/issue/2022/05/21/deadpool-29.jpg",
+      "cover_hash": "eabdc7126c07b116",
+      "modified": "2024-12-29T13:12:36.439218-05:00"
     }
   ]
 }

@@ -48,35 +48,35 @@ func TestImprints(t *testing.T) {
 	t.Parallel()
 	testList(t, "imprint", (*metron.Client).Imprints, []testCase[*metron.ImprintList]{
 		{
-			id: 14,
+			id: 31,
 			expected: &metron.ImprintList{
-				ID:       14,
-				Name:     "Amalgam Comics",
-				Modified: parseTime(t, "2024-08-18T10:09:51.151912-04:00"),
+				ID:       31,
+				Name:     "Abrams Fanfare",
+				Modified: parseTime(t, "2025-04-14T19:35:22.359198-04:00"),
 			},
 		},
 		{
-			id: 4,
+			id: 32,
 			expected: &metron.ImprintList{
-				ID:       4,
-				Name:     "Archie Horror",
-				Modified: parseTime(t, "2024-08-12T15:07:30.049388-04:00"),
+				ID:       32,
+				Name:     "Action Lab Danger Zone",
+				Modified: parseTime(t, "2025-09-12T11:31:32.032705-04:00"),
 			},
 		},
 		{
-			id: 13,
+			id: 42,
 			expected: &metron.ImprintList{
-				ID:       13,
-				Name:     "Boom! Box",
-				Modified: parseTime(t, "2024-08-13T15:43:21.628316-04:00"),
+				ID:       42,
+				Name:     "Adventure Comics",
+				Modified: parseTime(t, "2026-05-21T12:59:20.248379-04:00"),
 			},
 		},
 		{
-			id: 2,
+			id: 29,
 			expected: &metron.ImprintList{
-				ID:       2,
-				Name:     "DC Black Label",
-				Modified: parseTime(t, "2024-08-12T12:14:36.732542-04:00"),
+				ID:       29,
+				Name:     "Aircel Publishing",
+				Modified: parseTime(t, "2026-03-01T20:26:36.804924-05:00"),
 			},
 		},
 	})

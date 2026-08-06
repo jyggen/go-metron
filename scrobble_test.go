@@ -52,6 +52,7 @@ func TestScrobble(t *testing.T) {
 					CoverDate: parseDate(t, "2023-06-15"),
 					StoreDate: new(parseDate(t, "2023-06-13")),
 					Series: metron.ScrobbleIssueSeries{
+						ID:        2222,
 						Name:      "Amazing Spider-Man",
 						Volume:    6,
 						YearBegan: 2022,
@@ -92,6 +93,7 @@ func TestScrobble(t *testing.T) {
 					CoverDate: parseDate(t, "2023-06-15"),
 					StoreDate: new(parseDate(t, "2023-06-13")),
 					Series: metron.ScrobbleIssueSeries{
+						ID:        2222,
 						Name:      "Amazing Spider-Man",
 						Volume:    6,
 						YearBegan: 2022,
@@ -134,7 +136,7 @@ func scrobbleResponse(rating string) string {
 	return `{"id":42,"created":true,"is_read":true,` +
 		`"modified":"2024-01-15T10:30:00.123456-05:00","issue":{"id":12345,"number":"1",` +
 		`"cover_date":"2023-06-15","modified":"2024-01-15T10:30:00.123456-05:00",` +
-		`"series":{"name":"Amazing Spider-Man","volume":6,"year_began":2022}},` +
+		`"series":{"id":2222,"name":"Amazing Spider-Man","volume":6,"year_began":2022}},` +
 		`"rating":` + rating + `}`
 }
 

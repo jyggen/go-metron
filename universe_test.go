@@ -34,6 +34,14 @@ func TestUniverses(t *testing.T) {
 	t.Parallel()
 	testList(t, "universe", (*metron.Client).Universes, []testCase[*metron.UniverseList]{
 		{
+			id: 153,
+			expected: &metron.UniverseList{
+				ID:       153,
+				Name:     "2099 AD - Marvel Knights",
+				Modified: parseTime(t, "2025-01-30T14:13:19.980781-05:00"),
+			},
+		},
+		{
 			id: 24,
 			expected: &metron.UniverseList{
 				ID:       24,
@@ -42,27 +50,19 @@ func TestUniverses(t *testing.T) {
 			},
 		},
 		{
+			id: 157,
+			expected: &metron.UniverseList{
+				ID:       157,
+				Name:     "Absolute Universe",
+				Modified: parseTime(t, "2025-04-16T09:21:47.838281-04:00"),
+			},
+		},
+		{
 			id: 110,
 			expected: &metron.UniverseList{
 				ID:       110,
 				Name:     "Age of Apocalypse",
 				Modified: parseTime(t, "2024-04-17T10:31:52.624470-04:00"),
-			},
-		},
-		{
-			id: 69,
-			expected: &metron.UniverseList{
-				ID:       69,
-				Name:     "Amalgam",
-				Modified: parseTime(t, "2024-01-25T09:22:08.422067-05:00"),
-			},
-		},
-		{
-			id: 75,
-			expected: &metron.UniverseList{
-				ID:       75,
-				Name:     "Amazonia",
-				Modified: parseTime(t, "2024-01-25T09:23:39.686552-05:00"),
 			},
 		},
 	})

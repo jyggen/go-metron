@@ -4,34 +4,36 @@
   "previous": null,
   "results": [
     {
-      "id": 89088,
+      "id": 34067,
       "series": {
-        "name": "'68",
+        "id": 2481,
+        "name": "Batman",
         "volume": 1,
-        "year_began": 2006
+        "year_began": 1940
       },
       "number": "1",
-      "issue": "'68 (2006) #1",
-      "cover_date": "2006-12-01",
+      "issue": "Batman (1940) #1",
+      "cover_date": "1940-04-01",
       "store_date": null,
-      "image": "https://static.metron.cloud/media/issue/2023/12/02/395d1af45859497183f0b868485831aa.jpg",
-      "cover_hash": "de9a207b768189f4",
-      "modified": "2023-12-02T10:08:26.125751-05:00"
+      "image": "https://static.metron.cloud/media/issue/2021/07/10/batman-1.jpg",
+      "cover_hash": "ea2a919decc5934c",
+      "modified": "2024-12-20T14:50:51.216877-05:00"
     },
     {
-      "id": 89089,
+      "id": 34068,
       "series": {
-        "name": "'68",
-        "volume": 2,
-        "year_began": 2011
+        "id": 2481,
+        "name": "Batman",
+        "volume": 1,
+        "year_began": 1940
       },
-      "number": "1",
-      "issue": "'68 (2011) #1",
-      "cover_date": "2011-04-01",
-      "store_date": "2011-04-27",
-      "image": "https://static.metron.cloud/media/issue/2023/12/02/b8a86c0422e749968f74c2fe2605ea4a.jpg",
-      "cover_hash": "ccd6331a22959d3b",
-      "modified": "2023-12-02T10:10:55.924868-05:00"
+      "number": "2",
+      "issue": "Batman (1940) #2",
+      "cover_date": "1940-07-01",
+      "store_date": null,
+      "image": "https://static.metron.cloud/media/issue/2021/07/10/batman-2.jpg",
+      "cover_hash": "cf33b5c81d266c49",
+      "modified": "2024-12-20T14:50:53.328383-05:00"
     }
   ]
 }

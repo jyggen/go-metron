@@ -47,6 +47,7 @@ type IssueVariant struct {
 
 // IssueListSeries is the series an issue belongs to, as embedded in list responses.
 type IssueListSeries struct {
+	ID        int
 	Name      string
 	Volume    int
 	YearBegan int
@@ -508,6 +509,10 @@ func issueListMapper(in internal.IssueList) (*IssueList, error) {
 		return nil, fmt.Errorf("issue: nil Series")
 	}
 
+	if in.Series.Id == nil {
+		return nil, fmt.Errorf("issue: nil Series.Id")
+	}
+
 	coverDate := civil.DateOf(in.CoverDate.Time)
 
 	var maybeStoreDate *civil.Date
@@ -529,6 +534,7 @@ func issueListMapper(in internal.IssueList) (*IssueList, error) {
 	return &IssueList{
 		ID: *in.Id,
 		Series: IssueListSeries{
+			ID:        *in.Series.Id,
 			Name:      in.Series.Name,
 			Volume:    in.Series.Volume,
 			YearBegan: in.Series.YearBegan,

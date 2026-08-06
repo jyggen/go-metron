@@ -1,37 +1,39 @@
 {
   "count": 4,
   "next": null,
-  "previous": "https://metron.cloud/api/iusse/?page=1",
+  "previous": "https://metron.cloud/api/issue/?page=1",
   "results": [
     {
-      "id": 89090,
+      "id": 61168,
       "series": {
-        "name": "'68",
-        "volume": 2,
-        "year_began": 2011
-      },
-      "number": "2",
-      "issue": "'68 (2011) #2",
-      "cover_date": "2011-05-01",
-      "store_date": "2011-05-25",
-      "image": "https://static.metron.cloud/media/issue/2023/12/02/ceddeae0aac84df7a509d66003c8007c.jpg",
-      "cover_hash": "c0471e7273cf1ccc",
-      "modified": "2023-12-02T10:11:19.577639-05:00"
-    },
-    {
-      "id": 89091,
-      "series": {
-        "name": "'68",
-        "volume": 2,
-        "year_began": 2011
+        "id": 3856,
+        "name": "The 06 Protocol",
+        "volume": 1,
+        "year_began": 2022
       },
       "number": "3",
-      "issue": "'68 (2011) #3",
-      "cover_date": "2011-08-01",
-      "store_date": "2011-08-03",
-      "image": "https://static.metron.cloud/media/issue/2023/12/02/fb0072f3b7094758a3488f4cc8b6e551.jpg",
-      "cover_hash": "cc97960b5be6a684",
-      "modified": "2023-12-02T10:11:24.329496-05:00"
+      "issue": "The 06 Protocol (2022) #3",
+      "cover_date": "2023-06-01",
+      "store_date": "2023-06-28",
+      "image": "https://static.metron.cloud/media/issue/2023/04/07/cfe56a98a0cd40bdbc5a4ed22956ca75.jpg",
+      "cover_hash": "90944f7344c87f3e",
+      "modified": "2024-12-23T16:17:33.770796-05:00"
+    },
+    {
+      "id": 136787,
+      "series": {
+        "id": 10307,
+        "name": "8-Bit Zombie",
+        "volume": 1,
+        "year_began": 2013
+      },
+      "number": "1",
+      "issue": "8-Bit Zombie (2013) #1",
+      "cover_date": "2013-10-01",
+      "store_date": "2013-11-27",
+      "image": "https://static.metron.cloud/media/issue/2025/02/25/Cover-A_AcSDvLN.jpg",
+      "cover_hash": "ae8379d4aa671478",
+      "modified": "2025-02-25T22:34:04.333183-05:00"
     }
   ]
 }

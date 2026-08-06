@@ -53,35 +53,35 @@ func TestPublishers(t *testing.T) {
 	t.Parallel()
 	testList(t, "publisher", (*metron.Client).Publishers, []testCase[*metron.PublisherList]{
 		{
+			id: 178,
+			expected: &metron.PublisherList{
+				ID:       178,
+				Name:     "10 Ton Press",
+				Modified: parseTime(t, "2026-02-11T21:43:43.314351-05:00"),
+			},
+		},
+		{
 			id: 29,
 			expected: &metron.PublisherList{
 				ID:       29,
 				Name:     "12-Gauge Comics",
-				Modified: parseTime(t, "2019-11-03T17:16:03.835821-05:00"),
+				Modified: parseTime(t, "2025-04-04T23:08:02.258460-04:00"),
 			},
 		},
 		{
-			id: 64,
+			id: 218,
 			expected: &metron.PublisherList{
-				ID:       64,
-				Name:     "AAA Pop Comics",
-				Modified: parseTime(t, "2023-07-24T08:21:06.019465-04:00"),
+				ID:       218,
+				Name:     "3 Finger Prints",
+				Modified: parseTime(t, "2026-07-21T12:49:17.396186-04:00"),
 			},
 		},
 		{
-			id: 36,
+			id: 148,
 			expected: &metron.PublisherList{
-				ID:       36,
-				Name:     "AWA Studios",
-				Modified: parseTime(t, "2020-07-06T21:36:46.414152-04:00"),
-			},
-		},
-		{
-			id: 56,
-			expected: &metron.PublisherList{
-				ID:       56,
-				Name:     "Aardvark-Vanaheim",
-				Modified: parseTime(t, "2023-04-29T16:56:46.004672-04:00"),
+				ID:       148,
+				Name:     "Aaaargh! Comics",
+				Modified: parseTime(t, "2025-09-24T13:52:41.776649-04:00"),
 			},
 		},
 	})

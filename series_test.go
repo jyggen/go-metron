@@ -94,7 +94,7 @@ func TestSeriesByID(t *testing.T) {
 
 func TestSeriesByPublisherID(t *testing.T) {
 	t.Parallel()
-	testListByID(t, "publisher", 1, "series", (*metron.Client).SeriesByPublisherID, seriesListTestCases(t))
+	testListByID(t, "publisher", 1, "series", (*metron.Client).SeriesByPublisherID, publisherSeriesListTestCases(t))
 }
 
 func TestSeries(t *testing.T) {
@@ -105,47 +105,104 @@ func TestSeries(t *testing.T) {
 func seriesListTestCases(t *testing.T) []testCase[*metron.SeriesList] {
 	return []testCase[*metron.SeriesList]{
 		{
-			id: 6227,
+			id: 3856,
 			expected: &metron.SeriesList{
-				ID:         6227,
-				Name:       "'68 (2006)",
-				YearBegan:  2006,
+				ID:         3856,
+				Name:       "The 06 Protocol (2022)",
+				YearBegan:  2022,
+				YearEnded:  new(2022),
 				Volume:     1,
-				IssueCount: 1,
-				Modified:   parseTime(t, "2023-12-02T10:10:47.573380-05:00"),
+				IssueCount: 3,
+				Modified:   parseTime(t, "2024-12-23T16:13:24.914552-05:00"),
 			},
 		},
 		{
-			id: 6228,
+			id: 10307,
 			expected: &metron.SeriesList{
-				ID:         6228,
-				Name:       "'68 (2011)",
-				YearBegan:  2011,
-				Volume:     2,
-				IssueCount: 4,
-				Modified:   parseTime(t, "2023-12-02T10:10:18.550260-05:00"),
-			},
-		},
-		{
-			id: 6229,
-			expected: &metron.SeriesList{
-				ID:         6229,
-				Name:       "'68 Hallowed Ground (2013)",
+				ID:         10307,
+				Name:       "8-Bit Zombie (2013)",
 				YearBegan:  2013,
+				YearEnded:  new(2013),
 				Volume:     1,
 				IssueCount: 1,
-				Modified:   parseTime(t, "2023-12-02T10:13:50.130689-05:00"),
+				Modified:   parseTime(t, "2025-02-25T22:49:53.851020-05:00"),
 			},
 		},
 		{
-			id: 6236,
+			id: 10311,
 			expected: &metron.SeriesList{
-				ID:         6236,
-				Name:       "'68 Hardship (2011)",
-				YearBegan:  2011,
+				ID:         10311,
+				Name:       "8-Bit Zombie: The Full Byte TPB (2015)",
+				YearBegan:  2015,
+				YearEnded:  new(2015),
 				Volume:     1,
 				IssueCount: 1,
-				Modified:   parseTime(t, "2023-12-02T10:53:11.674254-05:00"),
+				Modified:   parseTime(t, "2025-02-25T23:02:02.115714-05:00"),
+			},
+		},
+		{
+			id: 6195,
+			expected: &metron.SeriesList{
+				ID:         6195,
+				Name:       "100% (2002)",
+				YearBegan:  2002,
+				YearEnded:  new(2003),
+				Volume:     1,
+				IssueCount: 5,
+				Modified:   parseTime(t, "2025-01-19T11:26:32.503473-05:00"),
+			},
+		},
+	}
+}
+
+func publisherSeriesListTestCases(t *testing.T) []testCase[*metron.SeriesList] {
+	return []testCase[*metron.SeriesList]{
+		{
+			id: 8531,
+			expected: &metron.SeriesList{
+				ID:         8531,
+				Name:       "The 100 Greatest Marvels of All Time (2001)",
+				YearBegan:  2001,
+				YearEnded:  new(2001),
+				Volume:     1,
+				IssueCount: 10,
+				Modified:   parseTime(t, "2024-12-26T16:46:05.803827-05:00"),
+			},
+		},
+		{
+			id: 1530,
+			expected: &metron.SeriesList{
+				ID:         1530,
+				Name:       "100ᵗʰ Anniversary Special: Avengers (2014)",
+				YearBegan:  2014,
+				YearEnded:  nil,
+				Volume:     1,
+				IssueCount: 1,
+				Modified:   parseTime(t, "2024-12-26T16:46:20.756441-05:00"),
+			},
+		},
+		{
+			id: 1531,
+			expected: &metron.SeriesList{
+				ID:         1531,
+				Name:       "100ᵗʰ Anniversary Special: Fantastic Four (2014)",
+				YearBegan:  2014,
+				YearEnded:  nil,
+				Volume:     1,
+				IssueCount: 1,
+				Modified:   parseTime(t, "2024-12-26T16:46:35.608465-05:00"),
+			},
+		},
+		{
+			id: 1532,
+			expected: &metron.SeriesList{
+				ID:         1532,
+				Name:       "100ᵗʰ Anniversary Special: Guardians of the Galaxy (2014)",
+				YearBegan:  2014,
+				YearEnded:  nil,
+				Volume:     1,
+				IssueCount: 1,
+				Modified:   parseTime(t, "2024-12-26T16:46:49.163869-05:00"),
 			},
 		},
 	}

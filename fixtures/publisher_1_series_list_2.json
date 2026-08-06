@@ -4,20 +4,22 @@
   "previous": "https://metron.cloud/api/publisher/1/series_list/?page=1",
   "results": [
     {
-      "id": 6229,
-      "series": "'68 Hallowed Ground (2013)",
-      "year_began": 2013,
+      "id": 1531,
+      "series": "100ᵗʰ Anniversary Special: Fantastic Four (2014)",
+      "year_began": 2014,
+      "year_end": null,
       "volume": 1,
       "issue_count": 1,
-      "modified": "2023-12-02T10:13:50.130689-05:00"
+      "modified": "2024-12-26T16:46:35.608465-05:00"
     },
     {
-      "id": 6236,
-      "series": "'68 Hardship (2011)",
-      "year_began": 2011,
+      "id": 1532,
+      "series": "100ᵗʰ Anniversary Special: Guardians of the Galaxy (2014)",
+      "year_began": 2014,
+      "year_end": null,
       "volume": 1,
       "issue_count": 1,
-      "modified": "2023-12-02T10:53:11.674254-05:00"
+      "modified": "2024-12-26T16:46:49.163869-05:00"
     }
   ]
 }

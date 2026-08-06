@@ -4,34 +4,36 @@
   "previous": "https://metron.cloud/api/character/83/issue_list/?page=1",
   "results": [
     {
-      "id": 89090,
+      "id": 29257,
       "series": {
-        "name": "'68",
-        "volume": 2,
-        "year_began": 2011
+        "id": 2102,
+        "name": "Detective Comics",
+        "volume": 1,
+        "year_began": 1937
       },
-      "number": "2",
-      "issue": "'68 (2011) #2",
-      "cover_date": "2011-05-01",
-      "store_date": "2011-05-25",
-      "image": "https://static.metron.cloud/media/issue/2023/12/02/ceddeae0aac84df7a509d66003c8007c.jpg",
-      "cover_hash": "c0471e7273cf1ccc",
-      "modified": "2023-12-02T10:11:19.577639-05:00"
+      "number": "45",
+      "issue": "Detective Comics (1937) #45",
+      "cover_date": "1940-11-01",
+      "store_date": null,
+      "image": "https://static.metron.cloud/media/issue/2021/04/15/detective-comics-45.jpg",
+      "cover_hash": "f5acdb06707089e6",
+      "modified": "2024-12-23T14:04:38.901516-05:00"
     },
     {
-      "id": 89091,
+      "id": 34070,
       "series": {
-        "name": "'68",
-        "volume": 2,
-        "year_began": 2011
+        "id": 2481,
+        "name": "Batman",
+        "volume": 1,
+        "year_began": 1940
       },
-      "number": "3",
-      "issue": "'68 (2011) #3",
-      "cover_date": "2011-08-01",
-      "store_date": "2011-08-03",
-      "image": "https://static.metron.cloud/media/issue/2023/12/02/fb0072f3b7094758a3488f4cc8b6e551.jpg",
-      "cover_hash": "cc97960b5be6a684",
-      "modified": "2023-12-02T10:11:24.329496-05:00"
+      "number": "4",
+      "issue": "Batman (1940) #4",
+      "cover_date": "1941-01-01",
+      "store_date": null,
+      "image": "https://static.metron.cloud/media/issue/2021/07/10/batman-4.jpg",
+      "cover_hash": "c3b73ccb2f0e3860",
+      "modified": "2024-12-20T14:50:58.372170-05:00"
     }
   ]
 }

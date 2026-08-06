@@ -1,17 +1,17 @@
 {
-  "count": 1565,
+  "count": 4,
   "next": "https://metron.cloud/api/team/?page=2",
   "previous": null,
   "results": [
     {
-      "id": 1089,
-      "name": "501st Legion",
-      "modified": "2023-04-04T10:12:13.619621-04:00"
+      "id": 2225,
+      "name": "13th Floor Witches",
+      "modified": "2025-09-10T09:28:21.026379-04:00"
     },
     {
-      "id": 1498,
-      "name": "5th Dimensional Imps",
-      "modified": "2024-03-16T09:28:28.725699-04:00"
+      "id": 2772,
+      "name": "181st Imperial Fighter Wing",
+      "modified": "2026-01-06T19:28:27.534918-05:00"
     }
   ]
 }

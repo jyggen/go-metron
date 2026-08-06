@@ -38,6 +38,7 @@ type SeriesList struct {
 	ID         int
 	Name       string
 	YearBegan  int
+	YearEnded  *int
 	Volume     int
 	IssueCount int
 	Modified   time.Time
@@ -211,6 +212,7 @@ func seriesListMapper(in internal.SeriesList) (*SeriesList, error) {
 		ID:         *in.Id,
 		Name:       in.Series,
 		YearBegan:  in.YearBegan,
+		YearEnded:  nullableToPtr(in.YearEnd),
 		Volume:     in.Volume,
 		IssueCount: *in.IssueCount,
 		Modified:   *in.Modified,

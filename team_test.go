@@ -55,35 +55,35 @@ func TestTeams(t *testing.T) {
 	t.Parallel()
 	testList(t, "team", (*metron.Client).Teams, []testCase[*metron.TeamList]{
 		{
-			id: 1089,
+			id: 2225,
 			expected: &metron.TeamList{
-				ID:       1089,
-				Name:     "501st Legion",
-				Modified: parseTime(t, "2023-04-04T10:12:13.619621-04:00"),
+				ID:       2225,
+				Name:     "13th Floor Witches",
+				Modified: parseTime(t, "2025-09-10T09:28:21.026379-04:00"),
 			},
 		},
 		{
-			id: 1498,
+			id: 2772,
 			expected: &metron.TeamList{
-				ID:       1498,
-				Name:     "5th Dimensional Imps",
-				Modified: parseTime(t, "2024-03-16T09:28:28.725699-04:00"),
+				ID:       2772,
+				Name:     "181st Imperial Fighter Wing",
+				Modified: parseTime(t, "2026-01-06T19:28:27.534918-05:00"),
 			},
 		},
 		{
-			id: 180,
+			id: 1806,
 			expected: &metron.TeamList{
-				ID:       180,
-				Name:     "A-Force",
-				Modified: parseTime(t, "2019-07-27T16:52:41.547904-04:00"),
+				ID:       1806,
+				Name:     "22 Brides",
+				Modified: parseTime(t, "2025-03-16T09:32:56.095096-04:00"),
 			},
 		},
 		{
-			id: 523,
+			id: 2711,
 			expected: &metron.TeamList{
-				ID:       523,
-				Name:     "A-Next",
-				Modified: parseTime(t, "2021-11-17T16:14:53.029611-05:00"),
+				ID:       2711,
+				Name:     "327th Star Corps",
+				Modified: parseTime(t, "2026-01-04T13:32:44.102791-05:00"),
 			},
 		},
 	})

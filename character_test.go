@@ -94,7 +94,7 @@ func TestCharacterByID(t *testing.T) {
 				},
 				ComicVineID: new(1702),
 				ResourceURL: parseURL(t, "https://metron.cloud/character/joker/"),
-				Modified:    parseTime(t, "2026-07-13T13:47:16.465101-04:00"),
+				Modified:    parseTime(t, "2026-08-05T09:15:26.347117-04:00"),
 			},
 		},
 		{
@@ -120,35 +120,35 @@ func TestCharacters(t *testing.T) {
 	t.Parallel()
 	testList(t, "character", (*metron.Client).Characters, []testCase[*metron.CharacterList]{
 		{
-			id: 23817,
-			expected: &metron.CharacterList{
-				ID:       23817,
-				Name:     "'Breed",
-				Modified: parseTime(t, "2023-12-02T11:25:39.275547-05:00"),
-			},
-		},
-		{
-			id: 6029,
-			expected: &metron.CharacterList{
-				ID:       6029,
-				Name:     "'Mazing Man",
-				Modified: parseTime(t, "2021-03-12T14:42:27.453937-05:00"),
-			},
-		},
-		{
-			id: 21156,
-			expected: &metron.CharacterList{
-				ID:       21156,
-				Name:     "'Saur",
-				Modified: parseTime(t, "2023-07-20T14:54:06.624160-04:00"),
-			},
-		},
-		{
 			id: 6211,
 			expected: &metron.CharacterList{
 				ID:       6211,
 				Name:     "0101",
-				Modified: parseTime(t, "2021-03-25T16:19:54.045015-04:00"),
+				Modified: parseTime(t, "2025-01-02T12:37:53.196726-05:00"),
+			},
+		},
+		{
+			id: 36241,
+			expected: &metron.CharacterList{
+				ID:       36241,
+				Name:     "0-1X",
+				Modified: parseTime(t, "2025-05-04T12:27:02.188492-04:00"),
+			},
+		},
+		{
+			id: 23822,
+			expected: &metron.CharacterList{
+				ID:       23822,
+				Name:     "10th Muse",
+				Modified: parseTime(t, "2023-12-02T11:32:20.584317-05:00"),
+			},
+		},
+		{
+			id: 42936,
+			expected: &metron.CharacterList{
+				ID:       42936,
+				Name:     "1138",
+				Modified: parseTime(t, "2026-01-09T14:09:26.193684-05:00"),
 			},
 		},
 	})

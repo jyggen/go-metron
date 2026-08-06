@@ -4,14 +4,14 @@
   "previous": "https://metron.cloud/api/universe/?page=1",
   "results": [
     {
-      "id": 69,
-      "name": "Amalgam",
-      "modified": "2024-01-25T09:22:08.422067-05:00"
+      "id": 157,
+      "name": "Absolute Universe",
+      "modified": "2025-04-16T09:21:47.838281-04:00"
     },
     {
-      "id": 75,
-      "name": "Amazonia",
-      "modified": "2024-01-25T09:23:39.686552-05:00"
+      "id": 110,
+      "name": "Age of Apocalypse",
+      "modified": "2024-04-17T10:31:52.624470-04:00"
     }
   ]
 }

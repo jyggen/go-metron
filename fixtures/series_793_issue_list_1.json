@@ -4,34 +4,36 @@
   "previous": null,
   "results": [
     {
-      "id": 89088,
+      "id": 7057,
       "series": {
-        "name": "'68",
+        "id": 793,
+        "name": "Fables",
         "volume": 1,
-        "year_began": 2006
+        "year_began": 2002
       },
       "number": "1",
-      "issue": "'68 (2006) #1",
-      "cover_date": "2006-12-01",
-      "store_date": null,
-      "image": "https://static.metron.cloud/media/issue/2023/12/02/395d1af45859497183f0b868485831aa.jpg",
-      "cover_hash": "de9a207b768189f4",
-      "modified": "2023-12-02T10:08:26.125751-05:00"
+      "issue": "Fables (2002) #1",
+      "cover_date": "2002-07-01",
+      "store_date": "2002-05-08",
+      "image": "https://static.metron.cloud/media/issue/2019/11/01/fables-1.jpg",
+      "cover_hash": "fc1952ece86782f0",
+      "modified": "2025-01-01T23:35:18.056873-05:00"
     },
     {
-      "id": 89089,
+      "id": 7058,
       "series": {
-        "name": "'68",
-        "volume": 2,
-        "year_began": 2011
+        "id": 793,
+        "name": "Fables",
+        "volume": 1,
+        "year_began": 2002
       },
-      "number": "1",
-      "issue": "'68 (2011) #1",
-      "cover_date": "2011-04-01",
-      "store_date": "2011-04-27",
-      "image": "https://static.metron.cloud/media/issue/2023/12/02/b8a86c0422e749968f74c2fe2605ea4a.jpg",
-      "cover_hash": "ccd6331a22959d3b",
-      "modified": "2023-12-02T10:10:55.924868-05:00"
+      "number": "2",
+      "issue": "Fables (2002) #2",
+      "cover_date": "2002-08-01",
+      "store_date": "2002-06-12",
+      "image": "https://static.metron.cloud/media/issue/2019/11/01/fables-2.jpg",
+      "cover_hash": "9816e2a59bc62a3f",
+      "modified": "2025-01-01T23:35:21.122309-05:00"
     }
   ]
 }

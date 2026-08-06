@@ -16,6 +16,7 @@ import (
 // ScrobbleIssueSeries is the series an issue belongs to, as embedded in a
 // scrobble response.
 type ScrobbleIssueSeries struct {
+	ID        int
 	Name      string
 	Volume    int
 	YearBegan int
@@ -170,6 +171,10 @@ func collectionIssueMapper(in internal.CollectionIssue) (*ScrobbleIssue, error) 
 		return nil, fmt.Errorf("scrobble: nil Issue.Series")
 	}
 
+	if in.Series.Id == nil {
+		return nil, fmt.Errorf("scrobble: nil Issue.Series.Id")
+	}
+
 	coverDate := civil.DateOf(in.CoverDate.Time)
 
 	var maybeStoreDate *civil.Date
@@ -184,6 +189,7 @@ func collectionIssueMapper(in internal.CollectionIssue) (*ScrobbleIssue, error) 
 		CoverDate: coverDate,
 		StoreDate: maybeStoreDate,
 		Series: ScrobbleIssueSeries{
+			ID:        *in.Series.Id,
 			Name:      in.Series.Name,
 			Volume:    in.Series.Volume,
 			YearBegan: in.Series.YearBegan,

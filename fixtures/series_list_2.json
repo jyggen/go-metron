@@ -4,20 +4,22 @@
   "previous": "https://metron.cloud/api/series/?page=1",
   "results": [
     {
-      "id": 6229,
-      "series": "'68 Hallowed Ground (2013)",
-      "year_began": 2013,
+      "id": 10311,
+      "series": "8-Bit Zombie: The Full Byte TPB (2015)",
+      "year_began": 2015,
+      "year_end": 2015,
       "volume": 1,
       "issue_count": 1,
-      "modified": "2023-12-02T10:13:50.130689-05:00"
+      "modified": "2025-02-25T23:02:02.115714-05:00"
     },
     {
-      "id": 6236,
-      "series": "'68 Hardship (2011)",
-      "year_began": 2011,
+      "id": 6195,
+      "series": "100% (2002)",
+      "year_began": 2002,
+      "year_end": 2003,
       "volume": 1,
-      "issue_count": 1,
-      "modified": "2023-12-02T10:53:11.674254-05:00"
+      "issue_count": 5,
+      "modified": "2025-01-19T11:26:32.503473-05:00"
     }
   ]
 }

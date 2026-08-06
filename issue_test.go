@@ -268,17 +268,17 @@ func TestIssueByID(t *testing.T) {
 					{
 						ID:       261,
 						Name:     "Alfred Pennyworth",
-						Modified: parseTime(t, "2026-06-22T10:15:05.369600-04:00"),
+						Modified: parseTime(t, "2026-08-02T15:12:29.254628-04:00"),
 					},
 					{
 						ID:       275,
 						Name:     "Barbara Gordon",
-						Modified: parseTime(t, "2026-07-06T08:45:39.835738-04:00"),
+						Modified: parseTime(t, "2026-08-02T15:07:50.635149-04:00"),
 					},
 					{
 						ID:       12,
 						Name:     "Batman",
-						Modified: parseTime(t, "2026-07-24T07:07:30.078052-04:00"),
+						Modified: parseTime(t, "2026-08-05T09:39:56.696076-04:00"),
 					},
 					{
 						ID:       2351,
@@ -288,7 +288,7 @@ func TestIssueByID(t *testing.T) {
 					{
 						ID:       77,
 						Name:     "Catwoman",
-						Modified: parseTime(t, "2026-07-13T13:47:03.315325-04:00"),
+						Modified: parseTime(t, "2026-08-05T09:28:49.406962-04:00"),
 					},
 					{
 						ID:       1120,
@@ -298,27 +298,27 @@ func TestIssueByID(t *testing.T) {
 					{
 						ID:       394,
 						Name:     "Damian Wayne",
-						Modified: parseTime(t, "2026-07-01T09:05:55.765243-04:00"),
+						Modified: parseTime(t, "2026-08-05T09:12:31.176305-04:00"),
 					},
 					{
 						ID:       293,
 						Name:     "Dick Grayson",
-						Modified: parseTime(t, "2026-07-08T09:49:44.287660-04:00"),
+						Modified: parseTime(t, "2026-08-02T15:12:29.254628-04:00"),
 					},
 					{
 						ID:       16,
 						Name:     "Harley Quinn",
-						Modified: parseTime(t, "2026-07-20T08:27:40.341889-04:00"),
+						Modified: parseTime(t, "2026-08-01T14:47:53.412361-04:00"),
 					},
 					{
 						ID:       1048,
 						Name:     "Harvey Bullock",
-						Modified: parseTime(t, "2026-07-01T09:05:55.765243-04:00"),
+						Modified: parseTime(t, "2026-08-02T15:11:22.944954-04:00"),
 					},
 					{
 						ID:       82,
 						Name:     "James Gordon",
-						Modified: parseTime(t, "2026-07-22T10:53:56.922612-04:00"),
+						Modified: parseTime(t, "2026-08-05T09:07:13.282845-04:00"),
 					},
 					{
 						ID:       1204,
@@ -333,7 +333,7 @@ func TestIssueByID(t *testing.T) {
 					{
 						ID:       83,
 						Name:     "Joker",
-						Modified: parseTime(t, "2026-07-13T13:47:16.465101-04:00"),
+						Modified: parseTime(t, "2026-08-05T09:15:26.347117-04:00"),
 					},
 					{
 						ID:       763,
@@ -343,7 +343,7 @@ func TestIssueByID(t *testing.T) {
 					{
 						ID:       2234,
 						Name:     "Leslie Thompkins",
-						Modified: parseTime(t, "2026-03-13T13:25:33.554299-04:00"),
+						Modified: parseTime(t, "2026-08-02T15:11:22.944954-04:00"),
 					},
 					{
 						ID:       2856,
@@ -358,32 +358,32 @@ func TestIssueByID(t *testing.T) {
 					{
 						ID:       347,
 						Name:     "Professor Pyg",
-						Modified: parseTime(t, "2025-02-18T15:22:57.025190-05:00"),
+						Modified: parseTime(t, "2026-08-01T02:10:53.299159-04:00"),
 					},
 					{
 						ID:       348,
 						Name:     "Riddler",
-						Modified: parseTime(t, "2026-06-22T09:16:05.969582-04:00"),
+						Modified: parseTime(t, "2026-08-02T15:00:36.769818-04:00"),
 					},
 					{
 						ID:       280,
 						Name:     "Scarecrow (DC)",
-						Modified: parseTime(t, "2026-06-24T11:36:13.664980-04:00"),
+						Modified: parseTime(t, "2026-08-05T09:39:56.696076-04:00"),
 					},
 					{
 						ID:       765,
 						Name:     "Tim Drake",
-						Modified: parseTime(t, "2026-07-16T17:15:45.159767-04:00"),
+						Modified: parseTime(t, "2026-08-01T14:44:21.729825-04:00"),
 					},
 					{
 						ID:       355,
 						Name:     "Two-Face",
-						Modified: parseTime(t, "2026-06-22T16:24:03.068817-04:00"),
+						Modified: parseTime(t, "2026-08-02T15:00:36.769818-04:00"),
 					},
 					{
 						ID:       2057,
 						Name:     "Vicki Vale",
-						Modified: parseTime(t, "2026-04-12T14:46:47.267498-04:00"),
+						Modified: parseTime(t, "2026-08-02T15:07:09.562963-04:00"),
 					},
 					{
 						ID:       1136,
@@ -593,13 +593,13 @@ func TestIssueByID(t *testing.T) {
 					{
 						ID:       261,
 						Name:     "Alfred Pennyworth",
-						Modified: parseTime(t, "2026-06-22T10:15:05.369600-04:00"),
+						Modified: parseTime(t, "2026-08-02T15:12:29.254628-04:00"),
 					},
 
 					{
 						ID:       12,
 						Name:     "Batman",
-						Modified: parseTime(t, "2026-07-24T07:07:30.078052-04:00"),
+						Modified: parseTime(t, "2026-08-05T09:39:56.696076-04:00"),
 					},
 					{
 						ID:       297,
@@ -609,7 +609,7 @@ func TestIssueByID(t *testing.T) {
 					{
 						ID:       83,
 						Name:     "Joker",
-						Modified: parseTime(t, "2026-07-13T13:47:16.465101-04:00"),
+						Modified: parseTime(t, "2026-08-05T09:15:26.347117-04:00"),
 					},
 					{
 						ID:       22,
@@ -619,12 +619,12 @@ func TestIssueByID(t *testing.T) {
 					{
 						ID:       103,
 						Name:     "Supergirl (Kara Zor-El)",
-						Modified: parseTime(t, "2026-07-22T22:10:59.507480-04:00"),
+						Modified: parseTime(t, "2026-08-05T11:09:32.424517-04:00"),
 					},
 					{
 						ID:       14,
 						Name:     "Wonder Woman",
-						Modified: parseTime(t, "2026-07-24T13:19:58.179187-04:00"),
+						Modified: parseTime(t, "2026-08-03T09:03:51.967056-04:00"),
 					},
 				},
 				Teams:     []metron.TeamList{},
@@ -653,122 +653,111 @@ func TestIssueByID(t *testing.T) {
 
 func TestIssuesByArcID(t *testing.T) {
 	t.Parallel()
-	testListByID(t, "arc", 659, "issue", (*metron.Client).IssuesByArcID, issueListTestCases(t))
+	testListByID(t, "arc", 659, "issue", (*metron.Client).IssuesByArcID, issueListTestCases(t, "arc"))
 }
 
 func TestIssuesByCharacterID(t *testing.T) {
 	t.Parallel()
-	testListByID(t, "character", 83, "issue", (*metron.Client).IssuesByCharacterID, issueListTestCases(t))
+	testListByID(t, "character", 83, "issue", (*metron.Client).IssuesByCharacterID, issueListTestCases(t, "character"))
 }
 
 func TestIssuesBySeriesID(t *testing.T) {
 	t.Parallel()
-	testListByID(t, "series", 793, "issue", (*metron.Client).IssuesBySeriesID, issueListTestCases(t))
+	testListByID(t, "series", 793, "issue", (*metron.Client).IssuesBySeriesID, issueListTestCases(t, "series"))
 }
 
 func TestIssuesByTeamID(t *testing.T) {
 	t.Parallel()
-	testListByID(t, "team", 180, "issue", (*metron.Client).IssuesByTeamID, issueListTestCases(t))
+	testListByID(t, "team", 180, "issue", (*metron.Client).IssuesByTeamID, issueListTestCases(t, "team"))
 }
 
 func TestIssues(t *testing.T) {
 	t.Parallel()
-	testList(t, "issue", (*metron.Client).Issues, issueListTestCases(t))
+	testList(t, "issue", (*metron.Client).Issues, issueListTestCases(t, "issue"))
 }
 
-func issueListTestCases(t *testing.T) []testCase[*metron.IssueList] {
-	return []testCase[*metron.IssueList]{
-		{
-			id: 89088,
-			expected: &metron.IssueList{
-				ID: 89088,
-				Series: metron.IssueListSeries{
-					Name:      "'68",
-					Volume:    1,
-					YearBegan: 2006,
-				},
-				Number:    "1",
-				Name:      "'68 (2006) #1",
-				CoverDate: parseDate(t, "2006-12-01"),
-				StoreDate: nil,
-				ImageURL: new(
-					parseURL(
-						t,
-						"https://static.metron.cloud/media/issue/2023/12/02/395d1af45859497183f0b868485831aa.jpg",
-					),
-				),
-				CoverHash: new("de9a207b768189f4"),
-				Modified:  parseTime(t, "2023-12-02T10:08:26.125751-05:00"),
+// issueListRecord is one expected IssueList in flattened form. The five
+// issue-list endpoints each return different records, and spelling every one
+// out as a struct literal repeated the same fifteen lines twenty times. An
+// empty string means the field is absent upstream, so the pointer stays nil.
+type issueListRecord struct {
+	kind      string
+	id        int
+	seriesID  int
+	series    string
+	volume    int
+	yearBegan int
+	name      string
+	number    string
+	coverDate string
+	storeDate string
+	image     string
+	coverHash string
+	modified  string
+}
+
+// issueListRecords holds the expectations for every endpoint returning an
+// issue list. One flat table rather than a map of per-kind groups: each
+// endpoint returns different records, but the shape is identical.
+var issueListRecords = []issueListRecord{
+	{kind: "issue", id: 52529, seriesID: 3856, series: "The 06 Protocol", volume: 1, yearBegan: 2022, name: "The 06 Protocol (2022) #1", number: "1", coverDate: "2022-09-01", storeDate: "2022-09-14", image: "https://static.metron.cloud/media/issue/2022/09/19/6-protocol-1.jpg", coverHash: "e9529e3586ca6b34", modified: "2024-12-23T16:17:29.333263-05:00"},
+	{kind: "issue", id: 52530, seriesID: 3856, series: "The 06 Protocol", volume: 1, yearBegan: 2022, name: "The 06 Protocol (2022) #2", number: "2", coverDate: "2022-11-01", storeDate: "2022-11-23", image: "https://static.metron.cloud/media/issue/2022/09/19/6-protocol-2.jpg", coverHash: "c3a90fdd304b66e8", modified: "2024-12-23T16:17:31.360018-05:00"},
+	{kind: "issue", id: 61168, seriesID: 3856, series: "The 06 Protocol", volume: 1, yearBegan: 2022, name: "The 06 Protocol (2022) #3", number: "3", coverDate: "2023-06-01", storeDate: "2023-06-28", image: "https://static.metron.cloud/media/issue/2023/04/07/cfe56a98a0cd40bdbc5a4ed22956ca75.jpg", coverHash: "90944f7344c87f3e", modified: "2024-12-23T16:17:33.770796-05:00"},
+	{kind: "issue", id: 136787, seriesID: 10307, series: "8-Bit Zombie", volume: 1, yearBegan: 2013, name: "8-Bit Zombie (2013) #1", number: "1", coverDate: "2013-10-01", storeDate: "2013-11-27", image: "https://static.metron.cloud/media/issue/2025/02/25/Cover-A_AcSDvLN.jpg", coverHash: "ae8379d4aa671478", modified: "2025-02-25T22:34:04.333183-05:00"},
+	{kind: "arc", id: 48264, seriesID: 3408, series: "Deadpool", volume: 6, yearBegan: 2015, name: "Deadpool (2015) #28", number: "28", coverDate: "2017-05-01", storeDate: "2017-03-01", image: "https://static.metron.cloud/media/issue/2022/05/21/deadpool-28.jpg", coverHash: "8dc8b6b2628c39b7", modified: "2024-12-29T13:12:34.104918-05:00"},
+	{kind: "arc", id: 48128, seriesID: 3399, series: "Deadpool & The Mercs for Money", volume: 2, yearBegan: 2016, name: "Deadpool & The Mercs for Money (2016) #9", number: "9", coverDate: "2017-05-01", storeDate: "2017-03-29", image: "https://static.metron.cloud/media/issue/2022/05/17/deadpool-the-mercs-for-money-9.jpg", coverHash: "eab9c05bc5568f12", modified: "2024-12-29T13:18:45.506840-05:00"},
+	{kind: "arc", id: 43011, seriesID: 3094, series: "Spider-Man / Deadpool", volume: 1, yearBegan: 2016, name: "Spider-Man / Deadpool (2016) #15", number: "15", coverDate: "2017-05-01", storeDate: "2017-03-08", image: "https://static.metron.cloud/media/issue/2022/01/16/spider-man-deadpool-15.jpg", coverHash: "ec94bcb6416a4acb", modified: "2025-01-12T18:12:50.219180-05:00"},
+	{kind: "arc", id: 48265, seriesID: 3408, series: "Deadpool", volume: 6, yearBegan: 2015, name: "Deadpool (2015) #29", number: "29", coverDate: "2017-06-01", storeDate: "2017-04-19", image: "https://static.metron.cloud/media/issue/2022/05/21/deadpool-29.jpg", coverHash: "eabdc7126c07b116", modified: "2024-12-29T13:12:36.439218-05:00"},
+	{kind: "character", id: 34067, seriesID: 2481, series: "Batman", volume: 1, yearBegan: 1940, name: "Batman (1940) #1", number: "1", coverDate: "1940-04-01", image: "https://static.metron.cloud/media/issue/2021/07/10/batman-1.jpg", coverHash: "ea2a919decc5934c", modified: "2024-12-20T14:50:51.216877-05:00"},
+	{kind: "character", id: 34068, seriesID: 2481, series: "Batman", volume: 1, yearBegan: 1940, name: "Batman (1940) #2", number: "2", coverDate: "1940-07-01", image: "https://static.metron.cloud/media/issue/2021/07/10/batman-2.jpg", coverHash: "cf33b5c81d266c49", modified: "2024-12-20T14:50:53.328383-05:00"},
+	{kind: "character", id: 29257, seriesID: 2102, series: "Detective Comics", volume: 1, yearBegan: 1937, name: "Detective Comics (1937) #45", number: "45", coverDate: "1940-11-01", image: "https://static.metron.cloud/media/issue/2021/04/15/detective-comics-45.jpg", coverHash: "f5acdb06707089e6", modified: "2024-12-23T14:04:38.901516-05:00"},
+	{kind: "character", id: 34070, seriesID: 2481, series: "Batman", volume: 1, yearBegan: 1940, name: "Batman (1940) #4", number: "4", coverDate: "1941-01-01", image: "https://static.metron.cloud/media/issue/2021/07/10/batman-4.jpg", coverHash: "c3b73ccb2f0e3860", modified: "2024-12-20T14:50:58.372170-05:00"},
+	{kind: "series", id: 7057, seriesID: 793, series: "Fables", volume: 1, yearBegan: 2002, name: "Fables (2002) #1", number: "1", coverDate: "2002-07-01", storeDate: "2002-05-08", image: "https://static.metron.cloud/media/issue/2019/11/01/fables-1.jpg", coverHash: "fc1952ece86782f0", modified: "2025-01-01T23:35:18.056873-05:00"},
+	{kind: "series", id: 7058, seriesID: 793, series: "Fables", volume: 1, yearBegan: 2002, name: "Fables (2002) #2", number: "2", coverDate: "2002-08-01", storeDate: "2002-06-12", image: "https://static.metron.cloud/media/issue/2019/11/01/fables-2.jpg", coverHash: "9816e2a59bc62a3f", modified: "2025-01-01T23:35:21.122309-05:00"},
+	{kind: "series", id: 7059, seriesID: 793, series: "Fables", volume: 1, yearBegan: 2002, name: "Fables (2002) #3", number: "3", coverDate: "2002-09-01", storeDate: "2002-07-17", image: "https://static.metron.cloud/media/issue/2019/11/01/fables-3.jpg", coverHash: "e59a3a6e697a3038", modified: "2025-01-01T23:35:24.039083-05:00"},
+	{kind: "series", id: 7060, seriesID: 793, series: "Fables", volume: 1, yearBegan: 2002, name: "Fables (2002) #4", number: "4", coverDate: "2002-10-01", storeDate: "2002-08-14", image: "https://static.metron.cloud/media/issue/2019/11/01/fables-4.jpg", coverHash: "9524faf04ade2d38", modified: "2025-01-01T23:35:26.583714-05:00"},
+	{kind: "team", id: 4123, seriesID: 475, series: "A-Force", volume: 1, yearBegan: 2015, name: "A-Force (2015) #1", number: "1", coverDate: "2015-07-01", storeDate: "2015-05-20", image: "https://static.metron.cloud/media/issue/2019/07/27/aforce-v1-1.jpg", coverHash: "ef8d84d08b1fd02b", modified: "2024-12-27T17:31:13.930112-05:00"},
+	{kind: "team", id: 4124, seriesID: 475, series: "A-Force", volume: 1, yearBegan: 2015, name: "A-Force (2015) #2", number: "2", coverDate: "2015-09-01", storeDate: "2015-07-01", image: "https://static.metron.cloud/media/issue/2019/07/27/aforce-v1-2.jpg", coverHash: "8253c34687463f6f", modified: "2024-12-27T17:31:16.420503-05:00"},
+	{kind: "team", id: 4125, seriesID: 475, series: "A-Force", volume: 1, yearBegan: 2015, name: "A-Force (2015) #3", number: "3", coverDate: "2015-10-01", storeDate: "2015-08-12", image: "https://static.metron.cloud/media/issue/2019/07/27/aforce-v1-3.jpg", coverHash: "d0955f2978dc4b4a", modified: "2024-12-27T17:31:19.430087-05:00"},
+	{kind: "team", id: 4126, seriesID: 475, series: "A-Force", volume: 1, yearBegan: 2015, name: "A-Force (2015) #4", number: "4", coverDate: "2015-11-01", storeDate: "2015-09-09", image: "https://static.metron.cloud/media/issue/2019/07/27/aforce-v1-4.jpg", coverHash: "c2824bd7af3e2c0b", modified: "2024-12-27T17:31:21.662023-05:00"},
+}
+
+func issueListTestCases(t *testing.T, kind string) []testCase[*metron.IssueList] {
+	var cases []testCase[*metron.IssueList]
+
+	for _, r := range issueListRecords {
+		if r.kind != kind {
+			continue
+		}
+
+		expected := &metron.IssueList{
+			ID: r.id,
+			Series: metron.IssueListSeries{
+				ID:        r.seriesID,
+				Name:      r.series,
+				Volume:    r.volume,
+				YearBegan: r.yearBegan,
 			},
-		},
-		{
-			id: 89089,
-			expected: &metron.IssueList{
-				ID: 89089,
-				Series: metron.IssueListSeries{
-					Name:      "'68",
-					Volume:    2,
-					YearBegan: 2011,
-				},
-				Number:    "1",
-				Name:      "'68 (2011) #1",
-				CoverDate: parseDate(t, "2011-04-01"),
-				StoreDate: new(parseDate(t, "2011-04-27")),
-				ImageURL: new(
-					parseURL(
-						t,
-						"https://static.metron.cloud/media/issue/2023/12/02/b8a86c0422e749968f74c2fe2605ea4a.jpg",
-					),
-				),
-				CoverHash: new("ccd6331a22959d3b"),
-				Modified:  parseTime(t, "2023-12-02T10:10:55.924868-05:00"),
-			},
-		},
-		{
-			id: 89090,
-			expected: &metron.IssueList{
-				ID: 89090,
-				Series: metron.IssueListSeries{
-					Name:      "'68",
-					Volume:    2,
-					YearBegan: 2011,
-				},
-				Number:    "2",
-				Name:      "'68 (2011) #2",
-				CoverDate: parseDate(t, "2011-05-01"),
-				StoreDate: new(parseDate(t, "2011-05-25")),
-				ImageURL: new(
-					parseURL(
-						t,
-						"https://static.metron.cloud/media/issue/2023/12/02/ceddeae0aac84df7a509d66003c8007c.jpg",
-					),
-				),
-				CoverHash: new("c0471e7273cf1ccc"),
-				Modified:  parseTime(t, "2023-12-02T10:11:19.577639-05:00"),
-			},
-		},
-		{
-			id: 89091,
-			expected: &metron.IssueList{
-				ID: 89091,
-				Series: metron.IssueListSeries{
-					Name:      "'68",
-					Volume:    2,
-					YearBegan: 2011,
-				},
-				Number:    "3",
-				Name:      "'68 (2011) #3",
-				CoverDate: parseDate(t, "2011-08-01"),
-				StoreDate: new(parseDate(t, "2011-08-03")),
-				ImageURL: new(
-					parseURL(
-						t,
-						"https://static.metron.cloud/media/issue/2023/12/02/fb0072f3b7094758a3488f4cc8b6e551.jpg",
-					),
-				),
-				CoverHash: new("cc97960b5be6a684"),
-				Modified:  parseTime(t, "2023-12-02T10:11:24.329496-05:00"),
-			},
-		},
+			Name:      r.name,
+			Number:    r.number,
+			CoverDate: parseDate(t, r.coverDate),
+			Modified:  parseTime(t, r.modified),
+		}
+
+		if r.storeDate != "" {
+			expected.StoreDate = new(parseDate(t, r.storeDate))
+		}
+
+		if r.image != "" {
+			expected.ImageURL = new(parseURL(t, r.image))
+		}
+
+		if r.coverHash != "" {
+			expected.CoverHash = new(r.coverHash)
+		}
+
+		cases = append(cases, testCase[*metron.IssueList]{id: r.id, expected: expected})
 	}
+
+	return cases
 }

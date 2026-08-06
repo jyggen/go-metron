@@ -52,35 +52,35 @@ func TestCreators(t *testing.T) {
 	t.Parallel()
 	testList(t, "creator", (*metron.Client).Creators, []testCase[*metron.CreatorList]{
 		{
-			id: 5466,
+			id: 13909,
 			expected: &metron.CreatorList{
-				ID:       5466,
-				Name:     "A D'Amico",
-				Modified: parseTime(t, "2024-02-25T15:53:40.615428-05:00"),
+				ID:       13909,
+				Name:     "Aadi Salman",
+				Modified: parseTime(t, "2025-03-28T14:24:09.691934-04:00"),
 			},
 		},
 		{
-			id: 7174,
+			id: 10900,
 			expected: &metron.CreatorList{
-				ID:       7174,
-				Name:     "A Larger World Studios",
-				Modified: parseTime(t, "2023-02-21T11:29:18.690700-05:00"),
+				ID:       10900,
+				Name:     "A.A. Milne",
+				Modified: parseTime(t, "2024-03-07T11:02:46.113441-05:00"),
 			},
 		},
 		{
-			id: 5848,
+			id: 3048,
 			expected: &metron.CreatorList{
-				ID:       5848,
-				Name:     "A. A. Rubin",
-				Modified: parseTime(t, "2021-12-29T10:10:02.832069-05:00"),
+				ID:       3048,
+				Name:     "Aaron Alexovich",
+				Modified: parseTime(t, "2025-02-18T12:35:42.128935-05:00"),
 			},
 		},
 		{
-			id: 11237,
+			id: 17721,
 			expected: &metron.CreatorList{
-				ID:       11237,
-				Name:     "A. C. Farley",
-				Modified: parseTime(t, "2024-05-18T11:25:36.333655-04:00"),
+				ID:       17721,
+				Name:     "Aaron Allen",
+				Modified: parseTime(t, "2026-03-12T16:18:11.116741-04:00"),
 			},
 		},
 	})

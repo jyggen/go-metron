@@ -4,20 +4,22 @@
   "previous": null,
   "results": [
     {
-      "id": 6227,
-      "series": "'68 (2006)",
-      "year_began": 2006,
+      "id": 3856,
+      "series": "The 06 Protocol (2022)",
+      "year_began": 2022,
+      "year_end": 2022,
       "volume": 1,
-      "issue_count": 1,
-      "modified": "2023-12-02T10:10:47.573380-05:00"
+      "issue_count": 3,
+      "modified": "2024-12-23T16:13:24.914552-05:00"
     },
     {
-      "id": 6228,
-      "series": "'68 (2011)",
-      "year_began": 2011,
-      "volume": 2,
-      "issue_count": 4,
-      "modified": "2023-12-02T10:10:18.550260-05:00"
+      "id": 10307,
+      "series": "8-Bit Zombie (2013)",
+      "year_began": 2013,
+      "year_end": 2013,
+      "volume": 1,
+      "issue_count": 1,
+      "modified": "2025-02-25T22:49:53.851020-05:00"
     }
   ]
 }
