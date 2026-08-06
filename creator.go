@@ -42,7 +42,7 @@ func (c *Client) CreatorByID(ctx context.Context, id int) (*Creator, error) {
 func (c *Client) Creators(ctx context.Context, filters ...Filter) iter.Seq2[*CreatorList, error] {
 	params := &internal.ApiCreatorListParams{}
 
-	if err := applyFilters(params, filters); err != nil {
+	if err := applyFilters("Creators", params, filters); err != nil {
 		return errIter[*CreatorList](err)
 	}
 
@@ -51,15 +51,17 @@ func (c *Client) Creators(ctx context.Context, filters ...Filter) iter.Seq2[*Cre
 
 func creatorMapper(in internal.Creator) (*Creator, error) {
 	if in.Id == nil {
-		return nil, fmt.Errorf("creator: nil Id")
+		return nil, &MapError{Kind: "creator", Field: "Id"}
 	}
 
+	id := *in.Id
+
 	if in.Modified == nil {
-		return nil, fmt.Errorf("creator: nil Modified")
+		return nil, &MapError{Kind: "creator", ID: id, Field: "Modified"}
 	}
 
 	if in.ResourceUrl == nil {
-		return nil, fmt.Errorf("creator: nil ResourceUrl")
+		return nil, &MapError{Kind: "creator", ID: id, Field: "ResourceUrl"}
 	}
 
 	var imageURL *url.URL
@@ -68,13 +70,13 @@ func creatorMapper(in internal.Creator) (*Creator, error) {
 	if image := nullableToPtr(in.Image); image != nil {
 		imageURL, err = url.Parse(*image)
 		if err != nil {
-			return nil, err
+			return nil, &MapError{Kind: "creator", ID: id, Field: "Image", Err: err}
 		}
 	}
 
 	resourceURL, err := url.Parse(*in.ResourceUrl)
 	if err != nil {
-		return nil, err
+		return nil, &MapError{Kind: "creator", ID: id, Field: "ResourceUrl", Err: err}
 	}
 
 	var birth *civil.Date
@@ -89,7 +91,7 @@ func creatorMapper(in internal.Creator) (*Creator, error) {
 	}
 
 	return &Creator{
-		ID:                    *in.Id,
+		ID:                    id,
 		Name:                  in.Name,
 		Birth:                 birth,
 		Death:                 death,
@@ -105,15 +107,17 @@ func creatorMapper(in internal.Creator) (*Creator, error) {
 
 func creatorListMapper(in internal.CreatorList) (*CreatorList, error) {
 	if in.Id == nil {
-		return nil, fmt.Errorf("creator: nil Id")
+		return nil, &MapError{Kind: "creator", Field: "Id"}
 	}
 
+	id := *in.Id
+
 	if in.Modified == nil {
-		return nil, fmt.Errorf("creator: nil Modified")
+		return nil, &MapError{Kind: "creator", ID: id, Field: "Modified"}
 	}
 
 	return &CreatorList{
-		ID:       *in.Id,
+		ID:       id,
 		Name:     in.Name,
 		Modified: *in.Modified,
 	}, nil

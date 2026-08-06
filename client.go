@@ -231,9 +231,17 @@ func WithUserAgent(userAgent string) Option {
 }
 
 // applyFilters applies each filter, stopping at the first unsupported one.
-func applyFilters(params any, filters []Filter) error {
+// endpoint is the calling method's name, which only it knows and which a
+// FilterError is meaningless without.
+func applyFilters(endpoint string, params any, filters []Filter) error {
 	for _, f := range filters {
 		if err := f(params); err != nil {
+			var filterErr *FilterError
+
+			if errors.As(err, &filterErr) {
+				filterErr.Endpoint = endpoint
+			}
+
 			return err
 		}
 	}
@@ -324,7 +332,15 @@ func call(ctx context.Context, maxRetries int, idempotent bool, f func(ctx conte
 }
 
 func doCall(ctx context.Context, f func(ctx context.Context, fn ...internal.RequestEditorFn) (*http.Response, error), header *filecache.Header) (io.ReadCloser, time.Time, error) {
+	// Captured from the outgoing request rather than res.Request, which only the
+	// stock Transport fills in — a caller's own RoundTripper leaves it nil.
+	var method string
+	var reqURL *url.URL
+
 	res, err := f(ctx, func(ctx context.Context, req *http.Request) error {
+		method = req.Method
+		reqURL = req.URL
+
 		if header != nil {
 			req.Header.Set("If-Modified-Since", time.Unix(0, header.FetchedAt).Format(http.TimeFormat))
 		}
@@ -360,7 +376,9 @@ func doCall(ctx context.Context, f func(ctx context.Context, fn ...internal.Requ
 	if res.StatusCode != http.StatusOK && res.StatusCode != http.StatusCreated {
 		body, readErr := io.ReadAll(io.LimitReader(res.Body, maxErrorBodyBytes))
 
-		return nil, ttl, errors.Join(&APIError{StatusCode: res.StatusCode, Body: body}, readErr, res.Body.Close())
+		apiErr := &APIError{StatusCode: res.StatusCode, Body: body, Method: method, URL: reqURL}
+
+		return nil, ttl, errors.Join(apiErr, readErr, res.Body.Close())
 	}
 
 	return res.Body, ttl, nil

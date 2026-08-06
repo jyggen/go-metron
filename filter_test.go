@@ -2,6 +2,7 @@ package metron_test
 
 import (
 	"context"
+	"iter"
 	"testing"
 
 	"github.com/jyggen/go-metron"
@@ -29,11 +30,15 @@ func TestFilterUnsupported(t *testing.T) {
 
 		require.ErrorAs(t, err, &filterErr)
 		require.Equal(t, "ByPublisherID", filterErr.Filter)
-		require.Equal(t, "metron: ByPublisherID does not apply to this endpoint", filterErr.Error())
+		require.Equal(t, "Roles", filterErr.Endpoint)
+		require.Equal(t, "metron: ByPublisherID does not apply to Roles", filterErr.Error())
 
-		// Callers can match a specific filter.
+		// Callers can match a specific filter, a specific endpoint, or both.
 		require.ErrorIs(t, err, &metron.FilterError{Filter: "ByPublisherID"})
+		require.ErrorIs(t, err, &metron.FilterError{Endpoint: "Roles"})
+		require.ErrorIs(t, err, &metron.FilterError{Filter: "ByPublisherID", Endpoint: "Roles"})
 		require.NotErrorIs(t, err, &metron.FilterError{Filter: "ByName"})
+		require.NotErrorIs(t, err, &metron.FilterError{Endpoint: "Issues"})
 	}
 
 	require.Equal(t, 1, iterations)
@@ -71,5 +76,55 @@ func TestFilterUnsupportedAmongSupported(t *testing.T) {
 		metron.ByPublisherID(2),
 	) {
 		require.ErrorIs(t, err, &metron.FilterError{Filter: "ByPublisherID"})
+	}
+}
+
+// TestFilterUnsupportedNamesTheCallingMethod checks the endpoint is the method
+// that rejected the filter, not a constant. The two params structs here are
+// identical, so only the caller distinguishes them.
+func TestFilterUnsupportedNamesTheCallingMethod(t *testing.T) {
+	t.Parallel()
+
+	testCases := []struct {
+		endpoint string
+		list     func(*metron.Client) iter.Seq2[any, error]
+	}{
+		{
+			endpoint: "Roles",
+			list: func(c *metron.Client) iter.Seq2[any, error] {
+				return anyIter(c.Roles(context.Background(), metron.ByPublisherID(2)))
+			},
+		},
+		{
+			endpoint: "SeriesTypes",
+			list: func(c *metron.Client) iter.Seq2[any, error] {
+				return anyIter(c.SeriesTypes(context.Background(), metron.ByPublisherID(2)))
+			},
+		},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.endpoint, func(t *testing.T) {
+			t.Parallel()
+
+			c := newTestClient(t, nil)
+
+			for _, err := range tc.list(c) {
+				require.EqualError(t, err, "metron: ByPublisherID does not apply to "+tc.endpoint)
+				require.ErrorIs(t, err, &metron.FilterError{Endpoint: tc.endpoint})
+			}
+		})
+	}
+}
+
+// anyIter erases a list method's element type so iterators over different
+// resources can share a table.
+func anyIter[T any](seq iter.Seq2[T, error]) iter.Seq2[any, error] {
+	return func(yield func(any, error) bool) {
+		for v, err := range seq {
+			if !yield(v, err) {
+				return
+			}
+		}
 	}
 }

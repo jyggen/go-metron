@@ -4,7 +4,6 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
-	"fmt"
 	"net/http"
 	"time"
 
@@ -110,23 +109,25 @@ func (c *Client) Scrobble(ctx context.Context, issueID int, opts ...ScrobbleOpti
 
 func scrobbleMapper(in internal.ScrobbleResponse) (*ScrobbleResult, error) {
 	if in.Id == nil {
-		return nil, fmt.Errorf("scrobble: nil Id")
+		return nil, &MapError{Kind: "scrobble", Field: "Id"}
 	}
 
+	id := *in.Id
+
 	if in.Created == nil {
-		return nil, fmt.Errorf("scrobble: nil Created")
+		return nil, &MapError{Kind: "scrobble", ID: id, Field: "Created"}
 	}
 
 	if in.IsRead == nil {
-		return nil, fmt.Errorf("scrobble: nil IsRead")
+		return nil, &MapError{Kind: "scrobble", ID: id, Field: "IsRead"}
 	}
 
 	if in.Modified == nil {
-		return nil, fmt.Errorf("scrobble: nil Modified")
+		return nil, &MapError{Kind: "scrobble", ID: id, Field: "Modified"}
 	}
 
 	if in.Issue == nil {
-		return nil, fmt.Errorf("scrobble: nil Issue")
+		return nil, &MapError{Kind: "scrobble", ID: id, Field: "Issue"}
 	}
 
 	issue, err := collectionIssueMapper(*in.Issue)
@@ -141,14 +142,14 @@ func scrobbleMapper(in internal.ScrobbleResponse) (*ScrobbleResult, error) {
 	if ratingVal, rErr := in.Rating.Get(); rErr == nil {
 		enumVal, eErr := ratingVal.AsRatingEnum()
 		if eErr != nil {
-			return nil, fmt.Errorf("scrobble: rating: %w", eErr)
+			return nil, &MapError{Kind: "scrobble", ID: id, Field: "Rating", Err: eErr}
 		}
 
 		rating = new(int(enumVal))
 	}
 
 	return &ScrobbleResult{
-		ID:       *in.Id,
+		ID:       id,
 		Issue:    *issue,
 		IsRead:   *in.IsRead,
 		ReadDate: nullableToPtr(in.DateRead),
@@ -160,19 +161,21 @@ func scrobbleMapper(in internal.ScrobbleResponse) (*ScrobbleResult, error) {
 
 func collectionIssueMapper(in internal.CollectionIssue) (*ScrobbleIssue, error) {
 	if in.Id == nil {
-		return nil, fmt.Errorf("scrobble: nil Issue.Id")
+		return nil, &MapError{Kind: "issue", Field: "Id"}
 	}
 
+	id := *in.Id
+
 	if in.Modified == nil {
-		return nil, fmt.Errorf("scrobble: nil Issue.Modified")
+		return nil, &MapError{Kind: "issue", ID: id, Field: "Modified"}
 	}
 
 	if in.Series == nil {
-		return nil, fmt.Errorf("scrobble: nil Issue.Series")
+		return nil, &MapError{Kind: "issue", ID: id, Field: "Series"}
 	}
 
 	if in.Series.Id == nil {
-		return nil, fmt.Errorf("scrobble: nil Issue.Series.Id")
+		return nil, &MapError{Kind: "issue", ID: id, Field: "Series.Id"}
 	}
 
 	coverDate := civil.DateOf(in.CoverDate.Time)
@@ -184,7 +187,7 @@ func collectionIssueMapper(in internal.CollectionIssue) (*ScrobbleIssue, error) 
 	}
 
 	return &ScrobbleIssue{
-		ID:        *in.Id,
+		ID:        id,
 		Number:    in.Number,
 		CoverDate: coverDate,
 		StoreDate: maybeStoreDate,

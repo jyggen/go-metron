@@ -53,7 +53,7 @@ func (c *Client) SeriesByID(ctx context.Context, id int) (*Series, error) {
 func (c *Client) Series(ctx context.Context, filters ...Filter) iter.Seq2[*SeriesList, error] {
 	params := &internal.ApiSeriesListParams{}
 
-	if err := applyFilters(params, filters); err != nil {
+	if err := applyFilters("Series", params, filters); err != nil {
 		return errIter[*SeriesList](err)
 	}
 
@@ -64,7 +64,7 @@ func (c *Client) Series(ctx context.Context, filters ...Filter) iter.Seq2[*Serie
 func (c *Client) SeriesByPublisherID(ctx context.Context, id int, filters ...Filter) iter.Seq2[*SeriesList, error] {
 	params := &internal.ApiPublisherSeriesListListParams{}
 
-	if err := applyFilters(params, filters); err != nil {
+	if err := applyFilters("SeriesByPublisherID", params, filters); err != nil {
 		return errIter[*SeriesList](err)
 	}
 
@@ -73,51 +73,53 @@ func (c *Client) SeriesByPublisherID(ctx context.Context, id int, filters ...Fil
 
 func seriesMapper(in internal.SeriesRead) (*Series, error) {
 	if in.Id == nil {
-		return nil, fmt.Errorf("series: nil Id")
+		return nil, &MapError{Kind: "series", Field: "Id"}
 	}
 
+	id := *in.Id
+
 	if in.Modified == nil {
-		return nil, fmt.Errorf("series: nil Modified")
+		return nil, &MapError{Kind: "series", ID: id, Field: "Modified"}
 	}
 
 	if in.ResourceUrl == nil {
-		return nil, fmt.Errorf("series: nil ResourceUrl")
+		return nil, &MapError{Kind: "series", ID: id, Field: "ResourceUrl"}
 	}
 
 	if in.Status == nil {
-		return nil, fmt.Errorf("series: nil Status")
+		return nil, &MapError{Kind: "series", ID: id, Field: "Status"}
 	}
 
 	if in.Publisher == nil {
-		return nil, fmt.Errorf("series: nil Publisher")
+		return nil, &MapError{Kind: "series", ID: id, Field: "Publisher"}
 	}
 
 	if in.Publisher.Id == nil {
-		return nil, fmt.Errorf("series: nil Publisher.Id")
+		return nil, &MapError{Kind: "series", ID: id, Field: "Publisher.Id"}
 	}
 
 	if in.SeriesType == nil {
-		return nil, fmt.Errorf("series: nil SeriesType")
+		return nil, &MapError{Kind: "series", ID: id, Field: "SeriesType"}
 	}
 
 	if in.SeriesType.Id == nil {
-		return nil, fmt.Errorf("series: nil SeriesType.Id")
+		return nil, &MapError{Kind: "series", ID: id, Field: "SeriesType.Id"}
 	}
 
 	if in.IssueCount == nil {
-		return nil, fmt.Errorf("series: nil IssueCount")
+		return nil, &MapError{Kind: "series", ID: id, Field: "IssueCount"}
 	}
 
 	resourceURL, err := url.Parse(*in.ResourceUrl)
 	if err != nil {
-		return nil, err
+		return nil, &MapError{Kind: "series", ID: id, Field: "ResourceUrl", Err: err}
 	}
 
 	var imprint *Reference
 
 	if in.Imprint != nil {
 		if in.Imprint.Id == nil {
-			return nil, fmt.Errorf("series: nil Imprint.Id")
+			return nil, &MapError{Kind: "series", ID: id, Field: "Imprint.Id"}
 		}
 
 		imprint = &Reference{
@@ -139,7 +141,7 @@ func seriesMapper(in internal.SeriesRead) (*Series, error) {
 
 		for _, g := range *in.Genres {
 			if g.Id == nil {
-				return nil, fmt.Errorf("series: nil Genres[].Id")
+				return nil, &MapError{Kind: "series", ID: id, Field: "Genres[].Id"}
 			}
 
 			genres = append(genres, Reference{
@@ -156,7 +158,7 @@ func seriesMapper(in internal.SeriesRead) (*Series, error) {
 
 		for _, a := range *in.Associated {
 			if a.Id == nil {
-				return nil, fmt.Errorf("series: nil Associated[].Id")
+				return nil, &MapError{Kind: "series", ID: id, Field: "Associated[].Id"}
 			}
 
 			associated = append(associated, Reference{
@@ -167,7 +169,7 @@ func seriesMapper(in internal.SeriesRead) (*Series, error) {
 	}
 
 	return &Series{
-		ID:               *in.Id,
+		ID:               id,
 		Name:             in.Name,
 		AlternativeNames: altNames,
 		SortName:         in.SortName,
@@ -197,19 +199,21 @@ func seriesMapper(in internal.SeriesRead) (*Series, error) {
 
 func seriesListMapper(in internal.SeriesList) (*SeriesList, error) {
 	if in.Id == nil {
-		return nil, fmt.Errorf("series: nil Id")
+		return nil, &MapError{Kind: "series", Field: "Id"}
 	}
 
+	id := *in.Id
+
 	if in.Modified == nil {
-		return nil, fmt.Errorf("series: nil Modified")
+		return nil, &MapError{Kind: "series", ID: id, Field: "Modified"}
 	}
 
 	if in.IssueCount == nil {
-		return nil, fmt.Errorf("series: nil IssueCount")
+		return nil, &MapError{Kind: "series", ID: id, Field: "IssueCount"}
 	}
 
 	return &SeriesList{
-		ID:         *in.Id,
+		ID:         id,
 		Name:       in.Series,
 		YearBegan:  in.YearBegan,
 		YearEnded:  nullableToPtr(in.YearEnd),

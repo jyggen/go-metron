@@ -113,7 +113,7 @@ func (c *Client) IssueByID(ctx context.Context, id int) (*Issue, error) {
 func (c *Client) Issues(ctx context.Context, filters ...Filter) iter.Seq2[*IssueList, error] {
 	params := &internal.ApiIssueListParams{}
 
-	if err := applyFilters(params, filters); err != nil {
+	if err := applyFilters("Issues", params, filters); err != nil {
 		return errIter[*IssueList](err)
 	}
 
@@ -124,7 +124,7 @@ func (c *Client) Issues(ctx context.Context, filters ...Filter) iter.Seq2[*Issue
 func (c *Client) IssuesByArcID(ctx context.Context, id int, filters ...Filter) iter.Seq2[*IssueList, error] {
 	params := &internal.ApiArcIssueListListParams{}
 
-	if err := applyFilters(params, filters); err != nil {
+	if err := applyFilters("IssuesByArcID", params, filters); err != nil {
 		return errIter[*IssueList](err)
 	}
 
@@ -135,7 +135,7 @@ func (c *Client) IssuesByArcID(ctx context.Context, id int, filters ...Filter) i
 func (c *Client) IssuesByCharacterID(ctx context.Context, id int, filters ...Filter) iter.Seq2[*IssueList, error] {
 	params := &internal.ApiCharacterIssueListListParams{}
 
-	if err := applyFilters(params, filters); err != nil {
+	if err := applyFilters("IssuesByCharacterID", params, filters); err != nil {
 		return errIter[*IssueList](err)
 	}
 
@@ -146,7 +146,7 @@ func (c *Client) IssuesByCharacterID(ctx context.Context, id int, filters ...Fil
 func (c *Client) IssuesBySeriesID(ctx context.Context, id int, filters ...Filter) iter.Seq2[*IssueList, error] {
 	params := &internal.ApiSeriesIssueListListParams{}
 
-	if err := applyFilters(params, filters); err != nil {
+	if err := applyFilters("IssuesBySeriesID", params, filters); err != nil {
 		return errIter[*IssueList](err)
 	}
 
@@ -157,7 +157,7 @@ func (c *Client) IssuesBySeriesID(ctx context.Context, id int, filters ...Filter
 func (c *Client) IssuesByTeamID(ctx context.Context, id int, filters ...Filter) iter.Seq2[*IssueList, error] {
 	params := &internal.ApiTeamIssueListListParams{}
 
-	if err := applyFilters(params, filters); err != nil {
+	if err := applyFilters("IssuesByTeamID", params, filters); err != nil {
 		return errIter[*IssueList](err)
 	}
 
@@ -166,63 +166,68 @@ func (c *Client) IssuesByTeamID(ctx context.Context, id int, filters ...Filter) 
 
 func issueMapper(in internal.IssueRead) (*Issue, error) {
 	if in.Id == nil {
-		return nil, fmt.Errorf("issue: nil Id")
+		return nil, &MapError{Kind: "issue", Field: "Id"}
 	}
 
+	id := *in.Id
+
 	if in.Modified == nil {
-		return nil, fmt.Errorf("issue: nil Modified")
+		return nil, &MapError{Kind: "issue", ID: id, Field: "Modified"}
 	}
 
 	if in.ResourceUrl == nil {
-		return nil, fmt.Errorf("issue: nil ResourceUrl")
+		return nil, &MapError{Kind: "issue", ID: id, Field: "ResourceUrl"}
 	}
 
 	if in.Publisher == nil {
-		return nil, fmt.Errorf("issue: nil Publisher")
+		return nil, &MapError{Kind: "issue", ID: id, Field: "Publisher"}
 	}
 
 	if in.Publisher.Id == nil {
-		return nil, fmt.Errorf("issue: nil Publisher.Id")
+		return nil, &MapError{Kind: "issue", ID: id, Field: "Publisher.Id"}
 	}
 
 	if in.Series == nil {
-		return nil, fmt.Errorf("issue: nil Series")
+		return nil, &MapError{Kind: "issue", ID: id, Field: "Series"}
 	}
 
 	if in.Series.Id == nil {
-		return nil, fmt.Errorf("issue: nil Series.Id")
+		return nil, &MapError{Kind: "issue", ID: id, Field: "Series.Id"}
 	}
 
 	if in.Series.SeriesType == nil {
-		return nil, fmt.Errorf("issue: nil Series.SeriesType")
+		return nil, &MapError{Kind: "issue", ID: id, Field: "Series.SeriesType"}
 	}
 
 	if in.Series.SeriesType.Id == nil {
-		return nil, fmt.Errorf("issue: nil Series.SeriesType.Id")
+		return nil, &MapError{Kind: "issue", ID: id, Field: "Series.SeriesType.Id"}
 	}
 
 	if in.Rating == nil {
-		return nil, fmt.Errorf("issue: nil Rating")
-	}
-
-	if in.AltNumber == nil {
-		return nil, fmt.Errorf("issue: nil AltNumber")
-	}
-
-	if in.Name == nil {
-		return nil, fmt.Errorf("issue: nil Name")
+		return nil, &MapError{Kind: "issue", ID: id, Field: "Rating"}
 	}
 
 	if in.Rating.Id == nil {
-		return nil, fmt.Errorf("issue: nil Rating.Id")
+		return nil, &MapError{Kind: "issue", ID: id, Field: "Rating.Id"}
 	}
 
 	if in.PriceCurrency == nil {
-		return nil, fmt.Errorf("issue: nil PriceCurrency")
+		return nil, &MapError{Kind: "issue", ID: id, Field: "PriceCurrency"}
+	}
+
+	// alt_number and name are absent from the spec's required list, and
+	// rating_count is a readOnly aggregate that can come back null. Guarded
+	// anyway: a record missing them is surfaced, not silently zeroed.
+	if in.AltNumber == nil {
+		return nil, &MapError{Kind: "issue", ID: id, Field: "AltNumber"}
+	}
+
+	if in.Name == nil {
+		return nil, &MapError{Kind: "issue", ID: id, Field: "Name"}
 	}
 
 	if in.RatingCount == nil {
-		return nil, fmt.Errorf("issue: nil RatingCount")
+		return nil, &MapError{Kind: "issue", ID: id, Field: "RatingCount"}
 	}
 
 	var imageURL *url.URL
@@ -231,20 +236,20 @@ func issueMapper(in internal.IssueRead) (*Issue, error) {
 	if image := nullableToPtr(in.Image); image != nil {
 		imageURL, err = url.Parse(*image)
 		if err != nil {
-			return nil, err
+			return nil, &MapError{Kind: "issue", ID: id, Field: "Image", Err: err}
 		}
 	}
 
 	resourceURL, err := url.Parse(*in.ResourceUrl)
 	if err != nil {
-		return nil, err
+		return nil, &MapError{Kind: "issue", ID: id, Field: "ResourceUrl", Err: err}
 	}
 
 	var imprint *Reference
 
 	if in.Imprint != nil {
 		if in.Imprint.Id == nil {
-			return nil, fmt.Errorf("issue: nil Imprint.Id")
+			return nil, &MapError{Kind: "issue", ID: id, Field: "Imprint.Id"}
 		}
 
 		imprint = &Reference{
@@ -266,7 +271,7 @@ func issueMapper(in internal.IssueRead) (*Issue, error) {
 
 		for _, genre := range *in.Series.Genres {
 			if genre.Id == nil {
-				return nil, fmt.Errorf("issue: nil Series.Genres[].Id")
+				return nil, &MapError{Kind: "issue", ID: id, Field: "Series.Genres[].Id"}
 			}
 
 			genres = append(genres, Reference{
@@ -311,18 +316,18 @@ func issueMapper(in internal.IssueRead) (*Issue, error) {
 
 		for _, credit := range *in.Credits {
 			if credit.Id == nil {
-				return nil, fmt.Errorf("issue: nil Credits[].Id")
+				return nil, &MapError{Kind: "issue", ID: id, Field: "Credits[].Id"}
 			}
 
 			if credit.Creator == nil {
-				return nil, fmt.Errorf("issue: nil Credits[].Creator")
+				return nil, &MapError{Kind: "issue", ID: id, Field: "Credits[].Creator"}
 			}
 
 			roles := make([]Reference, 0, len(credit.Role))
 
 			for _, role := range credit.Role {
 				if role.Id == nil {
-					return nil, fmt.Errorf("issue: nil Credits[].Role[].Id")
+					return nil, &MapError{Kind: "issue", ID: id, Field: "Credits[].Role[].Id"}
 				}
 
 				roles = append(roles, Reference{
@@ -388,7 +393,7 @@ func issueMapper(in internal.IssueRead) (*Issue, error) {
 
 		for _, reprint := range *in.Reprints {
 			if reprint.Id == nil {
-				return nil, fmt.Errorf("issue: nil Reprints[].Id")
+				return nil, &MapError{Kind: "issue", ID: id, Field: "Reprints[].Id"}
 			}
 
 			reprints = append(reprints, IssueReprint{
@@ -406,7 +411,7 @@ func issueMapper(in internal.IssueRead) (*Issue, error) {
 		for _, variant := range *in.Variants {
 			maybeVariantImageURL, innerErr := url.Parse(variant.Image)
 			if innerErr != nil {
-				return nil, innerErr
+				return nil, &MapError{Kind: "issue", ID: id, Field: "Variants[].Image", Err: innerErr}
 			}
 			variantImageURL := *maybeVariantImageURL
 
@@ -415,7 +420,7 @@ func issueMapper(in internal.IssueRead) (*Issue, error) {
 			if p, priceErr := variant.Price.Get(); priceErr == nil {
 				s, asErr := p.AsVariantsIssuePrice0()
 				if asErr != nil {
-					return nil, fmt.Errorf("issue: variants price: %w", asErr)
+					return nil, &MapError{Kind: "issue", ID: id, Field: "Variants[].Price", Err: asErr}
 				}
 				variantPrice = &s
 			}
@@ -435,13 +440,13 @@ func issueMapper(in internal.IssueRead) (*Issue, error) {
 	if p, priceErr := in.Price.Get(); priceErr == nil {
 		s, asErr := p.AsIssueReadPrice0()
 		if asErr != nil {
-			return nil, fmt.Errorf("issue: price: %w", asErr)
+			return nil, &MapError{Kind: "issue", ID: id, Field: "Price", Err: asErr}
 		}
 		price = &s
 	}
 
 	return &Issue{
-		ID: *in.Id,
+		ID: id,
 		Publisher: Reference{
 			ID:   *in.Publisher.Id,
 			Name: in.Publisher.Name,
@@ -498,19 +503,21 @@ func issueMapper(in internal.IssueRead) (*Issue, error) {
 
 func issueListMapper(in internal.IssueList) (*IssueList, error) {
 	if in.Id == nil {
-		return nil, fmt.Errorf("issue: nil Id")
+		return nil, &MapError{Kind: "issue", Field: "Id"}
 	}
 
+	id := *in.Id
+
 	if in.Modified == nil {
-		return nil, fmt.Errorf("issue: nil Modified")
+		return nil, &MapError{Kind: "issue", ID: id, Field: "Modified"}
 	}
 
 	if in.Series == nil {
-		return nil, fmt.Errorf("issue: nil Series")
+		return nil, &MapError{Kind: "issue", ID: id, Field: "Series"}
 	}
 
 	if in.Series.Id == nil {
-		return nil, fmt.Errorf("issue: nil Series.Id")
+		return nil, &MapError{Kind: "issue", ID: id, Field: "Series.Id"}
 	}
 
 	coverDate := civil.DateOf(in.CoverDate.Time)
@@ -532,7 +539,7 @@ func issueListMapper(in internal.IssueList) (*IssueList, error) {
 	}
 
 	return &IssueList{
-		ID: *in.Id,
+		ID: id,
 		Series: IssueListSeries{
 			ID:        *in.Series.Id,
 			Name:      in.Series.Name,

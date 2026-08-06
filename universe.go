@@ -39,7 +39,7 @@ func (c *Client) UniverseByID(ctx context.Context, id int) (*Universe, error) {
 func (c *Client) Universes(ctx context.Context, filters ...Filter) iter.Seq2[*UniverseList, error] {
 	params := &internal.ApiUniverseListParams{}
 
-	if err := applyFilters(params, filters); err != nil {
+	if err := applyFilters("Universes", params, filters); err != nil {
 		return errIter[*UniverseList](err)
 	}
 
@@ -48,23 +48,25 @@ func (c *Client) Universes(ctx context.Context, filters ...Filter) iter.Seq2[*Un
 
 func universeMapper(in internal.UniverseRead) (*Universe, error) {
 	if in.Id == nil {
-		return nil, fmt.Errorf("universe: nil Id")
+		return nil, &MapError{Kind: "universe", Field: "Id"}
 	}
 
+	id := *in.Id
+
 	if in.Modified == nil {
-		return nil, fmt.Errorf("universe: nil Modified")
+		return nil, &MapError{Kind: "universe", ID: id, Field: "Modified"}
 	}
 
 	if in.ResourceUrl == nil {
-		return nil, fmt.Errorf("universe: nil ResourceUrl")
+		return nil, &MapError{Kind: "universe", ID: id, Field: "ResourceUrl"}
 	}
 
 	if in.Publisher == nil {
-		return nil, fmt.Errorf("universe: nil Publisher")
+		return nil, &MapError{Kind: "universe", ID: id, Field: "Publisher"}
 	}
 
 	if in.Publisher.Id == nil {
-		return nil, fmt.Errorf("universe: nil Publisher.Id")
+		return nil, &MapError{Kind: "universe", ID: id, Field: "Publisher.Id"}
 	}
 
 	var imageURL *url.URL
@@ -73,17 +75,17 @@ func universeMapper(in internal.UniverseRead) (*Universe, error) {
 	if image := nullableToPtr(in.Image); image != nil {
 		imageURL, err = url.Parse(*image)
 		if err != nil {
-			return nil, err
+			return nil, &MapError{Kind: "universe", ID: id, Field: "Image", Err: err}
 		}
 	}
 
 	resourceURL, err := url.Parse(*in.ResourceUrl)
 	if err != nil {
-		return nil, err
+		return nil, &MapError{Kind: "universe", ID: id, Field: "ResourceUrl", Err: err}
 	}
 
 	return &Universe{
-		ID: *in.Id,
+		ID: id,
 		Publisher: Reference{
 			ID:   *in.Publisher.Id,
 			Name: in.Publisher.Name,
@@ -100,15 +102,17 @@ func universeMapper(in internal.UniverseRead) (*Universe, error) {
 
 func universeListMapper(in internal.UniverseList) (*UniverseList, error) {
 	if in.Id == nil {
-		return nil, fmt.Errorf("universe: nil Id")
+		return nil, &MapError{Kind: "universe", Field: "Id"}
 	}
 
+	id := *in.Id
+
 	if in.Modified == nil {
-		return nil, fmt.Errorf("universe: nil Modified")
+		return nil, &MapError{Kind: "universe", ID: id, Field: "Modified"}
 	}
 
 	return &UniverseList{
-		ID:       *in.Id,
+		ID:       id,
 		Name:     in.Name,
 		Modified: *in.Modified,
 	}, nil

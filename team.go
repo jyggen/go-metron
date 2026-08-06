@@ -40,7 +40,7 @@ func (c *Client) TeamByID(ctx context.Context, id int) (*Team, error) {
 func (c *Client) Teams(ctx context.Context, filters ...Filter) iter.Seq2[*TeamList, error] {
 	params := &internal.ApiTeamListParams{}
 
-	if err := applyFilters(params, filters); err != nil {
+	if err := applyFilters("Teams", params, filters); err != nil {
 		return errIter[*TeamList](err)
 	}
 
@@ -49,15 +49,17 @@ func (c *Client) Teams(ctx context.Context, filters ...Filter) iter.Seq2[*TeamLi
 
 func teamMapper(in internal.TeamRead) (*Team, error) {
 	if in.Id == nil {
-		return nil, fmt.Errorf("team: nil Id")
+		return nil, &MapError{Kind: "team", Field: "Id"}
 	}
 
+	id := *in.Id
+
 	if in.Modified == nil {
-		return nil, fmt.Errorf("team: nil Modified")
+		return nil, &MapError{Kind: "team", ID: id, Field: "Modified"}
 	}
 
 	if in.ResourceUrl == nil {
-		return nil, fmt.Errorf("team: nil ResourceUrl")
+		return nil, &MapError{Kind: "team", ID: id, Field: "ResourceUrl"}
 	}
 
 	var imageURL *url.URL
@@ -66,13 +68,13 @@ func teamMapper(in internal.TeamRead) (*Team, error) {
 	if image := nullableToPtr(in.Image); image != nil {
 		imageURL, err = url.Parse(*image)
 		if err != nil {
-			return nil, err
+			return nil, &MapError{Kind: "team", ID: id, Field: "Image", Err: err}
 		}
 	}
 
 	resourceURL, err := url.Parse(*in.ResourceUrl)
 	if err != nil {
-		return nil, err
+		return nil, &MapError{Kind: "team", ID: id, Field: "ResourceUrl", Err: err}
 	}
 
 	var creators []CreatorList
@@ -106,7 +108,7 @@ func teamMapper(in internal.TeamRead) (*Team, error) {
 	}
 
 	return &Team{
-		ID:                    *in.Id,
+		ID:                    id,
 		Name:                  in.Name,
 		Description:           in.Desc,
 		ImageURL:              imageURL,
@@ -121,15 +123,17 @@ func teamMapper(in internal.TeamRead) (*Team, error) {
 
 func teamListMapper(in internal.TeamList) (*TeamList, error) {
 	if in.Id == nil {
-		return nil, fmt.Errorf("team: nil Id")
+		return nil, &MapError{Kind: "team", Field: "Id"}
 	}
 
+	id := *in.Id
+
 	if in.Modified == nil {
-		return nil, fmt.Errorf("team: nil Modified")
+		return nil, &MapError{Kind: "team", ID: id, Field: "Modified"}
 	}
 
 	return &TeamList{
-		ID:       *in.Id,
+		ID:       id,
 		Name:     in.Name,
 		Modified: *in.Modified,
 	}, nil

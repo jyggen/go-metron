@@ -1,9 +1,12 @@
 package metron_test
 
 import (
+	"context"
+	"encoding/json"
 	"testing"
 
 	"github.com/jyggen/go-metron"
+	"github.com/stretchr/testify/require"
 )
 
 func TestIssueByID(t *testing.T) {
@@ -760,4 +763,57 @@ func issueListTestCases(t *testing.T, kind string) []testCase[*metron.IssueList]
 	}
 
 	return cases
+}
+
+// TestIssueOptionalFieldsAreGuarded covers the fields the spec allows the API
+// to omit and the mapper rejects anyway, in both the absent and null forms.
+func TestIssueOptionalFieldsAreGuarded(t *testing.T) {
+	t.Parallel()
+
+	for field, expected := range map[string]string{
+		"alt_number":   "AltNumber",
+		"name":         "Name",
+		"rating_count": "RatingCount",
+	} {
+		t.Run(field, func(t *testing.T) {
+			t.Parallel()
+
+			for _, form := range []string{"absent", "null"} {
+				t.Run(form, func(t *testing.T) {
+					t.Parallel()
+
+					raw, err := fs.ReadFile("fixtures/issue_2558.json")
+					require.NoError(t, err)
+
+					var payload map[string]any
+
+					require.NoError(t, json.Unmarshal(raw, &payload))
+
+					if form == "absent" {
+						delete(payload, field)
+					} else {
+						payload[field] = nil
+					}
+
+					body, err := json.Marshal(payload)
+					require.NoError(t, err)
+
+					c := newTestClient(t, []requestMock{
+						{expectedURL: "https://metron.cloud/api/issue/2558/", responseBody: string(body)},
+					})
+
+					_, err = c.IssueByID(context.Background(), 2558)
+
+					var mapErr *metron.MapError
+
+					require.ErrorAs(t, err, &mapErr)
+					require.Equal(t, "issue", mapErr.Kind)
+					require.Equal(t, 2558, mapErr.ID)
+					require.Equal(t, expected, mapErr.Field)
+
+					require.EqualError(t, err, "metron: issue 2558: nil "+expected)
+				})
+			}
+		})
+	}
 }

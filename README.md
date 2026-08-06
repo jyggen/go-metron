@@ -75,11 +75,11 @@ for issue, err := range c.Issues(ctx) {
 
 ### Filtering
 
-Filters are applied at runtime, not checked by the compiler. A filter the endpoint does not accept returns a `FilterError` on the first iteration instead of being ignored.
+Filters are applied at runtime, not checked by the compiler. A filter the endpoint does not accept returns a `FilterError` on the first iteration instead of being ignored, naming both the filter and the method that rejected it.
 
 ```go
 for _, err := range c.Roles(ctx, metron.ByPublisherID(2)) {
-	fmt.Println(err) // metron: ByPublisherID does not apply to this endpoint
+	fmt.Println(err) // metron: ByPublisherID does not apply to Roles
 }
 ```
 
@@ -103,14 +103,26 @@ c, err := metron.NewClient(token, metron.WithRetry(3))
 
 ### Errors
 
+`APIError` carries the status, the body and the request it came from, whose URL holds the query your filters produced and the page the iterator had reached.
+
 ```go
 var apiErr *metron.APIError
 
 if errors.As(err, &apiErr) {
-	fmt.Println(apiErr.StatusCode, string(apiErr.Body))
+	fmt.Println(apiErr.Method, apiErr.URL, apiErr.StatusCode, string(apiErr.Body))
 }
 
 if errors.Is(err, &metron.APIError{StatusCode: http.StatusNotFound}) {
 	// no such issue
+}
+```
+
+`MapError` is a record the client could not convert. List methods report it per record and carry on to the next one.
+
+```go
+for _, err := range c.Issues(ctx) {
+	if errors.Is(err, &metron.MapError{}) {
+		fmt.Println(err) // metron: issue 2558: nil PriceCurrency
+	}
 }
 ```

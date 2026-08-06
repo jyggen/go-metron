@@ -47,7 +47,7 @@ func (c *Client) ArcByID(ctx context.Context, id int) (*Arc, error) {
 func (c *Client) Arcs(ctx context.Context, filters ...Filter) iter.Seq2[*ArcList, error] {
 	params := &internal.ApiArcListParams{}
 
-	if err := applyFilters(params, filters); err != nil {
+	if err := applyFilters("Arcs", params, filters); err != nil {
 		return errIter[*ArcList](err)
 	}
 
@@ -56,15 +56,17 @@ func (c *Client) Arcs(ctx context.Context, filters ...Filter) iter.Seq2[*ArcList
 
 func arcMapper(in internal.Arc) (*Arc, error) {
 	if in.Id == nil {
-		return nil, fmt.Errorf("arc: nil Id")
+		return nil, &MapError{Kind: "arc", Field: "Id"}
 	}
 
+	id := *in.Id
+
 	if in.Modified == nil {
-		return nil, fmt.Errorf("arc: nil Modified")
+		return nil, &MapError{Kind: "arc", ID: id, Field: "Modified"}
 	}
 
 	if in.ResourceUrl == nil {
-		return nil, fmt.Errorf("arc: nil ResourceUrl")
+		return nil, &MapError{Kind: "arc", ID: id, Field: "ResourceUrl"}
 	}
 
 	var imageURL *url.URL
@@ -73,17 +75,17 @@ func arcMapper(in internal.Arc) (*Arc, error) {
 	if image := nullableToPtr(in.Image); image != nil {
 		imageURL, err = url.Parse(*image)
 		if err != nil {
-			return nil, err
+			return nil, &MapError{Kind: "arc", ID: id, Field: "Image", Err: err}
 		}
 	}
 
 	resourceURL, err := url.Parse(*in.ResourceUrl)
 	if err != nil {
-		return nil, err
+		return nil, &MapError{Kind: "arc", ID: id, Field: "ResourceUrl", Err: err}
 	}
 
 	return &Arc{
-		ID:                    *in.Id,
+		ID:                    id,
 		Name:                  in.Name,
 		Description:           in.Desc,
 		ImageURL:              imageURL,
@@ -96,15 +98,17 @@ func arcMapper(in internal.Arc) (*Arc, error) {
 
 func arcListMapper(in internal.ArcList) (*ArcList, error) {
 	if in.Id == nil {
-		return nil, fmt.Errorf("arc: nil Id")
+		return nil, &MapError{Kind: "arc", Field: "Id"}
 	}
 
+	id := *in.Id
+
 	if in.Modified == nil {
-		return nil, fmt.Errorf("arc: nil Modified")
+		return nil, &MapError{Kind: "arc", ID: id, Field: "Modified"}
 	}
 
 	return &ArcList{
-		ID:       *in.Id,
+		ID:       id,
 		Name:     in.Name,
 		Modified: *in.Modified,
 	}, nil

@@ -153,9 +153,9 @@ func TestScrobbleRating(t *testing.T) {
 	}{
 		{name: "in range", rating: `4`, expectedRating: new(4)},
 		{name: "null", rating: `null`, expectedRating: nil},
-		{name: "string", rating: `"4"`, expectedError: "scrobble: rating:"},
-		{name: "object", rating: `{"value":4}`, expectedError: "scrobble: rating:"},
-		{name: "boolean", rating: `true`, expectedError: "scrobble: rating:"},
+		{name: "string", rating: `"4"`, expectedError: "metron: scrobble 42: Rating:"},
+		{name: "object", rating: `{"value":4}`, expectedError: "metron: scrobble 42: Rating:"},
+		{name: "boolean", rating: `true`, expectedError: "metron: scrobble 42: Rating:"},
 		// Metron documents 1-5, but its own enum is trusted, not enforced.
 		{name: "below range", rating: `0`, expectedRating: new(0)},
 		{name: "above range", rating: `9`, expectedRating: new(9)},

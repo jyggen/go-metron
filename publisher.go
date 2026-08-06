@@ -40,7 +40,7 @@ func (c *Client) PublisherByID(ctx context.Context, id int) (*Publisher, error) 
 func (c *Client) Publishers(ctx context.Context, filters ...Filter) iter.Seq2[*PublisherList, error] {
 	params := &internal.ApiPublisherListParams{}
 
-	if err := applyFilters(params, filters); err != nil {
+	if err := applyFilters("Publishers", params, filters); err != nil {
 		return errIter[*PublisherList](err)
 	}
 
@@ -49,15 +49,17 @@ func (c *Client) Publishers(ctx context.Context, filters ...Filter) iter.Seq2[*P
 
 func publisherMapper(in internal.Publisher) (*Publisher, error) {
 	if in.Id == nil {
-		return nil, fmt.Errorf("publisher: nil Id")
+		return nil, &MapError{Kind: "publisher", Field: "Id"}
 	}
 
+	id := *in.Id
+
 	if in.Modified == nil {
-		return nil, fmt.Errorf("publisher: nil Modified")
+		return nil, &MapError{Kind: "publisher", ID: id, Field: "Modified"}
 	}
 
 	if in.ResourceUrl == nil {
-		return nil, fmt.Errorf("publisher: nil ResourceUrl")
+		return nil, &MapError{Kind: "publisher", ID: id, Field: "ResourceUrl"}
 	}
 
 	var imageURL *url.URL
@@ -66,13 +68,13 @@ func publisherMapper(in internal.Publisher) (*Publisher, error) {
 	if image := nullableToPtr(in.Image); image != nil {
 		imageURL, err = url.Parse(*image)
 		if err != nil {
-			return nil, err
+			return nil, &MapError{Kind: "publisher", ID: id, Field: "Image", Err: err}
 		}
 	}
 
 	resourceURL, err := url.Parse(*in.ResourceUrl)
 	if err != nil {
-		return nil, err
+		return nil, &MapError{Kind: "publisher", ID: id, Field: "ResourceUrl", Err: err}
 	}
 
 	var countryCode *string
@@ -86,7 +88,7 @@ func publisherMapper(in internal.Publisher) (*Publisher, error) {
 	}
 
 	return &Publisher{
-		ID:                    *in.Id,
+		ID:                    id,
 		Name:                  in.Name,
 		Founded:               nullableToPtr(in.Founded),
 		CountryCode:           countryCode,
@@ -101,15 +103,17 @@ func publisherMapper(in internal.Publisher) (*Publisher, error) {
 
 func publisherListMapper(in internal.PublisherList) (*PublisherList, error) {
 	if in.Id == nil {
-		return nil, fmt.Errorf("publisher: nil Id")
+		return nil, &MapError{Kind: "publisher", Field: "Id"}
 	}
 
+	id := *in.Id
+
 	if in.Modified == nil {
-		return nil, fmt.Errorf("publisher: nil Modified")
+		return nil, &MapError{Kind: "publisher", ID: id, Field: "Modified"}
 	}
 
 	return &PublisherList{
-		ID:       *in.Id,
+		ID:       id,
 		Name:     in.Name,
 		Modified: *in.Modified,
 	}, nil

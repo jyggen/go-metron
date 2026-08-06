@@ -42,7 +42,7 @@ func (c *Client) CharacterByID(ctx context.Context, id int) (*Character, error) 
 func (c *Client) Characters(ctx context.Context, filters ...Filter) iter.Seq2[*CharacterList, error] {
 	params := &internal.ApiCharacterListParams{}
 
-	if err := applyFilters(params, filters); err != nil {
+	if err := applyFilters("Characters", params, filters); err != nil {
 		return errIter[*CharacterList](err)
 	}
 
@@ -51,15 +51,17 @@ func (c *Client) Characters(ctx context.Context, filters ...Filter) iter.Seq2[*C
 
 func characterMapper(in internal.CharacterRead) (*Character, error) {
 	if in.Id == nil {
-		return nil, fmt.Errorf("character: nil Id")
+		return nil, &MapError{Kind: "character", Field: "Id"}
 	}
 
+	id := *in.Id
+
 	if in.Modified == nil {
-		return nil, fmt.Errorf("character: nil Modified")
+		return nil, &MapError{Kind: "character", ID: id, Field: "Modified"}
 	}
 
 	if in.ResourceUrl == nil {
-		return nil, fmt.Errorf("character: nil ResourceUrl")
+		return nil, &MapError{Kind: "character", ID: id, Field: "ResourceUrl"}
 	}
 
 	var imageURL *url.URL
@@ -68,13 +70,13 @@ func characterMapper(in internal.CharacterRead) (*Character, error) {
 	if image := nullableToPtr(in.Image); image != nil {
 		imageURL, err = url.Parse(*image)
 		if err != nil {
-			return nil, err
+			return nil, &MapError{Kind: "character", ID: id, Field: "Image", Err: err}
 		}
 	}
 
 	resourceURL, err := url.Parse(*in.ResourceUrl)
 	if err != nil {
-		return nil, err
+		return nil, &MapError{Kind: "character", ID: id, Field: "ResourceUrl", Err: err}
 	}
 
 	var creators []CreatorList
@@ -120,7 +122,7 @@ func characterMapper(in internal.CharacterRead) (*Character, error) {
 	}
 
 	return &Character{
-		ID:                    *in.Id,
+		ID:                    id,
 		Name:                  in.Name,
 		Alias:                 in.Alias,
 		Description:           in.Desc,
@@ -137,15 +139,17 @@ func characterMapper(in internal.CharacterRead) (*Character, error) {
 
 func characterListMapper(in internal.CharacterList) (*CharacterList, error) {
 	if in.Id == nil {
-		return nil, fmt.Errorf("character: nil Id")
+		return nil, &MapError{Kind: "character", Field: "Id"}
 	}
 
+	id := *in.Id
+
 	if in.Modified == nil {
-		return nil, fmt.Errorf("character: nil Modified")
+		return nil, &MapError{Kind: "character", ID: id, Field: "Modified"}
 	}
 
 	return &CharacterList{
-		ID:       *in.Id,
+		ID:       id,
 		Name:     in.Name,
 		Modified: *in.Modified,
 	}, nil

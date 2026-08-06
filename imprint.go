@@ -40,7 +40,7 @@ func (c *Client) ImprintByID(ctx context.Context, id int) (*Imprint, error) {
 func (c *Client) Imprints(ctx context.Context, filters ...Filter) iter.Seq2[*ImprintList, error] {
 	params := &internal.ApiImprintListParams{}
 
-	if err := applyFilters(params, filters); err != nil {
+	if err := applyFilters("Imprints", params, filters); err != nil {
 		return errIter[*ImprintList](err)
 	}
 
@@ -49,23 +49,25 @@ func (c *Client) Imprints(ctx context.Context, filters ...Filter) iter.Seq2[*Imp
 
 func imprintMapper(in internal.ImprintRead) (*Imprint, error) {
 	if in.Id == nil {
-		return nil, fmt.Errorf("imprint: nil Id")
+		return nil, &MapError{Kind: "imprint", Field: "Id"}
 	}
 
+	id := *in.Id
+
 	if in.Modified == nil {
-		return nil, fmt.Errorf("imprint: nil Modified")
+		return nil, &MapError{Kind: "imprint", ID: id, Field: "Modified"}
 	}
 
 	if in.ResourceUrl == nil {
-		return nil, fmt.Errorf("imprint: nil ResourceUrl")
+		return nil, &MapError{Kind: "imprint", ID: id, Field: "ResourceUrl"}
 	}
 
 	if in.Publisher == nil {
-		return nil, fmt.Errorf("imprint: nil Publisher")
+		return nil, &MapError{Kind: "imprint", ID: id, Field: "Publisher"}
 	}
 
 	if in.Publisher.Id == nil {
-		return nil, fmt.Errorf("imprint: nil Publisher.Id")
+		return nil, &MapError{Kind: "imprint", ID: id, Field: "Publisher.Id"}
 	}
 
 	var imageURL *url.URL
@@ -74,17 +76,17 @@ func imprintMapper(in internal.ImprintRead) (*Imprint, error) {
 	if imgStr, imgErr := in.Image.Get(); imgErr == nil {
 		imageURL, err = url.Parse(imgStr)
 		if err != nil {
-			return nil, err
+			return nil, &MapError{Kind: "imprint", ID: id, Field: "Image", Err: err}
 		}
 	}
 
 	resourceURL, err := url.Parse(*in.ResourceUrl)
 	if err != nil {
-		return nil, err
+		return nil, &MapError{Kind: "imprint", ID: id, Field: "ResourceUrl", Err: err}
 	}
 
 	return &Imprint{
-		ID:                    *in.Id,
+		ID:                    id,
 		Name:                  in.Name,
 		Founded:               nullableToPtr(in.Founded),
 		Description:           in.Desc,
@@ -102,15 +104,17 @@ func imprintMapper(in internal.ImprintRead) (*Imprint, error) {
 
 func imprintListMapper(in internal.ImprintList) (*ImprintList, error) {
 	if in.Id == nil {
-		return nil, fmt.Errorf("imprint: nil Id")
+		return nil, &MapError{Kind: "imprint", Field: "Id"}
 	}
 
+	id := *in.Id
+
 	if in.Modified == nil {
-		return nil, fmt.Errorf("imprint: nil Modified")
+		return nil, &MapError{Kind: "imprint", ID: id, Field: "Modified"}
 	}
 
 	return &ImprintList{
-		ID:       *in.Id,
+		ID:       id,
 		Name:     in.Name,
 		Modified: *in.Modified,
 	}, nil

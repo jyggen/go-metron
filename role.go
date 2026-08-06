@@ -2,7 +2,6 @@ package metron
 
 import (
 	"context"
-	"fmt"
 	"iter"
 
 	"github.com/jyggen/go-metron/internal"
@@ -18,7 +17,7 @@ type RoleList struct {
 func (c *Client) Roles(ctx context.Context, filters ...Filter) iter.Seq2[*RoleList, error] {
 	params := &internal.ApiRoleListParams{}
 
-	if err := applyFilters(params, filters); err != nil {
+	if err := applyFilters("Roles", params, filters); err != nil {
 		return errIter[*RoleList](err)
 	}
 
@@ -27,7 +26,7 @@ func (c *Client) Roles(ctx context.Context, filters ...Filter) iter.Seq2[*RoleLi
 
 func roleListMapper(in internal.Role) (*RoleList, error) {
 	if in.Id == nil {
-		return nil, fmt.Errorf("role: nil Id")
+		return nil, &MapError{Kind: "role", Field: "Id"}
 	}
 
 	return &RoleList{
