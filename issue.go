@@ -2,7 +2,6 @@ package metron
 
 import (
 	"context"
-	"fmt"
 	"iter"
 	"net/url"
 	"time"
@@ -106,7 +105,7 @@ type IssueList struct {
 
 // IssueByID returns an issue by its ID.
 func (c *Client) IssueByID(ctx context.Context, id int) (*Issue, error) {
-	return byID(ctx, c, fmt.Sprintf("issue/%d", id), c.client.ApiIssueRetrieve, issueMapper, id)
+	return byID(ctx, c, c.client.ApiIssueRetrieve, issueMapper, id)
 }
 
 // Issues returns an iterator over all issues.
@@ -117,7 +116,7 @@ func (c *Client) Issues(ctx context.Context, filters ...Filter) iter.Seq2[*Issue
 		return errIter[*IssueList](err)
 	}
 
-	return paginate[internal.PaginatedIssueListList](ctx, c, "issue", c.client.ApiIssueList, issueListMapper, params)
+	return paginate[internal.PaginatedIssueListList](ctx, c, c.client.ApiIssueList, issueListMapper, params)
 }
 
 // IssuesByArcID returns an iterator over all issues for a story arc.
@@ -128,7 +127,7 @@ func (c *Client) IssuesByArcID(ctx context.Context, id int, filters ...Filter) i
 		return errIter[*IssueList](err)
 	}
 
-	return idPaginate[internal.PaginatedIssueListList](ctx, c, "arc/issue", c.client.ApiArcIssueListList, issueListMapper, id, params)
+	return idPaginate[internal.PaginatedIssueListList](ctx, c, c.client.ApiArcIssueListList, issueListMapper, id, params)
 }
 
 // IssuesByCharacterID returns an iterator over all issues for a character.
@@ -139,7 +138,7 @@ func (c *Client) IssuesByCharacterID(ctx context.Context, id int, filters ...Fil
 		return errIter[*IssueList](err)
 	}
 
-	return idPaginate[internal.PaginatedIssueListList](ctx, c, "character/issue", c.client.ApiCharacterIssueListList, issueListMapper, id, params)
+	return idPaginate[internal.PaginatedIssueListList](ctx, c, c.client.ApiCharacterIssueListList, issueListMapper, id, params)
 }
 
 // IssuesBySeriesID returns an iterator over all issues for a series.
@@ -150,7 +149,7 @@ func (c *Client) IssuesBySeriesID(ctx context.Context, id int, filters ...Filter
 		return errIter[*IssueList](err)
 	}
 
-	return idPaginate[internal.PaginatedIssueListList](ctx, c, "series/issue", c.client.ApiSeriesIssueListList, issueListMapper, id, params)
+	return idPaginate[internal.PaginatedIssueListList](ctx, c, c.client.ApiSeriesIssueListList, issueListMapper, id, params)
 }
 
 // IssuesByTeamID returns an iterator over all issues for a team.
@@ -161,7 +160,7 @@ func (c *Client) IssuesByTeamID(ctx context.Context, id int, filters ...Filter) 
 		return errIter[*IssueList](err)
 	}
 
-	return idPaginate[internal.PaginatedIssueListList](ctx, c, "team/issue", c.client.ApiTeamIssueListList, issueListMapper, id, params)
+	return idPaginate[internal.PaginatedIssueListList](ctx, c, c.client.ApiTeamIssueListList, issueListMapper, id, params)
 }
 
 // issueMapper deliberately does not guard AltNumber, Name or RatingCount.

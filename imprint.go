@@ -2,7 +2,6 @@ package metron
 
 import (
 	"context"
-	"fmt"
 	"iter"
 	"net/url"
 	"time"
@@ -33,7 +32,7 @@ type ImprintList struct {
 
 // ImprintByID returns an imprint by its ID.
 func (c *Client) ImprintByID(ctx context.Context, id int) (*Imprint, error) {
-	return byID(ctx, c, fmt.Sprintf("imprint/%d", id), c.client.ApiImprintRetrieve, imprintMapper, id)
+	return byID(ctx, c, c.client.ApiImprintRetrieve, imprintMapper, id)
 }
 
 // Imprints returns an iterator over all imprints.
@@ -44,7 +43,7 @@ func (c *Client) Imprints(ctx context.Context, filters ...Filter) iter.Seq2[*Imp
 		return errIter[*ImprintList](err)
 	}
 
-	return paginate[internal.PaginatedImprintListList](ctx, c, "imprint", c.client.ApiImprintList, imprintListMapper, params)
+	return paginate[internal.PaginatedImprintListList](ctx, c, c.client.ApiImprintList, imprintListMapper, params)
 }
 
 func imprintMapper(in internal.ImprintRead) (*Imprint, error) {

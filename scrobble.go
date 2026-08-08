@@ -87,9 +87,9 @@ func (c *Client) Scrobble(ctx context.Context, issueID int, opts ...ScrobbleOpti
 	}
 
 	// Not idempotent: a retried POST could scrobble the issue twice.
-	body, _, err := call(ctx, c.maxRetries, false, func(ctx context.Context, fn ...internal.RequestEditorFn) (*http.Response, error) {
+	body, err := call(ctx, c.maxRetries, false, func(ctx context.Context, fn ...internal.RequestEditorFn) (*http.Response, error) {
 		return c.client.ApiCollectionScrobbleCreate(ctx, req, fn...)
-	})(nil)
+	})
 	if err != nil {
 		return nil, err
 	}

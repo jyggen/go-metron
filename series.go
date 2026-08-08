@@ -2,7 +2,6 @@ package metron
 
 import (
 	"context"
-	"fmt"
 	"iter"
 	"net/url"
 	"time"
@@ -46,7 +45,7 @@ type SeriesList struct {
 
 // SeriesByID returns a series by its ID.
 func (c *Client) SeriesByID(ctx context.Context, id int) (*Series, error) {
-	return byID(ctx, c, fmt.Sprintf("series/%d", id), c.client.ApiSeriesRetrieve, seriesMapper, id)
+	return byID(ctx, c, c.client.ApiSeriesRetrieve, seriesMapper, id)
 }
 
 // Series returns an iterator over all series.
@@ -57,7 +56,7 @@ func (c *Client) Series(ctx context.Context, filters ...Filter) iter.Seq2[*Serie
 		return errIter[*SeriesList](err)
 	}
 
-	return paginate[internal.PaginatedSeriesListList](ctx, c, "series", c.client.ApiSeriesList, seriesListMapper, params)
+	return paginate[internal.PaginatedSeriesListList](ctx, c, c.client.ApiSeriesList, seriesListMapper, params)
 }
 
 // SeriesByPublisherID returns an iterator over all series for a publisher.
@@ -68,7 +67,7 @@ func (c *Client) SeriesByPublisherID(ctx context.Context, id int, filters ...Fil
 		return errIter[*SeriesList](err)
 	}
 
-	return idPaginate[internal.PaginatedSeriesListList](ctx, c, "publisher/series", c.client.ApiPublisherSeriesListList, seriesListMapper, id, params)
+	return idPaginate[internal.PaginatedSeriesListList](ctx, c, c.client.ApiPublisherSeriesListList, seriesListMapper, id, params)
 }
 
 func seriesMapper(in internal.SeriesRead) (*Series, error) {

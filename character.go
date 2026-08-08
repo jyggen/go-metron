@@ -2,7 +2,6 @@ package metron
 
 import (
 	"context"
-	"fmt"
 	"iter"
 	"net/url"
 	"time"
@@ -35,7 +34,7 @@ type CharacterList struct {
 
 // CharacterByID returns a character by its ID.
 func (c *Client) CharacterByID(ctx context.Context, id int) (*Character, error) {
-	return byID(ctx, c, fmt.Sprintf("character/%d", id), c.client.ApiCharacterRetrieve, characterMapper, id)
+	return byID(ctx, c, c.client.ApiCharacterRetrieve, characterMapper, id)
 }
 
 // Characters returns an iterator over all characters.
@@ -46,7 +45,7 @@ func (c *Client) Characters(ctx context.Context, filters ...Filter) iter.Seq2[*C
 		return errIter[*CharacterList](err)
 	}
 
-	return paginate[internal.PaginatedCharacterListList](ctx, c, "character", c.client.ApiCharacterList, characterListMapper, params)
+	return paginate[internal.PaginatedCharacterListList](ctx, c, c.client.ApiCharacterList, characterListMapper, params)
 }
 
 func characterMapper(in internal.CharacterRead) (*Character, error) {

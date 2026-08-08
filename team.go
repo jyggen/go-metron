@@ -2,7 +2,6 @@ package metron
 
 import (
 	"context"
-	"fmt"
 	"iter"
 	"net/url"
 	"time"
@@ -33,7 +32,7 @@ type TeamList struct {
 
 // TeamByID returns a team by its ID.
 func (c *Client) TeamByID(ctx context.Context, id int) (*Team, error) {
-	return byID(ctx, c, fmt.Sprintf("team/%d", id), c.client.ApiTeamRetrieve, teamMapper, id)
+	return byID(ctx, c, c.client.ApiTeamRetrieve, teamMapper, id)
 }
 
 // Teams returns an iterator over all teams.
@@ -44,7 +43,7 @@ func (c *Client) Teams(ctx context.Context, filters ...Filter) iter.Seq2[*TeamLi
 		return errIter[*TeamList](err)
 	}
 
-	return paginate[internal.PaginatedTeamListList](ctx, c, "team", c.client.ApiTeamList, teamListMapper, params)
+	return paginate[internal.PaginatedTeamListList](ctx, c, c.client.ApiTeamList, teamListMapper, params)
 }
 
 func teamMapper(in internal.TeamRead) (*Team, error) {

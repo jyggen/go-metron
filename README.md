@@ -25,7 +25,7 @@ import (
 )
 
 func main() {
-	c, err := metron.NewClient(os.Getenv("METRON_TOKEN"), metron.WithCaching())
+	c, err := metron.NewClient(os.Getenv("METRON_TOKEN"))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -82,14 +82,6 @@ for _, err := range c.Roles(ctx, metron.ByPublisherID(2)) {
 	fmt.Println(err) // metron: ByPublisherID does not apply to Roles
 }
 ```
-
-### Caching
-
-```go
-c, err := metron.NewClient(token, metron.WithCaching())
-```
-
-Responses go under your user cache directory and are revalidated with `If-Modified-Since`. A response without a `Last-Modified` header is not cached, since there is nothing to derive a freshness window from.
 
 ### Retries
 

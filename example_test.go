@@ -16,7 +16,7 @@ import (
 // running them. That keeps them from drifting out of sync with the API.
 
 func Example() {
-	c, err := metron.NewClient(os.Getenv("METRON_TOKEN"), metron.WithCaching())
+	c, err := metron.NewClient(os.Getenv("METRON_TOKEN"))
 	if err != nil {
 		log.Fatal(err)
 	}

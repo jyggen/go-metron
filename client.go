@@ -14,12 +14,9 @@ import (
 	"iter"
 	"net/http"
 	"net/url"
-	"os"
-	"path/filepath"
 	"sync"
 	"time"
 
-	"codeberg.org/jyggen/go-filecache"
 	"codeberg.org/jyggen/go-httpkit"
 	"github.com/jyggen/go-metron/internal"
 	"github.com/oapi-codegen/nullable"
@@ -39,7 +36,6 @@ type Reference struct {
 // Client is a Metron API client. Options are consumed during construction, so
 // only request-serving state is retained.
 type Client struct {
-	cache      *filecache.FileCache
 	client     internal.ClientInterface
 	maxRetries int
 }
@@ -47,28 +43,20 @@ type Client struct {
 // clientOptions is what an Option mutates, so options can be applied in any
 // order before NewClient derives the Client from them.
 type clientOptions struct {
-	baseURL     string
-	caching     bool
-	httpClient  *http.Client
-	maxRetries  int
-	storagePath string
-	userAgent   string
+	baseURL    string
+	httpClient *http.Client
+	maxRetries int
+	userAgent  string
 }
 
 // Option configures a Client.
 type Option func(*clientOptions)
 
 func defaultOptions() clientOptions {
-	storagePath, err := os.UserCacheDir()
-	if err != nil {
-		storagePath = os.TempDir()
-	}
-
 	return clientOptions{
-		baseURL:     defaultBaseURL,
-		httpClient:  &http.Client{},
-		storagePath: filepath.Join(storagePath, "go-metron"),
-		userAgent:   defaultUserAgent,
+		baseURL:    defaultBaseURL,
+		httpClient: &http.Client{},
+		userAgent:  defaultUserAgent,
 	}
 }
 
@@ -84,20 +72,7 @@ func NewClient(apiToken string, options ...Option) (*Client, error) {
 		return nil, err
 	}
 
-	if err := os.MkdirAll(o.storagePath, 0o700); err != nil {
-		return nil, err
-	}
-
 	c := &Client{maxRetries: o.maxRetries}
-
-	if o.caching {
-		cache, err := filecache.New(filecache.WithBasePath(o.storagePath), filecache.WithCompression())
-		if err != nil {
-			return nil, err
-		}
-
-		c.cache = cache
-	}
 
 	httpClient := httpkit.NewFromClient(
 		o.httpClient,
@@ -194,13 +169,6 @@ func WithBaseURL(rawURL string) Option {
 	}
 }
 
-// WithCaching enables on-disk response caching.
-func WithCaching() Option {
-	return func(o *clientOptions) {
-		o.caching = true
-	}
-}
-
 // WithClient sets the underlying HTTP client.
 func WithClient(client *http.Client) Option {
 	return func(o *clientOptions) {
@@ -213,13 +181,6 @@ func WithClient(client *http.Client) Option {
 func WithRetry(maxRetries int) Option {
 	return func(o *clientOptions) {
 		o.maxRetries = max(0, maxRetries)
-	}
-}
-
-// WithStoragePath sets the directory used for cache and rate limiter state.
-func WithStoragePath(storagePath string) Option {
-	return func(o *clientOptions) {
-		o.storagePath = storagePath
 	}
 }
 
@@ -261,18 +222,8 @@ func errIter[T any](err error) iter.Seq2[T, error] {
 
 type reqFn func(ctx context.Context, fn ...internal.RequestEditorFn) (*http.Response, error)
 
-func (c *Client) fetch(ctx context.Context, key string, req reqFn) (io.ReadCloser, error) {
-	if c.cache != nil {
-		return c.cache.Get(key, call(ctx, c.maxRetries, true, req))
-	}
-
-	body, _, err := call(ctx, c.maxRetries, true, req)(nil)
-
-	return body, err
-}
-
-func byID[In, Out any](ctx context.Context, c *Client, key string, f func(context.Context, int, ...internal.RequestEditorFn) (*http.Response, error), m func(In) (*Out, error), id int) (*Out, error) {
-	body, err := c.fetch(ctx, key, func(ctx context.Context, fn ...internal.RequestEditorFn) (*http.Response, error) {
+func byID[In, Out any](ctx context.Context, c *Client, f func(context.Context, int, ...internal.RequestEditorFn) (*http.Response, error), m func(In) (*Out, error), id int) (*Out, error) {
+	body, err := call(ctx, c.maxRetries, true, func(ctx context.Context, fn ...internal.RequestEditorFn) (*http.Response, error) {
 		return f(ctx, id, fn...)
 	})
 	if err != nil {
@@ -294,83 +245,54 @@ func byID[In, Out any](ctx context.Context, c *Client, key string, f func(contex
 
 // call runs f with up to maxRetries extra attempts. A RetryAfterError uses the
 // duration it carries; transient failures back off, and only when idempotent.
-func call(ctx context.Context, maxRetries int, idempotent bool, f func(ctx context.Context, fn ...internal.RequestEditorFn) (*http.Response, error)) func(header *filecache.Header) (io.ReadCloser, time.Time, error) {
-	return func(header *filecache.Header) (io.ReadCloser, time.Time, error) {
-		var body io.ReadCloser
-		var ttl time.Time
-		var err error
+func call(ctx context.Context, maxRetries int, idempotent bool, f reqFn) (io.ReadCloser, error) {
+	var body io.ReadCloser
+	var err error
 
-		for attempt := range maxRetries + 1 {
-			body, ttl, err = doCall(ctx, f, header)
+	for attempt := range maxRetries + 1 {
+		body, err = doCall(ctx, f)
 
-			if err == nil || attempt == maxRetries {
-				break
-			}
-
-			var wait time.Duration
-
-			var retryErr *httpkit.RetryAfterError
-
-			switch {
-			case errors.As(err, &retryErr):
-				wait = retryErr.RetryAfter()
-			case retryable(err, idempotent):
-				wait = backOff(attempt)
-			default:
-				return body, ttl, err
-			}
-
-			select {
-			case <-ctx.Done():
-				return nil, time.Now(), ctx.Err()
-			case <-time.After(wait):
-			}
+		if err == nil || attempt == maxRetries {
+			break
 		}
 
-		return body, ttl, err
+		var wait time.Duration
+
+		var retryErr *httpkit.RetryAfterError
+
+		switch {
+		case errors.As(err, &retryErr):
+			wait = retryErr.RetryAfter()
+		case retryable(err, idempotent):
+			wait = backOff(attempt)
+		default:
+			return body, err
+		}
+
+		select {
+		case <-ctx.Done():
+			return nil, ctx.Err()
+		case <-time.After(wait):
+		}
 	}
+
+	return body, err
 }
 
-func doCall(ctx context.Context, f func(ctx context.Context, fn ...internal.RequestEditorFn) (*http.Response, error), header *filecache.Header) (io.ReadCloser, time.Time, error) {
+func doCall(ctx context.Context, f reqFn) (io.ReadCloser, error) {
 	// Captured from the outgoing request rather than res.Request, which only the
 	// stock Transport fills in — a caller's own RoundTripper leaves it nil.
 	var method string
 	var reqURL *url.URL
 
-	res, err := f(ctx, func(ctx context.Context, req *http.Request) error {
+	res, err := f(ctx, func(_ context.Context, req *http.Request) error {
 		method = req.Method
 		reqURL = req.URL
 
-		if header != nil {
-			req.Header.Set("If-Modified-Since", time.Unix(0, header.FetchedAt).Format(http.TimeFormat))
-		}
-
 		return nil
 	})
-
-	// Without Last-Modified there is no basis for a TTL, so the entry is written
-	// already expired and never served as fresh. It still earns its keep: the
-	// stored FetchedAt drives If-Modified-Since, so the API can answer 304.
-	now := time.Now()
-	ttl := now
-
 	if err != nil {
-		return nil, ttl, err
-	}
-
-	lastModifiedHeader := res.Header.Get("Last-Modified")
-
-	if lastModifiedHeader != "" {
-		lastModified, err := http.ParseTime(lastModifiedHeader)
-		if err != nil {
-			return nil, ttl, errors.Join(err, res.Body.Close())
-		}
-
-		ttl = now.Add(now.Sub(lastModified) / 10)
-	}
-
-	if res.StatusCode == http.StatusNotModified {
-		return nil, ttl, res.Body.Close()
+		return nil, err
 	}
 
 	if res.StatusCode != http.StatusOK && res.StatusCode != http.StatusCreated {
@@ -378,10 +300,10 @@ func doCall(ctx context.Context, f func(ctx context.Context, fn ...internal.Requ
 
 		apiErr := &APIError{StatusCode: res.StatusCode, Body: body, Method: method, URL: reqURL}
 
-		return nil, ttl, errors.Join(apiErr, readErr, res.Body.Close())
+		return nil, errors.Join(apiErr, readErr, res.Body.Close())
 	}
 
-	return res.Body, ttl, nil
+	return res.Body, nil
 }
 
 type paginatable interface {
@@ -393,27 +315,15 @@ type paginatedResponse[T any] interface {
 	GetResults() []T
 }
 
-// cacheKey serialises params into a key; go-filecache hashes it, so it need only
-// be stable. The marshal error is propagated because time.Time params reject
-// years outside [0,9999], and dropping it would collapse them onto one key.
-func cacheKey(kind string, params any) (string, error) {
-	b, err := json.Marshal(params)
-	if err != nil {
-		return "", fmt.Errorf("metron: cache key: %w", err)
-	}
-
-	return kind + "/" + string(b), nil
-}
-
-func idPaginate[Response paginatedResponse[In], In, Out any, Params paginatable](ctx context.Context, c *Client, kind string, f func(context.Context, int, Params, ...internal.RequestEditorFn) (*http.Response, error), m func(In) (*Out, error), id int, params Params) iter.Seq2[*Out, error] {
+func idPaginate[Response paginatedResponse[In], In, Out any, Params paginatable](ctx context.Context, c *Client, f func(context.Context, int, Params, ...internal.RequestEditorFn) (*http.Response, error), m func(In) (*Out, error), id int, params Params) iter.Seq2[*Out, error] {
 	wrapped := func(ctx context.Context, p Params, fn ...internal.RequestEditorFn) (*http.Response, error) {
 		return f(ctx, id, p, fn...)
 	}
 
-	return paginate[Response, In, Out](ctx, c, fmt.Sprintf("%s/%d", kind, id), wrapped, m, params)
+	return paginate[Response, In, Out](ctx, c, wrapped, m, params)
 }
 
-func paginate[Response paginatedResponse[In], In, Out any, Params paginatable](ctx context.Context, c *Client, kind string, f func(context.Context, Params, ...internal.RequestEditorFn) (*http.Response, error), m func(In) (*Out, error), params Params) iter.Seq2[*Out, error] {
+func paginate[Response paginatedResponse[In], In, Out any, Params paginatable](ctx context.Context, c *Client, f func(context.Context, Params, ...internal.RequestEditorFn) (*http.Response, error), m func(In) (*Out, error), params Params) iter.Seq2[*Out, error] {
 	return func(yield func(*Out, error) bool) {
 		page := 1
 
@@ -421,13 +331,7 @@ func paginate[Response paginatedResponse[In], In, Out any, Params paginatable](c
 			var res Response
 			params.SetPage(page)
 
-			key, err := cacheKey(kind, params)
-			if err != nil {
-				yield(nil, err)
-				return
-			}
-
-			body, err := c.fetch(ctx, key, func(ctx context.Context, fn ...internal.RequestEditorFn) (*http.Response, error) {
+			body, err := call(ctx, c.maxRetries, true, func(ctx context.Context, fn ...internal.RequestEditorFn) (*http.Response, error) {
 				return f(ctx, params, fn...)
 			})
 			if err != nil {

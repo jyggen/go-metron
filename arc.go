@@ -2,7 +2,6 @@ package metron
 
 import (
 	"context"
-	"fmt"
 	"iter"
 	"net/url"
 	"time"
@@ -52,7 +51,7 @@ type ArcList struct {
 
 // ArcByID returns a story arc by its ID.
 func (c *Client) ArcByID(ctx context.Context, id int) (*Arc, error) {
-	return byID(ctx, c, fmt.Sprintf("arc/%d", id), c.client.ApiArcRetrieve, arcMapper, id)
+	return byID(ctx, c, c.client.ApiArcRetrieve, arcMapper, id)
 }
 
 // Arcs returns an iterator over all story arcs.
@@ -63,7 +62,7 @@ func (c *Client) Arcs(ctx context.Context, filters ...Filter) iter.Seq2[*ArcList
 		return errIter[*ArcList](err)
 	}
 
-	return paginate[internal.PaginatedArcListList](ctx, c, "arc", c.client.ApiArcList, arcListMapper, params)
+	return paginate[internal.PaginatedArcListList](ctx, c, c.client.ApiArcList, arcListMapper, params)
 }
 
 func arcMapper(in internal.Arc) (*Arc, error) {
