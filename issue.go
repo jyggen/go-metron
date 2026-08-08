@@ -164,6 +164,11 @@ func (c *Client) IssuesByTeamID(ctx context.Context, id int, filters ...Filter) 
 	return idPaginate[internal.PaginatedIssueListList](ctx, c, "team/issue", c.client.ApiTeamIssueListList, issueListMapper, id, params)
 }
 
+// issueMapper deliberately does not guard AltNumber, Name or RatingCount.
+// alt_number and name are absent from the spec's required list, so the API may
+// omit them, and rating_count is a readOnly aggregate missing from any response
+// cached before Metron added it — which a guard turns into a permanent failure,
+// since an unedited record answers 304 and the stored body never ages out.
 func issueMapper(in internal.IssueRead) (*Issue, error) {
 	if in.Id == nil {
 		return nil, &MapError{Kind: "issue", Field: "Id"}
@@ -213,21 +218,6 @@ func issueMapper(in internal.IssueRead) (*Issue, error) {
 
 	if in.PriceCurrency == nil {
 		return nil, &MapError{Kind: "issue", ID: id, Field: "PriceCurrency"}
-	}
-
-	// alt_number and name are absent from the spec's required list, and
-	// rating_count is a readOnly aggregate that can come back null. Guarded
-	// anyway: a record missing them is surfaced, not silently zeroed.
-	if in.AltNumber == nil {
-		return nil, &MapError{Kind: "issue", ID: id, Field: "AltNumber"}
-	}
-
-	if in.Name == nil {
-		return nil, &MapError{Kind: "issue", ID: id, Field: "Name"}
-	}
-
-	if in.RatingCount == nil {
-		return nil, &MapError{Kind: "issue", ID: id, Field: "RatingCount"}
 	}
 
 	var imageURL *url.URL
@@ -466,9 +456,9 @@ func issueMapper(in internal.IssueRead) (*Issue, error) {
 			Genres: genres,
 		},
 		Number:               in.Number,
-		AlternativeNumber:    *in.AltNumber,
+		AlternativeNumber:    deref(in.AltNumber),
 		Title:                in.Title,
-		Name:                 *in.Name,
+		Name:                 deref(in.Name),
 		CoverDate:            coverDate,
 		StoreDate:            maybeStoreDate,
 		FinalOrderCutoffDate: maybeFinalOrderCutoffDate,
@@ -486,7 +476,7 @@ func issueMapper(in internal.IssueRead) (*Issue, error) {
 		ImageURL:              imageURL,
 		CoverHash:             in.CoverHash,
 		AverageRating:         in.AverageRating,
-		RatingCount:           *in.RatingCount,
+		RatingCount:           deref(in.RatingCount),
 		Arcs:                  arcs,
 		Credits:               credits,
 		Characters:            characters,

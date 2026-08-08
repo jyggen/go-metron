@@ -19,6 +19,18 @@ func nullableToPtr[T any](n nullable.Nullable[T]) *T {
 	return nil
 }
 
+// deref returns the value p points at, or the zero value when p is nil. Used
+// for fields the API may omit and the public type models as a plain value.
+func deref[T any](p *T) T {
+	if p == nil {
+		var zero T
+
+		return zero
+	}
+
+	return *p
+}
+
 // Arc is a story arc.
 type Arc struct {
 	ID                    int

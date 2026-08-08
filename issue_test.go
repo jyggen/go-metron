@@ -765,15 +765,23 @@ func issueListTestCases(t *testing.T, kind string) []testCase[*metron.IssueList]
 	return cases
 }
 
-// TestIssueOptionalFieldsAreGuarded covers the fields the spec allows the API
-// to omit and the mapper rejects anyway, in both the absent and null forms.
-func TestIssueOptionalFieldsAreGuarded(t *testing.T) {
+// TestIssueOptionalFieldsDefault covers the fields the API may omit, in both the
+// absent and null forms. A response cached before Metron added rating_count is
+// revalidated with If-Modified-Since and answered 304 forever, so guarding these
+// would fail such a record permanently rather than once.
+func TestIssueOptionalFieldsDefault(t *testing.T) {
 	t.Parallel()
 
-	for field, expected := range map[string]string{
-		"alt_number":   "AltNumber",
-		"name":         "Name",
-		"rating_count": "RatingCount",
+	for field, assert := range map[string]func(t *testing.T, issue *metron.Issue){
+		"alt_number": func(t *testing.T, issue *metron.Issue) {
+			require.Empty(t, issue.AlternativeNumber)
+		},
+		"name": func(t *testing.T, issue *metron.Issue) {
+			require.Nil(t, issue.Name)
+		},
+		"rating_count": func(t *testing.T, issue *metron.Issue) {
+			require.Zero(t, issue.RatingCount)
+		},
 	} {
 		t.Run(field, func(t *testing.T) {
 			t.Parallel()
@@ -802,16 +810,11 @@ func TestIssueOptionalFieldsAreGuarded(t *testing.T) {
 						{expectedURL: "https://metron.cloud/api/issue/2558/", responseBody: string(body)},
 					})
 
-					_, err = c.IssueByID(context.Background(), 2558)
+					issue, err := c.IssueByID(context.Background(), 2558)
 
-					var mapErr *metron.MapError
-
-					require.ErrorAs(t, err, &mapErr)
-					require.Equal(t, "issue", mapErr.Kind)
-					require.Equal(t, 2558, mapErr.ID)
-					require.Equal(t, expected, mapErr.Field)
-
-					require.EqualError(t, err, "metron: issue 2558: nil "+expected)
+					require.NoError(t, err)
+					require.Equal(t, 2558, issue.ID)
+					assert(t, issue)
 				})
 			}
 		})
