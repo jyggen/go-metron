@@ -44,8 +44,8 @@ type SeriesList struct {
 }
 
 // SeriesByID returns a series by its ID.
-func (c *Client) SeriesByID(ctx context.Context, id int) (*Series, error) {
-	return byID(ctx, c, c.client.ApiSeriesRetrieve, seriesMapper, id)
+func (c *Client) SeriesByID(ctx context.Context, id int, opts ...RequestOption) (*Series, error) {
+	return byID(ctx, c, c.client.ApiSeriesRetrieve, seriesMapper, id, opts)
 }
 
 // Series returns an iterator over all series.

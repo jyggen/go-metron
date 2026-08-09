@@ -222,9 +222,11 @@ func errIter[T any](err error) iter.Seq2[T, error] {
 
 type reqFn func(ctx context.Context, fn ...internal.RequestEditorFn) (*http.Response, error)
 
-func byID[In, Out any](ctx context.Context, c *Client, f func(context.Context, int, ...internal.RequestEditorFn) (*http.Response, error), m func(In) (*Out, error), id int) (*Out, error) {
+func byID[In, Out any](ctx context.Context, c *Client, f func(context.Context, int, ...internal.RequestEditorFn) (*http.Response, error), m func(In) (*Out, error), id int, opts []RequestOption) (*Out, error) {
+	editors := requestEditors(opts)
+
 	body, err := call(ctx, c.maxRetries, true, func(ctx context.Context, fn ...internal.RequestEditorFn) (*http.Response, error) {
-		return f(ctx, id, fn...)
+		return f(ctx, id, append(fn, editors...)...)
 	})
 	if err != nil {
 		return nil, err
@@ -293,6 +295,12 @@ func doCall(ctx context.Context, f reqFn) (io.ReadCloser, error) {
 	})
 	if err != nil {
 		return nil, err
+	}
+
+	// Answered before the status check below, since a 304 is what a conditional
+	// request asks for rather than an unexpected status.
+	if res.StatusCode == http.StatusNotModified {
+		return nil, errors.Join(ErrNotModified, res.Body.Close())
 	}
 
 	if res.StatusCode != http.StatusOK && res.StatusCode != http.StatusCreated {

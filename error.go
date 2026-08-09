@@ -1,6 +1,7 @@
 package metron
 
 import (
+	"errors"
 	"fmt"
 	"net/url"
 	"strings"
@@ -8,6 +9,19 @@ import (
 
 // maxErrorBodyBytes caps how much of an error body is retained on an APIError.
 const maxErrorBodyBytes = 4 << 10
+
+// ErrNotModified is returned when the API answers a request with 304, which it
+// does for a conditional request made with IfModifiedSince whose record has not
+// changed. The caller's own copy is current; no record is returned alongside it.
+//
+//	issue, err := c.IssueByID(ctx, id, metron.IfModifiedSince(cached.Modified))
+//	if errors.Is(err, metron.ErrNotModified) {
+//		return cached, nil
+//	}
+//
+// It is not an APIError: a 304 is the answer the request asked for, not an
+// unexpected status.
+var ErrNotModified = errors.New("metron: not modified")
 
 // APIError is returned when the API responds with an unexpected status code.
 // Body is the response body, truncated to 4KiB.

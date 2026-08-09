@@ -31,8 +31,8 @@ type ImprintList struct {
 }
 
 // ImprintByID returns an imprint by its ID.
-func (c *Client) ImprintByID(ctx context.Context, id int) (*Imprint, error) {
-	return byID(ctx, c, c.client.ApiImprintRetrieve, imprintMapper, id)
+func (c *Client) ImprintByID(ctx context.Context, id int, opts ...RequestOption) (*Imprint, error) {
+	return byID(ctx, c, c.client.ApiImprintRetrieve, imprintMapper, id, opts)
 }
 
 // Imprints returns an iterator over all imprints.

@@ -104,8 +104,8 @@ type IssueList struct {
 }
 
 // IssueByID returns an issue by its ID.
-func (c *Client) IssueByID(ctx context.Context, id int) (*Issue, error) {
-	return byID(ctx, c, c.client.ApiIssueRetrieve, issueMapper, id)
+func (c *Client) IssueByID(ctx context.Context, id int, opts ...RequestOption) (*Issue, error) {
+	return byID(ctx, c, c.client.ApiIssueRetrieve, issueMapper, id, opts)
 }
 
 // Issues returns an iterator over all issues.

@@ -50,8 +50,8 @@ type ArcList struct {
 }
 
 // ArcByID returns a story arc by its ID.
-func (c *Client) ArcByID(ctx context.Context, id int) (*Arc, error) {
-	return byID(ctx, c, c.client.ApiArcRetrieve, arcMapper, id)
+func (c *Client) ArcByID(ctx context.Context, id int, opts ...RequestOption) (*Arc, error) {
+	return byID(ctx, c, c.client.ApiArcRetrieve, arcMapper, id, opts)
 }
 
 // Arcs returns an iterator over all story arcs.

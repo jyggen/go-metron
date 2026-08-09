@@ -29,6 +29,12 @@ func retryableStatus(status int) bool {
 // retryable reports whether err is worth another attempt. Transient failures
 // apply only to idempotent requests.
 func retryable(err error, idempotent bool) bool {
+	// A 304 is an answer, and it arrived: retrying would only ask again. It is
+	// not an APIError, so it would otherwise fall through as a network failure.
+	if errors.Is(err, ErrNotModified) {
+		return false
+	}
+
 	if !idempotent || errors.Is(err, context.Canceled) || errors.Is(err, context.DeadlineExceeded) {
 		return false
 	}

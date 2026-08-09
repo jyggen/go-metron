@@ -31,8 +31,8 @@ type PublisherList struct {
 }
 
 // PublisherByID returns a publisher by its ID.
-func (c *Client) PublisherByID(ctx context.Context, id int) (*Publisher, error) {
-	return byID(ctx, c, c.client.ApiPublisherRetrieve, publisherMapper, id)
+func (c *Client) PublisherByID(ctx context.Context, id int, opts ...RequestOption) (*Publisher, error) {
+	return byID(ctx, c, c.client.ApiPublisherRetrieve, publisherMapper, id, opts)
 }
 
 // Publishers returns an iterator over all publishers.

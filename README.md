@@ -93,6 +93,27 @@ Writes are exempt from the latter, since a request that failed in transit may al
 c, err := metron.NewClient(token, metron.WithRetry(3))
 ```
 
+### Conditional requests
+
+Detail methods take `IfModifiedSince(t)`. The API answers an unchanged record with 304, which the client reports as `ErrNotModified` and no record — so a caller holding its own copy never pays for a body it already has.
+
+A record's own `Modified` field is the timestamp to send back, so there is nothing extra to store.
+
+```go
+issue, err := c.IssueByID(ctx, 31660, metron.IfModifiedSince(cached.Modified))
+
+switch {
+case errors.Is(err, metron.ErrNotModified):
+	issue = cached // unchanged upstream
+case err != nil:
+	log.Fatal(err)
+}
+
+fmt.Println(issue.Name)
+```
+
+List methods take `ByModifiedGreaterThan(t)` instead, which filters server-side rather than answering all-or-nothing per page.
+
 ### Errors
 
 `APIError` carries the status, the body and the request it came from, whose URL holds the query your filters produced and the page the iterator had reached.

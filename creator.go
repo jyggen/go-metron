@@ -33,8 +33,8 @@ type CreatorList struct {
 }
 
 // CreatorByID returns a creator by its ID.
-func (c *Client) CreatorByID(ctx context.Context, id int) (*Creator, error) {
-	return byID(ctx, c, c.client.ApiCreatorRetrieve, creatorMapper, id)
+func (c *Client) CreatorByID(ctx context.Context, id int, opts ...RequestOption) (*Creator, error) {
+	return byID(ctx, c, c.client.ApiCreatorRetrieve, creatorMapper, id, opts)
 }
 
 // Creators returns an iterator over all creators.

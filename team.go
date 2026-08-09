@@ -31,8 +31,8 @@ type TeamList struct {
 }
 
 // TeamByID returns a team by its ID.
-func (c *Client) TeamByID(ctx context.Context, id int) (*Team, error) {
-	return byID(ctx, c, c.client.ApiTeamRetrieve, teamMapper, id)
+func (c *Client) TeamByID(ctx context.Context, id int, opts ...RequestOption) (*Team, error) {
+	return byID(ctx, c, c.client.ApiTeamRetrieve, teamMapper, id, opts)
 }
 
 // Teams returns an iterator over all teams.

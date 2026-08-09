@@ -34,6 +34,9 @@ type requestMock struct {
 	responseBody        string
 	responseBodyFixture string
 	validateBody        func(t *testing.T, body []byte)
+	// expectedHeaders are asserted against the request. An empty value asserts
+	// the header is absent, since Header.Get reports both the same way.
+	expectedHeaders map[string]string
 }
 
 type testCase[T any] struct {
@@ -108,7 +111,7 @@ func testListByID[T any](
 func testByID[T any](
 	t *testing.T,
 	kind string,
-	method func(*metron.Client, context.Context, int) (T, error),
+	method func(*metron.Client, context.Context, int, ...metron.RequestOption) (T, error),
 	testCases []testCase[T],
 ) {
 	for _, tc := range testCases {
@@ -143,6 +146,10 @@ func newTestClient(t *testing.T, mocks []requestMock) *metron.Client {
 			}
 
 			require.Equal(t, "Bearer foobar", req.Header.Get("Authorization"))
+
+			for name, value := range m.expectedHeaders {
+				require.Equal(t, value, req.Header.Get(name), name)
+			}
 
 			if m.validateBody != nil {
 				bodyBytes, err := io.ReadAll(req.Body)

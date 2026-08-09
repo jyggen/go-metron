@@ -33,8 +33,8 @@ type CharacterList struct {
 }
 
 // CharacterByID returns a character by its ID.
-func (c *Client) CharacterByID(ctx context.Context, id int) (*Character, error) {
-	return byID(ctx, c, c.client.ApiCharacterRetrieve, characterMapper, id)
+func (c *Client) CharacterByID(ctx context.Context, id int, opts ...RequestOption) (*Character, error) {
+	return byID(ctx, c, c.client.ApiCharacterRetrieve, characterMapper, id, opts)
 }
 
 // Characters returns an iterator over all characters.

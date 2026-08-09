@@ -30,8 +30,8 @@ type UniverseList struct {
 }
 
 // UniverseByID returns a universe by its ID.
-func (c *Client) UniverseByID(ctx context.Context, id int) (*Universe, error) {
-	return byID(ctx, c, c.client.ApiUniverseRetrieve, universeMapper, id)
+func (c *Client) UniverseByID(ctx context.Context, id int, opts ...RequestOption) (*Universe, error) {
+	return byID(ctx, c, c.client.ApiUniverseRetrieve, universeMapper, id, opts)
 }
 
 // Universes returns an iterator over all universes.
