@@ -14,11 +14,11 @@ import (
 	"iter"
 	"net/http"
 	"net/url"
-	"sync"
 	"time"
 
 	"codeberg.org/jyggen/go-httpkit"
 	"github.com/jyggen/go-metron/internal"
+	"github.com/jyggen/go-metron/internal/backoff"
 	"github.com/jyggen/go-metron/internal/ratelimit"
 	"github.com/jyggen/go-metron/internal/version"
 	"github.com/oapi-codegen/nullable"
@@ -83,7 +83,7 @@ func NewClient(apiToken string, options ...Option) (*Client, error) {
 		o.httpClient,
 		httpkit.WithBearerToken(apiToken),
 		httpkit.WithUserAgent(o.userAgent),
-		httpkit.WithMiddleware(newBackOffMiddleware()),
+		httpkit.WithMiddleware(backoff.Middleware()),
 		httpkit.WithMiddleware(ratelimit.Middleware()),
 	)
 
@@ -95,57 +95,6 @@ func NewClient(apiToken string, options ...Option) (*Client, error) {
 	c.client = internalClient
 
 	return c, nil
-}
-
-func newBackOffMiddleware() httpkit.Middleware {
-	var m sync.RWMutex
-
-	backOff := time.Now()
-
-	return func(next httpkit.MiddlewareFunc) httpkit.MiddlewareFunc {
-		return func(r *http.Request) (*http.Response, error) {
-			m.RLock()
-			wait := time.Until(backOff)
-			m.RUnlock()
-
-			if wait > 0 {
-				return nil, httpkit.NewRetryAfterError(wait)
-			}
-
-			res, err := next(r)
-
-			var retryAfterErr *httpkit.RetryAfterError
-			if errors.As(err, &retryAfterErr) {
-				m.Lock()
-				if t := time.Now().Add(retryAfterErr.RetryAfter()); t.After(backOff) {
-					backOff = t
-				}
-				m.Unlock()
-
-				return nil, retryAfterErr
-			}
-
-			if err != nil {
-				return nil, err
-			}
-
-			if res.StatusCode == http.StatusTooManyRequests {
-				now := time.Now()
-
-				if d, ok := parseRetryAfter(res.Header.Get("Retry-After"), now); ok {
-					m.Lock()
-					if t := now.Add(d); t.After(backOff) {
-						backOff = t
-					}
-					m.Unlock()
-
-					return nil, errors.Join(httpkit.NewRetryAfterError(d), res.Body.Close())
-				}
-			}
-
-			return res, nil
-		}
-	}
 }
 
 // validateBaseURL rejects anything that is not an absolute http or https URL.

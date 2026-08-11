@@ -347,59 +347,44 @@ func TestWithBaseURLInvalid(t *testing.T) {
 	}
 }
 
-// TestUserAgent checks the User-Agent built from build info. Deps is empty in
-// our own test binary (golang/go#68045), so it falls back to "devel".
-func TestUserAgent(t *testing.T) {
+// TestUserAgentPrefix checks that WithUserAgent prepends the caller's string
+// onto the library's own default rather than replacing it. The default is
+// captured at runtime rather than hardcoded, since its content depends on
+// build info the test binary cannot observe (golang/go#68045).
+func TestUserAgentPrefix(t *testing.T) {
 	t.Parallel()
 
-	const self = "go-metron/devel"
+	capture := func(options ...metron.Option) string {
+		var got string
 
-	testCases := []struct {
-		name     string
-		options  []metron.Option
-		expected string
-	}{
-		{
-			name:     "default",
-			expected: self,
-		},
-		{
-			name:     "with prefix",
-			options:  []metron.Option{metron.WithUserAgent("myapp/1.2.3")},
-			expected: "myapp/1.2.3 " + self,
-		},
-	}
+		options = append([]metron.Option{
+			metron.WithClient(&http.Client{
+				Transport: roundTripFunc(func(req *http.Request) *http.Response {
+					got = req.Header.Get("User-Agent")
 
-	for _, tc := range testCases {
-		t.Run(tc.name, func(t *testing.T) {
-			t.Parallel()
+					f, err := fs.Open("fixtures/arc_659.json")
+					require.NoError(t, err)
 
-			var got string
-
-			options := append([]metron.Option{
-				metron.WithClient(&http.Client{
-					Transport: roundTripFunc(func(req *http.Request) *http.Response {
-						got = req.Header.Get("User-Agent")
-
-						f, err := fs.Open("fixtures/arc_659.json")
-						require.NoError(t, err)
-
-						return &http.Response{
-							StatusCode: http.StatusOK,
-							Body:       f,
-							Header:     make(http.Header),
-						}
-					}),
+					return &http.Response{
+						StatusCode: http.StatusOK,
+						Body:       f,
+						Header:     make(http.Header),
+					}
 				}),
-			}, tc.options...)
+			}),
+		}, options...)
 
-			c, err := metron.NewClient("foobar", options...)
-			require.NoError(t, err)
+		c, err := metron.NewClient("foobar", options...)
+		require.NoError(t, err)
 
-			_, err = c.ArcByID(context.Background(), 659)
-			require.NoError(t, err)
+		_, err = c.ArcByID(context.Background(), 659)
+		require.NoError(t, err)
 
-			require.Equal(t, tc.expected, got)
-		})
+		return got
 	}
+
+	def := capture()
+	prefixed := capture(metron.WithUserAgent("myapp/1.2.3"))
+
+	require.Equal(t, "myapp/1.2.3 "+def, prefixed)
 }

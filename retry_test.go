@@ -8,7 +8,6 @@ import (
 	"strings"
 	"sync/atomic"
 	"testing"
-	"time"
 
 	"codeberg.org/jyggen/go-httpkit"
 	"github.com/jyggen/go-metron"
@@ -163,54 +162,26 @@ func TestTransientRetryNotAppliedToWrites(t *testing.T) {
 	require.Equal(t, int64(1), count.Load())
 }
 
+// TestRetryAfter checks that a 429 with a usable Retry-After surfaces as a
+// RetryAfterError-wrapped error, and as a plain APIError otherwise.
 func TestRetryAfter(t *testing.T) {
 	t.Parallel()
 
 	testCases := []struct {
 		name        string
-		retryAfter  func() string
+		header      http.Header
 		expectRetry bool
-		minWait     time.Duration
-		maxWait     time.Duration
 	}{
 		{
-			name:        "delta seconds",
-			retryAfter:  func() string { return "30" },
-			expectRetry: true,
-			minWait:     30 * time.Second,
-			maxWait:     30 * time.Second,
-		},
-		{
-			name: "http date in the future",
-			retryAfter: func() string {
-				return time.Now().Add(2 * time.Second).UTC().Format(http.TimeFormat)
+			name: "with a usable Retry-After",
+			header: http.Header{
+				"Retry-After": {"30"},
 			},
 			expectRetry: true,
-			minWait:     1,
-			maxWait:     2 * time.Second,
 		},
 		{
-			name: "http date in the past",
-			retryAfter: func() string {
-				return time.Now().Add(-time.Hour).UTC().Format(http.TimeFormat)
-			},
-			expectRetry: true,
-			minWait:     0,
-			maxWait:     0,
-		},
-		{
-			name:        "malformed",
-			retryAfter:  func() string { return "later please" },
-			expectRetry: false,
-		},
-		{
-			name:        "absent",
-			retryAfter:  func() string { return "" },
-			expectRetry: false,
-		},
-		{
-			name:        "negative",
-			retryAfter:  func() string { return "-5" },
+			name:        "without a usable Retry-After",
+			header:      make(http.Header),
 			expectRetry: false,
 		},
 	}
@@ -219,17 +190,11 @@ func TestRetryAfter(t *testing.T) {
 		t.Run(tc.name, func(t *testing.T) {
 			t.Parallel()
 
-			header := make(http.Header)
-
-			if v := tc.retryAfter(); v != "" {
-				header.Set("Retry-After", v)
-			}
-
 			c := newTestClient(t, []requestMock{
 				{
 					expectedURL:    issueURL,
 					responseStatus: http.StatusTooManyRequests,
-					responseHeader: header,
+					responseHeader: tc.header,
 					responseBody:   `{"detail":"Request was throttled."}`,
 				},
 			})
@@ -249,8 +214,6 @@ func TestRetryAfter(t *testing.T) {
 			}
 
 			require.ErrorAs(t, err, &retryErr)
-			require.GreaterOrEqual(t, retryErr.RetryAfter(), tc.minWait)
-			require.LessOrEqual(t, retryErr.RetryAfter(), tc.maxWait)
 		})
 	}
 }

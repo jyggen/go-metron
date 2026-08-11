@@ -5,7 +5,6 @@ import (
 	"errors"
 	"math/rand/v2"
 	"net/http"
-	"strconv"
 	"time"
 )
 
@@ -53,26 +52,4 @@ func backOff(attempt int) time.Duration {
 	d := min(backOffBase<<attempt, backOffCap)
 
 	return time.Duration(rand.Int64N(int64(d)) + 1)
-}
-
-// parseRetryAfter parses either RFC 9110 form of Retry-After, resolving the date
-// form against now. Reports false if absent, malformed or negative.
-func parseRetryAfter(value string, now time.Time) (time.Duration, bool) {
-	if value == "" {
-		return 0, false
-	}
-
-	if seconds, err := strconv.Atoi(value); err == nil {
-		if seconds < 0 {
-			return 0, false
-		}
-
-		return time.Duration(seconds) * time.Second, true
-	}
-
-	if t, err := http.ParseTime(value); err == nil {
-		return max(0, t.Sub(now)), true
-	}
-
-	return 0, false
 }
