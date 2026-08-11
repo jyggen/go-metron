@@ -19,10 +19,15 @@ import (
 
 	"codeberg.org/jyggen/go-httpkit"
 	"github.com/jyggen/go-metron/internal"
+	"github.com/jyggen/go-metron/internal/ratelimit"
+	"github.com/jyggen/go-metron/internal/version"
 	"github.com/oapi-codegen/nullable"
 )
 
 const defaultBaseURL = "https://metron.cloud"
+
+// defaultUserAgent tracks the released version, so it needs no manual bump.
+var defaultUserAgent = fmt.Sprintf("go-metron/%s", version.Version())
 
 // Reference identifies a related resource by ID and display name.
 //
@@ -79,7 +84,7 @@ func NewClient(apiToken string, options ...Option) (*Client, error) {
 		httpkit.WithBearerToken(apiToken),
 		httpkit.WithUserAgent(o.userAgent),
 		httpkit.WithMiddleware(newBackOffMiddleware()),
-		httpkit.WithMiddleware(newRateLimitMiddleware()),
+		httpkit.WithMiddleware(ratelimit.Middleware()),
 	)
 
 	internalClient, err := internal.NewClient(o.baseURL, internal.WithHTTPClient(httpClient))
