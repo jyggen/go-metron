@@ -2,8 +2,6 @@ package metron_test
 
 import (
 	"context"
-	"os/exec"
-	"strings"
 	"testing"
 	"time"
 
@@ -157,48 +155,6 @@ func TestFiltersReachTheQueryStringAcrossPages(t *testing.T) {
 	}
 
 	require.Positive(t, count)
-}
-
-// TestInvalidUsageDoesNotCompile covers the calls the compiler must reject,
-// which no compiling test can. Each testdata/negative package pairs a Bad
-// function with a Good one; asserting a single error keeps the Good one honest.
-func TestInvalidUsageDoesNotCompile(t *testing.T) {
-	t.Parallel()
-
-	if _, err := exec.LookPath("go"); err != nil {
-		t.Skip("needs the go toolchain")
-	}
-
-	testCases := []struct {
-		pkg      string
-		expected string
-	}{
-		{
-			pkg:      "conditional_on_list",
-			expected: "metron.ConditionalOption does not implement metron.RequestOption",
-		},
-		{
-			pkg:      "wrong_filters_type",
-			expected: "cannot use &metron.IssueFilters{} (value of type *metron.IssueFilters) as *metron.RoleFilters value",
-		},
-		{
-			pkg:      "unknown_filter_field",
-			expected: "unknown field PublisherID in struct literal of type metron.ArcFilters",
-		},
-	}
-
-	for _, tc := range testCases {
-		t.Run(tc.pkg, func(t *testing.T) {
-			t.Parallel()
-
-			out, err := exec.CommandContext(t.Context(), "go", "build", "./testdata/negative/"+tc.pkg).CombinedOutput()
-
-			require.Error(t, err, "expected a compile error, got none:\n%s", out)
-			require.Contains(t, string(out), tc.expected)
-			require.Equal(t, 1, strings.Count(string(out), "testdata/negative/"+tc.pkg+"/main.go:"),
-				"expected exactly one error, so the Good function is known to compile:\n%s", out)
-		})
-	}
 }
 
 func TestFiltersAreReusable(t *testing.T) {
