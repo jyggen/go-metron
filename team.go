@@ -31,19 +31,13 @@ type TeamList struct {
 }
 
 // TeamByID returns a team by its ID.
-func (c *Client) TeamByID(ctx context.Context, id int, opts ...RequestOption) (*Team, error) {
-	return byID(ctx, c, c.client.ApiTeamRetrieve, teamMapper, id, opts)
+func (c *Client) TeamByID(ctx context.Context, id int, opts ...ConditionalOption) (*Team, error) {
+	return byID(ctx, c, c.client.ApiTeamRetrieve, teamMapper, id, conditionalEditors(opts))
 }
 
 // Teams returns an iterator over all teams.
-func (c *Client) Teams(ctx context.Context, filters ...Filter) iter.Seq2[*TeamList, error] {
-	params := &internal.ApiTeamListParams{}
-
-	if err := applyFilters("Teams", params, filters); err != nil {
-		return errIter[*TeamList](err)
-	}
-
-	return paginate[internal.PaginatedTeamListList](ctx, c, c.client.ApiTeamList, teamListMapper, params)
+func (c *Client) Teams(ctx context.Context, filters *TeamFilters, opts ...RequestOption) iter.Seq2[*TeamList, error] {
+	return paginate[internal.PaginatedTeamListList](ctx, c, c.client.ApiTeamList, teamListMapper, filters.params, everyPage(requestEditors(opts)))
 }
 
 func teamMapper(in internal.TeamRead) (*Team, error) {

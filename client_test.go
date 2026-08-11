@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"sync"
 	"testing"
 	"time"
 
@@ -37,6 +38,9 @@ type requestMock struct {
 	// expectedHeaders are asserted against the request. An empty value asserts
 	// the header is absent, since Header.Get reports both the same way.
 	expectedHeaders map[string]string
+	// captureURL receives the request URL, for tests that build the expectation
+	// rather than declaring it.
+	captureURL *string
 }
 
 type testCase[T any] struct {
@@ -44,10 +48,10 @@ type testCase[T any] struct {
 	expected T
 }
 
-func testList[T any](
+func testList[T, F any](
 	t *testing.T,
 	kind string,
-	method func(*metron.Client, context.Context, ...metron.Filter) iter.Seq2[T, error],
+	method func(*metron.Client, context.Context, *F, ...metron.RequestOption) iter.Seq2[T, error],
 	testCases []testCase[T],
 ) {
 	c := newTestClient(t, []requestMock{
@@ -57,7 +61,7 @@ func testList[T any](
 
 	resources := make([]T, 0, 4)
 
-	for res, err := range method(c, context.Background()) {
+	for res, err := range method(c, context.Background(), nil) {
 		require.NoError(t, err)
 		resources = append(resources, res)
 	}
@@ -77,7 +81,7 @@ func testListByID[T any](
 	kind string,
 	id int,
 	listKind string,
-	method func(*metron.Client, context.Context, int, ...metron.Filter) iter.Seq2[T, error],
+	method func(*metron.Client, context.Context, int, ...metron.ConditionalOption) iter.Seq2[T, error],
 	testCases []testCase[T],
 ) {
 	c := newTestClient(t, []requestMock{
@@ -111,7 +115,7 @@ func testListByID[T any](
 func testByID[T any](
 	t *testing.T,
 	kind string,
-	method func(*metron.Client, context.Context, int, ...metron.RequestOption) (T, error),
+	method func(*metron.Client, context.Context, int, ...metron.ConditionalOption) (T, error),
 	testCases []testCase[T],
 ) {
 	for _, tc := range testCases {
@@ -139,7 +143,13 @@ func newTestClient(t *testing.T, mocks []requestMock) *metron.Client {
 			m := mocks[0]
 			mocks = mocks[1:]
 
-			require.Equal(t, m.expectedURL, req.URL.String())
+			if m.captureURL != nil {
+				*m.captureURL = req.URL.String()
+			}
+
+			if m.expectedURL != "" {
+				require.Equal(t, m.expectedURL, req.URL.String())
+			}
 
 			if m.expectedMethod != "" {
 				require.Equal(t, m.expectedMethod, req.Method)
@@ -238,6 +248,51 @@ func TestWithBaseURL(t *testing.T) {
 	require.NoError(t, err)
 
 	require.Equal(t, "http://localhost:8080/metron/api/arc/659/", got)
+}
+
+// TestListIteratorIsSafeForConcurrentIteration pins the reason paginate builds
+// params per page: the sequence is a value, not a cursor.
+func TestListIteratorIsSafeForConcurrentIteration(t *testing.T) {
+	t.Parallel()
+
+	c, err := metron.NewClient("foobar", metron.WithClient(&http.Client{
+		Transport: roundTripFunc(func(req *http.Request) *http.Response {
+			body := `{"count":0,"next":null,"previous":null,"results":[]}`
+			if req.URL.Query().Get("page") == "1" {
+				body = `{"count":0,"next":"https://metron.cloud/api/issue/?page=2","previous":null,"results":[]}`
+			}
+
+			return &http.Response{
+				StatusCode: http.StatusOK,
+				Body:       io.NopCloser(strings.NewReader(body)),
+				Header:     make(http.Header),
+			}
+		}),
+	}))
+	require.NoError(t, err)
+
+	seq := c.Issues(context.Background(), &metron.IssueFilters{PublisherName: "marvel"})
+
+	var wg sync.WaitGroup
+
+	errs := make(chan error, 16)
+
+	for range 2 {
+		wg.Go(func() {
+			for _, iterErr := range seq {
+				if iterErr != nil {
+					errs <- iterErr
+				}
+			}
+		})
+	}
+
+	wg.Wait()
+	close(errs)
+
+	for iterErr := range errs {
+		require.NoError(t, iterErr)
+	}
 }
 
 func TestWithBaseURLInvalid(t *testing.T) {

@@ -31,19 +31,13 @@ type PublisherList struct {
 }
 
 // PublisherByID returns a publisher by its ID.
-func (c *Client) PublisherByID(ctx context.Context, id int, opts ...RequestOption) (*Publisher, error) {
-	return byID(ctx, c, c.client.ApiPublisherRetrieve, publisherMapper, id, opts)
+func (c *Client) PublisherByID(ctx context.Context, id int, opts ...ConditionalOption) (*Publisher, error) {
+	return byID(ctx, c, c.client.ApiPublisherRetrieve, publisherMapper, id, conditionalEditors(opts))
 }
 
 // Publishers returns an iterator over all publishers.
-func (c *Client) Publishers(ctx context.Context, filters ...Filter) iter.Seq2[*PublisherList, error] {
-	params := &internal.ApiPublisherListParams{}
-
-	if err := applyFilters("Publishers", params, filters); err != nil {
-		return errIter[*PublisherList](err)
-	}
-
-	return paginate[internal.PaginatedPublisherListList](ctx, c, c.client.ApiPublisherList, publisherListMapper, params)
+func (c *Client) Publishers(ctx context.Context, filters *PublisherFilters, opts ...RequestOption) iter.Seq2[*PublisherList, error] {
+	return paginate[internal.PaginatedPublisherListList](ctx, c, c.client.ApiPublisherList, publisherListMapper, filters.params, everyPage(requestEditors(opts)))
 }
 
 func publisherMapper(in internal.Publisher) (*Publisher, error) {

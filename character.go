@@ -33,19 +33,13 @@ type CharacterList struct {
 }
 
 // CharacterByID returns a character by its ID.
-func (c *Client) CharacterByID(ctx context.Context, id int, opts ...RequestOption) (*Character, error) {
-	return byID(ctx, c, c.client.ApiCharacterRetrieve, characterMapper, id, opts)
+func (c *Client) CharacterByID(ctx context.Context, id int, opts ...ConditionalOption) (*Character, error) {
+	return byID(ctx, c, c.client.ApiCharacterRetrieve, characterMapper, id, conditionalEditors(opts))
 }
 
 // Characters returns an iterator over all characters.
-func (c *Client) Characters(ctx context.Context, filters ...Filter) iter.Seq2[*CharacterList, error] {
-	params := &internal.ApiCharacterListParams{}
-
-	if err := applyFilters("Characters", params, filters); err != nil {
-		return errIter[*CharacterList](err)
-	}
-
-	return paginate[internal.PaginatedCharacterListList](ctx, c, c.client.ApiCharacterList, characterListMapper, params)
+func (c *Client) Characters(ctx context.Context, filters *CharacterFilters, opts ...RequestOption) iter.Seq2[*CharacterList, error] {
+	return paginate[internal.PaginatedCharacterListList](ctx, c, c.client.ApiCharacterList, characterListMapper, filters.params, everyPage(requestEditors(opts)))
 }
 
 func characterMapper(in internal.CharacterRead) (*Character, error) {

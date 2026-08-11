@@ -10,17 +10,14 @@ import (
 // maxErrorBodyBytes caps how much of an error body is retained on an APIError.
 const maxErrorBodyBytes = 4 << 10
 
-// ErrNotModified is returned when the API answers a request with 304, which it
-// does for a conditional request made with IfModifiedSince whose record has not
-// changed. The caller's own copy is current; no record is returned alongside it.
+// ErrNotModified is returned when a conditional request made with
+// IfModifiedSince is answered with 304. The caller's copy is still current, and
+// no record is returned alongside it. It is not an APIError.
 //
 //	issue, err := c.IssueByID(ctx, id, metron.IfModifiedSince(cached.Modified))
 //	if errors.Is(err, metron.ErrNotModified) {
 //		return cached, nil
 //	}
-//
-// It is not an APIError: a 304 is the answer the request asked for, not an
-// unexpected status.
 var ErrNotModified = errors.New("metron: not modified")
 
 // APIError is returned when the API responds with an unexpected status code.
@@ -62,32 +59,6 @@ func (e *APIError) Is(target error) bool {
 	t, ok := target.(*APIError)
 
 	return ok && t.StatusCode == e.StatusCode
-}
-
-// FilterError is returned when a Filter is passed to a list method whose
-// endpoint does not support it. It surfaces on the first iteration.
-type FilterError struct {
-	// Filter is the name of the offending filter, e.g. "ByPublisherID".
-	Filter string
-	// Endpoint is the list method that rejected it, e.g. "Roles".
-	Endpoint string
-}
-
-// Error implements the error interface.
-func (e *FilterError) Error() string {
-	return fmt.Sprintf("metron: %s does not apply to %s", e.Filter, e.Endpoint)
-}
-
-// Is matches any FilterError, narrowed by whichever of Filter and Endpoint the
-// target sets. Zero fields match anything:
-//
-//	errors.Is(err, &metron.FilterError{Filter: "ByPublisherID"})
-func (e *FilterError) Is(target error) bool {
-	t, ok := target.(*FilterError)
-
-	return ok &&
-		(t.Filter == "" || t.Filter == e.Filter) &&
-		(t.Endpoint == "" || t.Endpoint == e.Endpoint)
 }
 
 // MapError is returned when a record cannot be converted into its public type,

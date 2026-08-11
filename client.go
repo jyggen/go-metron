@@ -191,40 +191,9 @@ func WithUserAgent(userAgent string) Option {
 	}
 }
 
-// applyFilters applies each filter, stopping at the first unsupported one.
-// endpoint is the calling method's name, which only it knows and which a
-// FilterError is meaningless without.
-func applyFilters(endpoint string, params any, filters []Filter) error {
-	for _, f := range filters {
-		if err := f(params); err != nil {
-			var filterErr *FilterError
-
-			if errors.As(err, &filterErr) {
-				filterErr.Endpoint = endpoint
-			}
-
-			return err
-		}
-	}
-
-	return nil
-}
-
-// errIter returns an iterator yielding err once, letting a list method report a
-// failure without changing its signature.
-func errIter[T any](err error) iter.Seq2[T, error] {
-	return func(yield func(T, error) bool) {
-		var zero T
-
-		yield(zero, err)
-	}
-}
-
 type reqFn func(ctx context.Context, fn ...internal.RequestEditorFn) (*http.Response, error)
 
-func byID[In, Out any](ctx context.Context, c *Client, f func(context.Context, int, ...internal.RequestEditorFn) (*http.Response, error), m func(In) (*Out, error), id int, opts []RequestOption) (*Out, error) {
-	editors := requestEditors(opts)
-
+func byID[In, Out any](ctx context.Context, c *Client, f func(context.Context, int, ...internal.RequestEditorFn) (*http.Response, error), m func(In) (*Out, error), id int, editors []internal.RequestEditorFn) (*Out, error) {
 	body, err := call(ctx, c.maxRetries, true, func(ctx context.Context, fn ...internal.RequestEditorFn) (*http.Response, error) {
 		return f(ctx, id, append(fn, editors...)...)
 	})
@@ -297,8 +266,7 @@ func doCall(ctx context.Context, f reqFn) (io.ReadCloser, error) {
 		return nil, err
 	}
 
-	// Answered before the status check below, since a 304 is what a conditional
-	// request asks for rather than an unexpected status.
+	// Checked before the status below: a 304 is an answer, not an unexpected status.
 	if res.StatusCode == http.StatusNotModified {
 		return nil, errors.Join(ErrNotModified, res.Body.Close())
 	}
@@ -314,33 +282,52 @@ func doCall(ctx context.Context, f reqFn) (io.ReadCloser, error) {
 	return res.Body, nil
 }
 
-type paginatable interface {
-	SetPage(v int)
-}
-
 type paginatedResponse[T any] interface {
 	GetNext() nullable.Nullable[string]
 	GetResults() []T
 }
 
-func idPaginate[Response paginatedResponse[In], In, Out any, Params paginatable](ctx context.Context, c *Client, f func(context.Context, int, Params, ...internal.RequestEditorFn) (*http.Response, error), m func(In) (*Out, error), id int, params Params) iter.Seq2[*Out, error] {
+// pageEditors decides which request edits a given page receives.
+type pageEditors func(page int) []internal.RequestEditorFn
+
+// everyPage applies editors to every page request.
+func everyPage(editors []internal.RequestEditorFn) pageEditors {
+	return func(int) []internal.RequestEditorFn { return editors }
+}
+
+// firstPageOnly applies editors to the first page request and nothing after it,
+// so a conditional listing answers 304 before any result or not at all.
+func firstPageOnly(editors []internal.RequestEditorFn) pageEditors {
+	return func(page int) []internal.RequestEditorFn {
+		if page == 1 {
+			return editors
+		}
+
+		return nil
+	}
+}
+
+func idPaginate[Response paginatedResponse[In], In, Out, Params any](ctx context.Context, c *Client, f func(context.Context, int, Params, ...internal.RequestEditorFn) (*http.Response, error), m func(In) (*Out, error), id int, params func(page int) Params, editors pageEditors) iter.Seq2[*Out, error] {
 	wrapped := func(ctx context.Context, p Params, fn ...internal.RequestEditorFn) (*http.Response, error) {
 		return f(ctx, id, p, fn...)
 	}
 
-	return paginate[Response, In, Out](ctx, c, wrapped, m, params)
+	return paginate[Response, In, Out](ctx, c, wrapped, m, params, editors)
 }
 
-func paginate[Response paginatedResponse[In], In, Out any, Params paginatable](ctx context.Context, c *Client, f func(context.Context, Params, ...internal.RequestEditorFn) (*http.Response, error), m func(In) (*Out, error), params Params) iter.Seq2[*Out, error] {
+// paginate iterates a listing, building fresh params per page so the returned
+// sequence is safe to range more than once, including concurrently.
+func paginate[Response paginatedResponse[In], In, Out, Params any](ctx context.Context, c *Client, f func(context.Context, Params, ...internal.RequestEditorFn) (*http.Response, error), m func(In) (*Out, error), params func(page int) Params, editors pageEditors) iter.Seq2[*Out, error] {
 	return func(yield func(*Out, error) bool) {
 		page := 1
 
 		for {
 			var res Response
-			params.SetPage(page)
+
+			p, pageEditors := params(page), editors(page)
 
 			body, err := call(ctx, c.maxRetries, true, func(ctx context.Context, fn ...internal.RequestEditorFn) (*http.Response, error) {
-				return f(ctx, params, fn...)
+				return f(ctx, p, append(fn, pageEditors...)...)
 			})
 			if err != nil {
 				yield(nil, err)

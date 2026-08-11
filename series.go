@@ -44,30 +44,13 @@ type SeriesList struct {
 }
 
 // SeriesByID returns a series by its ID.
-func (c *Client) SeriesByID(ctx context.Context, id int, opts ...RequestOption) (*Series, error) {
-	return byID(ctx, c, c.client.ApiSeriesRetrieve, seriesMapper, id, opts)
+func (c *Client) SeriesByID(ctx context.Context, id int, opts ...ConditionalOption) (*Series, error) {
+	return byID(ctx, c, c.client.ApiSeriesRetrieve, seriesMapper, id, conditionalEditors(opts))
 }
 
 // Series returns an iterator over all series.
-func (c *Client) Series(ctx context.Context, filters ...Filter) iter.Seq2[*SeriesList, error] {
-	params := &internal.ApiSeriesListParams{}
-
-	if err := applyFilters("Series", params, filters); err != nil {
-		return errIter[*SeriesList](err)
-	}
-
-	return paginate[internal.PaginatedSeriesListList](ctx, c, c.client.ApiSeriesList, seriesListMapper, params)
-}
-
-// SeriesByPublisherID returns an iterator over all series for a publisher.
-func (c *Client) SeriesByPublisherID(ctx context.Context, id int, filters ...Filter) iter.Seq2[*SeriesList, error] {
-	params := &internal.ApiPublisherSeriesListListParams{}
-
-	if err := applyFilters("SeriesByPublisherID", params, filters); err != nil {
-		return errIter[*SeriesList](err)
-	}
-
-	return idPaginate[internal.PaginatedSeriesListList](ctx, c, c.client.ApiPublisherSeriesListList, seriesListMapper, id, params)
+func (c *Client) Series(ctx context.Context, filters *SeriesFilters, opts ...RequestOption) iter.Seq2[*SeriesList, error] {
+	return paginate[internal.PaginatedSeriesListList](ctx, c, c.client.ApiSeriesList, seriesListMapper, filters.params, everyPage(requestEditors(opts)))
 }
 
 func seriesMapper(in internal.SeriesRead) (*Series, error) {

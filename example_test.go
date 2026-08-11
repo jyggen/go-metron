@@ -24,11 +24,12 @@ func Example() {
 	ctx := context.Background()
 
 	// Every Marvel issue that reached stores in the week of 2021-06-07.
-	for issue, err := range c.Issues(ctx,
-		metron.ByStoreDateRangeAfter(civil.Date{Year: 2021, Month: time.June, Day: 7}),
-		metron.ByStoreDateRangeBefore(civil.Date{Year: 2021, Month: time.June, Day: 13}),
-		metron.ByPublisherName("marvel"),
-	) {
+	// The date bounds are inclusive.
+	for issue, err := range c.Issues(ctx, &metron.IssueFilters{
+		StoreDateFrom: civil.Date{Year: 2021, Month: time.June, Day: 7},
+		StoreDateTo:   civil.Date{Year: 2021, Month: time.June, Day: 13},
+		PublisherName: "marvel",
+	}) {
 		if err != nil {
 			log.Fatal(err)
 		}

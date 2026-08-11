@@ -838,7 +838,7 @@ func TestIssueListUnparseableImage(t *testing.T) {
 	var ids []int
 	var errs []error
 
-	for issue, err := range c.Issues(context.Background()) {
+	for issue, err := range c.Issues(context.Background(), nil) {
 		if err != nil {
 			errs = append(errs, err)
 

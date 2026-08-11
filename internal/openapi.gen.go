@@ -2984,34 +2984,10 @@ type ApiArcListParams struct {
 	Page *int `form:"page,omitempty" json:"page,omitempty"`
 }
 
-func (t *ApiArcListParams) SetCvId(v int) {
-	t.CvId = &v
-}
-
-func (t *ApiArcListParams) SetGcdId(v int) {
-	t.GcdId = &v
-}
-
-func (t *ApiArcListParams) SetModifiedGt(v time.Time) {
-	t.ModifiedGt = &v
-}
-
-func (t *ApiArcListParams) SetName(v string) {
-	t.Name = &v
-}
-
-func (t *ApiArcListParams) SetPage(v int) {
-	t.Page = &v
-}
-
 // ApiArcIssueListListParams defines parameters for ApiArcIssueListList.
 type ApiArcIssueListListParams struct {
 	// Page A page number within the paginated result set.
 	Page *int `form:"page,omitempty" json:"page,omitempty"`
-}
-
-func (t *ApiArcIssueListListParams) SetPage(v int) {
-	t.Page = &v
 }
 
 // ApiCharacterListParams defines parameters for ApiCharacterList.
@@ -3030,34 +3006,10 @@ type ApiCharacterListParams struct {
 	Page *int `form:"page,omitempty" json:"page,omitempty"`
 }
 
-func (t *ApiCharacterListParams) SetCvId(v int) {
-	t.CvId = &v
-}
-
-func (t *ApiCharacterListParams) SetGcdId(v int) {
-	t.GcdId = &v
-}
-
-func (t *ApiCharacterListParams) SetModifiedGt(v time.Time) {
-	t.ModifiedGt = &v
-}
-
-func (t *ApiCharacterListParams) SetName(v string) {
-	t.Name = &v
-}
-
-func (t *ApiCharacterListParams) SetPage(v int) {
-	t.Page = &v
-}
-
 // ApiCharacterIssueListListParams defines parameters for ApiCharacterIssueListList.
 type ApiCharacterIssueListListParams struct {
 	// Page A page number within the paginated result set.
 	Page *int `form:"page,omitempty" json:"page,omitempty"`
-}
-
-func (t *ApiCharacterIssueListListParams) SetPage(v int) {
-	t.Page = &v
 }
 
 // ApiCollectionListParams defines parameters for ApiCollectionList.
@@ -3127,86 +3079,6 @@ type ApiCollectionListParams struct {
 	StorageLocation *string             `form:"storage_location,omitempty" json:"storage_location,omitempty"`
 }
 
-func (t *ApiCollectionListParams) SetBookFormat(v ApiCollectionListParamsBookFormat) {
-	t.BookFormat = &v
-}
-
-func (t *ApiCollectionListParams) SetDateRead(v openapi_types.Date) {
-	t.DateRead = &v
-}
-
-func (t *ApiCollectionListParams) SetDateReadGt(v openapi_types.Date) {
-	t.DateReadGt = &v
-}
-
-func (t *ApiCollectionListParams) SetDateReadGte(v openapi_types.Date) {
-	t.DateReadGte = &v
-}
-
-func (t *ApiCollectionListParams) SetDateReadLt(v openapi_types.Date) {
-	t.DateReadLt = &v
-}
-
-func (t *ApiCollectionListParams) SetDateReadLte(v openapi_types.Date) {
-	t.DateReadLte = &v
-}
-
-func (t *ApiCollectionListParams) SetGrade(v ApiCollectionListParamsGrade) {
-	t.Grade = &v
-}
-
-func (t *ApiCollectionListParams) SetGradingCompany(v ApiCollectionListParamsGradingCompany) {
-	t.GradingCompany = &v
-}
-
-func (t *ApiCollectionListParams) SetIsRead(v bool) {
-	t.IsRead = &v
-}
-
-func (t *ApiCollectionListParams) SetIssueSeries(v int) {
-	t.IssueSeries = &v
-}
-
-func (t *ApiCollectionListParams) SetModifiedGt(v time.Time) {
-	t.ModifiedGt = &v
-}
-
-func (t *ApiCollectionListParams) SetPage(v int) {
-	t.Page = &v
-}
-
-func (t *ApiCollectionListParams) SetPurchaseDate(v openapi_types.Date) {
-	t.PurchaseDate = &v
-}
-
-func (t *ApiCollectionListParams) SetPurchaseDateGt(v openapi_types.Date) {
-	t.PurchaseDateGt = &v
-}
-
-func (t *ApiCollectionListParams) SetPurchaseDateGte(v openapi_types.Date) {
-	t.PurchaseDateGte = &v
-}
-
-func (t *ApiCollectionListParams) SetPurchaseDateLt(v openapi_types.Date) {
-	t.PurchaseDateLt = &v
-}
-
-func (t *ApiCollectionListParams) SetPurchaseDateLte(v openapi_types.Date) {
-	t.PurchaseDateLte = &v
-}
-
-func (t *ApiCollectionListParams) SetPurchaseStore(v string) {
-	t.PurchaseStore = &v
-}
-
-func (t *ApiCollectionListParams) SetRating(v int) {
-	t.Rating = &v
-}
-
-func (t *ApiCollectionListParams) SetStorageLocation(v string) {
-	t.StorageLocation = &v
-}
-
 // ApiCollectionListParamsBookFormat defines parameters for ApiCollectionList.
 type ApiCollectionListParamsBookFormat string
 
@@ -3222,18 +3094,10 @@ type ApiCollectionMissingIssuesListParams struct {
 	Page *int `form:"page,omitempty" json:"page,omitempty"`
 }
 
-func (t *ApiCollectionMissingIssuesListParams) SetPage(v int) {
-	t.Page = &v
-}
-
 // ApiCollectionMissingSeriesListParams defines parameters for ApiCollectionMissingSeriesList.
 type ApiCollectionMissingSeriesListParams struct {
 	// Page A page number within the paginated result set.
 	Page *int `form:"page,omitempty" json:"page,omitempty"`
-}
-
-func (t *ApiCollectionMissingSeriesListParams) SetPage(v int) {
-	t.Page = &v
 }
 
 // ApiCreatorListParams defines parameters for ApiCreatorList.
@@ -3252,26 +3116,6 @@ type ApiCreatorListParams struct {
 	Page *int `form:"page,omitempty" json:"page,omitempty"`
 }
 
-func (t *ApiCreatorListParams) SetCvId(v int) {
-	t.CvId = &v
-}
-
-func (t *ApiCreatorListParams) SetGcdId(v int) {
-	t.GcdId = &v
-}
-
-func (t *ApiCreatorListParams) SetModifiedGt(v time.Time) {
-	t.ModifiedGt = &v
-}
-
-func (t *ApiCreatorListParams) SetName(v string) {
-	t.Name = &v
-}
-
-func (t *ApiCreatorListParams) SetPage(v int) {
-	t.Page = &v
-}
-
 // ApiImprintListParams defines parameters for ApiImprintList.
 type ApiImprintListParams struct {
 	// CvId Comic Vine ID
@@ -3286,26 +3130,6 @@ type ApiImprintListParams struct {
 
 	// Page A page number within the paginated result set.
 	Page *int `form:"page,omitempty" json:"page,omitempty"`
-}
-
-func (t *ApiImprintListParams) SetCvId(v int) {
-	t.CvId = &v
-}
-
-func (t *ApiImprintListParams) SetGcdId(v int) {
-	t.GcdId = &v
-}
-
-func (t *ApiImprintListParams) SetModifiedGt(v time.Time) {
-	t.ModifiedGt = &v
-}
-
-func (t *ApiImprintListParams) SetName(v string) {
-	t.Name = &v
-}
-
-func (t *ApiImprintListParams) SetPage(v int) {
-	t.Page = &v
 }
 
 // ApiIssueListParams defines parameters for ApiIssueList.
@@ -3403,150 +3227,6 @@ type ApiIssueListParams struct {
 	UpcStartsWith *string `form:"upc_starts_with,omitempty" json:"upc_starts_with,omitempty"`
 }
 
-func (t *ApiIssueListParams) SetAltNumber(v string) {
-	t.AltNumber = &v
-}
-
-func (t *ApiIssueListParams) SetCharacterId(v int) {
-	t.CharacterId = &v
-}
-
-func (t *ApiIssueListParams) SetCoverHash(v string) {
-	t.CoverHash = &v
-}
-
-func (t *ApiIssueListParams) SetCoverMonth(v float32) {
-	t.CoverMonth = &v
-}
-
-func (t *ApiIssueListParams) SetCoverYear(v float32) {
-	t.CoverYear = &v
-}
-
-func (t *ApiIssueListParams) SetCreatorId(v int) {
-	t.CreatorId = &v
-}
-
-func (t *ApiIssueListParams) SetCvId(v int) {
-	t.CvId = &v
-}
-
-func (t *ApiIssueListParams) SetFocDate(v openapi_types.Date) {
-	t.FocDate = &v
-}
-
-func (t *ApiIssueListParams) SetFocDateRangeAfter(v openapi_types.Date) {
-	t.FocDateRangeAfter = &v
-}
-
-func (t *ApiIssueListParams) SetFocDateRangeBefore(v openapi_types.Date) {
-	t.FocDateRangeBefore = &v
-}
-
-func (t *ApiIssueListParams) SetGcdId(v int) {
-	t.GcdId = &v
-}
-
-func (t *ApiIssueListParams) SetImprintId(v int) {
-	t.ImprintId = &v
-}
-
-func (t *ApiIssueListParams) SetImprintName(v string) {
-	t.ImprintName = &v
-}
-
-func (t *ApiIssueListParams) SetMissingCvId(v bool) {
-	t.MissingCvId = &v
-}
-
-func (t *ApiIssueListParams) SetMissingGcdId(v bool) {
-	t.MissingGcdId = &v
-}
-
-func (t *ApiIssueListParams) SetModifiedGt(v time.Time) {
-	t.ModifiedGt = &v
-}
-
-func (t *ApiIssueListParams) SetNumber(v string) {
-	t.Number = &v
-}
-
-func (t *ApiIssueListParams) SetPage(v int) {
-	t.Page = &v
-}
-
-func (t *ApiIssueListParams) SetPublisherId(v int) {
-	t.PublisherId = &v
-}
-
-func (t *ApiIssueListParams) SetPublisherName(v string) {
-	t.PublisherName = &v
-}
-
-func (t *ApiIssueListParams) SetRating(v string) {
-	t.Rating = &v
-}
-
-func (t *ApiIssueListParams) SetRoleId(v []int) {
-	t.RoleId = &v
-}
-
-func (t *ApiIssueListParams) SetSeriesAltNames(v string) {
-	t.SeriesAltNames = &v
-}
-
-func (t *ApiIssueListParams) SetSeriesId(v int) {
-	t.SeriesId = &v
-}
-
-func (t *ApiIssueListParams) SetSeriesName(v string) {
-	t.SeriesName = &v
-}
-
-func (t *ApiIssueListParams) SetSeriesQ(v string) {
-	t.SeriesQ = &v
-}
-
-func (t *ApiIssueListParams) SetSeriesVolume(v int) {
-	t.SeriesVolume = &v
-}
-
-func (t *ApiIssueListParams) SetSeriesYearBegan(v int) {
-	t.SeriesYearBegan = &v
-}
-
-func (t *ApiIssueListParams) SetSku(v string) {
-	t.Sku = &v
-}
-
-func (t *ApiIssueListParams) SetStoreDate(v openapi_types.Date) {
-	t.StoreDate = &v
-}
-
-func (t *ApiIssueListParams) SetStoreDateRangeAfter(v openapi_types.Date) {
-	t.StoreDateRangeAfter = &v
-}
-
-func (t *ApiIssueListParams) SetStoreDateRangeBefore(v openapi_types.Date) {
-	t.StoreDateRangeBefore = &v
-}
-
-func (t *ApiIssueListParams) SetTeamId(v int) {
-	t.TeamId = &v
-}
-
-func (t *ApiIssueListParams) SetUniverseId(v int) {
-	t.UniverseId = &v
-}
-
-func (t *ApiIssueListParams) SetUpc(v string) {
-	t.Upc = &v
-}
-
-func (t *ApiIssueListParams) SetUpcStartsWith(v string) {
-	t.UpcStartsWith = &v
-}
-
 // ApiPublisherListParams defines parameters for ApiPublisherList.
 type ApiPublisherListParams struct {
 	// CvId Comic Vine ID
@@ -3563,44 +3243,16 @@ type ApiPublisherListParams struct {
 	Page *int `form:"page,omitempty" json:"page,omitempty"`
 }
 
-func (t *ApiPublisherListParams) SetCvId(v int) {
-	t.CvId = &v
-}
-
-func (t *ApiPublisherListParams) SetGcdId(v int) {
-	t.GcdId = &v
-}
-
-func (t *ApiPublisherListParams) SetModifiedGt(v time.Time) {
-	t.ModifiedGt = &v
-}
-
-func (t *ApiPublisherListParams) SetName(v string) {
-	t.Name = &v
-}
-
-func (t *ApiPublisherListParams) SetPage(v int) {
-	t.Page = &v
-}
-
 // ApiPublisherSeriesListListParams defines parameters for ApiPublisherSeriesListList.
 type ApiPublisherSeriesListListParams struct {
 	// Page A page number within the paginated result set.
 	Page *int `form:"page,omitempty" json:"page,omitempty"`
 }
 
-func (t *ApiPublisherSeriesListListParams) SetPage(v int) {
-	t.Page = &v
-}
-
 // ApiPullListListParams defines parameters for ApiPullListList.
 type ApiPullListListParams struct {
 	// Page A page number within the paginated result set.
 	Page *int `form:"page,omitempty" json:"page,omitempty"`
-}
-
-func (t *ApiPullListListParams) SetPage(v int) {
-	t.Page = &v
 }
 
 // ApiPullListIssuesListParams defines parameters for ApiPullListIssuesList.
@@ -3615,35 +3267,15 @@ type ApiPullListIssuesListParams struct {
 	StoreDateBefore *string `form:"store_date_before,omitempty" json:"store_date_before,omitempty"`
 }
 
-func (t *ApiPullListIssuesListParams) SetPage(v int) {
-	t.Page = &v
-}
-
-func (t *ApiPullListIssuesListParams) SetStoreDateAfter(v string) {
-	t.StoreDateAfter = &v
-}
-
-func (t *ApiPullListIssuesListParams) SetStoreDateBefore(v string) {
-	t.StoreDateBefore = &v
-}
-
 // ApiPullListSeriesListParams defines parameters for ApiPullListSeriesList.
 type ApiPullListSeriesListParams struct {
 	// Page A page number within the paginated result set.
 	Page *int `form:"page,omitempty" json:"page,omitempty"`
 }
 
-func (t *ApiPullListSeriesListParams) SetPage(v int) {
-	t.Page = &v
-}
-
 // ApiPullListSeriesAddCreateParams defines parameters for ApiPullListSeriesAddCreate.
 type ApiPullListSeriesAddCreateParams struct {
 	SeriesId int `form:"series_id" json:"series_id"`
-}
-
-func (t *ApiPullListSeriesAddCreateParams) SetSeriesId(v int) {
-	t.SeriesId = v
 }
 
 // ApiReadingListListParams defines parameters for ApiReadingListList.
@@ -3687,46 +3319,6 @@ type ApiReadingListListParams struct {
 	Username  *string `form:"username,omitempty" json:"username,omitempty"`
 }
 
-func (t *ApiReadingListListParams) SetAttributionSource(v ApiReadingListListParamsAttributionSource) {
-	t.AttributionSource = &v
-}
-
-func (t *ApiReadingListListParams) SetAverageRatingGte(v float32) {
-	t.AverageRatingGte = &v
-}
-
-func (t *ApiReadingListListParams) SetIsPrivate(v bool) {
-	t.IsPrivate = &v
-}
-
-func (t *ApiReadingListListParams) SetListType(v ApiReadingListListParamsListType) {
-	t.ListType = &v
-}
-
-func (t *ApiReadingListListParams) SetModifiedGt(v time.Time) {
-	t.ModifiedGt = &v
-}
-
-func (t *ApiReadingListListParams) SetName(v string) {
-	t.Name = &v
-}
-
-func (t *ApiReadingListListParams) SetPage(v int) {
-	t.Page = &v
-}
-
-func (t *ApiReadingListListParams) SetPublisher(v string) {
-	t.Publisher = &v
-}
-
-func (t *ApiReadingListListParams) SetUser(v int) {
-	t.User = &v
-}
-
-func (t *ApiReadingListListParams) SetUsername(v string) {
-	t.Username = &v
-}
-
 // ApiReadingListListParamsAttributionSource defines parameters for ApiReadingListList.
 type ApiReadingListListParamsAttributionSource string
 
@@ -3739,10 +3331,6 @@ type ApiReadingListItemsListParams struct {
 	Page *int `form:"page,omitempty" json:"page,omitempty"`
 }
 
-func (t *ApiReadingListItemsListParams) SetPage(v int) {
-	t.Page = &v
-}
-
 // ApiRoleListParams defines parameters for ApiRoleList.
 type ApiRoleListParams struct {
 	// ModifiedGt Greater than Modified DateTime
@@ -3753,30 +3341,10 @@ type ApiRoleListParams struct {
 	Page *int `form:"page,omitempty" json:"page,omitempty"`
 }
 
-func (t *ApiRoleListParams) SetModifiedGt(v time.Time) {
-	t.ModifiedGt = &v
-}
-
-func (t *ApiRoleListParams) SetName(v string) {
-	t.Name = &v
-}
-
-func (t *ApiRoleListParams) SetPage(v int) {
-	t.Page = &v
-}
-
 // ApiSchemaRetrieveParams defines parameters for ApiSchemaRetrieve.
 type ApiSchemaRetrieveParams struct {
 	Format *ApiSchemaRetrieveParamsFormat `form:"format,omitempty" json:"format,omitempty"`
 	Lang   *ApiSchemaRetrieveParamsLang   `form:"lang,omitempty" json:"lang,omitempty"`
-}
-
-func (t *ApiSchemaRetrieveParams) SetFormat(v ApiSchemaRetrieveParamsFormat) {
-	t.Format = &v
-}
-
-func (t *ApiSchemaRetrieveParams) SetLang(v ApiSchemaRetrieveParamsLang) {
-	t.Lang = &v
 }
 
 // ApiSchemaRetrieveParamsFormat defines parameters for ApiSchemaRetrieve.
@@ -3835,110 +3403,10 @@ type ApiSeriesListParams struct {
 	YearEnd    *int `form:"year_end,omitempty" json:"year_end,omitempty"`
 }
 
-func (t *ApiSeriesListParams) SetAltNames(v string) {
-	t.AltNames = &v
-}
-
-func (t *ApiSeriesListParams) SetCharacterId(v int) {
-	t.CharacterId = &v
-}
-
-func (t *ApiSeriesListParams) SetCreatorId(v int) {
-	t.CreatorId = &v
-}
-
-func (t *ApiSeriesListParams) SetCvId(v int) {
-	t.CvId = &v
-}
-
-func (t *ApiSeriesListParams) SetGcdId(v int) {
-	t.GcdId = &v
-}
-
-func (t *ApiSeriesListParams) SetImprintId(v int) {
-	t.ImprintId = &v
-}
-
-func (t *ApiSeriesListParams) SetImprintName(v string) {
-	t.ImprintName = &v
-}
-
-func (t *ApiSeriesListParams) SetMissingCvId(v bool) {
-	t.MissingCvId = &v
-}
-
-func (t *ApiSeriesListParams) SetMissingGcdId(v bool) {
-	t.MissingGcdId = &v
-}
-
-func (t *ApiSeriesListParams) SetModifiedGt(v time.Time) {
-	t.ModifiedGt = &v
-}
-
-func (t *ApiSeriesListParams) SetName(v string) {
-	t.Name = &v
-}
-
-func (t *ApiSeriesListParams) SetPage(v int) {
-	t.Page = &v
-}
-
-func (t *ApiSeriesListParams) SetPublisherId(v int) {
-	t.PublisherId = &v
-}
-
-func (t *ApiSeriesListParams) SetPublisherName(v string) {
-	t.PublisherName = &v
-}
-
-func (t *ApiSeriesListParams) SetQ(v string) {
-	t.Q = &v
-}
-
-func (t *ApiSeriesListParams) SetRoleId(v []int) {
-	t.RoleId = &v
-}
-
-func (t *ApiSeriesListParams) SetSeriesType(v string) {
-	t.SeriesType = &v
-}
-
-func (t *ApiSeriesListParams) SetSeriesTypeId(v int) {
-	t.SeriesTypeId = &v
-}
-
-func (t *ApiSeriesListParams) SetStatus(v int) {
-	t.Status = &v
-}
-
-func (t *ApiSeriesListParams) SetTeamId(v int) {
-	t.TeamId = &v
-}
-
-func (t *ApiSeriesListParams) SetUniverseId(v int) {
-	t.UniverseId = &v
-}
-
-func (t *ApiSeriesListParams) SetVolume(v int) {
-	t.Volume = &v
-}
-
-func (t *ApiSeriesListParams) SetYearBegan(v int) {
-	t.YearBegan = &v
-}
-
-func (t *ApiSeriesListParams) SetYearEnd(v int) {
-	t.YearEnd = &v
-}
-
 // ApiSeriesIssueListListParams defines parameters for ApiSeriesIssueListList.
 type ApiSeriesIssueListListParams struct {
 	// Page A page number within the paginated result set.
 	Page *int `form:"page,omitempty" json:"page,omitempty"`
-}
-
-func (t *ApiSeriesIssueListListParams) SetPage(v int) {
-	t.Page = &v
 }
 
 // ApiSeriesTypeListParams defines parameters for ApiSeriesTypeList.
@@ -3949,18 +3417,6 @@ type ApiSeriesTypeListParams struct {
 
 	// Page A page number within the paginated result set.
 	Page *int `form:"page,omitempty" json:"page,omitempty"`
-}
-
-func (t *ApiSeriesTypeListParams) SetModifiedGt(v time.Time) {
-	t.ModifiedGt = &v
-}
-
-func (t *ApiSeriesTypeListParams) SetName(v string) {
-	t.Name = &v
-}
-
-func (t *ApiSeriesTypeListParams) SetPage(v int) {
-	t.Page = &v
 }
 
 // ApiTeamListParams defines parameters for ApiTeamList.
@@ -3979,34 +3435,10 @@ type ApiTeamListParams struct {
 	Page *int `form:"page,omitempty" json:"page,omitempty"`
 }
 
-func (t *ApiTeamListParams) SetCvId(v int) {
-	t.CvId = &v
-}
-
-func (t *ApiTeamListParams) SetGcdId(v int) {
-	t.GcdId = &v
-}
-
-func (t *ApiTeamListParams) SetModifiedGt(v time.Time) {
-	t.ModifiedGt = &v
-}
-
-func (t *ApiTeamListParams) SetName(v string) {
-	t.Name = &v
-}
-
-func (t *ApiTeamListParams) SetPage(v int) {
-	t.Page = &v
-}
-
 // ApiTeamIssueListListParams defines parameters for ApiTeamIssueListList.
 type ApiTeamIssueListListParams struct {
 	// Page A page number within the paginated result set.
 	Page *int `form:"page,omitempty" json:"page,omitempty"`
-}
-
-func (t *ApiTeamIssueListListParams) SetPage(v int) {
-	t.Page = &v
 }
 
 // ApiUniverseListParams defines parameters for ApiUniverseList.
@@ -4021,40 +3453,16 @@ type ApiUniverseListParams struct {
 	Page *int `form:"page,omitempty" json:"page,omitempty"`
 }
 
-func (t *ApiUniverseListParams) SetDesignation(v string) {
-	t.Designation = &v
-}
-
-func (t *ApiUniverseListParams) SetModifiedGt(v time.Time) {
-	t.ModifiedGt = &v
-}
-
-func (t *ApiUniverseListParams) SetName(v string) {
-	t.Name = &v
-}
-
-func (t *ApiUniverseListParams) SetPage(v int) {
-	t.Page = &v
-}
-
 // ApiWishListListParams defines parameters for ApiWishListList.
 type ApiWishListListParams struct {
 	// Page A page number within the paginated result set.
 	Page *int `form:"page,omitempty" json:"page,omitempty"`
 }
 
-func (t *ApiWishListListParams) SetPage(v int) {
-	t.Page = &v
-}
-
 // ApiWishListItemsListParams defines parameters for ApiWishListItemsList.
 type ApiWishListItemsListParams struct {
 	// Page A page number within the paginated result set.
 	Page *int `form:"page,omitempty" json:"page,omitempty"`
-}
-
-func (t *ApiWishListItemsListParams) SetPage(v int) {
-	t.Page = &v
 }
 
 // ApiArcCreateFormdataRequestBody defines body for ApiArcCreate for application/x-www-form-urlencoded ContentType.

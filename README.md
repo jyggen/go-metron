@@ -33,11 +33,12 @@ func main() {
 	ctx := context.Background()
 
 	// Every Marvel issue that reached stores in the week of 2021-06-07.
-	for issue, err := range c.Issues(ctx,
-		metron.ByStoreDateRangeAfter(civil.Date{Year: 2021, Month: time.June, Day: 7}),
-		metron.ByStoreDateRangeBefore(civil.Date{Year: 2021, Month: time.June, Day: 13}),
-		metron.ByPublisherName("marvel"),
-	) {
+	// The date bounds are inclusive.
+	for issue, err := range c.Issues(ctx, &metron.IssueFilters{
+		StoreDateFrom: civil.Date{Year: 2021, Month: time.June, Day: 7},
+		StoreDateTo:   civil.Date{Year: 2021, Month: time.June, Day: 13},
+		PublisherName: "marvel",
+	}) {
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -62,7 +63,7 @@ func main() {
 List methods return an iterator and fetch each page as you reach it. Stop early and the remaining pages are never requested. Detail methods return a single record.
 
 ```go
-for issue, err := range c.Issues(ctx) {
+for issue, err := range c.Issues(ctx, nil) {
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -75,12 +76,31 @@ for issue, err := range c.Issues(ctx) {
 
 ### Filtering
 
-Filters are applied at runtime, not checked by the compiler. A filter the endpoint does not accept returns a `FilterError` on the first iteration instead of being ignored, naming both the filter and the method that rejected it.
+Each listing takes its own filters struct, so the compiler rejects a filter the endpoint does not accept. Pass `nil` for no filters.
 
 ```go
-for _, err := range c.Roles(ctx, metron.ByPublisherID(2)) {
-	fmt.Println(err) // metron: ByPublisherID does not apply to Roles
-}
+c.Issues(ctx, &metron.IssueFilters{PublisherName: "marvel", CoverYear: 2024})
+c.Arcs(ctx, &metron.ArcFilters{Name: "Crisis"})
+c.Roles(ctx, nil)
+
+c.Arcs(ctx, &metron.ArcFilters{PublisherID: 2})
+// unknown field PublisherID in struct literal of type metron.ArcFilters
+```
+
+A zero-valued field is omitted from the query, so a `nil` filters pointer and an empty struct are equivalent. The two `Missing*` fields are pointers because `false` is a distinct query — records that *have* the ID — rather than an absent one.
+
+```go
+// Issues with no Comic Vine ID, so they can be matched up and filled in.
+c.Issues(ctx, &metron.IssueFilters{MissingComicVineID: new(true)})
+```
+
+Date bounds are inclusive on both ends, and `civil.Date` carries no time or zone.
+
+```go
+c.Issues(ctx, &metron.IssueFilters{
+	StoreDateFrom: civil.Date{Year: 2021, Month: time.June, Day: 7},
+	StoreDateTo:   civil.Date{Year: 2021, Month: time.June, Day: 13},
+})
 ```
 
 ### Retries
@@ -112,7 +132,7 @@ case err != nil:
 fmt.Println(issue.Name)
 ```
 
-List methods take `ByModifiedGreaterThan(t)` instead, which filters server-side rather than answering all-or-nothing per page.
+Only detail methods and the per-parent issue listings accept it — upstream wraps exactly those in a conditional response. The filterable listings discard the header, so passing it to one is a compile error; use their `ModifiedAfter` filter instead.
 
 ### Errors
 
@@ -133,7 +153,7 @@ if errors.Is(err, &metron.APIError{StatusCode: http.StatusNotFound}) {
 `MapError` is a record the client could not convert. List methods report it per record and carry on to the next one.
 
 ```go
-for _, err := range c.Issues(ctx) {
+for _, err := range c.Issues(ctx, nil) {
 	if errors.Is(err, &metron.MapError{}) {
 		fmt.Println(err) // metron: issue 2558: nil PriceCurrency
 	}

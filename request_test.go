@@ -15,7 +15,7 @@ func TestIfModifiedSince(t *testing.T) {
 
 	testCases := []struct {
 		name           string
-		opts           []metron.RequestOption
+		opts           []metron.ConditionalOption
 		expectedHeader string
 	}{
 		{
@@ -25,19 +25,19 @@ func TestIfModifiedSince(t *testing.T) {
 		},
 		{
 			name:           "UTC",
-			opts:           []metron.RequestOption{metron.IfModifiedSince(time.Date(2024, time.March, 7, 17, 36, 10, 0, time.UTC))},
+			opts:           []metron.ConditionalOption{metron.IfModifiedSince(time.Date(2024, time.March, 7, 17, 36, 10, 0, time.UTC))},
 			expectedHeader: "Thu, 07 Mar 2024 17:36:10 GMT",
 		},
 		{
 			// http.TimeFormat hardcodes GMT, so a non-UTC time must be converted
 			// rather than formatted where it stands.
 			name:           "converted from another zone",
-			opts:           []metron.RequestOption{metron.IfModifiedSince(parseTime(t, "2024-03-07T12:36:10.633143-05:00"))},
+			opts:           []metron.ConditionalOption{metron.IfModifiedSince(parseTime(t, "2024-03-07T12:36:10.633143-05:00"))},
 			expectedHeader: "Thu, 07 Mar 2024 17:36:10 GMT",
 		},
 		{
 			name:           "last option wins",
-			opts:           []metron.RequestOption{metron.IfModifiedSince(time.Unix(0, 0)), metron.IfModifiedSince(time.Date(2024, time.March, 7, 17, 36, 10, 0, time.UTC))},
+			opts:           []metron.ConditionalOption{metron.IfModifiedSince(time.Unix(0, 0)), metron.IfModifiedSince(time.Date(2024, time.March, 7, 17, 36, 10, 0, time.UTC))},
 			expectedHeader: "Thu, 07 Mar 2024 17:36:10 GMT",
 		},
 	}

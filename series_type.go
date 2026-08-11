@@ -14,14 +14,8 @@ type SeriesTypeList struct {
 }
 
 // SeriesTypes returns an iterator over all series types.
-func (c *Client) SeriesTypes(ctx context.Context, filters ...Filter) iter.Seq2[*SeriesTypeList, error] {
-	params := &internal.ApiSeriesTypeListParams{}
-
-	if err := applyFilters("SeriesTypes", params, filters); err != nil {
-		return errIter[*SeriesTypeList](err)
-	}
-
-	return paginate[internal.PaginatedSeriesTypeList](ctx, c, c.client.ApiSeriesTypeList, seriesTypeMapper, params)
+func (c *Client) SeriesTypes(ctx context.Context, filters *SeriesTypeFilters, opts ...RequestOption) iter.Seq2[*SeriesTypeList, error] {
+	return paginate[internal.PaginatedSeriesTypeList](ctx, c, c.client.ApiSeriesTypeList, seriesTypeMapper, filters.params, everyPage(requestEditors(opts)))
 }
 
 func seriesTypeMapper(in internal.SeriesType) (*SeriesTypeList, error) {

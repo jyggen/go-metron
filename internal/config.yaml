@@ -7,20 +7,6 @@ output: openapi.gen.go
 output-options:
   nullable-type: true
   user-templates:
-    param-types.tmpl: |
-      {{range .}}{{$opid := .OperationId}}
-        {{range .TypeDefinitions}}
-          // {{.TypeName}} defines parameters for {{$opid}}.
-          type {{.TypeName}} {{if .IsAlias}}={{end}} {{.Schema.TypeDecl}}
-
-          {{$typeName := .TypeName}}
-          {{range .Schema.Properties}}
-            func (t *{{$typeName}}) Set{{.GoFieldName}}(v {{.Schema.TypeDecl}}) {
-              {{if .HasOptionalPointer}}t.{{.GoFieldName}} = &v{{else}}t.{{.GoFieldName}} = v{{end}}
-            }
-          {{end}}
-        {{end}}
-      {{end}}
     typedef.tmpl: |
       {{range .Types}}
         {{ if .Schema.Description }}{{ toGoComment .Schema.Description .TypeName  }}{{ else }}// {{.TypeName}} defines model for {{.JsonName}}.{{ end }}

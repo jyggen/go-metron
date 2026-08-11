@@ -50,19 +50,13 @@ type ArcList struct {
 }
 
 // ArcByID returns a story arc by its ID.
-func (c *Client) ArcByID(ctx context.Context, id int, opts ...RequestOption) (*Arc, error) {
-	return byID(ctx, c, c.client.ApiArcRetrieve, arcMapper, id, opts)
+func (c *Client) ArcByID(ctx context.Context, id int, opts ...ConditionalOption) (*Arc, error) {
+	return byID(ctx, c, c.client.ApiArcRetrieve, arcMapper, id, conditionalEditors(opts))
 }
 
 // Arcs returns an iterator over all story arcs.
-func (c *Client) Arcs(ctx context.Context, filters ...Filter) iter.Seq2[*ArcList, error] {
-	params := &internal.ApiArcListParams{}
-
-	if err := applyFilters("Arcs", params, filters); err != nil {
-		return errIter[*ArcList](err)
-	}
-
-	return paginate[internal.PaginatedArcListList](ctx, c, c.client.ApiArcList, arcListMapper, params)
+func (c *Client) Arcs(ctx context.Context, filters *ArcFilters, opts ...RequestOption) iter.Seq2[*ArcList, error] {
+	return paginate[internal.PaginatedArcListList](ctx, c, c.client.ApiArcList, arcListMapper, filters.params, everyPage(requestEditors(opts)))
 }
 
 func arcMapper(in internal.Arc) (*Arc, error) {

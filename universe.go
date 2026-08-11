@@ -30,19 +30,13 @@ type UniverseList struct {
 }
 
 // UniverseByID returns a universe by its ID.
-func (c *Client) UniverseByID(ctx context.Context, id int, opts ...RequestOption) (*Universe, error) {
-	return byID(ctx, c, c.client.ApiUniverseRetrieve, universeMapper, id, opts)
+func (c *Client) UniverseByID(ctx context.Context, id int, opts ...ConditionalOption) (*Universe, error) {
+	return byID(ctx, c, c.client.ApiUniverseRetrieve, universeMapper, id, conditionalEditors(opts))
 }
 
 // Universes returns an iterator over all universes.
-func (c *Client) Universes(ctx context.Context, filters ...Filter) iter.Seq2[*UniverseList, error] {
-	params := &internal.ApiUniverseListParams{}
-
-	if err := applyFilters("Universes", params, filters); err != nil {
-		return errIter[*UniverseList](err)
-	}
-
-	return paginate[internal.PaginatedUniverseListList](ctx, c, c.client.ApiUniverseList, universeListMapper, params)
+func (c *Client) Universes(ctx context.Context, filters *UniverseFilters, opts ...RequestOption) iter.Seq2[*UniverseList, error] {
+	return paginate[internal.PaginatedUniverseListList](ctx, c, c.client.ApiUniverseList, universeListMapper, filters.params, everyPage(requestEditors(opts)))
 }
 
 func universeMapper(in internal.UniverseRead) (*Universe, error) {

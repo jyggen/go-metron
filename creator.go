@@ -33,19 +33,13 @@ type CreatorList struct {
 }
 
 // CreatorByID returns a creator by its ID.
-func (c *Client) CreatorByID(ctx context.Context, id int, opts ...RequestOption) (*Creator, error) {
-	return byID(ctx, c, c.client.ApiCreatorRetrieve, creatorMapper, id, opts)
+func (c *Client) CreatorByID(ctx context.Context, id int, opts ...ConditionalOption) (*Creator, error) {
+	return byID(ctx, c, c.client.ApiCreatorRetrieve, creatorMapper, id, conditionalEditors(opts))
 }
 
 // Creators returns an iterator over all creators.
-func (c *Client) Creators(ctx context.Context, filters ...Filter) iter.Seq2[*CreatorList, error] {
-	params := &internal.ApiCreatorListParams{}
-
-	if err := applyFilters("Creators", params, filters); err != nil {
-		return errIter[*CreatorList](err)
-	}
-
-	return paginate[internal.PaginatedCreatorListList](ctx, c, c.client.ApiCreatorList, creatorListMapper, params)
+func (c *Client) Creators(ctx context.Context, filters *CreatorFilters, opts ...RequestOption) iter.Seq2[*CreatorList, error] {
+	return paginate[internal.PaginatedCreatorListList](ctx, c, c.client.ApiCreatorList, creatorListMapper, filters.params, everyPage(requestEditors(opts)))
 }
 
 func creatorMapper(in internal.Creator) (*Creator, error) {

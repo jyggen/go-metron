@@ -104,63 +104,59 @@ type IssueList struct {
 }
 
 // IssueByID returns an issue by its ID.
-func (c *Client) IssueByID(ctx context.Context, id int, opts ...RequestOption) (*Issue, error) {
-	return byID(ctx, c, c.client.ApiIssueRetrieve, issueMapper, id, opts)
+func (c *Client) IssueByID(ctx context.Context, id int, opts ...ConditionalOption) (*Issue, error) {
+	return byID(ctx, c, c.client.ApiIssueRetrieve, issueMapper, id, conditionalEditors(opts))
 }
 
 // Issues returns an iterator over all issues.
-func (c *Client) Issues(ctx context.Context, filters ...Filter) iter.Seq2[*IssueList, error] {
-	params := &internal.ApiIssueListParams{}
-
-	if err := applyFilters("Issues", params, filters); err != nil {
-		return errIter[*IssueList](err)
-	}
-
-	return paginate[internal.PaginatedIssueListList](ctx, c, c.client.ApiIssueList, issueListMapper, params)
+func (c *Client) Issues(ctx context.Context, filters *IssueFilters, opts ...RequestOption) iter.Seq2[*IssueList, error] {
+	return paginate[internal.PaginatedIssueListList](ctx, c, c.client.ApiIssueList, issueListMapper, filters.params, everyPage(requestEditors(opts)))
 }
 
 // IssuesByArcID returns an iterator over all issues for a story arc.
-func (c *Client) IssuesByArcID(ctx context.Context, id int, filters ...Filter) iter.Seq2[*IssueList, error] {
-	params := &internal.ApiArcIssueListListParams{}
-
-	if err := applyFilters("IssuesByArcID", params, filters); err != nil {
-		return errIter[*IssueList](err)
-	}
-
-	return idPaginate[internal.PaginatedIssueListList](ctx, c, c.client.ApiArcIssueListList, issueListMapper, id, params)
+func (c *Client) IssuesByArcID(ctx context.Context, arcID int, opts ...ConditionalOption) iter.Seq2[*IssueList, error] {
+	return idPaginate[internal.PaginatedIssueListList](ctx, c, c.client.ApiArcIssueListList, issueListMapper, arcID,
+		func(page int) *internal.ApiArcIssueListListParams {
+			return &internal.ApiArcIssueListListParams{Page: &page}
+		},
+		firstPageOnly(conditionalEditors(opts)),
+	)
 }
 
 // IssuesByCharacterID returns an iterator over all issues for a character.
-func (c *Client) IssuesByCharacterID(ctx context.Context, id int, filters ...Filter) iter.Seq2[*IssueList, error] {
-	params := &internal.ApiCharacterIssueListListParams{}
-
-	if err := applyFilters("IssuesByCharacterID", params, filters); err != nil {
-		return errIter[*IssueList](err)
-	}
-
-	return idPaginate[internal.PaginatedIssueListList](ctx, c, c.client.ApiCharacterIssueListList, issueListMapper, id, params)
+// Issues with a CharacterID filter covers the same ground and composes with the
+// other issue filters.
+func (c *Client) IssuesByCharacterID(ctx context.Context, characterID int, opts ...ConditionalOption) iter.Seq2[*IssueList, error] {
+	return idPaginate[internal.PaginatedIssueListList](ctx, c, c.client.ApiCharacterIssueListList, issueListMapper, characterID,
+		func(page int) *internal.ApiCharacterIssueListListParams {
+			return &internal.ApiCharacterIssueListListParams{Page: &page}
+		},
+		firstPageOnly(conditionalEditors(opts)),
+	)
 }
 
 // IssuesBySeriesID returns an iterator over all issues for a series.
-func (c *Client) IssuesBySeriesID(ctx context.Context, id int, filters ...Filter) iter.Seq2[*IssueList, error] {
-	params := &internal.ApiSeriesIssueListListParams{}
-
-	if err := applyFilters("IssuesBySeriesID", params, filters); err != nil {
-		return errIter[*IssueList](err)
-	}
-
-	return idPaginate[internal.PaginatedIssueListList](ctx, c, c.client.ApiSeriesIssueListList, issueListMapper, id, params)
+// Issues with a SeriesID filter covers the same ground and composes with the
+// other issue filters.
+func (c *Client) IssuesBySeriesID(ctx context.Context, seriesID int, opts ...ConditionalOption) iter.Seq2[*IssueList, error] {
+	return idPaginate[internal.PaginatedIssueListList](ctx, c, c.client.ApiSeriesIssueListList, issueListMapper, seriesID,
+		func(page int) *internal.ApiSeriesIssueListListParams {
+			return &internal.ApiSeriesIssueListListParams{Page: &page}
+		},
+		firstPageOnly(conditionalEditors(opts)),
+	)
 }
 
 // IssuesByTeamID returns an iterator over all issues for a team.
-func (c *Client) IssuesByTeamID(ctx context.Context, id int, filters ...Filter) iter.Seq2[*IssueList, error] {
-	params := &internal.ApiTeamIssueListListParams{}
-
-	if err := applyFilters("IssuesByTeamID", params, filters); err != nil {
-		return errIter[*IssueList](err)
-	}
-
-	return idPaginate[internal.PaginatedIssueListList](ctx, c, c.client.ApiTeamIssueListList, issueListMapper, id, params)
+// Issues with a TeamID filter covers the same ground and composes with the
+// other issue filters.
+func (c *Client) IssuesByTeamID(ctx context.Context, teamID int, opts ...ConditionalOption) iter.Seq2[*IssueList, error] {
+	return idPaginate[internal.PaginatedIssueListList](ctx, c, c.client.ApiTeamIssueListList, issueListMapper, teamID,
+		func(page int) *internal.ApiTeamIssueListListParams {
+			return &internal.ApiTeamIssueListListParams{Page: &page}
+		},
+		firstPageOnly(conditionalEditors(opts)),
+	)
 }
 
 // issueMapper deliberately does not guard AltNumber, Name or RatingCount.

@@ -31,19 +31,13 @@ type ImprintList struct {
 }
 
 // ImprintByID returns an imprint by its ID.
-func (c *Client) ImprintByID(ctx context.Context, id int, opts ...RequestOption) (*Imprint, error) {
-	return byID(ctx, c, c.client.ApiImprintRetrieve, imprintMapper, id, opts)
+func (c *Client) ImprintByID(ctx context.Context, id int, opts ...ConditionalOption) (*Imprint, error) {
+	return byID(ctx, c, c.client.ApiImprintRetrieve, imprintMapper, id, conditionalEditors(opts))
 }
 
 // Imprints returns an iterator over all imprints.
-func (c *Client) Imprints(ctx context.Context, filters ...Filter) iter.Seq2[*ImprintList, error] {
-	params := &internal.ApiImprintListParams{}
-
-	if err := applyFilters("Imprints", params, filters); err != nil {
-		return errIter[*ImprintList](err)
-	}
-
-	return paginate[internal.PaginatedImprintListList](ctx, c, c.client.ApiImprintList, imprintListMapper, params)
+func (c *Client) Imprints(ctx context.Context, filters *ImprintFilters, opts ...RequestOption) iter.Seq2[*ImprintList, error] {
+	return paginate[internal.PaginatedImprintListList](ctx, c, c.client.ApiImprintList, imprintListMapper, filters.params, everyPage(requestEditors(opts)))
 }
 
 func imprintMapper(in internal.ImprintRead) (*Imprint, error) {
